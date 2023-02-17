@@ -1,3 +1,5 @@
 *.pdb
 *.exe
 target
+.idea
+cmake-build-debug

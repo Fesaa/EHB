@@ -1,3 +1,0 @@
-/Users/ferre/CLionProjects/EHB_module_4/cmake-build-debug/CMakeFiles/EHB_module_4.dir
-/Users/ferre/CLionProjects/EHB_module_4/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/ferre/CLionProjects/EHB_module_4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
