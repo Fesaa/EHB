@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Suez+One&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #E4EFEA;
+}
+
+h1 {
+    letter-spacing: 0.3cm;
+    font-size: 4rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Suez One', serif;
+    color: #F24949;
+    text-align: center;
+}
+
+.intro {
+    background-color: white;
+}
+
+.intro p {
+    font-weight: bold;
+}
+
+.articles h3 {
+    text-transform: uppercase;
+    color: #F28A80;
+}
+
+p.publicatie {
+    text-align: right;
+    color: #a1a9a2;
+}
+
+p.text::first-letter {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+p.text {
+    text-indent: 2em;
+}
+
+hr {
+    clear: left;
+}

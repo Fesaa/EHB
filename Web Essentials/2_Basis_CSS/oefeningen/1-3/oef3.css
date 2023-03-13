@@ -1,0 +1,73 @@
+body {
+    background-color: rgb(255, 99, 71);
+    color: #231F20;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #dadcde;
+}
+
+nav {
+    background-color: #ffd602;
+    letter-spacing: 0.1em;
+}
+
+nav a {
+    color: #231F20;
+}
+
+a.current {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #dadcde;
+}
+
+nav a:hover {
+    background: rgba(0, 0, 0, 0.6);
+    color: hsl(0, 0%, 100%);
+    text-decoration: none;
+}
+
+a  {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2 {
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 300%;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+.white-background {
+    background-color: white;
+    color: rgb(255, 99, 71);
+}
+
+.black-background-yellow-text {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: black;
+    color: #ffd602;
+}
+
+.black-background-yellow-text h2 {
+    color: hsl(0, 0%, 100%);
+}
+
+p {
+    line-height: 2;
+
+}
+
+ul {
+    line-height: 1.5;
+}

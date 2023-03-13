@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "Branda-yolq";
+    src: url("fonts/Branda-yolq.ttf") format("ttf"),;
+}
+
+
+body {
+    font-family: "Branda-yolq";
+    font-size: 14px;
+    background-color: aliceblue;
+}
+
+nav li > a {
+    color: red;
+}
+
+#active {
+    font-weight: bold;
+}
+
+h1 {
+    background-color: darkorange;
+    font-size: 30px;
+}
+
+
+h2 {
+    color: red;
+}
+
+h1, h2 {
+    font-family: 'Dancing Script', cursive;
+}
+
+p {
+    line-height: 1.5;
+}
+
+.voorbeeld1 {
+    color: green;
+}
+
+.voorbeeld2 {
+    background-color: darkturquoise;
+}
+
+.voorbeeld3 {
+    background-color: yellow;
+}

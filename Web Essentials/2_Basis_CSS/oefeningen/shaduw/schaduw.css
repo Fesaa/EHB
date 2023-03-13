@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 5em;
+  line-height: 3em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h1.een {
+  color: beige;
+  text-shadow: 10px 5px 15px #000000;
+}
+
+
+h1.twee {
+  background-color: #00e6e6;
+  color: black;
+  text-shadow: 7px 0px 3px orange;
+}
+
+
+
+h1.drie {
+  text-shadow: -0.5em -0.5em 0px tomato;
+}
+
+h1.vier {
+  background-color: #333;
+  text-shadow:
+    1em 0.1em 10px greenyellow,
+    -1em -0.1em 10px greenyellow;
+}
+
+h1.vijf {
+  background-color: aqua;
+  font-size: 5em;
+  text-shadow:
+    -0.1em 0.1em 0em #00e6e6,
+    -0.2em 0.2em 0em #01cccc,
+    -0.3em 0.3em 0em #00bdbd;
+}
