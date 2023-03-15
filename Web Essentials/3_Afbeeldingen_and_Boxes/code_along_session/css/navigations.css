@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    background-color: black;
+    width: 375px;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    border: 1px solid black;
+    border-bottom-width: 0px;
+} 
+
+.nav li {
+    list-style: none;
+
+}
+
+.nav a {
+    display: block;
+    background-color: white;
+    padding: 1em;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.nav a:hover {
+    background-color: black;
+    color: white;
+}
+
+.nav #current {
+    background-color: green;
+}
+
+.nav-hor {
+    background-color: black;
+}
+
+.nav-hor ul {
+    background-color: lime;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-hor li {
+    list-style: none;
+    display: inline-block;
+    padding: 1em;
+}
+
+.nav-hor a {
+    background-color: pink;
+    display: block;
+    padding: 1em;
+}

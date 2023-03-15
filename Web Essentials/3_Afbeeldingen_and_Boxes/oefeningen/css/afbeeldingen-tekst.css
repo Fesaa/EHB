@@ -1,0 +1,20 @@
+
+p {
+    line-height: 1.5;
+  }
+
+img {
+float: left;
+width: 250px;
+height: auto;
+margin: 0 1em 1em 0;
+}
+
+.alt-img {
+float: right;
+margin: 0 0 1em 1em
+}
+
+h2 {
+    clear: both;
+}
