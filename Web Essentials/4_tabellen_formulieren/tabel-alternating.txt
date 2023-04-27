@@ -1,0 +1,11 @@
+Tabellen en CSS
+TOEGEPASTE INFORMATICA
+Firstname	Lastname	Course
+Tom	Aertssens	Web Essentials
+Geert	Coulommier	IT Essentials
+Ruben	Dejonckheere	Programming Essentials
+Mike	Derycke	Web Advanced
+Wim	Hambroeck	Data Essentials
+Steve	Weemaels	Business IT
+
+Toegepaste Informatica

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Video</title>
+  <style>
+    video {
+      width: 50%;
+      height: auto;
+    }
+
+    iframe {
+      width: 50%;
+      min-width: 450px;
+    }
+  </style>
+</head>
+
+<body>
+
+    <h2>Embedded Video</h2>
+
+    <div>
+
+    <video width="1280" height="720" controls poster="video/poster.jpg" id="video">
+        <source src="video/EDC.webm" type="video/webm">
+        <source src="video/EDC.mp4" type="video/mp4">
+        <source src="video/EDC.ogg" type="video/ogg">
+        <p>VIDEOOOOOO
+        <a href="video/EDC.webm">webm</a>
+        <a href="video/EDC.mp4">mp4</a>
+        <a href="video/EDC.ogg">ogg</a>
+        </p>
+    </video>
+    </div>
+
+
+    <h2>Embedded Audio</h2>
+
+    <div>
+    <audio controls>
+        <source src="audio/test-audio.ogg" type="audio/ogg" />
+        <source src="audio/test-audio.mp3" type="audio/mpeg" />
+        <p>Cannot play the video :sob:.</p>
+    </audio>
+
+
+    <h2>Hosted Video (YouTube)</h2>
+
+    <iframe width="560" height="315" src="https://youtu.be/Ge1BhrQcFEg" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+
+
+    <h2>Hosted audio (SoundCloud)</h2>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/68814301&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+    <hr>
+    </div>
+
+</body>
+
+</html>
