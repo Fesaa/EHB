@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lijstje voor DOM oefeningen</title>
+  <style>
+    .cold {
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <h1 class="header">Lijst</h1>
+    <h2>Boodschappenlijst</h2>
+    <ul>
+      <li id="one" class="hot"><em>Verse</em>bosbessen</li>
+      <li id="two" class="hot">Pizza</li>
+      <li id="three">Honing</li>
+      <li id="four">Olijfolie</li>
+    </ul>
+  </div>
+
+  <div id="container">
+    <button id="btn1" type="button">
+      Klik op de knop
+    </button>
+  </div>
+
+  <button class="color-btn" value="#FF0000" onclick="bgcolor(this)">Rood</button>
+  <button class="color-btn" value="#00FF00" onclick="bgcolor(this)">Groen</button>
+  <button class="color-btn" value="#0000FF" onclick="bgcolor(this)">Blauw</button>
+</body>
+
+<script>
+
+function wijzig1() {
+  let el = document.getElementById("two")
+  if (el != null) {
+    el.innerText = "Lasagne";
+    el.style.border = "1px solid red";
+  }
+}
+wijzig1()
+
+function wijzig2() {
+  let els = document.getElementsByClassName("hot")
+  if (els.length > 0) {
+    els[0].classList.replace("hot", "cold")
+  }
+}
+wijzig2()
+
+let btn1 = document.getElementById("btn1")
+if (btn1 != null) {
+  btn1.addEventListener("click", clicky)
+}
+
+function clicky() {
+  let container = document.getElementById("container")
+  container.innerHTML += "<p>Yes! Het werkt</p>"
+  let btn1 = document.getElementById("btn1")
+  if (btn1 != null) {
+  btn1.addEventListener("click", clicky)
+  }
+}
+
+function prepare_buttons() {
+  let btns = document.getElementsByClassName("color-btn")
+  if (btns == null) {
+    return
+  }
+
+  for (i = 0; i < btns.length; i++) {
+    let btn = btns[i]
+    btn.style.backgroundColor = btn.getAttribute("value")
+  }
+
+}
+prepare_buttons()
+
+function bgcolor(btn) {
+  document.body.style.backgroundColor = btn.value
+}
+</script>
+
+</html>
