@@ -1,0 +1,48 @@
+body {
+    background: #eee;
+    margin: 0;
+    padding: 0;
+}
+  
+.form-wrap {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #efefef
+}
+
+form {
+    margin-top: 1em;
+    display: flex;
+}
+
+input {
+    flex: 1;
+    margin-right: 2px;
+    padding: 4px 10px;
+    color: cornflowerblue;
+    outline: none;
+    border: 1px solid lightblue
+}
+
+input:focus {
+    border-color: cornflowerblue !important;
+
+}
+
+button {
+    background: cornflowerblue;
+    color: white;
+    border: initial;
+    padding: 1em;
+}
+
+button:hover {
+    cursor: pointer;
+    background: navy;
+}
+
+button:active {
+    font-weight: bold;
+}

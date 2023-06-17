@@ -1,0 +1,36 @@
+.nav {
+    background-color: black;
+  }
+  
+.nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    border-left: 1px solid #fff;
+    display: flex;
+
+}
+
+.nav li:first-child {
+    flex-grow: 1;
+}
+
+
+.nav a {
+    background: black;
+    color: white;
+    padding: 1em;
+    transition: background-color .5s;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-right: 1px solid white;
+}
+
+.nav a:hover {
+    background: #efefef;
+    color: #000;
+}
