@@ -74,14 +74,18 @@ h {
 .movie-row {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
 }
 
 .movie {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   flex: 1 1 0px;
+}
+
+.movie img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .movie-text, .movie-title, .movie-readmore {
@@ -110,6 +114,8 @@ footer {
   margin: 0;
   text-align: center;
 }
+
+
 
 
 /* ################################## */

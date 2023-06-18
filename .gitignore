@@ -5,5 +5,7 @@ target
 cmake-build-debug
 .DS_Store
 mat
-screenshots
+screenshots/
 *.pdf
+.vscode
+images/

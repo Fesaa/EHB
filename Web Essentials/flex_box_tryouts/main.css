@@ -1,0 +1,40 @@
+body {
+    background-color: antiquewhite;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    font-size: 80px;
+    text-align: center;
+    background-color: aquamarine;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+}
+
+.item img {
+    object-fit: cover;
+    width: 95%;
+    height: 95%;
+}
+
+.item p {
+    font-size: 20px;
+}
