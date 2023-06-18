@@ -17,6 +17,8 @@ basisgrootte: 15 pixels
 body {
   font: Arial;
   font-size: 15px;
+  padding: 0;
+  margin: 0;
 }
 
 .hidden {
@@ -26,7 +28,7 @@ body {
 /* HEADER & NAVIGATIE */
 
 header {
-  color: aaaaaa;
+  color: #aaaaaa;
   background-color: black;
   padding: 0;
   margin: 0;
@@ -35,13 +37,19 @@ header {
 nav {
   background-color: black;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
 }
 
 nav a {
   text-decoration: none;
   color: #aaa;
-  border: 1px solid #fff;
-  padding: 1em;
 }
 
 .active {
@@ -53,7 +61,7 @@ nav a {
 h {
   font-size: 80px;
   color: #f0141e;
-  align-self: center;
+  text-align: center;
   font-weight: bold;
   padding: 0.5em;
 }
@@ -65,7 +73,7 @@ h {
 
 .movie-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
 }
 
@@ -73,6 +81,7 @@ h {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  flex: 1 1 0px;
 }
 
 .movie-text, .movie-title, .movie-readmore {
@@ -93,19 +102,16 @@ h {
   background-color: #f0141e;
 }
 
-/*
-De rand rond de eerste film is 10 pixels
-De witruimte rond de 'movie-text' is
-  boven en onder: 1em
-  links en rechts : 2em
-*/
+/* Footer */
+footer {
+  color: #aaaaaa;
+  background-color: black;
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+}
+
 
 /* ################################## */
 /* Mediaquery voor schermen vanaf 1024 pixels*/
 /* ################################## */
-
-@media screen and (min-width: 1024px) {
-  .movie-row {
-    flex-direction: row;
-  }
-}

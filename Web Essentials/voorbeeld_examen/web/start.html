@@ -17,23 +17,27 @@
     <!-- NAVIGATIE -->
     <nav>
       <a class="logo" href="#"><img src="./images/marvel.png"></a>
-      <a class="nav" href="#">Home</a>
-      <a class="active nav" href="#">Movies</a>
-      <a class="nav" href="#">Games</a>
-      <a class="nav" id="download" href="#">Download</a>
+      <div class="nav-container">
+        <a class="nav" href="#">Home</a>
+        <a class="active nav" href="#">Movies</a>
+        <a class="nav" href="#">Games</a>
+        <a class="nav" id="download" href="#">Download</a>
+      </div>
     </nav>
   </header>
 
   <!--  INDHOUD -->
   <div class="content">
     <h>Best Marvel Movies</h>
-      <div class="movie-row movie first">
-        <img class="movie-image" src="./images/1captainamericafirst.jpg">
-        <h3 class="movie-title">1) Captain America. The First Avenger</h3>
-        <p class="movie-text">Yet another Marvel blockbuster where all the characters do a lot of fighting and obviously the good guys win.
-          Awe-inducing special effects and lot's of fun.</p>
-        <p class="movie-readmore">Read more</p>
+      <div class="movie-row">
+        <div class="movie first">
+          <img class="movie-image" src="./images/1captainamericafirst.jpg">
+          <h3 class="movie-title">1) Captain America. The First Avenger</h3>
+          <p class="movie-text">Yet another Marvel blockbuster where all the characters do a lot of fighting and obviously the good guys win.
+            Awe-inducing special effects and lot's of fun.</p>
+          <p class="movie-readmore">Read more</p>
         </div>
+      </div>
 
       <div class="movie-row">
         <div class="movie">
@@ -79,8 +83,8 @@
 
   <!-- VOETTEKST -->
   <footer>
-    I have a plan, Attack.
-    &copy; 2020 [Voornaam] [Naam]
+    <p>I have a plan, Attack.</p>
+    <p>&copy; 2020 [Voornaam] [Naam]</p>
   </footer>
 
   <script src="./js/script.js"></script>
