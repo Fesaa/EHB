@@ -1,0 +1,111 @@
+/*
+KLEUREN: 
+grijs : #aaaaaa   ->kleur van navigatielinks
+rood  : #f0141e
+
+wit   : #ffffff ->kleur van navigatielink met muisover
+zwart : #000000
+
+
+/* TYPOGRAFIE
+lettertype : Arial
+basisgrootte: 15 pixels
+*/
+
+/* BASIS CSS HIER (body, paragrafen, titels, ...) */
+
+body {
+  font: Arial;
+  font-size: 15px;
+}
+
+.hidden {
+  display: hidden; /*????*/
+}
+
+/* HEADER & NAVIGATIE */
+
+header {
+  color: aaaaaa;
+  background-color: black;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  background-color: black;
+  display: flex;
+}
+
+nav a {
+  text-decoration: none;
+  color: #aaa;
+  border: 1px solid #fff;
+  padding: 1em;
+}
+
+.active {
+  color: #f0141e !important;
+}
+
+/* INHOUD: FILMS */
+
+h {
+  font-size: 80px;
+  color: #f0141e;
+  align-self: center;
+  font-weight: bold;
+  padding: 0.5em;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.movie-text, .movie-title, .movie-readmore {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.movie-readmore {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.first {
+  border: 10px solid #f0141e;
+  background-color: #f0141e;
+}
+
+/*
+De rand rond de eerste film is 10 pixels
+De witruimte rond de 'movie-text' is
+  boven en onder: 1em
+  links en rechts : 2em
+*/
+
+/* ################################## */
+/* Mediaquery voor schermen vanaf 1024 pixels*/
+/* ################################## */
+
+@media screen and (min-width: 1024px) {
+  .movie-row {
+    flex-direction: row;
+  }
+}
