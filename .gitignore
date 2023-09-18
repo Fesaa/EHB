@@ -10,3 +10,6 @@ screenshots/
 .vscode
 images/
 Examen-Oefeningen-*/
+**/.vs/*
+**/bin/*
+**/obj/*
