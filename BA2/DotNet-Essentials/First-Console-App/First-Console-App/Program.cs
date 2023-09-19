@@ -1,15 +1,22 @@
-﻿namespace FirstConsoleApp;
+﻿using SchoolLibs;
+
+namespace FirstConsoleApp;
+
 internal class Program
 {
     static void Main(string[] _)
     {
         Console.WriteLine("Hello, what is your name?");
         string? name = Console.ReadLine();
-        if (name == null) {
-            Console.WriteLine("Why you null??");
-        } else
+        if (name == null)
         {
-            Console.WriteLine($"Hello, {name}. Here is a sum for you! {Sum(5, 1)}");
+            Console.WriteLine("Why you null??");
+        }
+        else
+        {
+            Student student = new Student(name, "Unknown", DateTime.Now);
+
+            Console.WriteLine($"Hello, {student.PrettyString()}. Here is a sum for you! {Sum(5, 1)}");
         }
 
         // Keep console open until enter is pressed - visual studio is dumb
