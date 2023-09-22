@@ -22,8 +22,8 @@ internal class Program
 
         // Oef 3
         Maand currentMonth = new Maand();
-        currentMonth.Jaar = 2002;
-        currentMonth.Maandnr = 11;
+        currentMonth.Year = 2002;
+        currentMonth.MonthNr = 11;
         Console.WriteLine(currentMonth);
 
     }
