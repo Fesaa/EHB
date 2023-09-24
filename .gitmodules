@@ -1,0 +1,3 @@
+[submodule "Werkcollege1"]
+    path = "BA2/DotNet-Essentials/Werkcollege1"
+    url = "git@ssh.dev.azure.com:v3/ampalm/Werkcollege1/Werkcollege1"
