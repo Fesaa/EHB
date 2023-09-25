@@ -24,53 +24,48 @@ public class Maand
     {
         int maxDays = DateTime.DaysInMonth(this.Year, this.MonthNr);
         DateTime dt = new DateTime(this.Year, this.MonthNr, 1, 0, 0, 0);
+        string monthName = dt.ToString("MMMM");
 
         string sep = "      ";
 
-        // Why does this shit HashMap have so little methods
-        // computeIfAbsent????
-        // getOrDefault ????
-        // ANYTHING??????
-        Dictionary<int, string> mapLines = new Dictionary<int, string>();
-        bool passedRowOne = false;
-
-        while (true)
+        // Get the first sunday
+        DayOfWeek firstDay = dt.DayOfWeek;
+        int firstWeekDays = 7;
+        for (int i = 1; i < 7; i++)
         {
-            int day = ((int)dt.DayOfWeek);
-
-            // Get the line or return the start value
-            string line = mapLines.ContainsKey(day) ? mapLines[day] : dt.ToString("ddd");
-
-            // Add padding on first entry if it's in the second row
-            if (dt.Day < 8 && passedRowOne)
+            if (dt.DayOfWeek == DayOfWeek.Sunday)
             {
-                line += sep + "  ";
-            }
-
-            line += sep + dt.ToString("dd");
-            mapLines[day] = line;
-            if (day == 0) // Sunday
-            {
-                passedRowOne = true;
-            }
-
-            // Weird ending system due to how days wrap
-            if (dt.Day == maxDays)
-            {
+                firstWeekDays = i;
                 break;
             }
-            // FFS just change the object instead of returning a new one
-            // or allow me to DateTime#setDay
             dt = dt.AddDays(1);
         }
+        // Set to monday of first week of the month
+        dt = dt.AddDays(-6);
 
-
-        string s = dt.ToString("MMMM") + " " + this.Year + "\n\n";
-        for (int i = 1; i < 8; i++)
+        string s = monthName + " " + this.Year + "\n\n";
+        for (int i = 0; i < 7; i++)
         {
-            s += mapLines[i % 7] + "\n";
+            s += dt.ToString("ddd") + sep;
+            if (dt.Month != this.MonthNr)
+            {
+                s += sep + "  ";
+            }
+            else
+            {
+                s += sep + dt.ToString("dd");
+            }
+            int adjust = (int)dt.DayOfWeek == 0 ? 7 : (int)dt.DayOfWeek;
+            for (int j = firstWeekDays + adjust; j <= maxDays; j += 7)
+            {
+                s += sep + j.ToString().PadLeft(2, '0');
+            }
+            s += "\n";
+            dt = dt.AddDays(1);
+
         }
 
         return s;
+
     }
 }

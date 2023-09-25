@@ -26,6 +26,33 @@ internal class Program
         currentMonth.MonthNr = 11;
         Console.WriteLine(currentMonth);
 
+        // extra 3
+        while (true)
+        {
+            Console.Write("Enter a month number: ");
+            string? input = Console.ReadLine();
+            if (input == null)
+            {
+                break;
+            }
+            if (int.TryParse(input, out int monthNr))
+            {
+                if (monthNr > 0 && monthNr < 13)
+                {
+                    currentMonth.MonthNr = monthNr;
+                    Console.WriteLine(currentMonth);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+
     }
 
 }
