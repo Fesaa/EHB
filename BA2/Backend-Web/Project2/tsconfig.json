@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "module": "CommonJS",
+        "esModuleInterop": true,
+        "outDir": "./build",
+        "rootDir": "./source",
+        "target": "ES2022",
+        "skipLibCheck": true,
+        "strict": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+    }
+}
