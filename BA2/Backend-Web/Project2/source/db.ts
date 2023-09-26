@@ -1,7 +1,7 @@
 import DataBase, { Database } from "better-sqlite3"
 
 function initDB(): Database {
-    const FILE = process.env.DB ?? "./tempp.sql";
+    const FILE = process.env.DB ?? ":memory:";
     const db = new DataBase(FILE, {
         timeout: 1000,
         verbose: console.log,
