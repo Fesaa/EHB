@@ -13,3 +13,4 @@ Examen-Oefeningen-*/
 **/.vs/*
 **/bin/*
 **/obj/*
+node_modules
