@@ -1,16 +1,11 @@
 import DataBase, { Database } from "better-sqlite3"
 
 function initDB(): Database {
-    console.log("MAKING DB")
-
     const FILE = process.env.DB ?? "./tempp.sql";
     const db = new DataBase(FILE, {
         timeout: 1000,
         verbose: console.log,
     })
-
-    console.log("DB has been created")
-
     db.exec(`
             CREATE TABLE IF NOT EXISTS customers (
                 id INTEGER PRIMARY KEY,
@@ -56,7 +51,6 @@ const db = initDB()
 
 const stockedItemStmt = db.prepare("SELECT name,price,stock FROM items WHERE stock > 0;")
 const addItemToStockStmt = db.prepare("INSERT INTO items (name, price, stock) VALUES (@name, @price, @amount);")
-
 const insertItem = db.transaction((item) => {
     addItemToStockStmt.run(item)
 })
