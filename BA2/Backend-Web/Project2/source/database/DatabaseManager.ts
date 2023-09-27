@@ -19,6 +19,10 @@ class DatabaseManager {
 
     constructor() { }
 
+    /**
+    * Async initialization of the database
+    * has to be called before using any other methods
+    **/
     async init() {
         const PATH = process.env.DB ?? ":memory:"
         const sqlite3DB = new Sqlite3.Database(PATH)
@@ -31,12 +35,55 @@ class DatabaseManager {
         })
     }
 
+    /**
+    * Register a new customer to the database
+    *
+    * @param name The name of the customer
+    * @returns The auth key of the customer
+    **/
+    async registerNewCostumer(name: string): Promise<string> {
+        const customer = await this.db!.tables.Customer.insert({ name })
+        const id = customer.insertId
+        return this.generateNewKey(id)
+    }
+
+
+    private async generateNewKey(customer_id: number, admin: boolean = false): Promise<string> {
+        const key = Math.random().toString(36).substring(2, 15)
+        // We are not checking if the customer_id is valid, as the method is private
+        // so we can assume that the logic is correct
+        await this.db!.tables.Key.insert({ customer_id, key, admin })
+        return Promise.resolve(key)
+    }
+
+    /**
+    * Query the database for a customer
+    * 
+    * @param id The id of the customer
+    * @returns Instance of Customer or null if not found
+    **/
+    async getCustomerById(id: number): Promise<Customer | null> {
+        return this.db!.tables.Customer.single().where((customer) => customer.equals({ id }))
+    }
+
+    /**
+    * Query the database for all items in stock
+    * i.e. any items with an amount > 0
+    *
+    * @returns Array of Item
+    **/
     async getAllItemsInStock(): Promise<Item[]> {
         return this.db!.tables.Item
             .select()
             .where((item) => item.greaterThan({ amount: 0 }))
     }
 
+    /**
+    * Insert new items into the datbase
+    *
+    * @param items Array of items to insert
+    * @returns Array of ids of the inserted items
+    **/
     async addNewItems(items: Partial<Item>[]): Promise<number[]> {
         let generatedIds: number[] = []
         await this.db!.transaction(({ exec, tables }) => {
