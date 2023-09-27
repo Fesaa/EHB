@@ -26,4 +26,16 @@ class Customer {
     name: string = ""
 }
 
-export { Item, Customer }
+class Key {
+    @Column("INTEGER")
+    customer_id: number = 0
+
+    @Column("NVARCHAR")
+    key: string = ""
+
+    @Column("BOOLEAN")
+    admin: boolean = false
+
+}
+
+export { Item, Customer, Key }

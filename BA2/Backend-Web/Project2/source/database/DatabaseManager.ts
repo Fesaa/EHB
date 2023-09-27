@@ -1,32 +1,30 @@
 import { Db, SQLite3Driver } from "sqlite-ts";
 import Sqlite3 = require("sqlite3")
 
-import { Item, Customer } from "./tables"
+import { Item, Customer, Key } from "./tables"
 
 class DatabaseManager {
 
     private static entities = {
         Item,
-        Customer
+        Customer,
+        Key
     }
-
-    private sqlite3DB: Sqlite3.Database
 
     private db: Db<{
         Item: typeof Item,
-        Customer: typeof Customer
-    }>
-        | null = null
+        Customer: typeof Customer,
+        Key: typeof Key
+    }> | null = null
 
-    constructor() {
-
-        const PATH = process.env.DB ?? ":memory:"
-        this.sqlite3DB = new Sqlite3.Database(PATH)
-    }
+    constructor() { }
 
     async init() {
+        const PATH = process.env.DB ?? ":memory:"
+        const sqlite3DB = new Sqlite3.Database(PATH)
+
         this.db = await Db.init({
-            driver: new SQLite3Driver(this.sqlite3DB),
+            driver: new SQLite3Driver(sqlite3DB),
 
             entities: DatabaseManager.entities,
             createTables: true
@@ -34,7 +32,9 @@ class DatabaseManager {
     }
 
     async getAllItemsInStock(): Promise<Item[]> {
-        return this.db!.tables.Item.select().where((item) => item.greaterThan({ amount: 0 }))
+        return this.db!.tables.Item
+            .select()
+            .where((item) => item.greaterThan({ amount: 0 }))
     }
 
     async addNewItems(items: Partial<Item>[]): Promise<number[]> {
