@@ -100,26 +100,65 @@ class DatabaseManager {
             .select()
             .where((item) => item.greaterThan({ amount: 0, id: id }))
     }
+    /**
+    * Update items into the datbase
+    *
+    * @param items Array of items to update
+    * @returns Array of ids of the inserted items
+    **/
+    public async updateItems(items: Partial<Item>[]): Promise<number[]> {
+        let successIds: number[] = []
+        await this.db!.transaction(({ exec, tables }) => {
+            for (const item of items) {
+                if (item.id) {
+                    exec(tables.Item.update(item)
+                        .where(id => id.equals({ id: item.id })))
+                        .then((id) => {
+                            if (id.rowsAffected != 0) {
+                                successIds.push(item.id!)
+                            }
+                        })
+                }
+            }
+        })
+        return Promise.resolve(successIds)
+    }
 
     /**
     * Insert new items into the datbase
-    * Or update if item is passed with an id
     *
     * @param items Array of items to insert
     * @returns Array of ids of the inserted items
     **/
-    public async addNewItems(items: Partial<Item>[]): Promise<number[]> {
+    public async addItems(items: Partial<Item>[]): Promise<number[]> {
         let generatedIds: number[] = []
         await this.db!.transaction(({ exec, tables }) => {
             for (const item of items) {
                 if (item.id) {
-                    exec(tables.Item.update(item).where(id => id.equals({ id: item.id })))
+                    exec(tables.Item.update(item)
+                        .where(id => id.equals({ id: item.id })))
+                        .then((id) => {
+                            if (id.rowsAffected != 0) {
+                                generatedIds.push(item.id!)
+                            }
+                        }
+                        )
                 } else {
-                    exec(tables.Item.insert(item)).then((id) => generatedIds.push(id.insertId))
+                    exec(tables.Item.insert(item))
+                        .then((id) => generatedIds.push(id.insertId))
                 }
             }
         })
         return Promise.resolve(generatedIds)
+    }
+
+
+    /** Delete items from stock
+    *
+    * @param ids the ids to delete
+    **/
+    public async deleteItems(ids: Number[]) {
+        await this.db!.tables.Item.delete().where(item => item.in({ id: ids }))
     }
 
 }

@@ -1,21 +1,16 @@
 import express from "express"
-import * as Joi from 'joi'
 
 import publicRoutes from "./controllers/public/stock"
 
 import managementRoutes from "./controllers/management/stock"
 import { databaseManager } from "./database/DatabaseManager"
+import { authScheme } from "./validators/keys"
+
 const router = express.Router()
 
 router.get("/stock", publicRoutes.getItemsInStock)
 
 const authRouter = express.Router()
-
-const authScheme = Joi.object({
-    "authentication": Joi.string()
-        .required()
-})
-
 authRouter.use(async (req, res, next) => {
     try {
         await authScheme.validateAsync(req.headers, {
@@ -28,10 +23,11 @@ authRouter.use(async (req, res, next) => {
     if (!(await databaseManager.isManagement(req.header("authentication")!))) {
         return res.status(401).json({ msg: "Insufficient privilages" })
     }
-
     next();
 })
-authRouter.post("/stock", managementRoutes.addItemToStock)
+authRouter.post("/stock", managementRoutes.addItemsToStock)
+authRouter.put("/stock", managementRoutes.updateItemsInStock)
+
 router.use("/management", authRouter)
 
 export = router
