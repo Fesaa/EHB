@@ -2,6 +2,9 @@ namespace Helper;
 
 public class Maand
 {
+
+    private static string sep = "      ";
+
     public int MonthNr;
     public int Year;
 
@@ -12,49 +15,36 @@ public class Maand
     }
 
     // What in the world is this syntax LOL
-    public Maand()
-        : this(1, 1)
+    public Maand() : this(1, 1)
     { }
 
-    // This should be able to be made more performant
-    // Maybe a O(n+7) worse case instead of always
-    // By getting the first sunday
-    // And generating the lines directly one by one
-    public override string ToString()
+    private int GetDaysInFirstWeek(DateTime dt)
     {
-        int maxDays = DateTime.DaysInMonth(this.Year, this.MonthNr);
-        DateTime dt = new DateTime(this.Year, this.MonthNr, 1, 0, 0, 0);
-        string monthName = dt.ToString("MMMM");
-
-        string sep = "      ";
-
-        // Get the first sunday
-        DayOfWeek firstDay = dt.DayOfWeek;
-        int firstWeekDays = 7;
         for (int i = 1; i < 7; i++)
         {
             if (dt.DayOfWeek == DayOfWeek.Sunday)
             {
-                firstWeekDays = i;
-                break;
+                return i;
             }
             dt = dt.AddDays(1);
         }
-        // Set to monday of first week of the month
-        dt = dt.AddDays(-6);
+        return 0;
+    }
 
-        string s = monthName + " " + this.Year + "\n\n";
+    public override string ToString()
+    {
+        int maxDays = DateTime.DaysInMonth(this.Year, this.MonthNr);
+        DateTime dt = new DateTime(this.Year, this.MonthNr, 1, 0, 0, 0);
+
+        int firstWeekDays = this.GetDaysInFirstWeek(dt);
+        dt = dt.AddDays(-7 + firstWeekDays);
+
+        string s = dt.ToString("MMMM") + " " + this.Year + "\n\n";
         for (int i = 0; i < 7; i++)
         {
-            s += dt.ToString("ddd") + sep;
-            if (dt.Month != this.MonthNr)
-            {
-                s += sep + "  ";
-            }
-            else
-            {
-                s += sep + dt.ToString("dd");
-            }
+            s += dt.ToString("ddd") + sep + sep;
+            s += (dt.Month != this.MonthNr) ? "  " : dt.ToString("dd");
+
             int adjust = (int)dt.DayOfWeek == 0 ? 7 : (int)dt.DayOfWeek;
             for (int j = firstWeekDays + adjust; j <= maxDays; j += 7)
             {
@@ -62,10 +52,8 @@ public class Maand
             }
             s += "\n";
             dt = dt.AddDays(1);
-
         }
 
         return s;
-
     }
 }
