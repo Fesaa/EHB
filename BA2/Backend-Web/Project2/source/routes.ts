@@ -7,7 +7,7 @@ import managementRoutes from "./controllers/management/stock"
 import { databaseManager } from "./database/DatabaseManager"
 const router = express.Router()
 
-router.get("/stock", publicRoutes.getAllItemsInStock)
+router.get("/stock", publicRoutes.getItemsInStock)
 
 const authRouter = express.Router()
 
@@ -32,7 +32,6 @@ authRouter.use(async (req, res, next) => {
     next();
 })
 authRouter.post("/stock", managementRoutes.addItemToStock)
-
 router.use("/management", authRouter)
 
 export = router

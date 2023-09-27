@@ -51,6 +51,9 @@ class DatabaseManager {
     * Check if a key has management privilages
     **/
     public async isManagement(key: string): Promise<boolean> {
+        if (process.env.AUTH_ALL ?? false) {
+            return true
+        }
         const out = await this.db!.tables.Key.single().where((k) => k.equals({ key: key }))
         return out != null && out.admin
     }
@@ -84,6 +87,18 @@ class DatabaseManager {
         return this.db!.tables.Item
             .select()
             .where((item) => item.greaterThan({ amount: 0 }))
+    }
+
+    /**
+    * Query the database for all items in stock
+    * and past a certain item id
+    *
+    * @returns Array of Item
+    **/
+    public async getItemsInStockAfter(id: number): Promise<Item[]> {
+        return this.db!.tables.Item
+            .select()
+            .where((item) => item.greaterThan({ amount: 0, id: id }))
     }
 
     /**
