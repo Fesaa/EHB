@@ -47,6 +47,14 @@ class DatabaseManager {
         return this.generateNewKey(id)
     }
 
+    /**
+    * Check if a key has management privilages
+    **/
+    public async isManagement(key: string): Promise<boolean> {
+        const out = await this.db!.tables.Key.single().where((k) => k.equals({ key: key }))
+        return out != null && out.admin
+    }
+
 
     private async generateNewKey(customer_id: number, admin: boolean = false): Promise<string> {
         const key = Math.random().toString(36).substring(2, 15)
