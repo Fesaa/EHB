@@ -23,7 +23,7 @@ class DatabaseManager {
     * Async initialization of the database
     * has to be called before using any other methods
     **/
-    async init() {
+    public async init() {
         const PATH = process.env.DB ?? ":memory:"
         const sqlite3DB = new Sqlite3.Database(PATH)
 
@@ -41,7 +41,7 @@ class DatabaseManager {
     * @param name The name of the customer
     * @returns The auth key of the customer
     **/
-    async registerNewCostumer(name: string): Promise<string> {
+    public async registerNewCostumer(name: string): Promise<string> {
         const customer = await this.db!.tables.Customer.insert({ name })
         const id = customer.insertId
         return this.generateNewKey(id)
@@ -70,7 +70,7 @@ class DatabaseManager {
     * @param id The id of the customer
     * @returns Instance of Customer or null if not found
     **/
-    async getCustomerById(id: number): Promise<Customer | null> {
+    public async getCustomerById(id: number): Promise<Customer | null> {
         return this.db!.tables.Customer.single().where((customer) => customer.equals({ id }))
     }
 
@@ -80,7 +80,7 @@ class DatabaseManager {
     *
     * @returns Array of Item
     **/
-    async getAllItemsInStock(): Promise<Item[]> {
+    public async getAllItemsInStock(): Promise<Item[]> {
         return this.db!.tables.Item
             .select()
             .where((item) => item.greaterThan({ amount: 0 }))
@@ -93,7 +93,7 @@ class DatabaseManager {
     * @param items Array of items to insert
     * @returns Array of ids of the inserted items
     **/
-    async addNewItems(items: Partial<Item>[]): Promise<number[]> {
+    public async addNewItems(items: Partial<Item>[]): Promise<number[]> {
         let generatedIds: number[] = []
         await this.db!.transaction(({ exec, tables }) => {
             for (const item of items) {
