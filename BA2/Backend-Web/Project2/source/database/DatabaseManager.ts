@@ -80,6 +80,7 @@ class DatabaseManager {
 
     /**
     * Insert new items into the datbase
+    * Or update if item is passed with an id
     *
     * @param items Array of items to insert
     * @returns Array of ids of the inserted items
@@ -88,7 +89,11 @@ class DatabaseManager {
         let generatedIds: number[] = []
         await this.db!.transaction(({ exec, tables }) => {
             for (const item of items) {
-                exec(tables.Item.insert(item)).then((id) => generatedIds.push(id.insertId))
+                if (item.id) {
+                    exec(tables.Item.update(item).where(id => id.equals({ id: item.id })))
+                } else {
+                    exec(tables.Item.insert(item)).then((id) => generatedIds.push(id.insertId))
+                }
             }
         })
         return Promise.resolve(generatedIds)
