@@ -81,25 +81,21 @@ class DatabaseManager {
     * Query the database for all items in stock
     * i.e. any items with an amount > 0
     *
-    * @returns Array of Item
-    **/
-    public async getAllItemsInStock(): Promise<Item[]> {
-        return this.db!.tables.Item
-            .select()
-            .where((item) => item.greaterThan({ amount: 0 }))
-    }
-
-    /**
-    * Query the database for all items in stock
-    * and past a certain item id
+    * @param [after=-1] after item with id
+    * @param [limit=null] limit the output size
     *
     * @returns Array of Item
     **/
-    public async getItemsInStockAfter(id: number): Promise<Item[]> {
-        return this.db!.tables.Item
+    public async getStock(after: number = -1, limit: number | null = null): Promise<Item[]> {
+        const query = this.db!.tables.Item
             .select()
-            .where((item) => item.greaterThan({ amount: 0, id: id }))
+            .where((item) => item.greaterThan({ amount: 0, id: after }))
+        if (limit) {
+            return query.limit(limit)
+        }
+        return query
     }
+
     /**
     * Update items into the datbase
     *

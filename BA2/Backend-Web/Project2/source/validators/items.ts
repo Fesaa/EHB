@@ -29,4 +29,20 @@ const itemArraySchemaWithId = Joi.array().items(Joi.object({
         .required()
 }))
 
-export { itemArraySchemaNoId, itemArraySchemaWithId }
+interface stockRequest {
+    after: number
+    limit: number | null
+}
+
+const stockRequestQuery = Joi.object({
+    after: Joi.number()
+        .integer()
+        .min(0)
+        .default(0),
+    limit: Joi.number()
+        .integer()
+        .min(1)
+        .optional()
+})
+
+export { itemArraySchemaNoId, itemArraySchemaWithId, stockRequestQuery, stockRequest }
