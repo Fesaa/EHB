@@ -7,8 +7,8 @@ async function getItemsInStock(req: Request, res: Response, _: NextFunction) {
         .then(async (query: stockRequest) =>
             databaseManager.getStock(query.after, query.limit)
                 .then((stock) => res.status(200).json(stock))
-                .catch((err) => res.status(400).json({ errors: err.details[0] })))
+                .catch((err) => res.status(400).json({ errors: err })))
         .catch((err) => res.status(400).json({ errors: err.details[0] }))
 }
 
-export default { getItemsInStock }
+export { getItemsInStock }

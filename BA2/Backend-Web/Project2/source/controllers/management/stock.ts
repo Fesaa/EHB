@@ -25,4 +25,4 @@ async function addItemsToStock(req: Request, res: Response, _: NextFunction) {
         .catch((err) => res.status(400).json({ err: err.details[0] }))
 }
 
-export default { addItemsToStock, updateItemsInStock }
+export { addItemsToStock, updateItemsInStock }

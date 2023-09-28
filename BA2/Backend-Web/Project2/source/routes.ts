@@ -1,14 +1,16 @@
 import express from "express"
 
-import publicRoutes from "./controllers/public/stock"
+import * as publicRoutes from "./controllers/public"
+import * as managementRoutes from "./controllers/management"
 
-import managementRoutes from "./controllers/management/stock"
 import { databaseManager } from "./database/DatabaseManager"
+
 import { authScheme } from "./validators/keys"
 
 const router = express.Router()
 
 router.get("/stock", publicRoutes.getItemsInStock)
+router.post("/register", publicRoutes.registerNewCustomer)
 
 const authRouter = express.Router()
 authRouter.use(async (req, res, next) => {
