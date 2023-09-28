@@ -12,18 +12,18 @@ router.get("/stock", publicRoutes.getItemsInStock)
 
 const authRouter = express.Router()
 authRouter.use(async (req, res, next) => {
-    try {
-        await authScheme.validateAsync(req.headers, {
-            allowUnknown: true
+    return authScheme.validateAsync(req.headers, { allowUnknown: true })
+        .then(async _ => {
+            return databaseManager.isManagement(req.header("Authentication") ?? "")
+                .then(isManagement => {
+                    if (!isManagement) {
+                        return res.status(401).json({ msg: "Insufficient privilages" })
+                    }
+                    next()
+                })
+                .catch(err => res.status(400).json({ msg: "Database error", error: err.details[0] }))
         })
-    } catch (err: any) {
-        return res.status(400).json({ msg: "Missing header", error: err.details[0] })
-    }
-
-    if (!(await databaseManager.isManagement(req.header("authentication")!))) {
-        return res.status(401).json({ msg: "Insufficient privilages" })
-    }
-    next();
+        .catch(err => res.status(400).json({ msg: "Missing header", error: err.details[0] }))
 })
 authRouter.post("/stock", managementRoutes.addItemsToStock)
 authRouter.put("/stock", managementRoutes.updateItemsInStock)

@@ -33,6 +33,15 @@ class DatabaseManager {
             entities: DatabaseManager.entities,
             createTables: true
         })
+
+        if (process.env.AUTH_KEY) {
+            await this.db!.tables.Key.insert({
+                key: process.env.AUTH_KEY,
+                admin: true,
+                customer_id: -1
+            })
+        }
+
     }
 
     /**
@@ -54,8 +63,8 @@ class DatabaseManager {
         if (process.env.AUTH_ALL ?? false) {
             return true
         }
-        const out = await this.db!.tables.Key.single().where((k) => k.equals({ key: key }))
-        return out != null && out.admin
+        const db_key = await this.db!.tables.Key.single().where((k) => k.equals({ key: key }))
+        return Promise.resolve(db_key != null && db_key.admin)
     }
 
 
