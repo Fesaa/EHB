@@ -4,7 +4,7 @@
   "description": "EHB Backend Web - Project 2 - Rest API Node.js",
   "main": "source/server.ts",
   "scripts": {
-    "dev": "nodemon source/server.ts",
+    "dev": "rm bin/temp.sql && DB=./bin/temp.sql DUMMY_VARS=true nodemon source/server.ts",
     "build": "rm -rf build/ && prettier --write source/ && tsc"
   },
   "author": "",
