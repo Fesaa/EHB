@@ -29,6 +29,7 @@ authRouter.use(async (req, res, next) => {
 })
 authRouter.post("/stock", managementRoutes.addItemsToStock)
 authRouter.put("/stock", managementRoutes.updateItemsInStock)
+authRouter.delete("/stock", managementRoutes.removeItemsFromStock)
 
 router.use("/management", authRouter)
 

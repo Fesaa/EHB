@@ -45,4 +45,10 @@ const stockRequestQuery = Joi.object({
         .optional()
 })
 
-export { itemArraySchemaNoId, itemArraySchemaWithId, stockRequestQuery, stockRequest }
+const idArraySchema = Joi.array().items(
+    Joi.number()
+        .integer()
+        .min(1)
+)
+
+export { itemArraySchemaNoId, itemArraySchemaWithId, stockRequestQuery, stockRequest, idArraySchema }

@@ -166,8 +166,9 @@ class DatabaseManager {
     *
     * @param ids the ids to delete
     **/
-    public async deleteItems(ids: Number[]) {
-        await this.db!.tables.Item.delete().where(item => item.in({ id: ids }))
+    public async deleteItems(ids: Number[]): Promise<number> {
+        const res = await this.db!.tables.Item.delete().where(item => item.in({ id: ids }))
+        return Promise.resolve(res.rowsAffected)
     }
 
 }
