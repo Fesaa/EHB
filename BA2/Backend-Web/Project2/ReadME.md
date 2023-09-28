@@ -12,9 +12,9 @@ De source code is te vinden op [GitHub](https://github.com/Fesaa/EHB/tree/main/B
 
 ## API design
 The API is opgesplitst in drie endpoint paden
-- [Publiek](BA2/Backend-Web/Project2/source/controllers/public/) zonder authenticatie => `/`
-- [Klant](BA2/Backend-Web/Project2/source/controllers/customer/), met verplichte `user_id` en `key` headers => `/customer`
-- [Managers](BA2/Backend-Web/Project2/source/controllers/management/), met verplicht `authentication` header => `/management`
+- [Publiek](source/controllers/public/) zonder authenticatie => `/`
+- [Klant](source/controllers/customer/), met verplichte `user_id` en `key` headers => `/customer`
+- [Managers](source/controllers/management/), met verplicht `authentication` header => `/management`
 
 Deze worden geconfiguered in `routes.ts`.
 
