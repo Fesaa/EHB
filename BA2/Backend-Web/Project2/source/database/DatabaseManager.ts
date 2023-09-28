@@ -58,15 +58,11 @@ class DatabaseManager {
     * @param name The name of the customer
     * @returns The auth key of the customer
     **/
-    public async registerNewCostumer(name: string): Promise<string> {
-        const guard = await this.db!.tables.Customer.single().where(c => c.equals({ name: name }))
-        if (guard) {
-            return Promise.reject("This username is already in use")
-        }
-
+    public async registerNewCostumer(name: string): Promise<{ id: number, key: string }> {
         const customer = await this.db!.tables.Customer.insert({ name })
         const id = customer.insertId
-        return this.generateNewKey(id)
+        const key = await this.generateNewKey(id)
+        return { id: id, key: key }
     }
 
     /**
@@ -83,21 +79,9 @@ class DatabaseManager {
     /**
     * Check if a user is authenticated correctly
     **/
-    public async isAuthenticated(name: string, key: string): Promise<boolean> {
-        const out = await this.db!.tables.Customer.join(
-            t => ({
-                key: t.Key
-            }),
-            (c, { key }) => {
-                c.equal({ id: key.customer_id })
-            }).map(f => ({
-                id: f.self.id,
-                name: f.self.name,
-                key: f.key.key
-            }))
-            .where(r => r.self.equals({ name: name }))
-            .limit(1)
-        return Promise.resolve(out != null && out.length > 0 && out[0].key === key)
+    public async isAuthenticated(id: number, key: string): Promise<boolean> {
+        const out = await this.db!.tables.Key.single().where(k => k.equals({ customer_id: id, key: key }))
+        return Promise.resolve(out != null)
     }
 
 

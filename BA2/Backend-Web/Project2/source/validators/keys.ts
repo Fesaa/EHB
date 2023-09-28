@@ -6,13 +6,10 @@ const authScheme = Joi.object({
 })
 
 const customerAuthScheme = Joi.object({
-    username: Joi.string()
-        .lowercase()
-        .alphanum()
-        .required()
-        .min(5)
-        .max(20),
-
+    user_id: Joi.number()
+        .integer()
+        .min(0)
+        .required(),
     key: Joi.string()
         .required()
 })

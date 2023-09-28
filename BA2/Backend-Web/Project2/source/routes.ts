@@ -16,10 +16,10 @@ router.post("/register", publicRoutes.registerNewCustomer)
 const customerRouter = express.Router()
 customerRouter.use(async (req, res, next) => {
     return customerAuthScheme.validateAsync(req.headers, { allowUnknown: true })
-        .then(async _ => {
+        .then(async (headers: { user_id: number, key: string }) => {
             return databaseManager.isAuthenticated(
-                req.header("username")?.toLowerCase() ?? "",
-                req.header("key") ?? ""
+                headers.user_id,
+                headers.key
             )
                 .then(isAuthenticated => {
                     if (!isAuthenticated) {
