@@ -9,7 +9,7 @@ async function updateItemsInStock(req: Request, res: Response, _: NextFunction) 
             let items: Array<Partial<Item>> = body
             return databaseManager.updateItems(items)
                 .then((succes) => res.status(200).json({ inserted_ids: succes }))
-                .catch(err => res.status(400).json({ msg: "Encountered an database error", error: err }))
+                .catch(err => res.status(500).json({ msg: "Encountered an database error", error: err }))
         })
         .catch(err => res.status(400).json({ err: err.details[0] }))
 }
@@ -20,7 +20,7 @@ async function addItemsToStock(req: Request, res: Response, _: NextFunction) {
             let items: Array<Partial<Item>> = body
             return databaseManager.addItems(items)
                 .then(ids => res.status(202).json({ msg: "OK!", ids: ids }))
-                .catch(err => res.status(400).json({ msg: "Encountered an database error", error: err }))
+                .catch(err => res.status(500).json({ msg: "Encountered an database error", error: err }))
         })
         .catch((err) => res.status(400).json({ err: err.details[0] }))
 }
@@ -30,7 +30,7 @@ async function removeItemsFromStock(req: Request, res: Response, _: NextFunction
         .then(async (ids: Array<Number>) => {
             return databaseManager.deleteItems(ids)
                 .then(amount => res.status(202).json({ msg: `Deleted ${amount} items from stock` }))
-                .catch(err => res.status(400).json({ msg: "Encountered an database error", error: err }))
+                .catch(err => res.status(500).json({ msg: "Encountered an database error", error: err }))
         })
         .catch((err) => res.status(400).json({ err: err.details[0] }))
 }
