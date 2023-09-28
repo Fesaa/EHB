@@ -2,20 +2,24 @@ import { Db, SQLite3Driver } from "sqlite-ts";
 import Sqlite3 = require("sqlite3")
 import { exec } from 'child_process'
 
-import { Item, Customer, Key } from "./tables"
+import { Item, Customer, Key, Order, OrderItem } from "./tables"
 
 class DatabaseManager {
 
     private static entities = {
         Item,
         Customer,
-        Key
+        Key,
+        Order,
+        OrderItem
     }
 
     private db: Db<{
         Item: typeof Item,
         Customer: typeof Customer,
-        Key: typeof Key
+        Key: typeof Key,
+        Order: typeof Order,
+        OrderItem: typeof OrderItem
     }> | null = null
 
     constructor() { }
@@ -80,7 +84,20 @@ class DatabaseManager {
     * Check if a user is authenticated correctly
     **/
     public async isAuthenticated(name: string, key: string): Promise<boolean> {
-        return Promise.resolve(true)
+        const out = await this.db!.tables.Customer.join(
+            t => ({
+                key: t.Key
+            }),
+            (c, { key }) => {
+                c.equal({ id: key.customer_id })
+            }).map(f => ({
+                id: f.self.id,
+                name: f.self.name,
+                key: f.key.key
+            }))
+            .where(r => r.self.equals({ name: name }))
+            .limit(1)
+        return Promise.resolve(out != null && out.length > 0 && out[0].key === key)
     }
 
 
@@ -93,13 +110,23 @@ class DatabaseManager {
     }
 
     /**
-    * Query the database for a customer
+    * query the database for a customer
     * 
-    * @param id The id of the customer
-    * @returns Instance of Customer or null if not found
+    * @param id the id of the customer
+    * @returns instance of customer or null if not found
     **/
     public async getCustomerById(id: number): Promise<Customer | null> {
         return this.db!.tables.Customer.single().where((customer) => customer.equals({ id }))
+    }
+
+    /**
+    * query the database for a customer
+    * 
+    * @param name the name of the customer
+    * @returns instance of customer or null if not found
+    **/
+    public async getCustomerByName(name: string): Promise<Customer | null> {
+        return this.db!.tables.Customer.single().where((customer) => customer.equals({ name }))
     }
 
     /**
@@ -125,7 +152,7 @@ class DatabaseManager {
     * Update items into the datbase
     *
     * @param items Array of items to update
-    * @returns Array of ids of the inserted items
+    * @returns Array of ids of succesfully updated items
     **/
     public async updateItems(items: Partial<Item>[]): Promise<number[]> {
         let successIds: number[] = []
@@ -181,6 +208,56 @@ class DatabaseManager {
     public async deleteItems(ids: Number[]): Promise<number> {
         const res = await this.db!.tables.Item.delete().where(item => item.in({ id: ids }))
         return Promise.resolve(res.rowsAffected)
+    }
+
+    /**
+    * Places an order, and adds it to the order list.
+    * Will return Promise#reject the moment an item is not present, or does not have enough in stock
+    *
+    * @param customer_id id for the ordering customer
+    * @param items item to order
+    *
+    * @returns the order id
+    **/
+    public async placeOrder(customer_id: number, items: Array<{ id: number, amount: number }>): Promise<Number> {
+        const stockArray = await this.getStock()
+        const stock: { [key: number]: Item } = {}
+        stockArray.forEach(item => stock[item.id] = item)
+
+        const updates: Array<Partial<Item>> = []
+        for (const item of items) {
+            const stockItem = stock[item.id]
+            if (stockItem == null) {
+                return Promise.reject(`Cannot order item with id ${item.id} as it does not exists`)
+            }
+            if (item.amount > stockItem.amount) {
+                return Promise.reject(`Cannot order item with id ${item.id} as there are not enough in stock. (${stockItem.amount} < ${item.amount})`)
+            }
+            updates.push({
+                id: item.id,
+                amount: stockItem.amount - item.amount
+            })
+        }
+
+        await this.updateItems(updates)
+
+        const order = await this.db!.tables.Order.insert({
+            customer_id: customer_id,
+            order_date: new Date()
+        })
+
+        const orderItems: Array<OrderItem> = []
+        for (const item of items) {
+            orderItems.push({
+                amount: item.amount,
+                item_id: item.id,
+                order_id: order.insertId
+            })
+        }
+
+        await this.db!.tables.OrderItem.insert(orderItems)
+
+        return Promise.resolve(order.insertId)
     }
 
 }

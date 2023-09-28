@@ -38,4 +38,26 @@ class Key {
 
 }
 
-export { Item, Customer, Key }
+class Order {
+    @Primary()
+    id: number = 0
+
+    @Column("INTEGER")
+    customer_id: number = 0
+
+    @Column("DATETIME")
+    order_date: Date = new Date()
+}
+
+class OrderItem {
+    @Column("INTEGER")
+    order_id: number = 0
+
+    @Column("INTEGER")
+    item_id: number = 0
+
+    @Column("INTEGER")
+    amount: number = 0
+}
+
+export { Item, Customer, Key, Order, OrderItem }
