@@ -244,6 +244,31 @@ class DatabaseManager {
         return Promise.resolve(order.insertId)
     }
 
+    public async getAllOrders(customer_id: number): Promise<Array<{ order: Order, items: Array<OrderItem> }>> {
+        const orders = await this.db!.tables.Order.select().where(o => o.equals({ customer_id: customer_id }))
+
+        const linkedOrders: Array<{ order: Order, items: Array<OrderItem> }> = []
+        for (const order of orders) {
+            const items = await this.db!.tables.OrderItem.select().where(oI => oI.equals({ order_id: order.id }))
+            linkedOrders.push({
+                order: order,
+                items: items
+            })
+        }
+        return linkedOrders
+    }
+
+    public async getOrderedItems(customer_id: number, order_id: number): Promise<Array<any>> {
+        const order = await this.db!.tables.Order.single().where(o => o.equals({ id: order_id }))
+        if (order == null) {
+            return Promise.reject("Order does not exists")
+        }
+        if (order.customer_id != customer_id) {
+            return Promise.reject("Not authorized")
+        }
+        return this.db!.tables.OrderItem.select().where(oI => oI.equals({ order_id: order_id }))
+    }
+
 }
 
 const databaseManager = new DatabaseManager()

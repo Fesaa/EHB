@@ -32,6 +32,7 @@ customerRouter.use(async (req, res, next) => {
         .catch(err => res.status(400).json({ msg: "Missing header", error: err.details[0] }))
 })
 customerRouter.post("/order", customerRoutes.placeOrder)
+customerRouter.get("/orders", customerRoutes.getAllOrders)
 
 router.use("/customer", customerRouter)
 
