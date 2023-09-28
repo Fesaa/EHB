@@ -1,5 +1,6 @@
 import { Db, SQLite3Driver } from "sqlite-ts";
 import Sqlite3 = require("sqlite3")
+import { exec } from 'child_process'
 
 import { Item, Customer, Key } from "./tables"
 
@@ -27,20 +28,23 @@ class DatabaseManager {
         const PATH = process.env.DB ?? ":memory:"
         const sqlite3DB = new Sqlite3.Database(PATH)
 
-        this.db = await Db.init({
+        Db.init({
             driver: new SQLite3Driver(sqlite3DB),
 
             entities: DatabaseManager.entities,
             createTables: true
         })
-
-        if (process.env.AUTH_KEY) {
-            await this.db!.tables.Key.insert({
-                key: process.env.AUTH_KEY,
-                admin: true,
-                customer_id: -1
+            .then(db => {
+                this.db = db
+                if (process.env.DUMMY_VARS) {
+                    exec('cat init.sql | sqlite3 bin/temp.sql', (err, stdout, stderr) => {
+                        console.log(err)
+                        console.log(stdout)
+                        console.log(stderr)
+                    });
+                }
             })
-        }
+
 
     }
 
