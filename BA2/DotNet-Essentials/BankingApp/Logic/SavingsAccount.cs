@@ -15,16 +15,10 @@ public class SavingAccount : Account
 
     private double loyaltyBonus;
 
-    public SavingAccount(string IBAN, double balance, double interest, double loyaltyBonus)
-        : base(IBAN, balance, DateTime.Now, interest)
+    public SavingAccount(string IBAN, double balance, double interest, double loyaltyBonus, Client client)
+        : base(IBAN, balance, DateTime.Now, interest, client)
     {
         this.loyaltyBonus = loyaltyBonus;
-    }
-
-    public SavingAccount(string IBAN, double balance, double interest)
-        : base(IBAN, balance, DateTime.Now, interest)
-    {
-        this.loyaltyBonus = DEFAULT_BONUS;
     }
 
     public override string ToString()

@@ -3,6 +3,10 @@ namespace HelperLibs;
 public class RegularAccount : Account
 {
 
+    // Most ugly syntax I've ever seen
+    // What's wrong with just fields and a getter at this point
+    // This should just be a method either way LOL
+    // getAccountType tf is this nonsens
     public override string AccountType
     {
         get
@@ -13,8 +17,8 @@ public class RegularAccount : Account
 
     private List<string> accountNumbers;
 
-    public RegularAccount(string IBAN, double balance, double interest)
-        : base(IBAN, balance, DateTime.Now, interest)
+    public RegularAccount(string IBAN, double balance, double interest, Client client)
+        : base(IBAN, balance, DateTime.Now, interest, client)
     {
         this.accountNumbers = new List<string>();
     }

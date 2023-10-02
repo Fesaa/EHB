@@ -24,6 +24,25 @@ Choose your acount type:
 
     public static void Main(string[] _)
     {
+
+        // 4 & 5 shortcut bruh
+        Client me = new Client("Testing", "Popping");
+        Client notMe = new Client("???", "OOIII");
+
+        List<Account> accounts = new List<Account>();
+        accounts.Add(new RegularAccount("myCustomIBAN", 2000, 2, me));
+        accounts.Add(new RegularAccount("myCustomIBAN2", 1000, 5, notMe));
+        accounts.Add(new SavingAccount("mySavingsIBAN", 10000, 5, 2, me));
+
+        accounts.ForEach(acc =>
+        {
+            Console.WriteLine(acc);
+        });
+
+    }
+
+    private static void Oef4()
+    {
         Console.Write(WELCOME_TEXT);
 
         string? accountType = Console.ReadLine();
@@ -41,9 +60,11 @@ Choose your acount type:
             return;
         }
 
+        Client client = new Client("", "");
+
         Account account = accountType.Equals("1") ?
-                new RegularAccount(iban, DEFAULT_BALANCE, DEFAULT_INTEREST) :
-                new SavingAccount(iban, DEFAULT_BALANCE, DEFAULT_INTEREST);
+                new RegularAccount(iban, DEFAULT_BALANCE, DEFAULT_INTEREST, client) :
+                new SavingAccount(iban, DEFAULT_BALANCE, DEFAULT_INTEREST, 2, client);
 
         if (account is RegularAccount rAccount)
         {
@@ -52,8 +73,6 @@ Choose your acount type:
 
         Console.WriteLine(account.ToString());
     }
-
-
 
     private static RegularAccount doAccountNumberLoop(RegularAccount acc)
     {
