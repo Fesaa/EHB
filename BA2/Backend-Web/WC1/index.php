@@ -397,9 +397,9 @@
                 return inner($n-1) + inner($n-2);
             }
         }
-        $out = "";
-        for ($i = 0; $i < $n; $i++) {
-            $out .= " " . inner($i);
+        $out = inner(0);
+        for ($i = 1; $i < $n; $i++) {
+            $out .= " - " . inner($i);
         }
         return $out;
     }
