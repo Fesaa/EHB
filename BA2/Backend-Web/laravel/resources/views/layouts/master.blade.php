@@ -1,15 +1,6 @@
 @include('partials.header')
 
-<style>
-    body {
-        background: #E8D9BE;
-    }
-
-    .title {
-        text-align: center;
-        margin-top: 50px;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 <div class="content">
     <div class="title">
@@ -17,4 +8,5 @@
     </div>
 
     @yield('extra-content')
+    @yield('about')
 </div>

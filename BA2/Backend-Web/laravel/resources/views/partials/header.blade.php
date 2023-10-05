@@ -30,7 +30,8 @@
 
 <header>
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Other</a>
+        <a href="{{ route('index')  }}">Home</a>
+        <a href="{{ route('about')  }}">About</a>
+        @yield('admin-routes')
     </nav>
 </header>

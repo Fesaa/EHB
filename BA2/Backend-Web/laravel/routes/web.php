@@ -13,6 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('content/index');
+Route::prefix('')->group(function () {
+    Route::get('/', function () {
+        return view('content/index');
+    })->name("index");
+
+    Route::get("/about", function () {
+        return view("other/about");
+    })->name("about");
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin/index');
+    })->name("admin-index");
+
+    Route::get('/create', function () {
+        return view('admin/create');
+    })->name("admin-create");
+
+    Route::get('/edit', function () {
+        return view('admin/edit');
+    })->name("admin-edit");
 });
