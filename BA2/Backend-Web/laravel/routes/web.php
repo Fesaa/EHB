@@ -21,6 +21,10 @@ Route::prefix('')->group(function () {
     Route::get("/about", function () {
         return view("other/about");
     })->name("about");
+
+    Route::get("/item{id}", function ($id) {
+      return view("content/item", ["id" => $id]);
+    })->name("item");
 });
 
 Route::prefix('admin')->group(function () {
