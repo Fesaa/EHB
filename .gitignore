@@ -15,3 +15,8 @@ Examen-Oefeningen-*/
 **/obj/*
 node_modules
 uploads/
+vendor/
+storage/
+bootstrap/
+out/
+.env
