@@ -19,23 +19,13 @@
 @section('extra-content')
     <div class="search-container">
         <h1>Searching for: </h1>
+        @for($id = 1; $id <= sizeof($booksets); $id++)
         <div class="search">
-            <h2>Magical World Adventure Book Set</h2>
-            <p>Embark on a thrilling journey with this enchanting book set filled with magical creatures, daring quests, and epic adventures. Perfect for young readers who love to escape into the world of fantasy and imagination.</p>
-            <a href="{{ route('item', ["id" => 1]) }} ">link</a>
+            <h2> {{ $booksets[$id]["name"] }} </h2>
+            <p>{{ $booksets[$id]["description"] }}</p>
+            <a href="{{ route('item', ["id" => $id]) }}">details</a>
             <hr>
         </div>
-        <div class="search">
-            <h2>Unicorn Dreams Pajama Set</h2>
-            <p>Dive into the world of dreams with this adorable pajama set featuring a unicorn design. Soft and cozy, these pajamas are ideal for a comfortable night's sleep or lounging around on lazy weekends. Let your inner unicorn shine!</p>
-            <a href="{{ route('item', ["id" => 2]) }} ">link</a>
-            <hr>
-        </div>
-        <div class="search">
-            <h2>Mystical Forest Backpack</h2>
-            <p>Carry your books and essentials in style with this mystical forest-themed backpack. Its whimsical design features magical creatures, towering trees, and twinkling stars. It's a must-have accessory for any young adventurer with a love for the mystical and fantastical.</p>
-            <a href="{{ route('item', ["id" => 3]) }} ">link</a>
-            <hr>
-        </div>
+        @endfor
     </div>
 @endsection
