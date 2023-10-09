@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,7 +48,7 @@ Route::prefix('')->group(function () {
         return view("other/about");
     })->name("about");
 
-    Route::get("/item{id}", function ($id) {
+    Route::get("/item/{id}", function (int $id) {
         global $bookSets;
         return view("content/item", ["id" => $id, "info" => $bookSets[$id]]);
     })->name("item");
@@ -55,14 +56,21 @@ Route::prefix('')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
-        return view('admin/index');
+        global $bookSets;
+        $id = rand(1, sizeof($bookSets));
+        return view('admin/index', ["search" => $bookSets[$id], "id" => $id]);
     })->name("admin-index");
 
     Route::get('/create', function () {
         return view('admin/create');
     })->name("admin-create");
 
-    Route::get('/edit', function () {
-        return view('admin/edit');
+    Route::get('/edit/{id}', function (int $id) {
+        global $bookSets;
+        return view('admin/edit', ["id" => $id, "info" => $bookSets[$id]]);
     })->name("admin-edit");
+
+    Route::post("/update", function(Request $request) {
+        return redirect()->route("admin-index", ["id" => $request->input("id")]);
+    })->name("admin-update");
 });

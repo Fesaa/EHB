@@ -10,6 +10,5 @@
     <div class="admin">
         <a href="{{ route('admin-index') }}">Admin</a>
         <a href="{{ route('admin-create') }}">Create</a>
-        <a href="{{ route('admin-edit') }}">Edit</a>
     </div>
 @endsection
