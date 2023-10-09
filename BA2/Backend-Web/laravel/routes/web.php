@@ -71,9 +71,27 @@ Route::prefix('admin')->group(function () {
     })->name("admin-edit");
 
     Route::post("/update", function(Request $request) {
+            $validated = $request->validate([
+                "id" => "required|integer",
+                "name" => "required|string|max:100",
+                "description" => "required|string|min:20"
+            ]);
         return redirect()->route("admin-index")
-            ->with("id", $request->input("id"))
-            ->with("name", $request->input("name"))
-            ->with("description", $request->input("description"));
+            ->with("id", $validated["id"])
+            ->with("name", $validated["name"])
+            ->with("description", $validated["description"]);
     })->name("admin-update");
+
+
+    Route::post("/new", function(Request $request) {
+        $validated = $request->validate([
+            "name" => "required|string|max:100",
+            "description" => "required|string|min:20"
+        ]);
+        global $bookSets;
+        return redirect()->route("admin-index")
+            ->with("id", sizeof($bookSets) + 1)
+            ->with("name", $validated["name"])
+            ->with("description", $validated["description"]);
+    })->name("admin-new");
 });

@@ -1,4 +1,5 @@
 @include('partials.admin-header')
+@include("partials.errors")
 
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -16,3 +17,4 @@
     <input type="submit" id="submit" name="Save" value="Save">
 
 </form>
+@yield("errors")
