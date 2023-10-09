@@ -71,6 +71,9 @@ Route::prefix('admin')->group(function () {
     })->name("admin-edit");
 
     Route::post("/update", function(Request $request) {
-        return redirect()->route("admin-index", ["id" => $request->input("id")]);
+        return redirect()->route("admin-index")
+            ->with("id", $request->input("id"))
+            ->with("name", $request->input("name"))
+            ->with("description", $request->input("description"));
     })->name("admin-update");
 });

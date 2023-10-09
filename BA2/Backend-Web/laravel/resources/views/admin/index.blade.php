@@ -33,8 +33,16 @@
         <p>Use the navigation bar to access to different admin options</p>
     </div>
     <br>
+    @if(Session::get("id") != null)
+        <div class="center">
+            <h2>New info for Search with ID: {{Session::get("id")}}</h2>
+            <h3>{{Session::get("name")}}</h3>
+            <p>{{Session::get("description")}}</p>
+        </div>
+    @endif
+    <br>
     <div class="center">
-        <p>{{ $search["name"] }}</p>
+        <h3>{{ $search["name"] }}</h3>
         <p>{{ $search["description"] }}</p>
     </div>
 
