@@ -6,13 +6,14 @@
     }
 
     .post {
-        margin: 0 auto;
+        width: auto;
+        margin: 50px 50px;
         text-align: center;
     }
 </style>
 
 <div class="center golden-border post">
-    <h3>{{ $post->title }}</h3>
+    <h3>{{ $post->title }} by {{ $post->user->name }}</h3>
     <p>{{ $post->content }}</p>
     <p>{{ $post->created_at }}</p>
 
