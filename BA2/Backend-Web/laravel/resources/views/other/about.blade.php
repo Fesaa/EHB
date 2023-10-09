@@ -27,7 +27,7 @@
     <div class="about">
         <h2>About Me</h2>
         <p>
-            Heya! I'm Amelia, a passionate developer with a love for lisp, go, and hating on non/weakly typed languages. I believe in the power of affection and dedication and hope to not be bored soo much ^-^
+            Heya! I'm Amelia, a passionate developer with a love for lisp, go, java, and hating on non/weakly typed languages. I believe in the power of affection and dedication and hope to not be bored soo much ^-^
         </p>
         <p>
             With too little years of experience in web development, I've had the opportunity to make this crappy website. My journey in web development has been a painful experience, and I now hate css, js, and html with all my heart.
