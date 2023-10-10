@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset("css/main.css") }}">
+@include('content.header')
 
 <div class="login-errors">
     @if($errors->any())
@@ -12,17 +14,21 @@
 </div>
 
 
-<form action="{{ route('register') }}" method="post">
-    @csrf
+<div class="auth-container">
+    <form action="{{ route('register') }}" method="post" class="auth-form">
+        @csrf
 
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="user"><br>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="user"><br>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
 
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
 
-    <input type="submit" value="Login">
-</form>
+        <p>Already have an account? <a href="{{ route('login') }}">Login</a> instead</p>
+
+        <input type="submit" value="Register">
+    </form>
+</div>

@@ -31,12 +31,49 @@ nav > ul {
 
 .nav-button:hover {
     background: #8AAA79;
-    border-radius: 40px;
 }
 
 .nav-link {
     text-decoration: none;
     color: #2d3748;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-form {
+    width: 300px; /* Adjust the width of your form as needed */
+    padding: 20px;
+    background-color: #eeebe3; /* Optional background color for the form */
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form > label {
+    align-self: center;
+    font-weight: bold;
+}
+
+.auth-form > input {
+    padding: 10px;
+    border: 1px solid #eeebe3;
+    border-radius: 15px;
+}
+
+.auth-form > p {
+    font-size: xx-small;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.auth-confirm:hover {
+    background-color: #8AAA79;
 }
 
 
@@ -48,14 +85,13 @@ nav > ul {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 5em;
+    margin: 2em 5em 5em;
 }
 
 .post {
-    background: #B7B6C2;
-    border: thick solid #657153;
+    background: #eeebe3;
     border-radius: 30px;
-    padding: 10px;
+    padding: 20px;
     margin-top: 1em;
 
     display: flex;
@@ -80,7 +116,6 @@ nav > ul {
 .show-comments-button {
     cursor: pointer;
     background-color: #B7B6C2;
-    border: thick solid #657153;
     border-radius: 30px;
     padding: 10px;
     text-align: center;
@@ -90,7 +125,7 @@ nav > ul {
 }
 
 .show-comments-button:hover {
-    border: thick solid #8AAA79;
+    background: #8AAA79;
 }
 .show-comments-checkbox {
     display: none;
@@ -114,7 +149,6 @@ nav > ul {
 .post-comment textarea {
     padding: 5px;
     margin-top: 10px;
-    border: 1px solid #ddd;
     border-radius: 5px;
     width: 60%;
 }
@@ -133,11 +167,11 @@ nav > ul {
 }
 
 .comment {
-    background-color: #F4F4F9;
-    border: 5px solid #B8DBD9;
+    background-color: #D1D5DE;
     border-radius: 30px;
     margin-bottom: 5px;
     width: 75%;
     margin-top: 5px;
+    padding: 20px;
 }
 
