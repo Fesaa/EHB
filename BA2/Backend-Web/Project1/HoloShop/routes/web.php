@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('pages.index');
+})->name('home');
+
+Route::get('/404', function() {
+    return view('pages.404');
+})->name('404');
+
+// Profile routes
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/members', [ProfileController::class, 'members'])->name('members');
+
+
+// Auth routes
+Route::get('/login', [AuthController::class, 'show'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('register', [AuthController::class, 'register']);
+Route::get('register', [AuthController::class, 'showRegister'])->name('register');

@@ -1,0 +1,24 @@
+
+.small-profile {
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.small-profile-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0.3em;
+    margin: 0 0 0.5rem;
+}
+
+.small-profile > img {
+    scale: 95%;
+    border-radius: 20px;
+}
+
+.small-profile > a {
+    text-decoration: none;
+    color: var(--text)
+}
+

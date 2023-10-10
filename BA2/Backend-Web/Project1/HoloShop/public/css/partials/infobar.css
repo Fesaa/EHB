@@ -1,0 +1,11 @@
+
+.infobar {
+    height: 95%;
+
+    justify-content: space-evenly;
+}
+
+.infobar > div {
+    padding: 1em;
+    margin: 5px 0;
+}

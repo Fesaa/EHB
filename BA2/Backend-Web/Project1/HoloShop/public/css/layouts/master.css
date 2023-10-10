@@ -1,0 +1,113 @@
+:root {
+    --text: #0f0e06;
+    --background: #f5f3e5;
+    --primary: #b2b7e0;
+    --secondary: #e4c5e8;
+    --accent: #404aa0;
+
+    --little-alpha: rgba(0, 0, 0, 0.1);
+    --big-alpha: rgba(0, 0, 0, 0.5);
+
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+
+    padding: 0;
+    margin: 0;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.master-formatting {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    flex-grow: 1;
+    margin: 0.5em 1em;
+}
+
+.master-formatting-sidebar {
+    flex-basis: 7%;
+    padding: 0.5em;
+}
+
+.master-formatting-main-content {
+    flex: 1;
+    padding: 0.5em;
+}
+
+.master-formatting-infobar {
+    flex-basis: 7%;
+    padding: 0.5em;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flat-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.flat-list > li {
+    padding: 5px;
+}
+
+.primary-button {
+    background: var(--primary);
+}
+
+.primary-button:not(.no-hover):hover {
+    transform: translate(0, -3px);
+    transition: ease 0.2s;
+    cursor: pointer;
+}
+
+.secondary-button {
+    background: var(--secondary);
+}
+
+.secondary-button:not(.no-hover):hover {
+    transform: translate(0, -3px);
+    transition: ease 0.2s;
+    cursor: pointer;
+}
+
+.float {
+    background: var(--little-alpha);
+    border-radius: 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    cursor: pointer;
+}
+
+
+.staff-border {
+    border: 5px solid rebeccapurple;
+    border-radius: 20px;
+    padding: 0.5em;
+}
+
+

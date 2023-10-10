@@ -1,0 +1,35 @@
+header {
+    margin: 1em;
+    width: 85%;
+    align-self: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header .name {
+    padding-left: 2em;
+    flex-basis: 33%;
+}
+
+header > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+
+    flex-basis: 33%;
+    list-style-type: none;
+    align-self: center;
+}
+
+.nav-button {
+    padding: 0.5em 1em;
+    margin: 0 1em;
+    border-radius: 20px;
+}
+
+.nav-button > a {
+    text-decoration: none;
+}
+

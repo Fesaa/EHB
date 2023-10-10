@@ -1,0 +1,44 @@
+
+.profile-full {
+    background-image: url("https://forums.cubecraftcdn.com/xenforo/data/profile_banners/l/224/224741.jpg?1665157964");
+    background-size: cover;
+    background-position: center;
+}
+
+.profile-image > img {
+    scale: 75%;
+    border-radius: 50px;
+}
+
+.profile-info {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: var(--background);
+
+    align-self: flex-end;
+    margin: 2em;
+    padding: 10px;
+
+    justify-content: space-between;
+    flex: 1;
+}
+
+.edit-btn {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: var(--background);
+
+    text-align: center;
+    padding: 1em;
+    text-decoration: none;
+}
+
+.about-me {
+    width: 75%;
+    align-self: center;
+    margin-top: 1em;
+    padding: 1em;
+}
+
+
+
