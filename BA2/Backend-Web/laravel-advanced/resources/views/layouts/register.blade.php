@@ -14,8 +14,8 @@
 </div>
 
 
-<div class="auth-container">
-    <form action="{{ route('register') }}" method="post" class="auth-form">
+<div class="form-container">
+    <form action="{{ route('register') }}" method="post" class="form">
         @csrf
 
         <label for="name">Name:</label><br>
@@ -29,6 +29,6 @@
 
         <p>Already have an account? <a href="{{ route('login') }}">Login</a> instead</p>
 
-        <input type="submit" value="Register">
+        <input type="submit" value="Register" class="form-confirm">
     </form>
 </div>

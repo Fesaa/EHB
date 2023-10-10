@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('register', [AuthController::class, 'register']);
 Route::get('register', [AuthController::class, 'showRegister'])->name('register');
+
+Route::get('new_post', [PostController::class, 'show'])->name('new-post');
+Route::post('new_post', [PostController::class, 'newPost'])->name('new-post');
+Route::post('new_comment', [CommentController::class, 'newComment'])->name('new-comment');

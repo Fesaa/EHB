@@ -38,13 +38,13 @@ nav > ul {
     color: #2d3748;
 }
 
-.auth-container {
+.form-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.auth-form {
+.form {
     width: 300px; /* Adjust the width of your form as needed */
     padding: 20px;
     background-color: #eeebe3; /* Optional background color for the form */
@@ -55,24 +55,28 @@ nav > ul {
     flex-direction: column;
 }
 
-.auth-form > label {
+.form > label {
     align-self: center;
     font-weight: bold;
 }
 
-.auth-form > input {
+.form > input,textarea {
     padding: 10px;
     border: 1px solid #eeebe3;
     border-radius: 15px;
 }
 
-.auth-form > p {
+.form > p {
     font-size: xx-small;
     text-align: center;
     padding-bottom: 10px;
 }
 
-.auth-confirm:hover {
+.form-confirm {
+    padding-top: 10px;
+}
+
+.form-confirm:hover {
     background-color: #8AAA79;
 }
 
@@ -155,7 +159,7 @@ nav > ul {
 }
 
 
-.post-comment a {
+.post-comment input {
     margin-top: 10px;
     background-color: #657153;
     color: white;

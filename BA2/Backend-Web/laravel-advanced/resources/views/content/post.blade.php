@@ -17,10 +17,13 @@
             </div>
         @endforeach
         @auth()
-                <div class="post-comment">
-                    <textarea placeholder="Write a comment"></textarea>
-                    <a href="">Post</a>
-                </div>
+                <form method="post" action="{{ route('new-comment') }}" class="post-comment">
+                    @csrf
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                    <textarea placeholder="Write a comment" name="content"></textarea>
+                    <input type="submit" value="Post">
+                </form>
         @endauth
             @guest()
                 <div class="post-comment">

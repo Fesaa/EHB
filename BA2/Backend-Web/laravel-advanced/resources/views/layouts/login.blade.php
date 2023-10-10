@@ -13,8 +13,8 @@
     @endif
 </div>
 
-<div class="auth-container">
-    <form action="{{ route('login') }}" method="post" class="auth-form" >
+<div class="form-container">
+    <form action="{{ route('login') }}" method="post" class="form" >
         @csrf
 
         <label for="email">Email</label><br>
@@ -25,6 +25,6 @@
 
         <p>Don't have an account? <a href="{{ route('register') }}">Register</a> instead</p>
 
-        <input type="submit" value="Login" class="auth-confirm">
+        <input type="submit" value="Login" class="form-confirm">
     </form>
 </div>
