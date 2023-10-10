@@ -14,3 +14,9 @@ Examen-Oefeningen-*/
 **/bin/*
 **/obj/*
 node_modules
+uploads/
+vendor/
+storage/
+bootstrap/
+out/
+.env

@@ -7,4 +7,8 @@ For some weird reason make home dir exec
 ```
 chmod +x /home/username
 ```
+Give perms for file to XAMPP
+```
+chmod 0777 /path/to/file
+```
  

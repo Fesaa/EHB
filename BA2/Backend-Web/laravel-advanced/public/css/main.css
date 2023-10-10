@@ -1,0 +1,200 @@
+body {
+    background: #D1D5DE;
+    font-family: "Source Code Pro", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+header > nav {
+    align-self: center;
+}
+
+nav > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    list-style-type: none;
+    padding: 0.5em;
+    margin: 0;
+}
+
+.nav-button {
+    padding: 0.5em;
+    background: #a0aec0;
+    border-radius: 40px;
+}
+
+.nav-button:not(.no-hover):hover {
+    background: #8AAA79;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #2d3748;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 300px; /* Adjust the width of your form as needed */
+    padding: 20px;
+    background-color: #eeebe3; /* Optional background color for the form */
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.form > label {
+    align-self: center;
+    font-weight: bold;
+}
+
+.form > input,textarea {
+    padding: 10px;
+    border: 1px solid #eeebe3;
+    border-radius: 15px;
+}
+
+.form > p {
+    font-size: xx-small;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.form-confirm {
+    padding-top: 10px;
+}
+
+.form-confirm:hover {
+    background-color: #8AAA79;
+}
+
+
+.center {
+    text-align: center;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2em 5em 5em;
+}
+
+.post {
+    background: #eeebe3;
+    border-radius: 30px;
+    padding: 20px;
+    margin-top: 1em;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.post-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.post > p {
+    text-align: center;
+}
+/* Styling for the show comments button */
+.show-comments-button {
+    cursor: pointer;
+    background-color: #B7B6C2;
+    border-radius: 30px;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    width: 25%;
+}
+
+.show-comments-button:hover {
+    background: #8AAA79;
+}
+.show-comments-checkbox {
+    display: none;
+}
+
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.post-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style for the text area and post button */
+.post-comment textarea {
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 60%;
+}
+
+
+.post-comment-button {
+    margin-top: 10px;
+    background-color: #657153;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 25%;
+    text-decoration: none;
+}
+
+.comment {
+    background-color: #D1D5DE;
+    border-radius: 30px;
+    margin-bottom: 5px;
+    width: 75%;
+    margin-top: 5px;
+    padding: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.errors-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.errors {
+    background: lightcoral;
+
+    align-self: center;
+    margin-top: 1em;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
