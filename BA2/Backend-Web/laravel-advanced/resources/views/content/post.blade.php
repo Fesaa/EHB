@@ -1,23 +1,39 @@
-<style>
-    .golden-border {
-        width: 200px; /* Adjust the width as needed */
-        height: 200px; /* Adjust the height as needed */
-        border: 2px solid gold; /* Creates a golden border */
-    }
+<div class="post">
+    <div class="post-top">
+        <h3 class="post-title">{{ $post->title }} by {{ $post->user->name }}</h3>
+        <p class="creation-date">{{ $post->created_at }}</p>
+    </div>
+    <p class="post-content">{{ $post->content }}</p>
 
-    .post {
-        width: auto;
-        margin: 50px 50px;
-        text-align: center;
-    }
-</style>
+    <div style="display: flex; justify-content: center">
+        <input type="checkbox" id="show-comments-{{ $post->id }}" class="show-comments-checkbox">
+        <label for="show-comments-{{ $post->id }}" class="show-comments-button">Show Comments</label>
+    </div>
 
-<div class="center golden-border post">
-    <h3>{{ $post->title }} by {{ $post->user->name }}</h3>
-    <p>{{ $post->content }}</p>
-    <p>{{ $post->created_at }}</p>
-
-    @foreach(\App\Models\Comment::where('post_id', $post->id)->get() as $comment)
-        @include('content.comment', $comment)
-    @endforeach
+    <div id="comment-container-{{ $post->id }}" class="comment-container" style="display: none">
+        @foreach(\App\Models\Comment::where('post_id', $post->id)->get() as $comment)
+            <div style="display: flex; justify-content: center">
+                @include('content.comment', $comment)
+            </div>
+        @endforeach
+        @auth()
+                <div class="post-comment">
+                    <textarea placeholder="Write a comment"></textarea>
+                    <button>Post</button>
+                </div>
+        @endauth
+            @guest()
+                <div class="post-comment">
+                    <button>Login to post a comment</button>
+                </div>
+            @endguest
+    </div>
 </div>
+
+<script>
+    checkbox = document.getElementById('show-comments-{{ $post->id }}')
+    checkbox.addEventListener(('change'), function() {
+        const commentContainer = document.getElementById('comment-container-{{ $post->id }}')
+        commentContainer.style.display = this.checked ? 'block' : 'none';
+    })
+</script>

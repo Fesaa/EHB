@@ -1,9 +1,99 @@
 body {
-    background: #FCD0DA;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+    background: #D1D5DE;
+    font-family: "Source Code Pro", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .center {
     text-align: center;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5em;
+}
+
+.post {
+    background: #B7B6C2;
+    border: thick solid #657153;
+    border-radius: 30px;
+    padding: 10px;
+    margin-top: 1em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.post-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.post > p {
+    text-align: center;
+}
+/* Styling for the show comments button */
+.show-comments-button {
+    cursor: pointer;
+    background-color: #B7B6C2;
+    border: thick solid #657153;
+    border-radius: 30px;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    width: 25%;
+}
+
+.show-comments-button:hover {
+    border: thick solid #8AAA79;
+}
+.show-comments-checkbox {
+    display: none;
+}
+
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Style for the text area and post button */
+.post-comment textarea {
+    padding: 5px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 60%;
+}
+
+
+.post-comment button {
+    margin-top: 10px;
+    background-color: #657153;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 25%;
+}
+
+.comment {
+    background-color: #F4F4F9;
+    border: 5px solid #B8DBD9;
+    border-radius: 30px;
+    margin-bottom: 5px;
+    width: 75%;
+    margin-top: 5px;
 }
 
