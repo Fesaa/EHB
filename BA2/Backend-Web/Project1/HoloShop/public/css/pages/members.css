@@ -1,6 +1,7 @@
 .member-grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .members-title {
