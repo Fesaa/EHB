@@ -22,12 +22,12 @@
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
 
                     <textarea placeholder="Write a comment" name="content"></textarea>
-                    <input type="submit" value="Post">
+                    <input type="submit" value="Post" class="post-comment-button">
                 </form>
         @endauth
             @guest()
                 <div class="post-comment">
-                    <a href="{{ route('login') }}">Login to post a comment</a>
+                    <a href="{{ route('login') }}" class="post-comment-button">Login to post a comment</a>
                 </div>
             @endguest
     </div>
