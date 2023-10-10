@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset("css/main.css") }}">
 <script>let checkbox</script>
-<h1 class="center">Amelia's little GuestBook</h1>
+@include('content.header')
+
 
 <div class="post-container">
     @foreach($posts as $post)

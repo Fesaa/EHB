@@ -19,12 +19,12 @@
         @auth()
                 <div class="post-comment">
                     <textarea placeholder="Write a comment"></textarea>
-                    <button>Post</button>
+                    <a href="">Post</a>
                 </div>
         @endauth
             @guest()
                 <div class="post-comment">
-                    <button>Login to post a comment</button>
+                    <a href="{{ route('login') }}">Login to post a comment</a>
                 </div>
             @endguest
     </div>
