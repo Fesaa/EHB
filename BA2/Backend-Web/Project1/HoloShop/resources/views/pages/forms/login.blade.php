@@ -1,10 +1,11 @@
 @extends('layouts.master')
 
 <link rel="stylesheet" href="{{ asset("css/pages/auth.css") }}">
+<link rel="stylesheet" href="{{ asset("css/shared/forms.css") }}">
 
 @section('main-content')
-    <div class="auth-container">
-        <form action="{{ route('login') }}" method="post" class="auth-form" >
+    <div class="styled-form-container">
+        <form action="{{ route('login') }}" method="post" class="styled-form" >
             @csrf
 
             <label for="email">Email</label><br>
@@ -15,7 +16,7 @@
 
             <p>Don't have an account? <a href="{{ route('register') }}">Register</a> instead</p>
 
-            <input type="submit" value="Login" class="auth-confirm">
+            <input type="submit" value="Login" class="styled-form-confirm">
         </form>
     </div>
     <div class="errors-container">

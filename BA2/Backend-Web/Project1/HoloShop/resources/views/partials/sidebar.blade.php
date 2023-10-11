@@ -11,7 +11,7 @@
         <li class="no-hover"></li>
         <li class="no-hover"></li>
         @auth()
-            <li><a href="{{ route('profile.show', auth()->user()->id) }}">Profile</a></li>
+            <li><a href="{{ route('profile.own') }}">Profile</a></li>
         @endauth
     </ul>
 </div>

@@ -7,19 +7,19 @@
         </div>
 
         <div class="profile-info flex-row">
-            <p>{{ $user->name }} (She/Her)</p>
-            <p>Birthday: 1/1/2003</p>
-            <p>Joined: 1/1/2021</p>
+            <p>{{ $user->name }} ({{ $profile->pronouns }})</p>
+            <p>Birthday: {{ $profile->birthday->format("d/m/o") }}</p>
+            <p>Joined: {{ $user->created_at->format("d/m/o") }}</p>
             <p>Total Posts: 7</p>
             @if($user->isAuth())
-                <a href="{{ route('home') }}" class="edit-btn">Edit Profile</a>
+                <a href="{{ route('account.profile') }}" class="edit-btn">Edit Profile</a>
             @endif
         </div>
     </div>
 
     <div class="about-me float">
         <h2>About Me</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>{{ $profile->bio }}</p>
     </div>
 
 

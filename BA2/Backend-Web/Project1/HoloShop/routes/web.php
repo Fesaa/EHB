@@ -26,7 +26,11 @@ Route::get('/404', function() {
 // Profile routes
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('/members', [ProfileController::class, 'members'])->name('members');
+Route::get('/profile', [ProfileController::class, 'own'])->name('profile.own');
 
+// Account
+Route::get('/account/profile', [ProfileController::class, 'edit'])->name('account.profile');
+Route::post('/account/profile', [ProfileController::class, 'update'])->name('account.profile.update');
 
 // Auth routes
 Route::get('/login', [AuthController::class, 'show'])->name('login');

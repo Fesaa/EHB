@@ -58,7 +58,7 @@ class AuthController extends Controller
 
     public function register() {
         validator(request()->all(), [
-            'user' => 'required|min:4',
+            'user' => 'required|min:4|max:25',
             'email' => 'required|email',
             'password' => 'required'
         ])->validate();

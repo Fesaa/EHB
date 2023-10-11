@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -60,5 +61,21 @@ class User extends Authenticatable
             return false;
         return $this->id == $user->id;
     }
+
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function getProfile(): Profile {
+        $profile = $this->profile()->first();
+        if ($profile == null) {
+            $profile = new Profile();
+            $profile->birthday = $this->created_at;
+            $this->profile()->save($profile);
+        }
+        return $this->profile()->first();
+    }
+
 
 }
