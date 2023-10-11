@@ -72,7 +72,12 @@ class ProfileController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+        $user = auth()->user();
+        return $this->updateUser($user);
+    }
 
+    public function updateUser(User $user)
+    {
         validator(request()->all(), [
             'name' => 'nullable|min:4|max:25',
             'pronouns' => 'nullable|min:4|max:25',
@@ -82,7 +87,6 @@ class ProfileController extends Controller
             'banner-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:2048',
         ])->validate();
 
-        $user = auth()->user();
         $name = request()->get('name');
         if ($name != null) {
             $user->name = request()->get('name');
