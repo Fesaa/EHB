@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="{{ asset("css/objects/full_profile.css") }}">
 
 <div class="flex-column">
-    <div class="profile-full flex-row float {{ $user->isStaff() ? "staff-border" : "" }}">
+    <div class="profile-full flex-row float {{ $user->isStaff() ? "staff-border" : "" }}"
+    style="background-image: url({{ $profile->getBannerPicture() }})"
+    >
         <div class="profile-image">
-            <img src="https://forums.cubecraftcdn.com/xenforo/data/avatars/o/224/224741.jpg?1695386528" alt="IMAGE">
+            <img src="{{ $profile->getProfilePicture() }}" alt="IMAGE">
         </div>
 
         <div class="profile-info flex-row">

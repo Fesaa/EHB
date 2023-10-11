@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asset;
 use App\Models\Profile;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
 
 class ProfileController extends Controller
 {
@@ -45,6 +47,27 @@ class ProfileController extends Controller
         ]);
     }
 
+    private function getAssetIdAndSave(UploadedFile $file): int {
+        $data = base64_encode(file_get_contents($file));
+        $asset = Asset::where(["data" => $data])->first();
+        if ($asset == null) {
+            $asset = new Asset();
+            $asset->data = $data;
+            $asset->save();
+        }
+        return (int) $asset->id;
+    }
+
+    private function getAssetIdAndStore(string $url): int {
+        $asset = Asset::where(["url" => $url])->first();
+        if ($asset == null) {
+            $asset = new Asset();
+            $asset->data = $url;
+            $asset->save();
+        }
+        return (int) $asset->id;
+    }
+
     public function update() {
         if (!auth()->check()) {
             return redirect('/login');
@@ -55,6 +78,8 @@ class ProfileController extends Controller
             'pronouns' => 'nullable|min:4|max:25',
             'aboutme' => 'nullable|min:4|max:255',
             'birthday' => 'nullable|date',
+            'pfp-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:1024',
+            'banner-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:2048',
         ])->validate();
 
         $user = auth()->user();
@@ -67,6 +92,10 @@ class ProfileController extends Controller
         $pronouns = request()->get('pronouns');
         $aboutme = request()->get('aboutme');
         $birthday = request()->get('birthday');
+        $pfp_url = request()->get('pfp-url');
+        $pfp_file = request()->file('pfp-file');
+        $banner_url = request()->get('banner-url');
+        $banner_file = request()->file('banner-file');
 
         $profile = $user->profile()->first();
         if ($profile == null) {
@@ -83,6 +112,18 @@ class ProfileController extends Controller
 
         if ($birthday != null) {
             $profile->birthday = $birthday;
+        }
+
+        if ($pfp_url != null) {
+            $profile->pfp_asset_id = $this->getAssetIdAndStore($pfp_url);
+        } elseif ($pfp_file != null) {
+            $profile->pfp_asset_id = $this->getAssetIdAndSave($pfp_file);
+        }
+
+        if ($banner_url != null) {
+            $profile->banner_asset_id = $this->getAssetIdAndStore($banner_url);
+        } elseif ($banner_file != null) {
+            $profile->banner_asset_id = $this->getAssetIdAndSave($banner_file);
         }
 
         $user->profile()->save($profile);

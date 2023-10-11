@@ -1,6 +1,5 @@
 
 .profile-full {
-    background-image: url("https://forums.cubecraftcdn.com/xenforo/data/profile_banners/l/224/224741.jpg?1665157964");
     background-size: cover;
     background-position: center;
 }
@@ -8,6 +7,8 @@
 .profile-image > img {
     scale: 75%;
     border-radius: 50px;
+    max-width: 600px;
+    max-height: 541px;
 }
 
 .profile-info {
