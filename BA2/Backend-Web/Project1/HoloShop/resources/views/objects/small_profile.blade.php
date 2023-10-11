@@ -2,7 +2,6 @@
 
 <div class="small-profile flex-column float
 {{ $member->isStaff() ? "staff-border" : "" }}">
-
-    <img src="https://forums.cubecraftcdn.com/xenforo/data/avatars/o/224/224741.jpg?1695386528" alt="IMAGE">
+    <img src="{{ $profile->getProfilePicture() }}" alt="IMAGE">
     <a href="{{ route('profile.show', $member->id) }}" class="small-profile-name float btn">{{ $member->name }}</a>
 </div>
