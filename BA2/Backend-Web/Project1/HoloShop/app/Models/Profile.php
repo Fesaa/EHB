@@ -16,7 +16,9 @@ class Profile extends Model
         'banner_asset_id',
         'birthday',
         'bio',
-        'pronouns'
+        'pronouns',
+        'location',
+        'title',
     ];
 
     protected $casts = [
@@ -65,5 +67,19 @@ class Profile extends Model
             return $default;
         }
         return $url;
+    }
+
+    public function getTitleAndLocation(): string|null {
+        $out = "";
+        if ($this->title != null) {
+            $out .= $this->title;
+        }
+        if ($this->location != null) {
+            if ($out != "") {
+                $out .= " ·  ";
+            }
+            $out .= "From " . $this->location;
+        }
+        return $out == "" ? null : $out;
     }
 }

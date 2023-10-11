@@ -19,6 +19,8 @@ return new class extends Migration
             $table->date('birthday')->nullable();
             $table->text('bio')->nullable();
             $table->string('pronouns')->default('they/them');
+            $table->string('location')->nullable();
+            $table->string('title')->default('Member');
             $table->timestamps();
         });
     }

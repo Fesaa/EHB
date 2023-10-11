@@ -30,7 +30,7 @@ class ProfileController extends Controller
     }
 
     public function members() {
-        $users = User::all();
+        $users = User::all()->sortBy('created_at');
         return view('pages.members', [
             'users' => $users
         ]);
@@ -85,6 +85,8 @@ class ProfileController extends Controller
             'birthday' => 'nullable|date',
             'pfp-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:1024',
             'banner-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:2048',
+            'title' => 'min:4|max:25',
+            'location' => 'max:50',
         ])->validate();
 
         $name = request()->get('name');
@@ -93,6 +95,8 @@ class ProfileController extends Controller
             $user->save();
         }
 
+        $title = request()->get('title');
+        $location = request()->get('location');
         $pronouns = request()->get('pronouns');
         $aboutme = request()->get('aboutme');
         $birthday = request()->get('birthday');
@@ -104,6 +108,14 @@ class ProfileController extends Controller
         $profile = $user->profile()->first();
         if ($profile == null) {
             $profile = new Profile();
+        }
+
+        if ($title != null) {
+            $profile->title = $title;
+        }
+
+        if ($location != null) {
+            $profile->location = $location;
         }
 
         if ($pronouns != null) {

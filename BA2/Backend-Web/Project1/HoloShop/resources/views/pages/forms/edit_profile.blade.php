@@ -11,11 +11,22 @@
             <label for="name">Username</label><br>
             <input type="text" name="name" id="name" value="{{ $user->name }}"><br>
 
+            <label for="title">Title:</label>
+            @if($user->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('EDIT_TITLE')))
+                <input type="text" name="title" id="title" value="{{ $profile->title }}" readonly><br>
+            @else
+                <h3 id="title" style="text-align: center;"> {{ $profile->title }} </h3>
+                <p id="title-tooltip" style="display: none; font-size: small;">You can't change your title</p>
+            @endif
+
             <label for="pronouns">Pronouns</label><br>
             <input type="text" name="pronouns" id="pronouns" value="{{ $profile->pronouns }}"><br>
 
             <label for="birthday">Birthday</label><br>
             <input type="date" name="birthday" id="birthday" value="{{ $profile->birthday->format('o-m-d') }}"><br>
+
+            <label for="location">Location</label><br>
+            <input type="text" name="location" id="location" value="{{ $profile->location }}"><br>
 
             <label for="aboutme">About me</label><br>
             <textarea id="aboutme" name="aboutme" cols="50" rows="10">{{ $profile->bio }}</textarea><br>
@@ -59,6 +70,18 @@
     </div>
 
     <script>
+        const input = document.getElementById('title');
+        const tooltip = document.getElementById('title-tooltip');
+
+        input.addEventListener('mouseover', () => {
+            tooltip.style.display = 'block';
+        });
+
+        input.addEventListener('mouseout', () => {
+            tooltip.style.display = 'none';
+        });
+
+
         const pfpUploadRadioURL = document.getElementById("pfp-upload-radio-url");
         const pfpUploadRadioFile = document.getElementById("pfp-upload-radio-file");
 
