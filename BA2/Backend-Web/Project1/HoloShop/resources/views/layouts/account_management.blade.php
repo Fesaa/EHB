@@ -7,10 +7,10 @@
 
         <div class="options float">
             <ul>
-                <li class="options-list-section">YOUR ACCOUNT</li>
+                <li class="options-list-section"><a class="clean-link" href="{{ route('account') }}">YOUR ACCOUNT</a></li>
                 <li><a href="{{ route('profile.own') }}">Your profile</a></li>
                 <li><a>Your posts</a></li>
-                <li class="options-list-section">SETTINGS</li>
+                <li class="options-list-section"><a class="clean-link" href="{{ route('account') }}">SETTINGS</a></li>
                 <li><a>Security</A></li>
                 <li><a href="{{ route('account.profile') }}">Profile</a></li>
                 <li><a>Preferences</a></li>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,7 @@ Route::get('/members', [ProfileController::class, 'members'])->name('members');
 Route::get('/profile', [ProfileController::class, 'own'])->name('profile.own');
 
 // Account
+Route::get('/account', [UserController::class, 'dashboard'])->name('account');
 Route::get('/account/profile', [ProfileController::class, 'edit'])->name('account.profile');
 Route::post('/account/profile', [ProfileController::class, 'update'])->name('account.profile.update');
 
