@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LoginLog;
 use App\Models\Privilege;
+use App\Models\Role;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -73,11 +74,14 @@ class AuthController extends Controller
             'password' => 'required'
         ])->validate();
 
-        User::create([
+        $user = User::create([
             'name' => request()->get('user'),
             'email' => request()->get('email'),
             'password' => bcrypt(request()->get('password')),
         ])->save();
+
+        $member = Role::where(['name' => 'MEMBER'])->first();
+        $user->roles()->attach($member);
 
         if(auth()->attempt(request()->only('email', 'password'))) {
             return redirect('/');

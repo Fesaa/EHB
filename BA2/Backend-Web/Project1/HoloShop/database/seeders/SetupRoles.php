@@ -43,7 +43,7 @@ class SetupRoles extends Seeder
             'name' => 'ADMIN',
             'description' => 'Access to everything',
             'title' => 'Administrator',
-            'colour' => hexdec('ff5733'),
+            'colour' => '#0079FF',
             'weight' => 1000,
             'privilege' =>
                 $DASHBOARD_ROLES->value | $ROLES_EDIT_DESC->value | $ROLES_EDIT_PRIVILEGES->value |
@@ -58,7 +58,7 @@ class SetupRoles extends Seeder
             'name' => 'MODERATOR',
             'description' => 'Access to moderation tools',
             'title' => 'Moderator',
-            'colour' => hexdec('ff5733'),
+            'colour' => '#00DFA2',
             'weight' => 900,
             'privilege' =>
                 $DASHBOARD_LOGS->value | $LOGS_MODERATION->value | $LOGS_POSTS->value | $LOGS_ACTIVITY->value |
@@ -70,16 +70,25 @@ class SetupRoles extends Seeder
             'name' => 'STAFF',
             'description' => 'Part of the staff team',
             'title' => 'Staff',
-            'colour' => hexdec('ff5733'),
+            'colour' => null,
             'weight' => 500,
             'privilege' => $TITLE_EDIT->value,
+        ]);
+
+        Role::factory()->create([
+            'name' => 'MEMBER',
+            'description' => 'A member',
+            'title' => 'Member',
+            'colour' => 'gray',
+            'weight' => 100,
+            'privilege' => 0,
         ]);
 
         Role::factory()->create([
             'name' => 'BANNED',
             'description' => 'Banned from the site',
             'title' => 'Member',
-            'colour' => hexdec('ff5733'),
+            'colour' => 'gray',
             'weight' => 0,
             'privilege' => $NOT_GLOBAL_SITE->value
         ]);
