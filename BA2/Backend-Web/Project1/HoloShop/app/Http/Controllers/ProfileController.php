@@ -31,13 +31,6 @@ class ProfileController extends Controller
         return $this->show(auth()->user()->id);
     }
 
-    public function members() {
-        $users = User::all()->sortBy('created_at');
-        return view('pages.members', [
-            'users' => $users
-        ]);
-    }
-
     public function edit() {
         if (!auth()->check()) {
             return redirect('/login');
@@ -108,14 +101,14 @@ class ProfileController extends Controller
                 return redirect('/404');
             }
 
-            return $this->updateUser($user);
+            return $this->updateProfile($user);
         }
 
         $user = auth()->user();
-        return $this->updateUser($user);
+        return $this->updateProfile($user);
     }
 
-    public function updateUser(User $user)
+    public function updateProfile(User $user)
     {
         validator(request()->all(), [
             'name' => 'nullable|min:2|max:25',

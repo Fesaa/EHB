@@ -29,7 +29,7 @@ Route::get('/404', function() {
 
 // Profile routes
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
-Route::get('/members', [ProfileController::class, 'members'])->name('members');
+Route::get('/members', [UserController::class, 'members'])->name('members');
 Route::get('/profile', [ProfileController::class, 'own'])->name('profile.own');
 
 // Account

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,5 +14,13 @@ class UserController extends Controller
         }
 
         return view('pages.account.dashboard');
+    }
+
+
+    public function members() {
+        $users = User::all()->sortBy('created_at');
+        return view('pages.members', [
+            'users' => $users
+        ]);
     }
 }
