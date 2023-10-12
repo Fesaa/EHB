@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -67,5 +68,12 @@ class Profile extends Model
             return $default;
         }
         return $url;
+    }
+
+
+    public function isBirthday(): bool {
+        $today = new DateTime();
+        $birthday = new DateTime($this->birthday);
+        return $today->format('d-m') == $birthday->format('d-m');
     }
 }

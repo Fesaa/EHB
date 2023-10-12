@@ -124,4 +124,22 @@ class User extends Authenticatable
     }
 
 
+    public function getColouredTitle(): string {
+        $colour = $this->getColour();
+        return '<div style="color:' . $colour . '; font-weight: bolder;">' . $this->name . '</div>';
+    }
+
+    public static function getTodaysBirthDays(): array {
+        $users = User::all()->sortBy('created_at');
+        $birthdays = [];
+        foreach ($users as $user) {
+            $profile = $user->getProfile();
+            if ($profile->isBirthday()) {
+                $birthdays[] = $user;
+            }
+        }
+        return $birthdays;
+    }
+
+
 }
