@@ -1,4 +1,4 @@
-
+<link href="{{ asset('css/shared/global.css') }}" rel="stylesheet">
 <link href="{{ asset('css/layouts/master.css') }}" rel="stylesheet">
 
 @include('partials.header')
