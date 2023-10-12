@@ -21,7 +21,7 @@
                                 action="{{ route('admin.holoshop.privileges.update') }}" method="POST">
                                 @csrf
                                 <input type="number" name="id" value="{{ $privilege->id }}" hidden>
-                                <textarea name="description" cols="30" rows="2">{{ $privilege->description }}</textarea>
+                                <textarea name="description" cols="50" rows="1">{{ $privilege->description }}</textarea>
                                 <button class="dashboard-table-submit-change" type="submit">✔</button>
                             </form>
                         </th>
