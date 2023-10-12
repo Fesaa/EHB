@@ -10,7 +10,6 @@
                 <th>Name</th>
                 <th>Title</th>
                 <th>Member since</th>
-                <th>Personal data</th>
                 <th>Profile</th>
             </tr>
             @foreach($members as $member)
@@ -19,7 +18,6 @@
                     <th>{{ $member->name }}</th>
                     <th style="color: {{ $member->getColour() }}">{{ $member->getProfile()->title }}</th>
                     <th>{{ $member->created_at->format('d/m/o') }}</th>
-                    <th style="text-align: center"><a class="dashboard-table-btn" href="">🔴</a></th>
                     <th style="text-align: center"><a class="dashboard-table-btn" href="{{ route('admin.members.edit', $member->id) }}">🔵</a></th>
                 </tr>
             @endforeach
