@@ -15,8 +15,8 @@
 .small-profile > img {
     scale: 95%;
     border-radius: 20px;
-    max-width: 426px;
-    max-height: 384px;
+    max-width: 405px;
+    max-height: 365px;
 }
 
 .small-profile > a {
