@@ -13,6 +13,9 @@ class Role extends Model
         'name',
         'description',
         'privilege',
+        'title',
+        'colour',
+        'weight',
     ];
 
     public function users()
@@ -31,5 +34,9 @@ class Role extends Model
             }
         }
         return $filtered;
+    }
+
+    public function outRanks(Role $role): bool {
+        return $this->weight > $role->weight;
     }
 }

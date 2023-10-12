@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->unsignedBigInteger('privilege');
+            $table->string('title');
+            $table->unsignedBigInteger('weight');
+            $table->integer('colour');
             $table->timestamps();
         });
     }

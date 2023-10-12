@@ -19,7 +19,9 @@ class RoleFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' => fake()->text(),
-            'privilege' => -2
+            'privilege' => -2,
+            'title' => 'Member',
+            'weight' => 0,
         ];
     }
 }

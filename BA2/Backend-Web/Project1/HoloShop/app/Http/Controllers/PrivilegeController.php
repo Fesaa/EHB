@@ -12,7 +12,7 @@ class PrivilegeController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('ADMIN_CHANGE_PRIVILEGE'))) {
+        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('PRIVILEGES_EDIT'))) {
             return redirect()->route('home');
         }
 

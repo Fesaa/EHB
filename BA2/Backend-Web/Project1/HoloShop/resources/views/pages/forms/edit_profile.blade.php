@@ -12,7 +12,7 @@
             <input type="text" name="name" id="name" value="{{ $user->name }}"><br>
 
             <label for="title">Title:</label>
-            @if($user->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('EDIT_TITLE')))
+            @if($user->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('TITLE_EDIT')))
                 <input type="text" name="title" id="title" value="{{ $profile->title }}"><br>
             @else
                 <h3 id="title" style="text-align: center;"> {{ $profile->title }} </h3>

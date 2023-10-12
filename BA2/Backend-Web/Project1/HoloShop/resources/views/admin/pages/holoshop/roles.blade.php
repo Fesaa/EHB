@@ -16,7 +16,7 @@
                 <tr>
                     <th>{{ $role->id }}</th>
                     <th>{{ $role->name }}</th>
-                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ADMIN_CHANGE_ROLE")))
+                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLE_EDIT_DESC")))
                         <th class="flex-row" style="justify-content: center">
                             <form class="flex-row"
                                   action="{{ route('admin.holoshop.roles.update.desc', $role->id) }}" method="POST">

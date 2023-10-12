@@ -13,7 +13,7 @@ class RoleController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('ADMIN_CHANGE_PRIVILEGE'))) {
+        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('ROLE_EDIT_DESC'))) {
             return redirect()->route('home');
         }
 

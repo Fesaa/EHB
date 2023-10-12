@@ -15,7 +15,7 @@
                 <tr>
                     <th>{{ $privilege->id }}</th>
                     <th>{{ $privilege->name() }}</th>
-                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ADMIN_CHANGE_PRIVILEGE")))
+                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("PRIVILEGES_EDIT")))
                         <th class="flex-row" style="justify-content: center">
                             <form class="flex-row"
                                 action="{{ route('admin.holoshop.privileges.update') }}" method="POST">
