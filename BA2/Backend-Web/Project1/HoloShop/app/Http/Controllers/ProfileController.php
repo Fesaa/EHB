@@ -62,7 +62,7 @@ class ProfileController extends Controller
         $asset = Asset::where(["url" => $url])->first();
         if ($asset == null) {
             $asset = new Asset();
-            $asset->data = $url;
+            $asset->url = $url;
             $asset->save();
         }
         return (int) $asset->id;
