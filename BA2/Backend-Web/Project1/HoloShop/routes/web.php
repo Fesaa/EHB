@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -54,7 +55,6 @@ Route::get('/ban', [AuthController::class, 'ban'])->name('ban');
 
 // Admin routes
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/logs', [AdminController::class, 'logs'])->name('admin.logs');
 
 Route::get('/admin/privileges', [AdminController::class, 'privileges'])->name('admin.privileges');
 Route::post('/admin/privileges', [PrivilegeController::class, 'update'])->name('admin.holoshop.privileges.update');
@@ -64,3 +64,6 @@ Route::post('/admin/roles/desc', [RoleController::class, 'updateDesc'])->name('a
 
 Route::get('/admin/members', [AdminController::class, 'members'])->name('admin.members');
 Route::get('/admin/members/edit/{id}', [ProfileController::class, 'edit_other'])->name('admin.members.edit');
+
+Route::get('/admin/logs', [AdminController::class, 'logs'])->name('admin.logs');
+Route::get('/admin/logs/login', [LogController::class, 'login'])->name('admin.logs.login');

@@ -12,11 +12,6 @@ class LoginLog extends Model implements ILog
 {
     use HasFactory;
 
-    public string $email;
-    public string $ip_address;
-    public string $user_agent;
-    public bool $success;
-
     protected $fillable = [
         'email',
         'ip_address',

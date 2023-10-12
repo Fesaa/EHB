@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="{{ asset("css/shared/options.css") }}">
 
 @section('main-content')
-    <div class="flex-row options-container">
+    <div class="flex-row options-container" id="admin-dashboard">
 
-        <div class="options float">
+        <div class="options float" id="admin-dashboard-menu">
             <ul>
                 <li class="options-list-section"><a class="clean-link" href="{{ route('admin.dashboard') }}">HOLOSHOP</a></li>
                 @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('DASHBOARD_ROLES')))
@@ -29,7 +29,7 @@
             </ul>
         </div>
 
-        <div class="full-flex">
+        <div class="full-flex" id="dashboard-content">
             @yield('dashboard-content')
         </div>
     </div>

@@ -1,0 +1,19 @@
+.master-formatting-infobar {
+    display: block !important;
+}
+
+.logs-welcome {
+    padding: 2em;
+}
+
+.logs-welcome > p {
+    margin: 0.25em;
+}
+
+.logs-meme {
+    background-image: url("https://mrtreeservices.com/wp-content/uploads/2017/09/what-is-commercial-logging.jpg");
+    height: 267px;
+    width: 400px;
+    align-self: center;
+    border-radius: 5%;
+}
