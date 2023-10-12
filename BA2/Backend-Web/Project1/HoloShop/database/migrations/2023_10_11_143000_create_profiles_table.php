@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->string('pronouns')->default('they/them');
             $table->string('location')->nullable();
-            $table->string('title')->default('Member');
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }

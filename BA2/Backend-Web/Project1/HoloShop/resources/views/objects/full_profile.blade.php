@@ -15,10 +15,10 @@
                         · {{ $profile->location }}
                     @endif
                 </p>
-                @if($profile->title != null)
+                @if($profile->getTitle() != null)
                     <p class="profile-float"
                        style="align-self: flex-start; color: {{ $user->getColour() }}; font-weight: bolder">
-                        {{ $profile->title }}</p>
+                        {{ $profile->getTitle() }}</p>
                 @endif
             </div>
 

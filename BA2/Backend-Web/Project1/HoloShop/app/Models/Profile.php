@@ -76,4 +76,12 @@ class Profile extends Model
         $birthday = new DateTime($this->birthday);
         return $today->format('d-m') == $birthday->format('d-m');
     }
+
+    public function getTitle(): string {
+        if ($this->title != null) {
+            return $this->title;
+        }
+
+        return $this->user()->first()->getHighestRole()->getTitle();
+    }
 }
