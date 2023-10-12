@@ -14,7 +14,7 @@
                 </p>
                 @if($profile->getTitleAndLocation() != null)
                     <p class="profile-float"
-                       style="align-self: flex-start">
+                       style="align-self: flex-start; color: {{ $user->getColour() }}; font-weight: bolder">
                         {{ $profile->getTitleAndLocation() }}</p>
                 @endif
             </div>

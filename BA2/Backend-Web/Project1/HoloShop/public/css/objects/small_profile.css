@@ -13,10 +13,10 @@
 }
 
 .small-profile > img {
-    scale: 95%;
     border-radius: 20px;
-    max-width: 405px;
-    max-height: 365px;
+    padding: 1em;
+    width: 382px;
+    height: 347px;
 }
 
 .small-profile > a {

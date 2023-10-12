@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('privilege');
             $table->string('title');
             $table->unsignedBigInteger('weight');
-            $table->integer('colour');
+            $table->string('colour');
             $table->timestamps();
         });
     }

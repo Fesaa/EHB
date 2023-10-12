@@ -98,5 +98,13 @@ class User extends Authenticatable
         return $this->profile()->first();
     }
 
+    public function getHighestRole(): Role {
+        return $this->roles()->orderBy('weight', 'desc')->first();
+    }
+
+    public function getColour(): string {
+        return $this->getHighestRole()->getColour() ?? '#808080';
+    }
+
 
 }

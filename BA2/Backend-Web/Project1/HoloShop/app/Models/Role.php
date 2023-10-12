@@ -39,4 +39,12 @@ class Role extends Model
     public function outRanks(Role $role): bool {
         return $this->weight > $role->weight;
     }
+
+    public function getTitle(): string {
+        return $this->title ?? $this->name;
+    }
+
+    public function getColour(): string {
+        return $this->colour ?? '#808080';
+    }
 }

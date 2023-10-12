@@ -15,7 +15,7 @@
             @foreach($roles as $role)
                 <tr>
                     <th>{{ $role->id }}</th>
-                    <th>{{ $role->name }}</th>
+                    <th style="color: {{ $role->getColour() }}">{{ $role->getTitle() }}</th>
                     @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLE_EDIT_DESC")))
                         <th class="flex-row" style="justify-content: center">
                             <form class="flex-row"
