@@ -76,4 +76,16 @@ class UserController extends Controller
             'users' => $users
         ]);
     }
+
+    public static function getTodaysBirthDays(): array {
+        $users = User::all()->sortBy('created_at');
+        $birthdays = [];
+        foreach ($users as $user) {
+            $profile = $user->getProfile();
+            if ($profile->isBirthday()) {
+                $birthdays[] = $user;
+            }
+        }
+        return $birthdays;
+    }
 }

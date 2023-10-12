@@ -103,10 +103,10 @@ class User extends Authenticatable
     }
 
     public function getColour(): string {
-        return $this->getHighestRole()->getColour() ?? '#808080';
+        return $this->getHighestRole()->getColour() ?? env("DEFAULT_ROLE_COLOUR", "#808080");
     }
 
-    public function canEdit(User $other)
+    public function canEdit(User $other): bool
     {
         if ($this->id == $other->id) {
             return true;
@@ -128,18 +128,5 @@ class User extends Authenticatable
         $colour = $this->getColour();
         return '<div style="color:' . $colour . '; font-weight: bolder;">' . $this->name . '</div>';
     }
-
-    public static function getTodaysBirthDays(): array {
-        $users = User::all()->sortBy('created_at');
-        $birthdays = [];
-        foreach ($users as $user) {
-            $profile = $user->getProfile();
-            if ($profile->isBirthday()) {
-                $birthdays[] = $user;
-            }
-        }
-        return $birthdays;
-    }
-
 
 }

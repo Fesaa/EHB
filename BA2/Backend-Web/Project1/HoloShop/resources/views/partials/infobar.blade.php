@@ -34,7 +34,7 @@
         <div class="infobar-title">Birthdays</div>
         <div class="infobar-content">
             <ul class="flat-list">
-                @foreach(\App\Models\User::getTodaysBirthDays() as $user)
+                @foreach(\App\Http\Controllers\UserController::getTodaysBirthDays() as $user)
                     <li><a class="clean-link" href="{{ route('profile.show', $user->id) }}">{!! $user->getColouredName() !!}</a></li>
                 @endforeach
             </ul>

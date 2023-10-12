@@ -45,6 +45,6 @@ class Role extends Model
     }
 
     public function getColour(): string {
-        return $this->colour ?? '#808080';
+        return $this->colour ?? env("DEFAULT_ROLE_COLOUR", "#808080");
     }
 }
