@@ -59,7 +59,7 @@ class AdminController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        $roles = Role::all()->sortBy('id');
+        $roles = Role::all()->sortByDesc('weight');
         $privileges = Privilege::all()->sortBy('id');
 
         return view('admin.pages.holoshop.roles', [

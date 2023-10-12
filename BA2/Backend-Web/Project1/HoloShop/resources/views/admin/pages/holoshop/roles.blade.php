@@ -8,6 +8,7 @@
             <tr class="dashboard-table-header">
                 <th>ID</th>
                 <th>Name</th>
+                <th>Title</th>
                 <th>Description</th>
                 <th>Privileges</th>
                 <th>Updated at</th>
@@ -15,14 +16,15 @@
             @foreach($roles as $role)
                 <tr>
                     <th>{{ $role->id }}</th>
+                    <th>{{ $role->name }}</th>
                     <th style="color: {{ $role->getColour() }}">{{ $role->getTitle() }}</th>
-                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLE_EDIT_DESC")))
+                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_DESC")))
                         <th class="flex-row" style="justify-content: center">
                             <form class="flex-row"
                                   action="{{ route('admin.holoshop.roles.update.desc', $role->id) }}" method="POST">
                                 @csrf
                                 <input type="number" name="id" value="{{ $role->id }}" hidden>
-                                <textarea name="description" cols="30" rows="2">{{ $role->description }}</textarea>
+                                <textarea name="description" cols="30" rows="1">{{ $role->description }}</textarea>
                                 <button class="dashboard-table-submit-change" type="submit">✔</button>
                             </form>
                         </th>
