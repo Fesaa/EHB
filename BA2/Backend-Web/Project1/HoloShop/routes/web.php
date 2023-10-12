@@ -67,3 +67,4 @@ Route::get('/admin/members/edit/{id}', [ProfileController::class, 'edit_other'])
 
 Route::get('/admin/logs', [AdminController::class, 'logs'])->name('admin.logs');
 Route::get('/admin/logs/login', [LogController::class, 'login'])->name('admin.logs.login');
+Route::get('/admin/logs/activity', [LogController::class, 'activity'])->name('admin.logs.activity');
