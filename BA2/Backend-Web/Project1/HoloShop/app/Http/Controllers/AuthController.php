@@ -67,7 +67,6 @@ class AuthController extends Controller
             'name' => request()->get('user'),
             'email' => request()->get('email'),
             'password' => bcrypt(request()->get('password')),
-            'privilege' => 0,
         ])->save();
 
         if(auth()->attempt(request()->only('email', 'password'))) {
