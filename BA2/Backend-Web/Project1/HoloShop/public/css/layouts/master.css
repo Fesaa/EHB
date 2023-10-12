@@ -117,4 +117,8 @@ body {
     padding: 0.5em;
 }
 
+.full-flex {
+    flex: 1;
+}
+
 

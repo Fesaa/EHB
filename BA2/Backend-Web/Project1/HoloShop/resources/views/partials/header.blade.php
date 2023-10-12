@@ -11,7 +11,7 @@
             <li class="nav-button secondary-button"><a>Post</a></li>
             <li class="nav-button secondary-button"><a href="{{ route('logout') }}">Logout</a></li>
             @if(auth()->user()->isStaff())
-                <li class="nav-button secondary-button">Admin Dashboard</li>
+                <li class="nav-button secondary-button"><a href="{{ route('admin.dashboard') }}">Staff panel</a></li>
             @endif
             <li class="nav-button no-hover secondary-button"><a href="{{ route('account.profile') }}">{{ auth()->user()->name }}</a> </li>
         @endauth
