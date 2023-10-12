@@ -11,7 +11,7 @@
                 <li><a href="{{ route('profile.own') }}">Your profile</a></li>
                 <li><a>Your posts</a></li>
                 <li class="options-list-section"><a class="clean-link" href="{{ route('account') }}">SETTINGS</a></li>
-                <li><a>Security</A></li>
+                <li><a href="{{ route('account.security') }}">Security</a></li>
                 <li><a href="{{ route('account.profile') }}">Profile</a></li>
                 <li><a>Preferences</a></li>
                 <li><a href="{{ route('logout') }}">Log out</a></li>

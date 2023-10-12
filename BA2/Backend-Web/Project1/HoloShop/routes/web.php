@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
-|
+|Be careful as changing some may have lasting impact!
+
+
 */
 
 Route::get('/', function () {
@@ -34,6 +36,8 @@ Route::get('/profile', [ProfileController::class, 'own'])->name('profile.own');
 
 // Account
 Route::get('/account', [UserController::class, 'dashboard'])->name('account');
+Route::get('/account/security', [UserController::class, 'security'])->name('account.security');
+Route::post('/account/security', [UserController::class, 'update'])->name('account.security.update');
 Route::get('/account/profile', [ProfileController::class, 'edit'])->name('account.profile');
 Route::post('/account/profile', [ProfileController::class, 'update'])->name('account.profile.update');
 
