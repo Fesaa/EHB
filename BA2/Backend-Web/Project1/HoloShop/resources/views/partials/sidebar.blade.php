@@ -13,5 +13,8 @@
         @auth()
             <li><a href="{{ route('profile.own') }}">Profile</a></li>
         @endauth
+        @if(auth()->user()->isStaff())
+            <li><a href="{{ route('admin.dashboard') }}">Staff panel</a></li>
+        @endif
     </ul>
 </div>
