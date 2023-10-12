@@ -15,6 +15,7 @@ class SetupDefaultAccounts extends Seeder
     {
         $ADMIN = Role::where(['name' => 'ADMIN'])->first();
         $MODERATOR = Role::where(['name' => 'MODERATOR'])->first();
+        $STAFF = Role::where(['name' => 'STAFF'])->first();
 
         $admin_account = User::factory()->create([
             'name' => 'Admin',
@@ -23,6 +24,7 @@ class SetupDefaultAccounts extends Seeder
         ]);
 
         $admin_account->roles()->attach($ADMIN);
+        $admin_account->roles()->attach($STAFF);
 
         $moderator_account = User::factory()->create([
             'name' => 'Moderator',
@@ -31,6 +33,7 @@ class SetupDefaultAccounts extends Seeder
         ]);
 
         $moderator_account->roles()->attach($MODERATOR);
+        $moderator_account->roles()->attach($STAFF);
 
 
     }
