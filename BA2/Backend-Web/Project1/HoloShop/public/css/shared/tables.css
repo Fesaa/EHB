@@ -10,7 +10,7 @@
     background-color: var(--little-alpha);
 }
 
-.dashboard-table tr:hover:not(.table-header) {
+.dashboard-table tr:hover:not(.dashboard-table-header) {
     background-color: var(--big-alpha);
 }
 
@@ -27,3 +27,10 @@
 .dashboard-table-submit-change:hover {
     color: limegreen;
 }
+
+.dashboard-table-btn {
+    margin: 5px;
+    text-decoration: none;
+    color: var(--text);
+}
+

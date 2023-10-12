@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Privilege;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -64,6 +65,22 @@ class AdminController extends Controller
         return view('admin.pages.holoshop.roles', [
             'roles' => $roles,
             'privileges' => $privileges
+        ]);
+    }
+
+    public function members() {
+        if (!auth()->check()) {
+            return redirect()->route('home');
+        }
+
+        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('DASHBOARD_MEMBERS'))) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        $members = User::all()->sortBy('id');
+
+        return view('admin.pages.moderation.members', [
+            'members' => $members
         ]);
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asset;
+use App\Models\Privilege;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Crypt;
 
 class ProfileController extends Controller
 {
@@ -47,6 +49,27 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function edit_other(int $id) {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+
+        $user = User::where(["id" => $id])->first();
+        if ($user == null) {
+            return redirect('/404');
+        }
+
+
+        if (!auth()->user()->canEdit($user)) {
+            return redirect('/404');
+        }
+
+        return view('pages.forms.edit_profile', [
+            'user' => $user,
+            'profile' => $user->getProfile()
+        ]);
+    }
+
     private function getAssetIdAndSave(UploadedFile $file): int {
         $data = base64_encode(file_get_contents($file));
         $asset = Asset::where(["data" => $data])->first();
@@ -72,6 +95,22 @@ class ProfileController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+
+        $id = request()->get('id');
+        if ($id != null) {
+            $id = Crypt::decrypt(request()->get('id'));
+            $user = User::where(["id" => $id])->first();
+            if ($user == null) {
+                return redirect('/404');
+            }
+
+            if (!auth()->user()->canEdit($user)) {
+                return redirect('/404');
+            }
+
+            return $this->updateUser($user);
+        }
+
         $user = auth()->user();
         return $this->updateUser($user);
     }
@@ -79,13 +118,13 @@ class ProfileController extends Controller
     public function updateUser(User $user)
     {
         validator(request()->all(), [
-            'name' => 'nullable|min:4|max:25',
-            'pronouns' => 'nullable|min:4|max:25',
-            'aboutme' => 'nullable|min:4|max:255',
+            'name' => 'nullable|min:2|max:25',
+            'pronouns' => 'nullable|max:25',
+            'aboutme' => 'nullable|max:255',
             'birthday' => 'nullable|date',
             'pfp-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:1024',
             'banner-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:2048',
-            'title' => 'min:4|max:25',
+            'title' => 'max:25',
             'location' => 'max:50',
         ])->validate();
 
@@ -144,7 +183,7 @@ class ProfileController extends Controller
 
         $user->profile()->save($profile);
 
-        return redirect('/profile');
+        return redirect()->route('profile.show', ['id' => $user->id]);
 
     }
 }

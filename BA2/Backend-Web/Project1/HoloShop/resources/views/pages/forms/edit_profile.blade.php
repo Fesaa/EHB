@@ -8,6 +8,11 @@
         <form class="styled-form label-left" method="post" action="{{ route('account.profile.update') }}" enctype="multipart/form-data" >
             @csrf
 
+            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('MEMBERS_EDIT_PROFILE')))
+                @if(auth()->user()->getHighestRole()->outRanks($user->getHighestRole())) @endif
+                <input type="hidden" name="id" value="{{ \Illuminate\Support\Facades\Crypt::encrypt($user->id) }}">
+            @endif
+
             <label for="name">Username</label><br>
             <input type="text" name="name" id="name" value="{{ $user->name }}"><br>
 

@@ -106,5 +106,22 @@ class User extends Authenticatable
         return $this->getHighestRole()->getColour() ?? '#808080';
     }
 
+    public function canEdit(User $other)
+    {
+        if ($this->id == $other->id) {
+            return true;
+        }
+
+        if (!$this->hasPrivilege(Privilege::getPrivilegeValue('MEMBERS_EDIT_PROFILE'))) {
+            return false;
+        }
+
+        if ($this->getHighestRole()->outRanks($other->getHighestRole())) {
+            return true;
+        }
+
+        return false;
+    }
+
 
 }

@@ -11,11 +11,14 @@
                 <p class="profile-float"
                    style="align-self: flex-start">
                     {{ $user->name }} ({{ $profile->pronouns }})
+                    @if($profile->location != null)
+                        · {{ $profile->location }}
+                    @endif
                 </p>
-                @if($profile->getTitleAndLocation() != null)
+                @if($profile->title != null)
                     <p class="profile-float"
                        style="align-self: flex-start; color: {{ $user->getColour() }}; font-weight: bolder">
-                        {{ $profile->getTitleAndLocation() }}</p>
+                        {{ $profile->title }}</p>
                 @endif
             </div>
 

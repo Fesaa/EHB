@@ -21,7 +21,7 @@
                 @endif
                 <li class="options-list-section">MODERATION</li>
                 @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('DASHBOARD_MEMBERS')))
-                    <li><a>Members</A></li>
+                    <li><a href="{{ route('admin.members') }}">Members</A></li>
                 @endif
                 @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('DASHBOARD_PUNISHMENTS')))
                     <li><a href="">Punishments</a></li>
