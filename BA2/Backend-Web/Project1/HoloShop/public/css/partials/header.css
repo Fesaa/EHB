@@ -32,5 +32,6 @@ header > ul {
 
 .nav-button > a {
     text-decoration: none;
+    color: var(--text);
 }
 

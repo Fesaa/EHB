@@ -83,6 +83,13 @@ body {
     cursor: pointer;
 }
 
+.no-hover:hover > a {
+    cursor: default !important;
+}
+.no-hover:hover {
+    cursor: default !important;
+}
+
 .secondary-button {
     background: var(--secondary);
 }

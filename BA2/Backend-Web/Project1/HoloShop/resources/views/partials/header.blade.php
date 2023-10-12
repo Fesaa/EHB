@@ -13,7 +13,7 @@
             @if(auth()->user()->isStaff())
                 <li class="nav-button secondary-button">Admin Dashboard</li>
             @endif
-            <li class="nav-button no-hover secondary-button">{{ auth()->user()->name }}</li>
+            <li class="nav-button no-hover secondary-button"><a href="{{ route('account.profile') }}">{{ auth()->user()->name }}</a> </li>
         @endauth
         @guest()
             <li class="nav-button secondary-button"><a href="{{ route('login') }}">Login</a></li>
