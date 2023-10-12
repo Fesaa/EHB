@@ -13,7 +13,7 @@
 
             <label for="title">Title:</label>
             @if($user->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('EDIT_TITLE')))
-                <input type="text" name="title" id="title" value="{{ $profile->title }}" readonly><br>
+                <input type="text" name="title" id="title" value="{{ $profile->title }}"><br>
             @else
                 <h3 id="title" style="text-align: center;"> {{ $profile->title }} </h3>
                 <p id="title-tooltip" style="display: none; font-size: small;">You can't change your title</p>

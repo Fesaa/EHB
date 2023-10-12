@@ -19,7 +19,7 @@ class RoleFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' => fake()->text(),
-            'privilege_level' => 1
+            'privilege' => -2
         ];
     }
 }

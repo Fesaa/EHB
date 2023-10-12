@@ -47,12 +47,34 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'roles_users');
+    }
+
+    public function hasRole(string $name): bool
+    {
+        $name = strtoupper($name);
+        $roles = $this->roles()->get();
+        foreach ($roles as $role) {
+            if (strtoupper($role->name) == $name)
+                return true;
+        }
+        return false;
+    }
+
     public function hasPrivilege(int $privilege): bool {
-        return ($this->privilege & $privilege) == $privilege;
+        // Should add caches later for performance
+        $roles = $this->roles()->get();
+        foreach ($roles as $role) {
+            if ($role->hasPrivilege($privilege))
+                return true;
+        }
+        return false;
     }
 
     public function isStaff(): bool {
-        return $this->hasPrivilege(Privilege::getPrivilegeValue('STAFF'));
+        return $this->hasRole("STAFF");
     }
 
     public function isAuth(): bool {

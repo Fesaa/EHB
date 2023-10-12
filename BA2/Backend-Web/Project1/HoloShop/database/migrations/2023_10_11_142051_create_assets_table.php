@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->string('url')->nullable();
+            $table->text('url')->nullable();
             $table->text('data')->nullable();
             $table->timestamps();
         });
