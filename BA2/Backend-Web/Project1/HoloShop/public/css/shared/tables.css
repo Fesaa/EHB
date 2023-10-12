@@ -1,0 +1,29 @@
+.dashboard-table {
+    padding: 2em;
+}
+
+.dashboard-table td, .dashboard-table th {
+    font-size: small;
+}
+
+.dashboard-table tr:nth-child(even){
+    background-color: var(--little-alpha);
+}
+
+.dashboard-table tr:hover:not(.table-header) {
+    background-color: var(--big-alpha);
+}
+
+.dashboard-table-header {
+    text-align: center;
+    background-color: var(--accent);
+    color: white;
+}
+.dashboard-table-submit-change {
+    background: none;
+    border: none;
+}
+
+.dashboard-table-submit-change:hover {
+    color: limegreen;
+}

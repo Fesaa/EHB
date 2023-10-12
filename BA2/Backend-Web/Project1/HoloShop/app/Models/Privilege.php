@@ -24,4 +24,11 @@ class Privilege extends Model
         }
         return $privilege->value;
     }
+
+    public function name(): string {
+        $name = str_replace('_', ' ', $this->name);
+        $name = strtolower($name);
+        return ucwords($name);
+
+    }
 }

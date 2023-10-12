@@ -23,4 +23,13 @@ class Role extends Model
     public function hasPrivilege(int $privilege): bool {
         return ($this->privilege & $privilege) == $privilege;
     }
+    public function filter($privileges): array {
+        $filtered = [];
+        foreach ($privileges as $privilege) {
+            if ($this->hasPrivilege($privilege->value)) {
+                $filtered[] = $privilege;
+            }
+        }
+        return $filtered;
+    }
 }

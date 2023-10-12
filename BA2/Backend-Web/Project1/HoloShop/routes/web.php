@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +46,8 @@ Route::get('register', [AuthController::class, 'showRegister'])->name('register'
 
 // Admin routes
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/logs', [AdminController::class, 'logs'])->name('admin.logs');
+Route::get('/admin/privileges', [AdminController::class, 'privileges'])->name('admin.privileges');
+Route::post('/admin/privileges', [PrivilegeController::class, 'update'])->name('admin.holoshop.privileges.update');
+Route::get('/admin/roles', [AdminController::class, 'roles'])->name('admin.roles');
+Route::post('/admin/roles/desc', [RoleController::class, 'updateDesc'])->name('admin.holoshop.roles.update.desc');

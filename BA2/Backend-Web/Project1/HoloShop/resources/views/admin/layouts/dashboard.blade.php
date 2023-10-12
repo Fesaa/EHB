@@ -7,13 +7,13 @@
         <div class="options float">
             <ul>
                 <li class="options-list-section">HOLOSHOP</li>
-                <li><a href="">Roles</a></li>
-                <li><a>Privileges</a></li>
-                <li><a>Logs</a></li>
+                <li><a href="{{ route('admin.roles') }}">Roles</a></li>
+                <li><a href="{{ route('admin.privileges') }}">Privileges</a></li>
+                <li><a href="{{ route('admin.logs') }}">Logs</a></li>
                 <li><a>Featured content</a></li>
-                <li class="options-list-section">MEMBER MANAGEMENT</li>
+                <li class="options-list-section">MODERATION</li>
                 <li><a>Members</A></li>
-                <li><a href="">Moderation</a></li>
+                <li><a href="">Punishments</a></li>
             </ul>
         </div>
 
