@@ -124,7 +124,7 @@ class User extends Authenticatable
     }
 
 
-    public function getColouredTitle(): string {
+    public function getColouredName(): string {
         $colour = $this->getColour();
         return '<div style="color:' . $colour . '; font-weight: bolder;">' . $this->name . '</div>';
     }

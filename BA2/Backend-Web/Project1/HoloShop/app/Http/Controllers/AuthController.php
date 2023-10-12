@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\LoginLog;
+use App\Models\Privilege;
 use App\Models\User;
 
 class AuthController extends Controller
 {
+
+    public function ban() {
+        if (auth()->user() != null) {
+            if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('NOT_GLOBAL_SITE'))) {
+                return redirect()->route('home');
+            }
+        }
+        return view('pages.ban');
+    }
 
     public function show() {
         return view('pages.forms.login');

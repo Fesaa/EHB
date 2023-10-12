@@ -48,7 +48,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('register', [AuthController::class, 'register']);
-Route::get('register', [AuthController::class, 'showRegister'])->name('register');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+
+Route::get('/ban', [AuthController::class, 'ban'])->name('ban');
 
 // Admin routes
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
