@@ -22,6 +22,7 @@ All name (keys) for privileges stored in the database should follow the followin
 
 Value for staff privileges start at `1 << 1`, others should start at `1 << 25`.
 This does give us only 25 staff keys, but that should be enough for now.
+The system will auto generate some keys with `1 << 32` and above for locking forums; etc
 
 
 

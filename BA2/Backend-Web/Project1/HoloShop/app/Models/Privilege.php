@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Privilege extends Model
 {
@@ -29,6 +30,9 @@ class Privilege extends Model
         $name = str_replace('_', ' ', $this->name);
         $name = strtolower($name);
         return ucwords($name);
+    }
 
+    public function forum_locs(): BelongsToMany {
+        return $this->belongsToMany(Forum::class, 'forum_locks');
     }
 }
