@@ -31,7 +31,7 @@ All name (keys) for privileges stored in the database should follow the followin
 | type               | format                 | examples                            |
 |--------------------|------------------------|-------------------------------------|
 | Access to resource | `LOCATIONS_RESOURCE`   | `DASHBOARD_ROLES` `FORUM_SUPPORT`   |
-| Action on resource | `RESOURCE_EDIT(_PART)` | `ROLES_EDIT_DESC` `PRIVILEGES_EDIT` |
+| Action on resource | `RESOURCE_EDIT(_PART)` | `ROLES_EDIT_MISC` `PRIVILEGES_EDIT` |
 | Negation           | `NOT_KEY`              | `NOT_GLOBAL_SITE` (bans member)     |
 
 Value for staff privileges start at `1 << 1`, others should start at `1 << 25`.

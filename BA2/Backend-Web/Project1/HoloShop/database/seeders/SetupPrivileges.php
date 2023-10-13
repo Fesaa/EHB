@@ -19,8 +19,8 @@ class SetupPrivileges extends Seeder
         ]);
 
         Privilege::factory()->create([
-            'name' => 'ROLES_EDIT_DESC',
-            'description' => 'Edit role descriptions',
+            'name' => 'ROLES_EDIT_MISC',
+            'description' => 'Edit role descriptions, title, and colour',
             'value' => 1 << 2
         ]);
 

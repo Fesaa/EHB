@@ -10,6 +10,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Title</th>
+                <th>Colour</th>
                 <th>Description</th>
                 <th>Privileges</th>
                 <th>Updated at</th>
@@ -21,21 +22,9 @@
                 <tr>
                     <th>{{ $role->id }}</th>
                     <th>{{ $role->name }}</th>
-                    <th style="color: {{ $role->getColour() }}">{{ $role->getTitle() }}</th>
-                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_DESC")))
-                        <th class="flex-row" style="justify-content: center">
-                            <form class="flex-row"
-                                  action="{{ route('admin.holoshop.roles.update.desc', $role->id) }}" method="POST">
-                                @csrf
-                                <input type="number" name="id" value="{{ $role->id }}" hidden>
-                                <textarea class="no-style" name="description" cols="30" rows="1">{{ $role->description }}</textarea>
-                                <button class="dashboard-table-submit-change" type="submit">✔</button>
-                            </form>
-                        </th>
-                    @else
-                        <th>{{ $role->description }}</th>
-                    @endif
-                    <!--TODO: Make ADMIN_CHANGE_PRIVILEGES able to change privileges of a role -->
+                    <th id="{{ "role-title-" . $role->id }}" style="color: {{ $role->getColour() }}">{{ $role->getTitle() }}</th>
+                    <th id="{{ "role-colour-" . $role->id }}">{{ $role->colour }}</th>
+                    <th id="{{ "role-description-" . $role->id }}">{{ $role->description }}</th>
                     <th><select class="privileges-select">
                             @foreach($role->filter($privileges) as $privilege)
                                 <option class="option_{{$role->id}}" value="{{ $privilege->value }}">{{ $privilege->name() }}</option>
@@ -53,18 +42,30 @@
 
 <div id="form-popup" class="flex-column">
     <div id="form-popup-2" class="flex-row" style="justify-content: center">
-        <form class="styled-form" id="update-role-privileges" method="post" action="{{ route('admin.holoshop.roles.update.privileges') }}">
+        <form class="styled-form" id="update-role-privileges" method="post" action="{{ route('admin.holoshop.roles.update') }}">
             @csrf
             <h3>Check any privileges you want the role to have</h3>
             <input id="role-id-input" name="id" type="number" value="0" hidden>
-            <div class="flex-column">
-                @foreach(\App\Models\Privilege::all() as $privilege)
-                    <label>
-                        <input type="checkbox" name="{{ $privilege->name }}" value="{{ $privilege->value }}">
-                        {{ $privilege->name() }}
-                    </label>
-                @endforeach
-            </div>
+            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_MISC")))
+                <label for="title">Title</label>
+                <input class="no-style" id="title" name="title" type="text" style="color: {{ $role->colour }}" value="{{ $role->getTitle() }}"><br>
+
+                <label for="colour">Colour</label>
+                <input class="no-style" id="colour" name="colour" type="text" style="color: {{ $role->colour }}" value="{{ $role->colour }}"><br>
+
+                <label for="description">Description</label>
+                <textarea class="no-style" id="description" name="description" cols="30" rows="2">{{ $role->description }}</textarea><br>
+            @endif
+            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_PRIVILEGES")))
+                <div class="flex-column">
+                    @foreach(\App\Models\Privilege::all() as $privilege)
+                        <label>
+                            <input type="checkbox" name="{{ $privilege->name }}" value="{{ $privilege->value }}">
+                            {{ $privilege->name() }}
+                        </label>
+                    @endforeach
+                </div>
+            @endif
             <br>
             <input type="button" value="Close" class="styled-form-confirm" onclick="closeForm()">
             <input type="submit" value="Save" class="styled-form-confirm">
@@ -83,12 +84,35 @@
         });
     })
 
+    let colour = document.getElementById("colour");
+    let title = document.getElementById("title");
+    let description = document.getElementById("description");
+    colour.addEventListener('input', function (event) {
+        colour.style.color = colour.value;
+        title.style.color = colour.value;
+    });
+
     function closeForm() {
         form_popup.style.display = "none";
     }
 
     function editRole(id) {
         let form = document.getElementById("update-role-privileges");
+
+        let form_title = document.getElementById("role-title-" + id);
+        let form_colour = document.getElementById("role-colour-" + id);
+        let form_description = document.getElementById("role-description-" + id);
+
+
+        let colour = document.getElementById("colour");
+        let title = document.getElementById("title");
+        let description = document.getElementById("description");
+
+        title.value = form_title.innerText;
+        title.style.color = form_colour.innerText;
+        colour.value = form_colour.innerText;
+        colour.style.color = form_colour.innerText;
+        description.value = form_description.innerText;
 
         const checkboxes = form.querySelectorAll('input[type="checkbox"]');
         const privileges = document.querySelectorAll('.option_' + id);

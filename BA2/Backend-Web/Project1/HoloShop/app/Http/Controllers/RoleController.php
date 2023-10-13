@@ -7,39 +7,7 @@ use App\Models\Role;
 
 class RoleController extends Controller
 {
-    public function updateDesc() {
-
-        if (!auth()->check()) {
-            return redirect()->route('home');
-        }
-
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('ROLE_EDIT_DESC'))) {
-            return redirect()->route('home');
-        }
-
-
-        validator(request()->all(), [
-            'description' => 'required|string|max:255',
-            'id' => 'required|integer',
-        ])->validate();
-
-        $role = Role::find(request()->input('id'));
-        if ($role == null) {
-            return view('admin.pages.holoshop.roles', [
-                'roles' => Role::all()->sortBy('id'),
-                'privileges' => Privilege::all()->sortBy('id')
-            ]);
-        }
-        $role->description = request()->input('description');
-        $role->save();
-
-        return view('admin.pages.holoshop.roles', [
-            'roles' => Role::all()->sortBy('id'),
-            'privileges' => Privilege::all()->sortBy('id')
-        ]);
-    }
-
-    public function updatePrivileges()
+    public function update()
     {
 
         if (!auth()->check()) {
@@ -52,6 +20,9 @@ class RoleController extends Controller
 
         validator(request()->all(), [
             'id' => 'required|integer',
+            'description' => 'string|nullable',
+            'colour' => 'string|nullable',
+            'title' => 'string|nullable',
         ])->validate();
 
         $role = Role::find(request()->input('id'));
@@ -70,6 +41,17 @@ class RoleController extends Controller
             }
         }
         $role->privilege = $value;
+
+        if (request()->has('description')) {
+            $role->description = request()->input('description');
+        }
+        if (request()->has('colour')) {
+            $role->colour = request()->input('colour');
+        }
+        if (request()->has('title')) {
+            $role->title = request()->input('title');
+        }
+
         $role->save();
         return redirect()->back();
     }

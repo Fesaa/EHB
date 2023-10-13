@@ -14,7 +14,7 @@ class SetupRoles extends Seeder
     public function run(): void
     {
         $DASHBOARD_ROLES = Privilege::where(['name' => "DASHBOARD_ROLES"])->first();
-        $ROLES_EDIT_DESC = Privilege::where(['name' => "ROLES_EDIT_DESC"])->first();
+        $ROLES_EDIT_MISC = Privilege::where(['name' => "ROLES_EDIT_MISC"])->first();
         $ROLES_EDIT_PRIVILEGES = Privilege::where(['name' => "ROLES_EDIT_PRIVILEGES"])->first();
 
         $DASHBOARD_PRIVILEGES = Privilege::where(['name' => "DASHBOARD_PRIVILEGES"])->first();
@@ -46,7 +46,7 @@ class SetupRoles extends Seeder
             'colour' => '#0079FF',
             'weight' => 1000,
             'privilege' =>
-                $DASHBOARD_ROLES->value | $ROLES_EDIT_DESC->value | $ROLES_EDIT_PRIVILEGES->value |
+                $DASHBOARD_ROLES->value | $ROLES_EDIT_MISC->value | $ROLES_EDIT_PRIVILEGES->value |
                 $DASHBOARD_PRIVILEGES->value | $PRIVILEGES_EDIT->value |
                 $DASHBOARD_LOGS->value | $LOGS_LOGIN->value | $LOGS_MODERATION->value | $LOGS_POSTS->value | $LOGS_ACTIVITY->value |
                 $DASHBOARD_FEATURED->value | $FEATURED_EDIT->value |
