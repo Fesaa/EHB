@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\ProfileController;
@@ -51,6 +52,13 @@ Route::prefix('/account')
     Route::post('/profile', [ProfileController::class, 'update'])->name('.profile.update');
     });
 
+// Forum routes
+Route::prefix('/forum')
+    ->name('forum.')
+    ->group(function () {
+        Route::get('/', [ForumController::class, 'index'])->name('index');
+        Route::get('/{id}', [ForumController::class, 'forum'])->name('page');
+    });
 
 // Auth routes
 Route::get('/login', [AuthController::class, 'show'])->name('login');

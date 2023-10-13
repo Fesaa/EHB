@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forum_locks', function (Blueprint $table) {
+        Schema::create('forum_cloaks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('forum_id');
             $table->unsignedBigInteger('privilege_id');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('forums_locks');
+        Schema::dropIfExists('forum_cloaks');
     }
 };

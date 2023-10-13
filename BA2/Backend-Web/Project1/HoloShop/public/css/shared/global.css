@@ -79,4 +79,15 @@
     color: var(--text) !important;
 }
 
+.coloured-link {
+    text-decoration: none;
+    color: var(--text) !important;
+}
+
+.coloured-link:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    color: var(--primary) !important;
+}
+
 

@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->foreignId('image_id')
-                ->nullable()
-                ->references('assets');
+            $table->foreignId('image_id')->nullable()->constrained('assets');
             $table->timestamps();
         });
 

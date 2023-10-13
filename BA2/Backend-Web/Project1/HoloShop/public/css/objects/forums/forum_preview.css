@@ -1,0 +1,25 @@
+
+.forum-preview-info {
+    padding: 1em;
+}
+
+.forum-preview-info > img {
+    width: 64px;
+    height: 64px;
+    border-radius: 2em;
+}
+
+.forum-preview-info > div {
+    justify-content: center;
+    margin-left: 1em;
+}
+
+.forum-preview-title {
+    font-weight: bolder;
+    font-size: larger;
+    padding-bottom: 5px;
+}
+
+.forum-preview-desc {
+    font-size: smaller;
+}
