@@ -28,7 +28,7 @@
                                   action="{{ route('admin.holoshop.roles.update.desc', $role->id) }}" method="POST">
                                 @csrf
                                 <input type="number" name="id" value="{{ $role->id }}" hidden>
-                                <textarea name="description" cols="30" rows="1">{{ $role->description }}</textarea>
+                                <textarea class="no-style" name="description" cols="30" rows="1">{{ $role->description }}</textarea>
                                 <button class="dashboard-table-submit-change" type="submit">✔</button>
                             </form>
                         </th>
