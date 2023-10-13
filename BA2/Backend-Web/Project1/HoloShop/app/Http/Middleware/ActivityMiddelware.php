@@ -20,7 +20,7 @@ class ActivityMiddelware
         if (auth()->user() != null) {
             Activity::create([
                 'user_id' => auth()->user()->id,
-                'url' => $request->route()->getName(),
+                'url' => $request->path(),
             ])->save();
         }
 
