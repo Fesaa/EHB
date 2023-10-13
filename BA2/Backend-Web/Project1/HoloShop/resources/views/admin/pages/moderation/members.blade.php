@@ -48,6 +48,7 @@
                 <div class="flex-column">
                     @foreach(\App\Models\Role::all()->sortByDesc('weight') as $role)
                         <label>
+                            <!-- TODO: Description on hover -->
                             <input type="checkbox" name="{{ $role->name }}" value="{{$role->id}}">
                             {{ $role->name() }}
                         </label>

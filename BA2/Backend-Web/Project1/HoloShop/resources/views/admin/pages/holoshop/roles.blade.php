@@ -60,6 +60,7 @@
                 <div class="flex-column">
                     @foreach(\App\Models\Privilege::all() as $privilege)
                         <label>
+                            <!-- TODO: Description on hover -->
                             <input type="checkbox" name="{{ $privilege->name }}" value="{{ $privilege->value }}">
                             {{ $privilege->name() }}
                         </label>
