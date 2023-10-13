@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SetupPrivileges::class,
             SetupRoles::class,
+            SetupDefaultAssets::class,
             SetupDefaultAccounts::class,
+            SetupDefaultProfiles::class,
         ]);
     }
 }

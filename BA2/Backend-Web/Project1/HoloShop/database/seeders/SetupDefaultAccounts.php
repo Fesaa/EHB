@@ -18,8 +18,8 @@ class SetupDefaultAccounts extends Seeder
         $STAFF = Role::where(['name' => 'STAFF'])->first();
 
         $admin_account = User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@localhost',
+            'name' => 'Founder',
+            'email' => 'founder@localhost',
             'password' => bcrypt('password'),
         ]);
 
@@ -35,6 +35,13 @@ class SetupDefaultAccounts extends Seeder
         $moderator_account->roles()->attach($MODERATOR);
         $moderator_account->roles()->attach($STAFF);
 
+        $ehb_account = User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@ehb.be',
+            'password' => bcrypt('Password!124'),
+        ]);
 
+        $ehb_account->roles()->attach($ADMIN);
+        $ehb_account->roles()->attach($STAFF);
     }
 }
