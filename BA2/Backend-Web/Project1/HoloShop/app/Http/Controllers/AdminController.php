@@ -78,7 +78,39 @@ class AdminController extends Controller
         }
 
         $members = User::all()->sortBy('id');
+        return view('admin.pages.moderation.members', [
+            'members' => $members
+        ]);
+    }
 
+    public function update_roles() {
+        if (!auth()->check()) {
+            return redirect()->route('home');
+        }
+
+        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('MEMBERS_EDIT_ROLES'))) {
+            return redirect()->route('home');
+        }
+
+        validator(request()->all(), [
+            'id' => 'required|integer',
+        ])->validate();
+
+        $user = User::find(request()->input('id'));
+        if (!$user) {
+            return redirect()->route('admin.pages.moderation.members');
+        }
+
+        $user->roles()->detach();
+        $roles = Role::all();
+        foreach ($roles as $role) {
+            if (request()->has($role->name)) {
+                $user->roles()->attach($role->id);
+            }
+        }
+        $user->save();
+
+        $members = User::all()->sortBy('id');
         return view('admin.pages.moderation.members', [
             'members' => $members
         ]);

@@ -47,4 +47,10 @@ class Role extends Model
     public function getColour(): string {
         return $this->colour ?? env("DEFAULT_ROLE_COLOUR", "#808080");
     }
+
+    public function name(): string {
+        $name = str_replace('_', ' ', $this->name);
+        $name = strtolower($name);
+        return ucwords($name);
+    }
 }

@@ -1,11 +1,6 @@
-.master-formatting-infobar {
-    display: none;
-}
-
-.privileges-select {
+.roles-select {
     border: 2px solid var(--accent);
     border-radius: 5px;
     text-align: center;
     width: 75%;
 }
-
