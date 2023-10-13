@@ -26,7 +26,7 @@
     <div class="float">
         <div class="infobar-title">Online members</div>
         <div class="infobar-content">
-            <ul class="flat-list">
+            <ul class="flat-list" style="flex-wrap: wrap; font-size: smaller">
                 @php($online = \App\Models\Activity::onlineInLast(10))
                 @if(sizeof($online) > 0)
                     @foreach($online as $activity)
@@ -46,7 +46,7 @@
         <div class="float">
             <div class="infobar-title">Birthdays</div>
             <div class="infobar-content">
-                <ul class="flat-list">
+                <ul class="flat-list" style="flex-wrap: wrap; font-size: smaller">
                     @foreach(\App\Http\Controllers\UserController::getTodaysBirthDays() as $user)
                         <li><a class="clean-link"
                                href="{{ route('profile.show', $user->id) }}">{!! $user->getColouredName() !!}</a></li>
