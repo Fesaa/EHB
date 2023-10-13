@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="forum-preview-desc">
-                {{ $forum->getDescription() }}
+                {{ $forum->getSubTitle() }}
             </div>
         </div>
     </div>

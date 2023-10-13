@@ -13,9 +13,15 @@ class Forum extends Model
 
     protected $fillable = [
         'title',
+        'subtitle',
         'description',
         'image_id',
     ];
+
+    public function getSubTitle() {
+        // TODO: Add markdown support
+        return $this->subtitle;
+    }
 
     public function getDescription() {
         // TODO: Add markdown support

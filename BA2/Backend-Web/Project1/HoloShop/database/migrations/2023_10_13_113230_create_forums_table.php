@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('forums', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->string('subtitle');
+            $table->text('description');
             $table->foreignId('image_id')->nullable()->constrained('assets');
             $table->timestamps();
         });
