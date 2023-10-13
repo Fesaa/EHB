@@ -100,3 +100,7 @@
 
     display: none;
 }
+
+.hover-cursor {
+    cursor: pointer;
+}

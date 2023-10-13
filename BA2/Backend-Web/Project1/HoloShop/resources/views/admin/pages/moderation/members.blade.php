@@ -20,7 +20,7 @@
             @foreach($members as $member)
                 <tr>
                     <th>{{ $member->id }}</th>
-                    <th>{{ $member->name }}</th>
+                    <th id="{{ "member-name-" . $member->id }}">{{ $member->name }}</th>
                     <th style="color: {{ $member->getColour() }}">{{ $member->getProfile()->getTitle() }}</th>
                     <th>{{ $member->created_at->format('d/m/o') }}</th>
                     <th style="text-align: center"><a class="dashboard-table-btn" href="{{ route('admin.members.edit', $member->id) }}">🔵</a></th>
@@ -30,7 +30,7 @@
                             @endforeach
                         </select></th>
                     @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("MEMBERS_EDIT_ROLES")))
-                        <th><button onclick="editMemberRoles({{$member->id}})">🔵</button></th>
+                        <th><div onclick="editMemberRoles({{$member->id}})" class="hover-cursor">🔵</div></th>
                     @endif
                 </tr>
             @endforeach
@@ -43,7 +43,7 @@
         <div id="form-popup-2" class="flex-row" style="justify-content: center">
             <form class="styled-form" id="update-member-roles" method="post" action="{{ route('admin.members.edit.roles.update') }}">
                 @csrf
-                <h3>Check any roles you want them to have</h3>
+                <h3 id="members-roles-update-form-title"></h3>
                 <input id="member-id-input" name="id" type="number" value="0" hidden>
                 <div class="flex-column">
                     @foreach(\App\Models\Role::all()->sortByDesc('weight') as $role)
@@ -78,6 +78,9 @@
 
     function editMemberRoles(id) {
         let form = document.getElementById("update-member-roles");
+        let title = document.getElementById("members-roles-update-form-title")
+        let name = document.getElementById("member-name-" + id);
+        title.innerHTML = "Update " + name.innerText + "'s roles"
 
         const checkboxes = form.querySelectorAll('input[type="checkbox"]');
         const privileges = document.querySelectorAll('.option_' + id);

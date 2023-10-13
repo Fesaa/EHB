@@ -43,7 +43,7 @@
                         </select></th>
                     <th>{{ $role->updated_at->format("d/m/o") }}</th>
                     @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_PRIVILEGES")))
-                        <th><button onclick="editRole({{$role->id}})">🔵</button></th>
+                        <th><div onclick="editRole({{$role->id}})" class="hover-cursor">🔵</div></th>
                     @endif
                 </tr>
             @endforeach
