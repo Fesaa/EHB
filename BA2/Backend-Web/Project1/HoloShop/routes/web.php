@@ -29,7 +29,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/404', function() {
-    return view('pages.404');
+    return view('pages.status.404');
 })->name('404');
 
 // Profile routes
@@ -38,7 +38,6 @@ Route::get('/members', [UserController::class, 'members'])->name('members');
 Route::get('/profile', [ProfileController::class, 'own'])->name('profile.own');
 
 // Account
-
 Route::prefix('/account')
     ->middleware(isAuthenticated::class)
     ->name('account')

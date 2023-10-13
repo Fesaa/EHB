@@ -16,7 +16,7 @@ class AuthController extends Controller
                 return redirect()->route('home');
             }
         }
-        return view('pages.ban');
+        return view('pages.status.ban');
     }
 
     public function show() {
