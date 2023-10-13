@@ -23,16 +23,8 @@
             <input type="submit" value="Save" class="styled-form-confirm">
         </form>
     </div>
-    <div class="errors-container">
-        @if($errors->any())
-            <div class="errors">
-                <p>Cannot login</p>
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li class="error">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div>
+@endsection
+
+@section('errors-title')
+    Can't update your account; please check your input
 @endsection
