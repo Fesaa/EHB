@@ -113,7 +113,7 @@ class ProfileController extends Controller
         validator(request()->all(), [
             'name' => 'nullable|min:2|max:25',
             'pronouns' => 'nullable|max:25',
-            'aboutme' => 'nullable|max:255',
+            'aboutme' => 'nullable',
             'birthday' => 'nullable|date',
             'pfp-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:1024',
             'banner-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:2048',

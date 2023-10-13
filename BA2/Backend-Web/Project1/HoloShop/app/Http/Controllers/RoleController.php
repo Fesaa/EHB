@@ -22,7 +22,7 @@ class RoleController extends Controller
             'id' => 'required|integer',
             'description' => 'string|nullable',
             'colour' => 'string|nullable',
-            'title' => 'string|nullable',
+            'title' => 'string|nullable|max:25',
         ])->validate();
 
         $role = Role::find(request()->input('id'));

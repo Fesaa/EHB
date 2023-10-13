@@ -14,3 +14,7 @@
     justify-content: space-evenly;
     margin-left: 10px;
 }
+
+.mini-profile-title {
+    font-size: small;
+}
