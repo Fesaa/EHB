@@ -31,7 +31,7 @@ class SetupRoles extends Seeder
 
         $DASHBOARD_MEMBERS = Privilege::where(['name' => "DASHBOARD_MEMBERS"])->first();
         $MEMBERS_EDIT_PROFILE = Privilege::where(['name' => "MEMBERS_EDIT_PROFILE"])->first();
-        $MEMBERS_EDIT_DATA = Privilege::where(['name' => "MEMBERS_EDIT_DATA"])->first();
+        $MEMBERS_EDIT_ROLES = Privilege::where(['name' => "MEMBERS_EDIT_ROLES"])->first();
 
         $DASHBOARD_PUNISHMENTS = Privilege::where(['name' => "DASHBOARD_PUNISHMENTS"])->first();
         $PUNISHMENTS_ISSUE = Privilege::where(['name' => "PUNISHMENTS_ISSUE"])->first();
@@ -50,7 +50,7 @@ class SetupRoles extends Seeder
                 $DASHBOARD_PRIVILEGES->value | $PRIVILEGES_EDIT->value |
                 $DASHBOARD_LOGS->value | $LOGS_LOGIN->value | $LOGS_MODERATION->value | $LOGS_POSTS->value | $LOGS_ACTIVITY->value |
                 $DASHBOARD_FEATURED->value | $FEATURED_EDIT->value |
-                $DASHBOARD_MEMBERS->value | $MEMBERS_EDIT_PROFILE->value | $MEMBERS_EDIT_DATA->value |
+                $DASHBOARD_MEMBERS->value | $MEMBERS_EDIT_PROFILE->value | $MEMBERS_EDIT_ROLES->value |
                 $DASHBOARD_PUNISHMENTS->value | $PUNISHMENTS_ISSUE->value
         ]);
 
