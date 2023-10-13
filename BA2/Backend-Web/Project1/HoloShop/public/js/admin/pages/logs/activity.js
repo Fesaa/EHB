@@ -1,6 +1,6 @@
 const filterName = document.getElementById('activitylogs-filter-user');
 const filterUrl = document.getElementById('activitylogs-filter-url');
-const filterTime = document.getElementById('loginlogs-filter-time');
+const filterTime = document.getElementById('activitylogs-filter-time');
 
 const rows = document.getElementsByTagName('tr') ;
 
