@@ -1,6 +1,20 @@
 Holoshop
 ====
 
+# Odd stuff happening?
+
+## `Call to undefined function Termwind\ValueObjects\mb_strimwidth()`
+Install php extension `mbstring`
+
+Debian/Ubuntu
+```bash
+sudo apt-get install php8.1-mbstring
+```
+MacOS
+```bash
+sudo brew install php80-mbstring
+```
+Windows - lol save yourself. My condolences 🙏
 
 # Known issues
 
