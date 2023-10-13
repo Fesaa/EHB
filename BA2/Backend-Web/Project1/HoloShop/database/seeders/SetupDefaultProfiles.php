@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SetupDefaultProfiles extends Seeder
@@ -13,16 +12,18 @@ class SetupDefaultProfiles extends Seeder
      */
     public function run(): void
     {
-        $founder = User::where(['name' => 'Founder'])->first();
-        $moderator = User::where(['name' => 'Moderator'])->first();
+        $founder = User::where(['name' => 'Amelia'])->first();
+        $moderator = User::where(['name' => 'Rebecca'])->first();
         $ehb = User::where(['name' => 'admin'])->first();
 
         $profile = $founder->getProfile();
+        $profile->title = 'Founder';
         $profile->pfp_asset_id = 1;
         $profile->banner_asset_id = 4;
         $profile->save();
 
         $profile = $moderator->getProfile();
+        $profile->title = 'Moderator';
         $profile->pfp_asset_id = 2;
         $profile->save();
 
