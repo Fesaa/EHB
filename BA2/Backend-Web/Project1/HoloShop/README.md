@@ -2,6 +2,9 @@ Holoshop
 ====
 
 
+# Known issues
+
+- `/admin/logs/login` pushes the sidebar all the way to the side
 
 
 
