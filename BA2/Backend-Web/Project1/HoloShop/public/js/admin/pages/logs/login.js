@@ -12,7 +12,7 @@ function filterRows(val, index) {
         const cells = row.getElementsByTagName('th');
         const cell = cells[index];
         if (cell) {
-            if (cell.innerText.includes(val)) {
+            if (cell.innerText.toLowerCase().includes(val.toLowerCase())) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';
