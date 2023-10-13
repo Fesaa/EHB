@@ -21,7 +21,7 @@
             @foreach($roles as $role)
                 <tr>
                     <th>{{ $role->id }}</th>
-                    <th>{{ $role->name }}</th>
+                    <th id="{{ "role-name-" . $role->id }}">{{ $role->name }}</th>
                     <th id="{{ "role-title-" . $role->id }}" style="color: {{ $role->getColour() }}">{{ $role->getTitle() }}</th>
                     <th id="{{ "role-colour-" . $role->id }}">{{ $role->colour }}</th>
                     <th id="{{ "role-description-" . $role->id }}">{{ $role->description }}</th>
@@ -44,7 +44,7 @@
     <div id="form-popup-2" class="flex-row" style="justify-content: center">
         <form class="styled-form" id="update-role-privileges" method="post" action="{{ route('admin.holoshop.roles.update') }}">
             @csrf
-            <h3>Check any privileges you want the role to have</h3>
+            <h3 id="role-update-title" style="text-align: center"></h3>
             <input id="role-id-input" name="id" type="number" value="0" hidden>
             @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_MISC")))
                 <label for="title">Title</label>
@@ -69,7 +69,7 @@
             @endif
             <br>
             <input type="button" value="Close" class="styled-form-confirm" onclick="closeForm()">
-            <input type="submit" value="Save" class="styled-form-confirm">
+            <input type="submit" value="Save" class="styled-form-confirm" style="font-weight: bold">
         </form>
     </div>
 </div>
@@ -100,6 +100,7 @@
     function editRole(id) {
         let form = document.getElementById("update-role-privileges");
 
+        let form_name = document.getElementById("role-name-" + id);
         let form_title = document.getElementById("role-title-" + id);
         let form_colour = document.getElementById("role-colour-" + id);
         let form_description = document.getElementById("role-description-" + id);
@@ -114,6 +115,9 @@
         colour.value = form_colour.innerText;
         colour.style.color = form_colour.innerText;
         description.value = form_description.innerText;
+
+        let form_title_h3 = document.getElementById('role-update-title')
+        form_title_h3.innerHTML = "Update " + form_name.innerHTML
 
         const checkboxes = form.querySelectorAll('input[type="checkbox"]');
         const privileges = document.querySelectorAll('.option_' + id);

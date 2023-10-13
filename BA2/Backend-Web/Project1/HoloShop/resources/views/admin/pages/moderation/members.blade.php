@@ -56,7 +56,7 @@
                 </div>
                 <br>
                 <input type="button" value="Close" class="styled-form-confirm" onclick="closeForm()">
-                <input type="submit" value="Save" class="styled-form-confirm">
+                <input type="submit" value="Save" class="styled-form-confirm" style="font-weight: bold">
             </form>
         </div>
     </div>
