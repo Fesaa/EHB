@@ -10,6 +10,13 @@ use App\Models\User;
 class AuthController extends Controller
 {
 
+    private readonly Role $MEMBER;
+
+    public function __construct()
+    {
+        $this->MEMBER = Role::where(['name' => 'MEMBER'])->first();
+    }
+
     public function ban() {
         if (auth()->user() != null) {
             if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('NOT_GLOBAL_SITE'))) {
@@ -78,10 +85,10 @@ class AuthController extends Controller
             'name' => request()->get('user'),
             'email' => request()->get('email'),
             'password' => bcrypt(request()->get('password')),
-        ])->save();
+        ]);
 
-        $member = Role::where(['name' => 'MEMBER'])->first();
-        $user->roles()->attach($member);
+        $user->roles()->attach($this->MEMBER);
+        $user->save();
 
         if(auth()->attempt(request()->only('email', 'password'))) {
             return redirect('/');
