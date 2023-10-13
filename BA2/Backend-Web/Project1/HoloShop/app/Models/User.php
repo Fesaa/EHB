@@ -65,11 +65,27 @@ class User extends Authenticatable
     public function hasPrivilege(int $privilege): bool {
         // Should add caches later for performance
         $roles = $this->roles()->get();
+        return $this->hasPriv($roles, $privilege);
+    }
+
+    private function hasPriv($roles, int $privilege): bool {
         foreach ($roles as $role) {
             if ($role->hasPrivilege($privilege))
                 return true;
         }
         return false;
+    }
+
+    public function allPrivileges(): array {
+        $all = Privilege::all()->sortBy('id');
+        $privileges = [];
+        $roles = $this->roles()->get();
+        foreach ($all as $privilege) {
+            if ($this->hasPriv($roles, $privilege->value)) {
+                $privileges[] = $privilege;
+            }
+        }
+        return $privileges;
     }
 
     public function isStaff(): bool {

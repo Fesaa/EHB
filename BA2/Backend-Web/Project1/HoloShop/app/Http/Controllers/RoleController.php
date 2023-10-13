@@ -38,4 +38,40 @@ class RoleController extends Controller
             'privileges' => Privilege::all()->sortBy('id')
         ]);
     }
+
+    public function updatePrivileges()
+    {
+
+        if (!auth()->check()) {
+            return redirect()->route('home');
+        }
+
+        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('ROLES_EDIT_PRIVILEGES'))) {
+            return redirect()->route('home');
+        }
+
+        validator(request()->all(), [
+            'id' => 'required|integer',
+        ])->validate();
+
+        $role = Role::find(request()->input('id'));
+        if ($role == null) {
+            return view('admin.pages.holoshop.roles', [
+                'roles' => Role::all()->sortBy('id'),
+                'privileges' => Privilege::all()->sortBy('id')
+            ]);
+        }
+
+        $privilege = Privilege::all();
+        $value = 0;
+        foreach ($privilege as $privilege) {
+            if (request()->has($privilege->name)) {
+                $value = $value | $privilege->value;
+            }
+        }
+        $role->privilege = $value;
+        $role->save();
+        return redirect()->back();
+    }
+
 }
