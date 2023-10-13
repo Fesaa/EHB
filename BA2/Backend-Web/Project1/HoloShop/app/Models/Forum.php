@@ -55,8 +55,9 @@ class Forum extends Model
     }
 
     public function canSee(User|null $user): bool {
-        if ($user == null) {
-            return $this->cloaks->count() == 0;
+        $c = $this->locks->count();
+        if ($user == null || $c == 0) {
+            return $c == 0;
         }
 
         foreach ($this->cloaks as $cloak) {
@@ -75,10 +76,6 @@ class Forum extends Model
         $forums = static::with('cloaks')->get()->sortBy('created_at');
         $visible = [];
         foreach ($forums as $forum) {
-            if ($forum->cloaks->count() == 0) {
-                $visible[] = $forum;
-                continue;
-            }
             if ($forum->canSee($user)) {
                 $visible[] = $forum;
             }
