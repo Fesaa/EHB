@@ -66,6 +66,7 @@
                 @endforeach
             </div>
             <br>
+            <input type="button" value="Close" class="styled-form-confirm" onclick="closeForm()">
             <input type="submit" value="Save" class="styled-form-confirm">
         </form>
     </div>
@@ -81,6 +82,10 @@
             }
         });
     })
+
+    function closeForm() {
+        form_popup.style.display = "none";
+    }
 
     function editRole(id) {
         let form = document.getElementById("update-role-privileges");
