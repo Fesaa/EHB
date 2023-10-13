@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset("css/objects/small_profile.css") }}">
+<link rel="stylesheet" href="{{ asset("css/objects/profiles/small_profile.css") }}">
 
 <div class="small-profile flex-column float
 {{ $member->isStaff() ? "staff-border" : "" }}">

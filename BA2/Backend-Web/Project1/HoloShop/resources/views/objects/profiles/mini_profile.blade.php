@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset("css/objects/mini_profile.css") }}">
+<link rel="stylesheet" href="{{ asset("css/objects/profiles/mini_profile.css") }}">
 
 <div class="mini-profile flex-row">
     <img src="{{ $user->getProfile()->getProfilePicture() }}" alt="profile picture">
