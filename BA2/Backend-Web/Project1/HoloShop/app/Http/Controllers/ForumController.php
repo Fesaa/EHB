@@ -22,6 +22,10 @@ class ForumController extends Controller
                 return redirect()->route('forum.index');
             }
 
+            if (!$forum->canSee(auth()->user())) {
+                return redirect()->route('forum.index');
+            }
+
             return view('pages.forums.forum_page', [
                 'forum' => $forum,
             ]);

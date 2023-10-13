@@ -54,6 +54,19 @@ class Forum extends Model
         return $this->belongsToMany(Privilege::class, 'forum_cloaks', 'forum_id', 'privilege_id');
     }
 
+    public function canSee(User|null $user): bool {
+        if ($user == null) {
+            return $this->cloaks->count() == 0;
+        }
+
+        foreach ($this->cloaks as $cloak) {
+            if ($user->hasPrivilege($cloak->value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static function getVisibleForums(User|null $user) {
         if ($user == null) {
             return static::whereDoesntHave('cloaks')->get()->sortBy('created_at');
@@ -66,12 +79,8 @@ class Forum extends Model
                 $visible[] = $forum;
                 continue;
             }
-
-            foreach ($forum->cloaks as $cloak) {
-                if ($user->hasPrivilege($cloak->value)) {
-                    $visible[] = $forum;
-                    break;
-                }
+            if ($forum->canSee($user)) {
+                $visible[] = $forum;
             }
         }
         return $visible;
