@@ -128,7 +128,7 @@ class User extends Authenticatable
             return true;
         }
 
-        if (!$this->hasPrivilege(Privilege::getPrivilegeValue('MEMBERS_EDIT_PROFILE'))) {
+        if (!$this->hasPrivilege(Privilege::privilegeValueOf('MEMBERS_EDIT_PROFILE'))) {
             return false;
         }
 

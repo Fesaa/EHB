@@ -16,7 +16,7 @@
             <div class="infobar-content" style="padding: 0 !important;">
                 <ul class="infobar-staff-list">
                     @foreach($onlineStaff as $activity)
-                        <li>@include('objects.profiles.mini_profile', ['user' => $activity->user()->first()])</li>
+                        <li>@include('objects.profiles.mini_profile', ['user' => $activity->getUser()])</li>
                     @endforeach
                 </ul>
             </div>
@@ -31,7 +31,7 @@
                 @if(sizeof($online) > 0)
                     @foreach($online as $activity)
                         <li><a class="clean-link"
-                               href="{{ route('profile.show', $activity->user_id) }}">{!! $activity->getName() !!}</a>
+                               href="{{ route('profile.show', $activity->user_id) }}">{!! $activity->name() !!}</a>
                         </li>
                     @endforeach
                 @else

@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class PrivilegeController extends Controller
 {
-    public function update() {
+    public function handle() {
         if (!auth()->check()) {
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('PRIVILEGES_EDIT'))) {
+        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('PRIVILEGES_EDIT'))) {
             return redirect()->route('home');
         }
 
@@ -22,17 +22,19 @@ class PrivilegeController extends Controller
             'id' => 'required|integer',
         ])->validate();
 
-        $privilege = Privilege::find(request()->input('id'));
-        if ($privilege == null) {
-            return view('admin.pages.holoshop.privileges', [
-                'privileges' => Privilege::all()->sortBy('id')
-            ]);
-        }
-        $privilege->description = request()->input('description');
-        $privilege->save();
+        static::update(request('id'), request('description'));
 
         return view('admin.pages.holoshop.privileges', [
             'privileges' => Privilege::all()->sortBy('id')
         ]);
+    }
+
+    private static function update(int $id, string $description): void {
+        $privilege = Privilege::find($id);
+        if ($privilege == null) {
+            return;
+        }
+        $privilege->description = $description;
+        $privilege->save();
     }
 }

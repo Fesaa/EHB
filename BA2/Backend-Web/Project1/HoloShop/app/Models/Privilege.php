@@ -17,7 +17,7 @@ class Privilege extends Model
 
 
     // Change to cache later
-    public static function getPrivilegeValue(string $name): int {
+    public static function privilegeValueOf(string $name): int {
         $privilege = Privilege::where(['name' => $name])->first();
         if ($privilege == null) {
             // Return value that will never match
@@ -32,7 +32,7 @@ class Privilege extends Model
         return ucwords($name);
     }
 
-    public function forum_locs(): BelongsToMany {
+    public function forum_locks(): BelongsToMany {
         return $this->belongsToMany(Forum::class, 'forum_locks');
     }
 }

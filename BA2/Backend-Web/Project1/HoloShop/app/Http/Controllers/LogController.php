@@ -8,9 +8,7 @@ use App\Models\LoginLog;
 class LogController extends Controller
 {
     public function login() {
-
-        $logs = LoginLog::all()
-            ->sortByDesc('created_at');
+        $logs = LoginLog::latestLogs();
 
         return view('admin.pages.logs.login', [
             'logs' => $logs
@@ -18,8 +16,7 @@ class LogController extends Controller
     }
 
     public function activity() {
-
-        $activities = Activity::all()->sortByDesc('created_at');
+        $activities = Activity::latestLogs();
 
         return view('admin.pages.logs.activity', [
             'activities' => $activities

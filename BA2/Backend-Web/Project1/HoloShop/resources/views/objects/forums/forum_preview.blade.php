@@ -2,7 +2,7 @@
 
 <div class="float flex-row">
     <div class="forum-preview-info flex-row">
-        <img src="{{ $forum->getImage() }}"  alt="forums-image">
+        <img src="{{ $forum->image() }}"  alt="forums-image">
         <div class="flex-column">
             <div class="forum-preview-title">
                 <a class="coloured-link" href="{{ route('forum.page', ["id" => $forum->id]) }}">
@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="forum-preview-desc">
-                {{ $forum->getSubTitle() }}
+                {{ $forum->subTitle() }}
             </div>
         </div>
     </div>

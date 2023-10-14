@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Activity;
+use App\Http\Controllers\ActivityController;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +18,7 @@ class ActivityMiddelware
     {
 
         if (auth()->user() != null) {
-            Activity::create([
-                'user_id' => auth()->user()->id,
-                'url' => $request->path(),
-            ])->save();
+            ActivityController::createEntry(auth()->user()->id, $request->url());
         }
 
         return $next($request);

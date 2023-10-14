@@ -17,7 +17,7 @@ class ForumController extends Controller
     }
 
     public function forum(int $id) {
-            $forum = Forum::where(["id" => $id])->first();
+            $forum = Forum::getForum($id);
             if ($forum == null) {
                 return redirect()->route('forum.index');
             }

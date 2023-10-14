@@ -15,10 +15,10 @@
                 <tr>
                     <th>{{ $privilege->id }}</th>
                     <th>{{ $privilege->name() }}</th>
-                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("PRIVILEGES_EDIT")))
+                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("PRIVILEGES_EDIT")))
                         <th class="flex-row" style="justify-content: center">
                             <form class="flex-row"
-                                action="{{ route('admin.holoshop.privileges.update') }}" method="POST">
+                                  action="{{ route('admin.holoshop.privileges.update') }}" method="POST">
                                 @csrf
                                 <input type="number" name="id" value="{{ $privilege->id }}" hidden>
                                 <textarea name="description" cols="50" rows="1">{{ $privilege->description }}</textarea>

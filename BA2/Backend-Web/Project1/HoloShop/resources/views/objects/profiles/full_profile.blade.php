@@ -2,9 +2,9 @@
 
 <div class="flex-column">
     <div class="profile-full flex-row float {{ $user->isStaff() ? "staff-border" : "" }}"
-    style="background-image: url({{ $profile->getBannerPicture() }})"
+    style="background-image: url({{ $profile->bannerPicture() }})"
     >
-        <img class="profile-image" src="{{ $profile->getProfilePicture() }}" alt="IMAGE">
+        <img class="profile-image" src="{{ $profile->profilePicture() }}" alt="IMAGE">
 
         <div class="profile-info-container flex-column">
             <div class="flex-row">

@@ -26,6 +26,24 @@ class Activity extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getUser(): User|null
+    {
+        return $this->user()->first();
+    }
+
+    public function name(): string
+    {
+        $user = $this->getUser();
+        if ($user) {
+            return $user->getColouredName();
+        }
+        return 'Unknown';
+    }
+
+    /**
+     * @param $minutes
+     * @return Activity[]
+     */
     public static function onlineInLast($minutes)
     {
         return static::
@@ -35,23 +53,29 @@ class Activity extends Model
             ->get();
     }
 
-    public static function staffOnlineInLast($minutes) {
+    /**
+     * @param $minutes
+     * @return Activity[]
+     */
+    public static function staffOnlineInLast($minutes)
+    {
         $activities = static::onlineInLast($minutes);
 
         $staff = [];
         foreach ($activities as $activity) {
-            if ($activity->user()->first()->isStaff()) {
+            if ($activity->getUser()->isStaff()) {
                 $staff[] = $activity;
             }
         }
         return $staff;
     }
 
-    public function getName() {
-        $user = $this->user()->first();
-        if ($user) {
-            return $user->getColouredName();
-        }
-        return 'Unknown';
+    /**
+     * @return Activity[]
+     */
+    public static function latestLogs()
+    {
+        return static::orderBy('created_at', 'desc')->take(1000)->get();
     }
+
 }

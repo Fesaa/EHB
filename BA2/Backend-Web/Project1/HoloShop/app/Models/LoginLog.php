@@ -34,4 +34,15 @@ class LoginLog extends Model implements ILog
             $this->success ? "successful" : "unsuccessful"
         );
     }
+
+    /**
+     * @return LoginLog[]
+     */
+    public static function latestLogs()
+    {
+        return static::orderBy('created_at', 'desc')
+            ->take(1000)
+            ->get();
+    }
+
 }

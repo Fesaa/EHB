@@ -5,10 +5,11 @@
 
 @section('form')
     <div class="styled-form-container">
-        <form class="styled-form label-left" method="post" action="{{ route('account.profile.update') }}" enctype="multipart/form-data" >
+        <form class="styled-form label-left" method="post" action="{{ route('account.profile.update') }}"
+              enctype="multipart/form-data">
             @csrf
 
-            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('MEMBERS_EDIT_PROFILE')))
+            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('MEMBERS_EDIT_PROFILE')))
                 @if(auth()->user()->getHighestRole()->outRanks($user->getHighestRole())) @endif
                 <input type="hidden" name="id" value="{{ \Illuminate\Support\Facades\Crypt::encrypt($user->id) }}">
             @endif
@@ -17,7 +18,7 @@
             <input type="text" name="name" id="name" value="{{ $user->name }}"><br>
 
             <label for="title">Title:</label>
-            @if($user->hasPrivilege(\App\Models\Privilege::getPrivilegeValue('TITLE_EDIT')))
+            @if($user->hasPrivilege(\App\Models\Privilege::privilegeValueOf('TITLE_EDIT')))
                 <input type="text" name="title" id="title" value="{{ $profile->title }}"><br>
             @else
                 <h3 id="title" style="text-align: center;"> {{ $profile->getTitle() }} </h3>
@@ -42,7 +43,8 @@
                 <label for="pfp-upload-radio-url">URL</label>
                 <input type="radio" name="pfp-type" value="FILE" id="pfp-upload-radio-file">
                 <label for="pfp-upload-radio-file">File</label><br>
-            </div><br>
+            </div>
+            <br>
 
             <input type="text" name="pfp-url" id="pfp-upload-url">
             <input type="file" name="pfp-file" id="pfp-upload-file" style="display: none;"><br>
@@ -53,7 +55,8 @@
                 <label for="banner-upload-radio-url">URL</label>
                 <input type="radio" name="banner-type" value="FILE" id="banner-upload-radio-file">
                 <label for="banner-upload-radio-file">File</label><br>
-            </div><br>
+            </div>
+            <br>
 
             <input type="text" name="banner-url" id="banner-upload-url">
             <input type="file" name="banner-file" id="banner-upload-file" style="display: none;"><br>
@@ -82,11 +85,11 @@
         const pfpUploadRadioURL = document.getElementById("pfp-upload-radio-url");
         const pfpUploadRadioFile = document.getElementById("pfp-upload-radio-file");
 
-        pfpUploadRadioURL.addEventListener("click", function() {
+        pfpUploadRadioURL.addEventListener("click", function () {
             document.getElementById("pfp-upload-url").style.display = "block";
             document.getElementById("pfp-upload-file").style.display = "none";
         });
-        pfpUploadRadioFile.addEventListener("click", function() {
+        pfpUploadRadioFile.addEventListener("click", function () {
             document.getElementById("pfp-upload-url").style.display = "none";
             document.getElementById("pfp-upload-file").style.display = "block";
         });
@@ -94,16 +97,15 @@
         const bannerUploadRadioURL = document.getElementById("banner-upload-radio-url");
         const bannerUploadRadioFile = document.getElementById("banner-upload-radio-file");
 
-        bannerUploadRadioURL.addEventListener("click", function() {
+        bannerUploadRadioURL.addEventListener("click", function () {
             document.getElementById("banner-upload-url").style.display = "block";
             document.getElementById("banner-upload-file").style.display = "none";
         });
-        bannerUploadRadioFile.addEventListener("click", function() {
+        bannerUploadRadioFile.addEventListener("click", function () {
             document.getElementById("banner-upload-url").style.display = "none";
             document.getElementById("banner-upload-file").style.display = "block";
         });
     </script>
-
 
 @endsection
 

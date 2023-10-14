@@ -27,7 +27,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('DASHBOARD_LOGS'))) {
+        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_LOGS'))) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -39,7 +39,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('DASHBOARD_PRIVILEGES'))) {
+        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_PRIVILEGES'))) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -55,7 +55,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('DASHBOARD_ROLES'))) {
+        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_ROLES'))) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -73,7 +73,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('DASHBOARD_MEMBERS'))) {
+        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_MEMBERS'))) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -88,7 +88,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('MEMBERS_EDIT_ROLES'))) {
+        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('MEMBERS_EDIT_ROLES'))) {
             return redirect()->route('home');
         }
 

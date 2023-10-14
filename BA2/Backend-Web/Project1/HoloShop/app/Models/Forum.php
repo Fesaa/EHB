@@ -18,28 +18,27 @@ class Forum extends Model
         'image_id',
     ];
 
-    public function getSubTitle() {
+    public function imageAsset(): Asset|null {
+        return $this->imageID()->first();
+    }
+
+    public function subTitle() {
         // TODO: Add markdown support
         return $this->subtitle;
     }
 
-    public function getDescription() {
+    public function description() {
         // TODO: Add markdown support
         return $this->description;
     }
 
-    public function getImage(): string {
+    public function image(): string {
         $default = env('DEFAULT_FORUM_IMAGE_URL', 'https://cdn-icons-png.flaticon.com/512/2815/2815428.png');
-        $asset = $this->imageID()->first();
+        $asset = $this->imageAsset();
         if ($asset == null) {
             return $default;
         }
-
-        $url = $asset->getAsset();
-        if ($url == null) {
-            return $default;
-        }
-        return $url;
+        return $asset->getAsset() ?? $default;
     }
 
     public function imageID(): BelongsTo {
@@ -81,6 +80,10 @@ class Forum extends Model
             }
         }
         return $visible;
+    }
+
+    public static function getForum(int $id): Forum|null {
+        return static::where(["id" => $id])->first();
     }
 
 }

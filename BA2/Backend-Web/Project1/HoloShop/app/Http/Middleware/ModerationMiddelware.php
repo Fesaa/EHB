@@ -20,7 +20,7 @@ class ModerationMiddelware
             return $next($request);
         }
         if (auth()->user() != null) {
-            if (auth()->user()->hasPrivilege(Privilege::getPrivilegeValue('NOT_GLOBAL_SITE'))) {
+            if (auth()->user()->hasPrivilege(Privilege::privilegeValueOf('NOT_GLOBAL_SITE'))) {
                 return redirect()->route('ban');
             }
         }

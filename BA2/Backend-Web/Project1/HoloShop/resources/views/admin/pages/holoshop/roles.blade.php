@@ -14,7 +14,7 @@
                 <th>Description</th>
                 <th>Privileges</th>
                 <th>Updated at</th>
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_PRIVILEGES")))
+                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("ROLES_EDIT_PRIVILEGES")))
                     <th>Edit</th>
                 @endif
             </tr>
@@ -22,17 +22,21 @@
                 <tr>
                     <th>{{ $role->id }}</th>
                     <th id="{{ "role-name-" . $role->id }}">{{ $role->name }}</th>
-                    <th id="{{ "role-title-" . $role->id }}" style="color: {{ $role->getColour() }}">{{ $role->getTitle() }}</th>
+                    <th id="{{ "role-title-" . $role->id }}"
+                        style="color: {{ $role->getColour() }}">{{ $role->getTitle() }}</th>
                     <th id="{{ "role-colour-" . $role->id }}">{{ $role->colour }}</th>
                     <th id="{{ "role-description-" . $role->id }}">{{ $role->description }}</th>
                     <th><select class="privileges-select">
                             @foreach($role->filter($privileges) as $privilege)
-                                <option class="option_{{$role->id}}" value="{{ $privilege->value }}">{{ $privilege->name() }}</option>
+                                <option class="option_{{$role->id}}"
+                                        value="{{ $privilege->value }}">{{ $privilege->name() }}</option>
                             @endforeach
                         </select></th>
                     <th>{{ $role->updated_at->format("d/m/o") }}</th>
-                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_PRIVILEGES")))
-                        <th><div onclick="editRole({{$role->id}})" class="hover-cursor">✏️</div></th>
+                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("ROLES_EDIT_PRIVILEGES")))
+                        <th>
+                            <div onclick="editRole({{$role->id}})" class="hover-cursor">✏️</div>
+                        </th>
                     @endif
                 </tr>
             @endforeach
@@ -42,21 +46,25 @@
 
 <div id="form-popup" class="flex-column">
     <div id="form-popup-2" class="flex-row" style="justify-content: center">
-        <form class="styled-form" id="update-role-privileges" method="post" action="{{ route('admin.holoshop.roles.update') }}">
+        <form class="styled-form" id="update-role-privileges" method="post"
+              action="{{ route('admin.holoshop.roles.update') }}">
             @csrf
             <h3 id="role-update-title" style="text-align: center"></h3>
             <input id="role-id-input" name="id" type="number" value="0" hidden>
-            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_MISC")))
+            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("ROLES_EDIT_MISC")))
                 <label for="title">Title</label>
-                <input class="no-style" id="title" name="title" type="text" style="color: {{ $role->colour }}" value="{{ $role->getTitle() }}"><br>
+                <input class="no-style" id="title" name="title" type="text" style="color: {{ $role->colour }}"
+                       value="{{ $role->getTitle() }}"><br>
 
                 <label for="colour">Colour</label>
-                <input class="no-style" id="colour" name="colour" type="text" style="color: {{ $role->colour }}" value="{{ $role->colour }}"><br>
+                <input class="no-style" id="colour" name="colour" type="text" style="color: {{ $role->colour }}"
+                       value="{{ $role->colour }}"><br>
 
                 <label for="description">Description</label>
-                <textarea class="no-style" id="description" name="description" cols="30" rows="2">{{ $role->description }}</textarea><br>
+                <textarea class="no-style" id="description" name="description" cols="30"
+                          rows="2">{{ $role->description }}</textarea><br>
             @endif
-            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("ROLES_EDIT_PRIVILEGES")))
+            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("ROLES_EDIT_PRIVILEGES")))
                 <div class="flex-column">
                     @foreach(\App\Models\Privilege::all() as $privilege)
                         <label>

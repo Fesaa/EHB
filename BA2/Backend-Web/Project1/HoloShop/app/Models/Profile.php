@@ -41,7 +41,7 @@ class Profile extends Model
         return $this->belongsTo(Asset::class, 'banner_asset_id');
     }
 
-    public function getProfilePicture(): string {
+    public function profilePicture(): string {
         $default = env('DEFAULT_PFP_URL', 'https://forums.cubecraftcdn.com/xenforo/data/avatars/o/224/224741.jpg?1695386528');
         $asset = $this->pfpAssetID()->first();
         if ($asset == null) {
@@ -56,7 +56,7 @@ class Profile extends Model
     }
 
 
-    public function getBannerPicture(): string {
+    public function bannerPicture(): string {
         $default = env('DEFAULT_BANNER_URL', 'https://forums.cubecraftcdn.com/xenforo/data/profile_banners/l/224/224741.jpg?1665157964');
         $asset = $this->bannerAssetID()->first();
         if ($asset == null) {
