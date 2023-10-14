@@ -49,7 +49,7 @@ Route::prefix('/account')
     Route::post('/security', [UserController::class, 'update'])->name('.security.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('.profile');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('.profile.update');
+    Route::post('/profile', [ProfileController::class, 'handle'])->name('.profile.update');
     });
 
 // Forum routes

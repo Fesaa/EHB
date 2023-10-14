@@ -146,10 +146,7 @@ class ProfileController extends Controller
                             string|null $pfp_url, UploadedFile|null $pfp_file, string|null $banner_url,
                             UploadedFile|null $banner_file): void
     {
-        $profile = $user->profile()->first();
-        if ($profile == null) {
-            $profile = new Profile();
-        }
+        $profile = $user->profile();
 
         if ($title != null) {
             $profile->title = $title;
@@ -183,6 +180,6 @@ class ProfileController extends Controller
             $profile->banner_asset_id = $this->getAssetIdAndSave($banner_file);
         }
 
-        $user->profile()->save($profile);
+        $profile->save();
     }
 }

@@ -2,7 +2,8 @@
 
 <div class="flex-column">
     <div class="profile-full flex-row float {{ $user->isStaff() ? "staff-border" : "" }}"
-    style="background-image: url({{ $profile->bannerPicture() }})"
+    style="background-image: url({{ $profile->bannerPicture() }})
+"
     >
         <img class="profile-image" src="{{ $profile->profilePicture() }}" alt="IMAGE">
 
@@ -21,7 +22,9 @@
             </div>
 
             <div class="profile-info flex-row profile-float">
-                <p>Birthday {{ $profile->birthday->format("d/m/o") }}</p>
+                @if($profile->birthday != null)
+                    <p>Birthday {{ $profile->birthday->format("d/m/o") }}</p>
+                @endif
                 <p>Joined: {{ $user->created_at->format("d/m/o") }}</p>
                 <p>Total Posts: 7</p>
                 @if($user->isAuth())

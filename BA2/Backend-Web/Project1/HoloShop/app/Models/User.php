@@ -108,8 +108,7 @@ class User extends Authenticatable
         $profile = $this->profileLink()->first();
         if ($profile == null) {
             $profile = new Profile();
-            $profile->birthday = $this->created_at;
-            $this->profile()->save($profile);
+            $this->profileLink()->save($profile);
         }
         return $this->profileLink()->first();
     }
