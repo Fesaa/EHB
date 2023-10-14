@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('banner_asset_id')->nullable()->constrained('assets');
             $table->date('birthday')->nullable();
             $table->text('bio')->nullable();
-            $table->string('pronouns')->default('they/them');
+            $table->string('pronouns')->nullable();
             $table->string('location')->nullable();
             $table->string('title')->nullable();
             $table->timestamps();

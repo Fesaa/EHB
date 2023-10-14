@@ -11,7 +11,10 @@
             <div class="flex-row">
                 <p class="profile-float"
                    style="align-self: flex-start">
-                    {{ $user->name }} ({{ $profile->pronouns }})
+                    {{ $user->name }}
+                    @if($profile->pronouns != null)
+                        ({{ $profile->pronouns }})
+                    @endif
                     @if($profile->location != null)
                         · {{ $profile->location }}
                     @endif
