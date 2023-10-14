@@ -34,11 +34,7 @@
             <input type="text" name="pronouns" id="pronouns" value="{{ $profile->pronouns }}"><br>
 
             <label for="birthday">Birthday</label><br>
-            <input type="date" name="birthday" id="birthday" value="
-           @if($profile->birthday != null)
-            {{ $profile->birthday->format('o-m-d') }}
-           @endif
-            "><br>
+            <input type="date" name="birthday" id="birthday" value="@if($profile->birthday != null){{ $profile->birthday->format('o-m-d') }}@endif"><br>
 
             <label for="location">Location</label><br>
             <input type="text" name="location" id="location" value="{{ $profile->location }}"><br>
