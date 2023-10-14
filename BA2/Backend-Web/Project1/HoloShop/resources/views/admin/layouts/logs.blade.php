@@ -1,3 +1,7 @@
+@php
+    use App\Models\User;
+    use App\Models\Privilege;
+@endphp
 @extends('admin.layouts.dashboard')
 <link rel="stylesheet" href="{{ asset("css/admin/layouts/logs.css") }}">
 
@@ -8,16 +12,16 @@
         <div class="options float">
             <ul>
                 <li class="options-list-section"><a href="{{ route('admin.logs') }}">LOGS</a></li>
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('LOGS_LOGIN')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('LOGS_LOGIN')))
                     <li><a href="{{ route('admin.logs.login') }}">Login</a></li>
                 @endif
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('LOGS_ACTIVITY')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('LOGS_ACTIVITY')))
                     <li><a href="{{ route('admin.logs.activity') }}">Activity</a></li>
                 @endif
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('LOGS_MODERATION')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('LOGS_MODERATION')))
                     <li><a href="{{ route('admin.roles') }}">Moderation</a></li>
                 @endif
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('LOGS_POSTS')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('LOGS_POSTS')))
                     <li><a href="{{ route('admin.roles') }}">Posts</a></li>
                 @endif
                 <li class="options-list-section"><a href="{{ route('admin.dashboard') }}">BACK</a></li>

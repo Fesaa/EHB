@@ -1,3 +1,7 @@
+@php
+    use App\Models\User;
+    use App\Models\Privilege;
+@endphp
 @extends('admin.layouts.dashboard')
 <link rel="stylesheet" href="{{ asset("css/admin/pages/holoshop/privileges.css") }}">
 <link rel="stylesheet" href="{{ asset("css/shared/tables.css") }}">
@@ -15,7 +19,7 @@
                 <tr>
                     <th>{{ $privilege->id }}</th>
                     <th>{{ $privilege->name() }}</th>
-                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("PRIVILEGES_EDIT")))
+                    @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("PRIVILEGES_EDIT")))
                         <th class="flex-row" style="justify-content: center">
                             <form class="flex-row"
                                   action="{{ route('admin.holoshop.privileges.update') }}" method="POST">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Privilege;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PrivilegeController extends Controller
@@ -12,7 +13,7 @@ class PrivilegeController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('PRIVILEGES_EDIT'))) {
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('PRIVILEGES_EDIT'))) {
             return redirect()->route('home');
         }
 

@@ -1,3 +1,7 @@
+@php
+    use App\Models\User;
+    use App\Models\Privilege;
+@endphp
 @extends('layouts.master')
 <link rel="stylesheet" href="{{ asset("css/shared/options.css") }}">
 
@@ -8,24 +12,24 @@
             <ul>
                 <li class="options-list-section"><a class="clean-link"
                                                     href="{{ route('admin.dashboard') }}">HOLOSHOP</a></li>
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('DASHBOARD_ROLES')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_ROLES')))
                     <li><a href="{{ route('admin.roles') }}">Roles</a></li>
                 @endif
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('DASHBOARD_PRIVILEGES')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_PRIVILEGES')))
                     <li><a href="{{ route('admin.privileges') }}">Privileges</a></li>
                 @endif
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('DASHBOARD_LOGS')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_LOGS')))
                     <li><a href="{{ route('admin.logs') }}">Logs</a></li>
                 @endif
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('DASHBOARD_FEATURED')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_FEATURED')))
                     <li><a>Featured content</a></li>
                 @endif
                 <li class="options-list-section"><a class="clean-link"
                                                     href="{{ route('admin.dashboard') }}">MODERATION</a></li>
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('DASHBOARD_MEMBERS')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_MEMBERS')))
                     <li><a href="{{ route('admin.members') }}">Members</A></li>
                 @endif
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('DASHBOARD_PUNISHMENTS')))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_PUNISHMENTS')))
                     <li><a href="">Punishments</a></li>
                 @endif
             </ul>

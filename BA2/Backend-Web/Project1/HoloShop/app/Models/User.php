@@ -93,7 +93,7 @@ class User extends Authenticatable
     }
 
     public function isAuth(): bool {
-        $user = auth()->user();
+        $user = User::AuthUser();
         if ($user == null)
             return false;
         return $this->id == $user->id;
@@ -143,6 +143,13 @@ class User extends Authenticatable
     public function colouredName(): string {
         $colour = $this->colour();
         return '<div style="color:' . $colour . '; font-weight: bolder;">' . $this->name . '</div>';
+    }
+
+
+    // This is for typing- ffs
+    public static function AuthUser(): User|null
+    {
+        return auth()->user();
     }
 
 }

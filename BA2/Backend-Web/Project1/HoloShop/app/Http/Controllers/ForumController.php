@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Forum;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
     public function index() {
 
-        $forums = Forum::getVisibleForums(auth()->user());
+        $forums = Forum::getVisibleForums(User::AuthUser());
 
         return view('pages.forums.index', [
             'forums' => $forums,
@@ -22,7 +23,7 @@ class ForumController extends Controller
                 return redirect()->route('forum.index');
             }
 
-            if (!$forum->canSee(auth()->user())) {
+            if (!$forum->canSee(User::AuthUser())) {
                 return redirect()->route('forum.index');
             }
 

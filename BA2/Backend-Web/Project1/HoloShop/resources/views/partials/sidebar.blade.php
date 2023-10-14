@@ -1,3 +1,6 @@
+@php
+    use App\Models\User;
+@endphp
 <link href="{{ asset('css/partials/sidebar.css') }}" rel="stylesheet">
 
 <div class="sidebar flex-column float" style="justify-content: space-between">
@@ -12,7 +15,7 @@
         <li class="no-hover"></li>
         @auth()
             <li><a href="{{ route('profile.own') }}">Profile</a></li>
-            @if(auth()->user()->isStaff())
+            @if(User::AuthUser()->isStaff())
                 <li><a href="{{ route('admin.dashboard') }}">Staff panel</a></li>
             @endif
         @endauth

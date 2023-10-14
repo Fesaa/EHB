@@ -23,7 +23,7 @@ class UserController extends Controller
         }
 
         return view('pages.forms.edit_user', [
-            'user' => auth()->user()
+            'user' => User::AuthUser()
         ]);
     }
 
@@ -32,7 +32,7 @@ class UserController extends Controller
             return redirect()->route('login');
         }
 
-        $user = auth()->user();
+        $user = User::AuthUser();
 
         validator(request()->all(), [
             'email' => 'nullable|email',

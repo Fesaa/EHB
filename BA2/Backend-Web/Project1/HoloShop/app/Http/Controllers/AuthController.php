@@ -18,8 +18,9 @@ class AuthController extends Controller
     }
 
     public function ban() {
-        if (auth()->user() != null) {
-            if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('NOT_GLOBAL_SITE'))) {
+        $auth = User::AuthUser();
+        if ($auth != null) {
+            if (!$auth->hasPrivilege(Privilege::privilegeValueOf('NOT_GLOBAL_SITE'))) {
                 return redirect()->route('home');
             }
         }

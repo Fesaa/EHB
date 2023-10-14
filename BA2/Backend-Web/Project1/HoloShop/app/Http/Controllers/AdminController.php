@@ -15,7 +15,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->isStaff()) {
+        if (!User::AuthUser()->isStaff()) {
             return redirect()->route('admin.pages.index');
         }
 
@@ -27,7 +27,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_LOGS'))) {
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_LOGS'))) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -39,7 +39,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_PRIVILEGES'))) {
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_PRIVILEGES'))) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -55,7 +55,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_ROLES'))) {
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_ROLES'))) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -73,7 +73,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_MEMBERS'))) {
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_MEMBERS'))) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -88,7 +88,7 @@ class AdminController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('MEMBERS_EDIT_ROLES'))) {
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('MEMBERS_EDIT_ROLES'))) {
             return redirect()->route('home');
         }
 

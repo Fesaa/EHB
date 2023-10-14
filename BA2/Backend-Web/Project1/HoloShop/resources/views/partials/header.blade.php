@@ -1,4 +1,6 @@
-
+@php
+    use App\Models\User;
+@endphp
 <link rel="stylesheet" href="{{ asset('css/partials/header.css') }}">
 
 <header class="float">
@@ -10,7 +12,7 @@
         @auth()
             <li class="nav-button secondary-button"><a>Post</a></li>
             <li class="nav-button secondary-button"><a href="{{ route('logout') }}">Logout</a></li>
-            <li class="nav-button no-hover secondary-button"><a href="{{ route('account') }}">{{ auth()->user()->name }}</a> </li>
+            <li class="nav-button no-hover secondary-button"><a href="{{ route('account') }}">{{ User::AuthUser()->name }}</a> </li>
         @endauth
         @guest()
             <li class="nav-button secondary-button"><a href="{{ route('login') }}">Login</a></li>

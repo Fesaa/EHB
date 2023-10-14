@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Privilege;
 use App\Models\Role;
+use App\Models\User;
 
 class RoleController extends Controller
 {
@@ -14,7 +15,7 @@ class RoleController extends Controller
             return redirect()->route('home');
         }
 
-        if (!auth()->user()->hasPrivilege(Privilege::privilegeValueOf('ROLES_EDIT_PRIVILEGES'))) {
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('ROLES_EDIT_PRIVILEGES'))) {
             return redirect()->route('home');
         }
 

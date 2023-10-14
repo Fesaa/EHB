@@ -1,3 +1,8 @@
+@php
+    use App\Models\User;
+    use App\Models\Privilege;
+    use \Illuminate\Support\Facades\Crypt;
+@endphp
 @extends('layouts.account_management')
 <link rel="stylesheet" href="{{ asset("css/pages/profile_edit.css") }}">
 <link rel="stylesheet" href="{{ asset("css/shared/forms.css") }}">
@@ -9,16 +14,16 @@
               enctype="multipart/form-data">
             @csrf
 
-            @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf('MEMBERS_EDIT_PROFILE')))
-                @if(auth()->user()->getHighestRole()->outRanks($user->getHighestRole())) @endif
-                <input type="hidden" name="id" value="{{ \Illuminate\Support\Facades\Crypt::encrypt($user->id) }}">
+            @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('MEMBERS_EDIT_PROFILE')))
+                @if(User::AuthUser()->getHighestRole()->outRanks($user->getHighestRole())) @endif
+                <input type="hidden" name="id" value="{{ Crypt::encrypt($user->id) }}">
             @endif
 
             <label for="name">Username</label><br>
             <input type="text" name="name" id="name" value="{{ $user->name }}"><br>
 
             <label for="title">Title:</label>
-            @if($user->hasPrivilege(\App\Models\Privilege::privilegeValueOf('TITLE_EDIT')))
+            @if($user->hasPrivilege(Privilege::privilegeValueOf('TITLE_EDIT')))
                 <input type="text" name="title" id="title" value="{{ $profile->title }}"><br>
             @else
                 <h3 id="title" style="text-align: center;"> {{ $profile->getTitle() }} </h3>
@@ -65,10 +70,6 @@
         </form>
     </div>
 
-    @section('errors-title')
-        Something went wrong! Can't edit your profile!
-    @endsection
-
     <script>
         const input = document.getElementById('title');
         const tooltip = document.getElementById('title-tooltip');
@@ -109,3 +110,6 @@
 
 @endsection
 
+@section('errors-title')
+    Something went wrong! Can't edit your profile!
+@endsection

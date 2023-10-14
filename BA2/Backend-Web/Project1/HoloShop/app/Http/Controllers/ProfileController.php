@@ -28,7 +28,7 @@ class ProfileController extends Controller
             return redirect('/login');
         }
 
-        return $this->show(auth()->user()->id);
+        return $this->show(User::AuthUser()->id);
     }
 
     public function edit() {
@@ -37,8 +37,8 @@ class ProfileController extends Controller
         }
 
         return view('pages.forms.edit_profile', [
-            'user' => auth()->user(),
-            'profile' => auth()->user()->profile()
+            'user' => User::AuthUser(),
+            'profile' => User::AuthUser()->profile()
         ]);
     }
 
@@ -53,7 +53,7 @@ class ProfileController extends Controller
         }
 
 
-        if (!auth()->user()->canEdit($user)) {
+        if (!User::AuthUser()->canEdit($user)) {
             return redirect('/404');
         }
 
@@ -97,14 +97,14 @@ class ProfileController extends Controller
                 return redirect('/404');
             }
 
-            if (!auth()->user()->canEdit($user)) {
+            if (!User::AuthUser()->canEdit($user)) {
                 return redirect('/404');
             }
 
             return $this->updateProfile($user);
         }
 
-        $user = auth()->user();
+        $user = User::AuthUser();
         return $this->updateProfile($user);
     }
 

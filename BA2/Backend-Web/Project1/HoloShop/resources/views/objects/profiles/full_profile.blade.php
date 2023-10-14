@@ -15,11 +15,9 @@
                         · {{ $profile->location }}
                     @endif
                 </p>
-                @if($profile->getTitle() != null)
-                    <p class="profile-float"
-                       style="align-self: flex-start; color: {{ $user->getColour() }}; font-weight: bolder">
-                        {{ $profile->getTitle() }}</p>
-                @endif
+                <p class="profile-float"
+                   style="align-self: flex-start; color: {{ $user->colour() }}; font-weight: bolder">
+                    {{ $profile->title() }}</p>
             </div>
 
             <div class="profile-info flex-row profile-float">

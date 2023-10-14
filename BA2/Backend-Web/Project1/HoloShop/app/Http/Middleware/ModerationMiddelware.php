@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Privilege;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +20,9 @@ class ModerationMiddelware
         if ($request->url() == route('ban')) {
             return $next($request);
         }
-        if (auth()->user() != null) {
-            if (auth()->user()->hasPrivilege(Privilege::privilegeValueOf('NOT_GLOBAL_SITE'))) {
+        $user = User::AuthUser();
+        if ($user != null) {
+            if ($user->hasPrivilege(Privilege::privilegeValueOf('NOT_GLOBAL_SITE'))) {
                 return redirect()->route('ban');
             }
         }

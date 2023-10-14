@@ -1,3 +1,8 @@
+@php
+    use App\Models\User;
+    use App\Models\Privilege;
+    use App\Models\Role;
+@endphp
 @extends('admin.layouts.dashboard')
 <link rel="stylesheet" href="{{ asset("css/admin/pages/moderation/members.css") }}">
 <link rel="stylesheet" href="{{ asset("css/shared/tables.css") }}">
@@ -13,7 +18,7 @@
                 <th>Member since</th>
                 <th>Profile</th>
                 <th>Roles</th>
-                @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
                     <th>Edit</th>
                 @endif
             </tr>
@@ -21,7 +26,7 @@
                 <tr>
                     <th>{{ $member->id }}</th>
                     <th id="{{ "member-name-" . $member->id }}">{{ $member->name }}</th>
-                    <th style="color: {{ $member->getColour() }}">{{ $member->profile()->getTitle() }}</th>
+                    <th style="color: {{ $member->colour() }}">{{ $member->profile()->title() }}</th>
                     <th>{{ $member->created_at->format('d/m/o') }}</th>
                     <th style="text-align: center"><a class="dashboard-table-btn"
                                                       href="{{ route('admin.members.edit', $member->id) }}">✏️</a></th>
@@ -31,7 +36,7 @@
                                         value="{{ $role->id }}">{{ $role->name() }}</option>
                             @endforeach
                         </select></th>
-                    @if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
+                    @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
                         <th>
                             <div onclick="editMemberRoles({{$member->id}})" class="hover-cursor">✏️</div>
                         </th>
@@ -42,7 +47,7 @@
     </div>
 @endsection
 
-@if(auth()->user()->hasPrivilege(\App\Models\Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
+@if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
     <div id="form-popup" class="flex-column">
         <div id="form-popup-2" class="flex-row" style="justify-content: center">
             <form class="styled-form" id="update-member-roles" method="post"
@@ -51,7 +56,7 @@
                 <h3 id="members-roles-update-form-title"></h3>
                 <input id="member-id-input" name="id" type="number" value="0" hidden>
                 <div class="flex-column">
-                    @foreach(\App\Models\Role::all()->sortByDesc('weight') as $role)
+                    @foreach(Role::all()->sortByDesc('weight') as $role)
                         <label>
                             <!-- TODO: Description on hover -->
                             <input type="checkbox" name="{{ $role->name }}" value="{{$role->id}}">

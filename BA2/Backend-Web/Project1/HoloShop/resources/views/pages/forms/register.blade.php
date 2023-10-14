@@ -17,7 +17,7 @@
             <label for="password">Password</label><br>
             <input type="password" id="password" name="password"><br>
 
-            <p>Alread have an account? <a href="{{ route('login') }}">Login</a> instead</p>
+            <p>Already have an account? <a href="{{ route('login') }}">Login</a> instead</p>
 
             <input type="submit" value="Register" class="styled-form-confirm">
         </form>
