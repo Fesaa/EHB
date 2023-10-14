@@ -37,7 +37,7 @@
 
     <div class="about-me float">
         <h2>About {{ $user->name }}</h2>
-        <p>{{ $profile->bio }}</p>
+        <p>{!! $profile->formattedBio() !!}</p>
     </div>
 
 

@@ -161,6 +161,7 @@ class ProfileController extends Controller
         }
 
         if ($aboutme != null) {
+            $aboutme = preg_replace('/<script>.*<\/script>/s', '', $aboutme);
             $profile->bio = $aboutme;
         }
 
