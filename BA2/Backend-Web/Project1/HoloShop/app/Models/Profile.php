@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Helper\Formatter;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use PheRum\BBCode\Facades\BBCode;
 
 class Profile extends Model
 {
@@ -106,6 +106,6 @@ class Profile extends Model
     }
 
     public function formattedBio(): string {
-        return BBCode::parse($this->bio);
+        return Formatter::apply($this->bio);
     }
 }

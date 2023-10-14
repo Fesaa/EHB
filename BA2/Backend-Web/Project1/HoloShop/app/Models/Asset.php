@@ -27,4 +27,14 @@ class Asset extends Model
         return 'data:image/png;base64,' . $this->data;
     }
 
+    public static function getAssetFromID(int $id): string|null
+    {
+        $asset = Asset::where(['id' => $id])->first();
+        if ($asset == null) {
+            return null;
+        }
+
+        return $asset->getAsset();
+    }
+
 }

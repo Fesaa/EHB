@@ -141,6 +141,7 @@ class ProfileController extends Controller
         return redirect()->route('profile.show', ['id' => $user->id]);
     }
 
+
     private function update(User $user, string|null $title, string|null $location,
                             string|null $pronouns, string|null $aboutme, string|null $birthday,
                             string|null $pfp_url, UploadedFile|null $pfp_file, string|null $banner_url,
@@ -161,7 +162,6 @@ class ProfileController extends Controller
         }
 
         if ($aboutme != null) {
-            $aboutme = preg_replace('/<script>.*<\/script>/s', '', $aboutme);
             $profile->bio = $aboutme;
         }
 

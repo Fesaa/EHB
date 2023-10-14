@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helper\Formatter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,13 +24,11 @@ class Forum extends Model
     }
 
     public function subTitle() {
-        // TODO: Add markdown support
-        return $this->subtitle;
+        return Formatter::apply($this->subtitle);
     }
 
     public function description() {
-        // TODO: Add markdown support
-        return $this->description;
+        return Formatter::apply($this->description);
     }
 
     public function image(): string {
