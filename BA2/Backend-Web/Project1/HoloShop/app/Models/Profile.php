@@ -41,9 +41,19 @@ class Profile extends Model
         return $this->belongsTo(Asset::class, 'banner_asset_id');
     }
 
+    private function getProfilePictureAsset(): Asset|null
+    {
+        return $this->pfpAssetID()->first();
+    }
+
+    private function getBannerPictureAsset(): Asset|null
+    {
+        return $this->bannerAssetID()->first();
+    }
+
     public function profilePicture(): string {
         $default = env('DEFAULT_PFP_URL', 'https://forums.cubecraftcdn.com/xenforo/data/avatars/o/224/224741.jpg?1695386528');
-        $asset = $this->pfpAssetID()->first();
+        $asset = $this->getProfilePictureAsset();
         if ($asset == null) {
             return $default;
         }
@@ -58,7 +68,7 @@ class Profile extends Model
 
     public function bannerPicture(): string {
         $default = env('DEFAULT_BANNER_URL', 'https://forums.cubecraftcdn.com/xenforo/data/profile_banners/l/224/224741.jpg?1665157964');
-        $asset = $this->bannerAssetID()->first();
+        $asset = $this->getBannerPictureAsset();
         if ($asset == null) {
             return $default;
         }
@@ -73,7 +83,11 @@ class Profile extends Model
 
     public function isBirthday(): bool {
         $today = new DateTime();
-        $birthday = new DateTime($this->birthday);
+        try {
+            $birthday = new DateTime($this->birthday);
+        } catch (\Exception $e) {
+            return false;
+        }
         return $today->format('d-m') == $birthday->format('d-m');
     }
 

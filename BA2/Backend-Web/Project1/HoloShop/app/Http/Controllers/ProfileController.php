@@ -19,7 +19,7 @@ class ProfileController extends Controller
 
         return view('pages.profile', [
             'user' => $user,
-            'profile' => $user->getProfile()
+            'profile' => $user->profile()
         ]);
     }
 
@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
         return view('pages.forms.edit_profile', [
             'user' => auth()->user(),
-            'profile' => auth()->user()->getProfile()
+            'profile' => auth()->user()->profile()
         ]);
     }
 
@@ -59,7 +59,7 @@ class ProfileController extends Controller
 
         return view('pages.forms.edit_profile', [
             'user' => $user,
-            'profile' => $user->getProfile()
+            'profile' => $user->profile()
         ]);
     }
 
@@ -84,7 +84,7 @@ class ProfileController extends Controller
         return (int) $asset->id;
     }
 
-    public function update() {
+    public function handle() {
         if (!auth()->check()) {
             return redirect('/login');
         }
@@ -117,8 +117,8 @@ class ProfileController extends Controller
             'birthday' => 'nullable|date',
             'pfp-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:1024',
             'banner-file' => 'nullable|file|mimes:jpeg,png,gif,webp|max:2048',
-            'title' => 'max:25',
-            'location' => 'max:50',
+            'title' => 'max:25|nullable',
+            'location' => 'max:50|nullable',
         ])->validate();
 
         $name = request()->get('name');
@@ -137,6 +137,15 @@ class ProfileController extends Controller
         $banner_url = request()->get('banner-url');
         $banner_file = request()->file('banner-file');
 
+        $this->update($user, $title, $location, $pronouns, $aboutme, $birthday, $pfp_url, $pfp_file, $banner_url, $banner_file);
+        return redirect()->route('profile.show', ['id' => $user->id]);
+    }
+
+    private function update(User $user, string|null $title, string|null $location,
+                            string|null $pronouns, string|null $aboutme, string|null $birthday,
+                            string|null $pfp_url, UploadedFile|null $pfp_file, string|null $banner_url,
+                            UploadedFile|null $banner_file): void
+    {
         $profile = $user->profile()->first();
         if ($profile == null) {
             $profile = new Profile();
@@ -175,8 +184,5 @@ class ProfileController extends Controller
         }
 
         $user->profile()->save($profile);
-
-        return redirect()->route('profile.show', ['id' => $user->id]);
-
     }
 }

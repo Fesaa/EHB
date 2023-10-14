@@ -81,7 +81,7 @@ class UserController extends Controller
         $users = User::all()->sortBy('created_at');
         $birthdays = [];
         foreach ($users as $user) {
-            $profile = $user->getProfile();
+            $profile = $user->profile();
             if ($profile->isBirthday()) {
                 $birthdays[] = $user;
             }

@@ -21,7 +21,7 @@
                 <tr>
                     <th>{{ $member->id }}</th>
                     <th id="{{ "member-name-" . $member->id }}">{{ $member->name }}</th>
-                    <th style="color: {{ $member->getColour() }}">{{ $member->getProfile()->getTitle() }}</th>
+                    <th style="color: {{ $member->getColour() }}">{{ $member->profile()->getTitle() }}</th>
                     <th>{{ $member->created_at->format('d/m/o') }}</th>
                     <th style="text-align: center"><a class="dashboard-table-btn"
                                                       href="{{ route('admin.members.edit', $member->id) }}">✏️</a></th>

@@ -8,7 +8,7 @@
     </div>
     <div class="member-grid">
         @foreach($users as $user)
-            @include('objects.profiles.small_profile', ['member' => $user, 'profile' => $user->getProfile()])
+            @include('objects.profiles.small_profile', ['member' => $user, 'profile' => $user->profile()])
         @endforeach
     </div>
 @endsection

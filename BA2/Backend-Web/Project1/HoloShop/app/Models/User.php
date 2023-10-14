@@ -99,27 +99,27 @@ class User extends Authenticatable
         return $this->id == $user->id;
     }
 
-    public function profile(): HasOne
+    public function profileLink(): HasOne
     {
         return $this->hasOne(Profile::class);
     }
 
-    public function getProfile(): Profile {
-        $profile = $this->profile()->first();
+    public function profile(): Profile {
+        $profile = $this->profileLink()->first();
         if ($profile == null) {
             $profile = new Profile();
             $profile->birthday = $this->created_at;
             $this->profile()->save($profile);
         }
-        return $this->profile()->first();
+        return $this->profileLink()->first();
     }
 
     public function getHighestRole(): Role {
         return $this->roles()->orderBy('weight', 'desc')->first();
     }
 
-    public function getColour(): string {
-        return $this->getHighestRole()->getColour() ?? env("DEFAULT_ROLE_COLOUR", "#808080");
+    public function colour(): string {
+        return $this->getHighestRole()->colour() ?? env("DEFAULT_ROLE_COLOUR", "#808080");
     }
 
     public function canEdit(User $other): bool
@@ -140,8 +140,8 @@ class User extends Authenticatable
     }
 
 
-    public function getColouredName(): string {
-        $colour = $this->getColour();
+    public function colouredName(): string {
+        $colour = $this->colour();
         return '<div style="color:' . $colour . '; font-weight: bolder;">' . $this->name . '</div>';
     }
 

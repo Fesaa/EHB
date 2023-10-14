@@ -35,7 +35,7 @@ class Activity extends Model
     {
         $user = $this->getUser();
         if ($user) {
-            return $user->getColouredName();
+            return $user->colouredName();
         }
         return 'Unknown';
     }

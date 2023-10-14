@@ -40,11 +40,11 @@ class Role extends Model
         return $this->weight > $role->weight;
     }
 
-    public function getTitle(): string {
+    public function title(): string {
         return $this->title ?? $this->name;
     }
 
-    public function getColour(): string {
+    public function colour(): string {
         return $this->colour ?? env("DEFAULT_ROLE_COLOUR", "#808080");
     }
 

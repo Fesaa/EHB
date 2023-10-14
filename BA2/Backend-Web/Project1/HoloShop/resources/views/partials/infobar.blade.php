@@ -49,7 +49,7 @@
                 <ul class="flat-list" style="flex-wrap: wrap; font-size: smaller">
                     @foreach(\App\Http\Controllers\UserController::getTodaysBirthDays() as $user)
                         <li><a class="clean-link"
-                               href="{{ route('profile.show', $user->id) }}">{!! $user->getColouredName() !!}</a></li>
+                               href="{{ route('profile.show', $user->id) }}">{!! $user->colouredName() !!}</a></li>
                     @endforeach
                 </ul>
             </div>

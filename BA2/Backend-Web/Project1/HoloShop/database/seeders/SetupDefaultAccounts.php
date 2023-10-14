@@ -65,7 +65,7 @@ class SetupDefaultAccounts extends Seeder
 
             $user->roles()->attach($MEMBER);
 
-            $profile = $user->getProfile();
+            $profile = $user->profile();
             $profile->bio = $bio;
             $profile->save();
         }
