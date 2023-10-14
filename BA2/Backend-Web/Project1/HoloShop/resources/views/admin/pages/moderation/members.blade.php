@@ -23,14 +23,14 @@
                     <th id="{{ "member-name-" . $member->id }}">{{ $member->name }}</th>
                     <th style="color: {{ $member->getColour() }}">{{ $member->getProfile()->getTitle() }}</th>
                     <th>{{ $member->created_at->format('d/m/o') }}</th>
-                    <th style="text-align: center"><a class="dashboard-table-btn" href="{{ route('admin.members.edit', $member->id) }}">🔵</a></th>
+                    <th style="text-align: center"><a class="dashboard-table-btn" href="{{ route('admin.members.edit', $member->id) }}">✏️</a></th>
                     <th><select class="roles-select">
                             @foreach($member->roles()->get() as $role)
                                 <option class="option_{{$member->id}}" value="{{ $role->id }}">{{ $role->name() }}</option>
                             @endforeach
                         </select></th>
                     @if(auth()->user()->hasPrivilege(\App\Models\Privilege::getPrivilegeValue("MEMBERS_EDIT_ROLES")))
-                        <th><div onclick="editMemberRoles({{$member->id}})" class="hover-cursor">🔵</div></th>
+                        <th><div onclick="editMemberRoles({{$member->id}})" class="hover-cursor">✏️</div></th>
                     @endif
                 </tr>
             @endforeach
