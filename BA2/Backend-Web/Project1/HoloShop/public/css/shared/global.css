@@ -60,9 +60,10 @@
 
 
 .staff-border {
-    border: 5px solid rebeccapurple;
     border-radius: 20px;
     padding: 0.5em;
+
+    box-shadow: 2px 2px 2px 2px rebeccapurple;
 }
 
 .full-flex {
@@ -103,4 +104,12 @@
 
 .hover-cursor {
     cursor: pointer;
+}
+
+.shiny-float {
+    box-shadow: 5px 5px 10px rgba(250, 134, 196, 0.7);
+}
+
+.shiny-bg {
+    background: linear-gradient(10deg, #FFFAF0, white);
 }
