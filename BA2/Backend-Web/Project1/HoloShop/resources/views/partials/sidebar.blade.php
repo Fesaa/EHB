@@ -15,6 +15,7 @@
         <li class="no-hover"></li>
         @auth()
             <li><a href="{{ route('profile.own') }}">Profile</a></li>
+            <li><a href="{{ route('account') }}">Account</a> </li>
             @if(User::AuthUser()->isStaff())
                 <li><a href="{{ route('admin.dashboard') }}">Staff panel</a></li>
             @endif
