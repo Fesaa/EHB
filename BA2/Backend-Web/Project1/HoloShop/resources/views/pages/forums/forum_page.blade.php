@@ -11,7 +11,7 @@
                         {{ $forum->title }}
                     </div>
                     <div id="forum-description">
-                        {{ $forum->description }}
+                        {!! $forum->description() !!}
                     </div>
                 </div>
             </div>
