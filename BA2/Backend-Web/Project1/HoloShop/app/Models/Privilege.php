@@ -35,4 +35,22 @@ class Privilege extends Model
     public function forum_locks(): BelongsToMany {
         return $this->belongsToMany(Forum::class, 'forum_locks');
     }
+
+    /**
+     * @return Privilege[]
+     */
+    public static function getAllForumLocks()
+    {
+        return static::where('name', 'LIKE', 'FORUM_LOCK_%')->get();
+    }
+
+    /**
+     * @return Privilege[]
+     */
+    public static function getAllForumCloaks()
+    {
+        return static::where('name', 'LIKE', 'FORUM_CLOAK_%')->get();
+    }
+
+
 }

@@ -5,28 +5,3 @@
 #forums-list > li {
     margin: 2em;
 }
-
-/* Hide the dropdown content by default */
-.hidden {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-/* Style the dropdown content */
-#dropdown-content {
-    padding: 10px;
-    z-index: 1;
-}
-
-/* Style for the button */
-#dropdown-button {
-    padding: 10px;
-    border-radius: 20px;
-    background: var(--little-alpha);
-    border: 2px solid black;
-}
-
-#dropdown-button:hover {
-    transform: translate(0, -2px);
-}

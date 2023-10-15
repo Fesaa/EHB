@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 
 class Forum extends Model
 {
@@ -53,7 +54,7 @@ class Forum extends Model
     }
 
     public function canSee(User|null $user): bool {
-        $c = $this->locks->count();
+        $c = $this->cloaks()->count();
         if ($user == null || $c == 0) {
             return $c == 0;
         }
@@ -103,6 +104,14 @@ class Forum extends Model
         }
 
         return $user->hasPrivilege(Privilege::privilegeValueOf("FORUM_EDIT"));
+    }
+
+    public function hasLock(string $name): bool {
+        return $this->locks()->where(["name" => $name])->first() != null;
+    }
+
+    public function hasCloak(string $name): bool {
+        return $this->cloaks()->where(["name" => $name])->first() != null;
     }
 
 }

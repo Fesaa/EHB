@@ -51,7 +51,7 @@
 <div id="form-popup" class="flex-column">
     <div id="form-popup-2" class="flex-row" style="justify-content: center">
         <form class="styled-form" id="update-role-privileges" method="post"
-              action="{{ route('admin.holoshop.roles.update') }}">
+              action="{{ route('admin.holoshop.roles.update') }}" style="max-width: 400px">
             @csrf
             <h3 id="role-update-title" style="text-align: center"></h3>
             <input id="role-id-input" name="id" type="number" value="0" hidden>
@@ -69,9 +69,9 @@
                           rows="2">{{ $role->description }}</textarea><br>
             @endif
             @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT_PRIVILEGES")))
-                <div class="flex-column">
+                <div class="flex-row" style="flex-wrap: wrap;">
                     @foreach(Privilege::all() as $privilege)
-                        <label>
+                        <label style="flex: 40%">
                             <!-- TODO: Description on hover -->
                             <input type="checkbox" name="{{ $privilege->name }}" value="{{ $privilege->value }}">
                             {{ $privilege->name() }}

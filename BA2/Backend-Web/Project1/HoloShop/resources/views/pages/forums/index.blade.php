@@ -19,9 +19,9 @@
             @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("FORUM_CREATE")))
                 <li>
                     <div class="flex-row" style="justify-content: center">
-                        <button id="dropdown-button">Create new forum</button>
+                        <button id="forum-dropdown-btn" class="form-btn dropdown-button">Create new forum</button>
                     </div>
-                    <div id="dropdown-content" class="hidden">
+                    <div id="forum-dropdown-content" class="hidden dropdown-content">
                         @include('objects.forms.forum', ["forum" => null, "id" => $forum->id + 1])
                     </div>
                 </li>
@@ -30,8 +30,8 @@
     </ul>
 
     <script>
-        const button = document.getElementById('dropdown-button');
-        const dropdownContent = document.getElementById('dropdown-content');
+        const button = document.getElementById('forum-dropdown-btn');
+        const dropdownContent = document.getElementById('forum-dropdown-content');
 
         // Add a click event listener to the button
         button.addEventListener('click', () => {
