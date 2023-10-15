@@ -36,6 +36,11 @@ class SetupRoles extends Seeder
         $DASHBOARD_PUNISHMENTS = Privilege::where(['name' => "DASHBOARD_PUNISHMENTS"])->first();
         $PUNISHMENTS_ISSUE = Privilege::where(['name' => "PUNISHMENTS_ISSUE"])->first();
 
+        $FORUM_CREATE = Privilege::where(['name' => "FORUM_CREATE"])->first();
+        $FORUM_EDIT = Privilege::where(['name' => "FORUM_EDIT"])->first();
+        $THREAD_EDIT = Privilege::where(['name' => "THREAD_EDIT"])->first();
+        $POST_EDIT = Privilege::where(['name' => "POST_EDIT"])->first();
+
         $TITLE_EDIT = Privilege::where(['name' => "TITLE_EDIT"])->first();
         $NOT_GLOBAL_SITE = Privilege::where(['name' => "NOT_GLOBAL_SITE"])->first();
 
@@ -51,7 +56,8 @@ class SetupRoles extends Seeder
                 $DASHBOARD_LOGS->value | $LOGS_LOGIN->value | $LOGS_MODERATION->value | $LOGS_POSTS->value | $LOGS_ACTIVITY->value |
                 $DASHBOARD_FEATURED->value | $FEATURED_EDIT->value |
                 $DASHBOARD_MEMBERS->value | $MEMBERS_EDIT_PROFILE->value | $MEMBERS_EDIT_ROLES->value |
-                $DASHBOARD_PUNISHMENTS->value | $PUNISHMENTS_ISSUE->value
+                $DASHBOARD_PUNISHMENTS->value | $PUNISHMENTS_ISSUE->value | $FORUM_CREATE->value | $FORUM_EDIT->value |
+                $THREAD_EDIT->value | $POST_EDIT->value
         ]);
 
         Role::factory()->create([
@@ -63,7 +69,7 @@ class SetupRoles extends Seeder
             'privilege' =>
                 $DASHBOARD_LOGS->value | $LOGS_MODERATION->value | $LOGS_POSTS->value | $LOGS_ACTIVITY->value |
                 $DASHBOARD_MEMBERS->value | $MEMBERS_EDIT_PROFILE->value |
-                $DASHBOARD_PUNISHMENTS->value | $PUNISHMENTS_ISSUE->value
+                $DASHBOARD_PUNISHMENTS->value | $PUNISHMENTS_ISSUE->value | $THREAD_EDIT->value | $POST_EDIT->value
         ]);
 
         Role::factory()->create([

@@ -58,6 +58,8 @@ Route::prefix('/forum')
     ->group(function () {
         Route::get('/', [ForumController::class, 'index'])->name('index');
         Route::get('/{id}', [ForumController::class, 'forum'])->name('page');
+        Route::get('/edit/{id}', [ForumController::class, 'edit'])->name('forms.edit');
+        Route::post('/edit/{id}', [ForumController::class, 'updateForum'])->name('forms.edit.handle');
 
         Route::get('thread/{id}', [ForumController::class, 'thread'])->name('thread');
     });

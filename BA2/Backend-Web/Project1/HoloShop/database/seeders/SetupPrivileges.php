@@ -121,6 +121,30 @@ class SetupPrivileges extends Seeder
         ]);
 
         Privilege::factory()->create([
+            'name' => 'FORUM_CREATE',
+            'description' => 'Create new forums',
+            'value' => 1 << 18
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'FORUM_EDIT',
+            'description' => 'Edit forums info',
+            'value' => 1 << 19
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'THREAD_EDIT',
+            'description' => 'Edit thread contents from other users',
+            'value' => 1 << 20
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'POST_EDIT',
+            'description' => 'Edit post contents from other users',
+            'value' => 1 << 21
+        ]);
+
+        Privilege::factory()->create([
             'name' => 'TITLE_EDIT',
             'description' => 'Edit own title',
             'value' => 1 << 25

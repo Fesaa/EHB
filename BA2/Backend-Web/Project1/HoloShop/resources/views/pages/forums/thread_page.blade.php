@@ -1,5 +1,6 @@
 @php
     use App\Helper\Formatter;
+    use \App\Models\User;
 @endphp
 @extends('layouts.master')
 <link rel="stylesheet" href="{{ asset('css/pages/forums/thread_page.css') }}">
@@ -11,15 +12,17 @@
                 @include('objects.profiles.small_profile', ["member" => $thread->owner(), "profile" => $thread->owner()->profile()])
             </div>
             <div id="thread-content">
-                <p> {{ Formatter::date($thread->created_at) }} </p>
+                <div class="flex-row info-row">
+                    <div class="creation-date"> {{ Formatter::date($thread->created_at) }} </div>
+                    @if($thread->canEdit(User::AuthUser()))
+                        <a href="" class="clean-link">✏️</a>
+                    @endif
+                </div>
                 <div id="thread-title">
                     <h1>{!!  $thread->title() !!}</h1>
                 </div>
                 <div id="thread-description">
                     {!! $thread->content() !!}
-                </div>
-                <div class="post-signature">
-                    <!-- TODO: Add signature -->
                 </div>
             </div>
         </div>
@@ -35,7 +38,12 @@
                             @include('objects.profiles.small_profile', ["member" => $post->owner(), "profile" => $post->owner()->profile()])
                         </div>
                         <div class="post-content-box flex-column">
-                            <p> {{ Formatter::date($thread->created_at) }} </p>
+                            <div class="flex-row info-row">
+                                <div class="creation-date"> {{ Formatter::date($post->created_at) }} </div>
+                                @if($post->canEdit(User::AuthUser()))
+                                    <a href="" class="clean-link">✏️</a>
+                                @endif
+                            </div>
                             <div class="post-content">
                                 {!! $post->content() !!}
                             </div>

@@ -39,36 +39,9 @@
             <label for="location">Location</label><br>
             <input type="text" name="location" id="location" value="{{ $profile->location }}"><br>
 
-            <label for="aboutme">About me
-            </label>
-            <p style="font-size: small; text-align: left">
-                BBCode is avaible for formatting, use square brackets with specific tags like [b] for bold text or [url] for hyperlinks. For example, [b]This is bold[/b] and [url=https://www.example.com]Visit here[/url]. If you want to quote text, use [quote]. For further details, check this <a target="_blank" href="https://en.wikipedia.org/wiki/BBCode">page</a>.
-            </p>
-            <textarea id="aboutme" name="aboutme" cols="100" rows="15">{{ $profile->bio }}</textarea><br>
-
-            <label>Profile Picture</label><br>
-            <div class="flex-row">
-                <input type="radio" name="pfp-type" value="URL" id="pfp-upload-radio-url" checked>
-                <label for="pfp-upload-radio-url">URL</label>
-                <input type="radio" name="pfp-type" value="FILE" id="pfp-upload-radio-file">
-                <label for="pfp-upload-radio-file">File</label><br>
-            </div>
-            <br>
-
-            <input type="text" name="pfp-url" id="pfp-upload-url">
-            <input type="file" name="pfp-file" id="pfp-upload-file" style="display: none;"><br>
-
-            <label>Banner Picture</label><br>
-            <div class="flex-row">
-                <input type="radio" name="banner-type" value="URL" id="banner-upload-radio-url" checked>
-                <label for="banner-upload-radio-url">URL</label>
-                <input type="radio" name="banner-type" value="FILE" id="banner-upload-radio-file">
-                <label for="banner-upload-radio-file">File</label><br>
-            </div>
-            <br>
-
-            <input type="text" name="banner-url" id="banner-upload-url">
-            <input type="file" name="banner-file" id="banner-upload-file" style="display: none;"><br>
+            @include('objects.forms.bbcode', ["label" => "About me", "type"=> "aboutme", "value" => $profile->bio])
+            @include('objects.forms.asset', ["label" => "Profile Picture", "type"=> "pfp"])
+            @include('objects.forms.asset', ["label" => "Banner Picture", "type"=> "banner"])
 
             <input type="submit" value="Save" class="styled-form-confirm">
         </form>
@@ -84,31 +57,6 @@
 
         input.addEventListener('mouseout', () => {
             tooltip.style.display = 'none';
-        });
-
-
-        const pfpUploadRadioURL = document.getElementById("pfp-upload-radio-url");
-        const pfpUploadRadioFile = document.getElementById("pfp-upload-radio-file");
-
-        pfpUploadRadioURL.addEventListener("click", function () {
-            document.getElementById("pfp-upload-url").style.display = "block";
-            document.getElementById("pfp-upload-file").style.display = "none";
-        });
-        pfpUploadRadioFile.addEventListener("click", function () {
-            document.getElementById("pfp-upload-url").style.display = "none";
-            document.getElementById("pfp-upload-file").style.display = "block";
-        });
-
-        const bannerUploadRadioURL = document.getElementById("banner-upload-radio-url");
-        const bannerUploadRadioFile = document.getElementById("banner-upload-radio-file");
-
-        bannerUploadRadioURL.addEventListener("click", function () {
-            document.getElementById("banner-upload-url").style.display = "block";
-            document.getElementById("banner-upload-file").style.display = "none";
-        });
-        bannerUploadRadioFile.addEventListener("click", function () {
-            document.getElementById("banner-upload-url").style.display = "none";
-            document.getElementById("banner-upload-file").style.display = "block";
         });
     </script>
 

@@ -63,27 +63,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    private function getAssetIdAndSave(UploadedFile $file): int {
-        $data = base64_encode(file_get_contents($file));
-        $asset = Asset::where(["data" => $data])->first();
-        if ($asset == null) {
-            $asset = new Asset();
-            $asset->data = $data;
-            $asset->save();
-        }
-        return (int) $asset->id;
-    }
-
-    private function getAssetIdAndStore(string $url): int {
-        $asset = Asset::where(["url" => $url])->first();
-        if ($asset == null) {
-            $asset = new Asset();
-            $asset->url = $url;
-            $asset->save();
-        }
-        return (int) $asset->id;
-    }
-
     public function handle() {
         if (!auth()->check()) {
             return redirect('/login');
@@ -170,15 +149,15 @@ class ProfileController extends Controller
         }
 
         if ($pfp_url != null) {
-            $profile->pfp_asset_id = $this->getAssetIdAndStore($pfp_url);
+            $profile->pfp_asset_id = Asset::fromURL($pfp_url)->id;
         } elseif ($pfp_file != null) {
-            $profile->pfp_asset_id = $this->getAssetIdAndSave($pfp_file);
+            $profile->pfp_asset_id = Asset::fromData($pfp_file)->id;
         }
 
         if ($banner_url != null) {
-            $profile->banner_asset_id = $this->getAssetIdAndStore($banner_url);
+            $profile->banner_asset_id = Asset::fromURL($banner_url)->id;
         } elseif ($banner_file != null) {
-            $profile->banner_asset_id = $this->getAssetIdAndSave($banner_file);
+            $profile->banner_asset_id = Asset::fromData($banner_file)->id;
         }
 
         $profile->save();

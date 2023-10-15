@@ -32,6 +32,11 @@
     padding-bottom: 5px;
 }
 
+#forum-description {
+    text-align: left;
+    justify-content: left;
+}
+
 #forum-threads {
     flex: 1;
     margin-top: 5em;
@@ -41,4 +46,11 @@
     justify-content: space-between;
 }
 
+.creation-date {
+    font-size: x-small;
+}
+
+.info-row {
+    justify-content: space-between;
+}
 

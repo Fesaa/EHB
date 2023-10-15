@@ -1,14 +1,58 @@
+@php
+    use \App\Models\User;
+    use \App\Models\Privilege;
+@endphp
 @extends('layouts.master')
 <link rel="stylesheet" href="{{ asset('css/pages/forums/index.css') }}">
+<link rel="stylesheet" href="{{ asset("css/pages/forums/forms/forum.css") }}">
 
 @section('main-content')
+    <ul id="forums-list">
     @if(sizeof($forums) > 0)
-        <ul id="forums-list">
-            @foreach($forums as $forum)
-                    <li>@include('objects.forums.forum_preview', ['forum' => $forum])</li>
-            @endforeach
-        </ul>
+        @foreach($forums as $forum)
+            <li>@include('objects.forums.forum_preview', ['forum' => $forum])</li>
+        @endforeach
     @else
         <h1>There are no forums!</h1>
     @endif
+        @auth()
+            @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("FORUM_CREATE")))
+                <li>
+                    <div class="flex-row" style="justify-content: center">
+                        <button id="dropdown-button">Create new forum</button>
+                    </div>
+                    <div id="dropdown-content" class="hidden">
+                        @include('objects.forms.forum', ["forum" => null, "id" => $forum->id + 1])
+                    </div>
+                </li>
+            @endif
+        @endauth
+    </ul>
+
+    <script>
+        const button = document.getElementById('dropdown-button');
+        const dropdownContent = document.getElementById('dropdown-content');
+
+        // Add a click event listener to the button
+        button.addEventListener('click', () => {
+            if (dropdownContent.style.display === 'none' || dropdownContent.style.display === '') {
+                // Show the dropdown with a gradual animation
+                dropdownContent.style.display = 'flex';
+                setTimeout(() => {
+                    dropdownContent.style.opacity = '1';
+                }, 10);
+            } else {
+                // Hide the dropdown with a gradual animation
+                dropdownContent.style.opacity = '0';
+                setTimeout(() => {
+                    dropdownContent.style.display = 'none';
+                }, 300); // Adjust the duration of the animation (in milliseconds) as needed
+            }
+        });
+    </script>
+
+@endsection
+
+@section('errors-title')
+    Couldn't update forum
 @endsection

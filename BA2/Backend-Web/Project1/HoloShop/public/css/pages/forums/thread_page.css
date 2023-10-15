@@ -17,10 +17,6 @@
     text-align: center;
 }
 
-#thread-description {
-    border-bottom: 0.5px solid var(--accent);
-}
-
 .thread-post {
     margin: 1em 5em;
 }
@@ -30,12 +26,16 @@
     flex: 1;
 }
 
-.post-content-box > p {
-    font-size: x-small;
-}
 .post-content {
     margin-top: 1em;
     padding-bottom: 1em;
     width: 100%;
-    border-bottom: 0.5px solid var(--accent);
+}
+
+.creation-date {
+    font-size: x-small;
+}
+
+.info-row {
+    justify-content: space-between;
 }

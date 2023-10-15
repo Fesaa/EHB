@@ -122,4 +122,17 @@ class Thread extends Model
         }
         return $asset->getAsset();
     }
+
+    public function canEdit(User|null $user): bool {
+        if ($user == null) {
+            return false;
+        }
+
+        if ($user->id == $this->user_id) {
+            return true;
+        }
+
+
+        return $user->hasPrivilege(Privilege::privilegeValueOf("THREAD_EDIT"));
+    }
 }

@@ -1,4 +1,7 @@
 @php
+    /**
+     * @var \App\Models\Forum $forum
+     */
     use App\Helper\Formatter;
 @endphp
 <link rel="stylesheet" href="{{ asset('css/objects/forums/forum_preview.css') }}">
@@ -13,7 +16,7 @@
                 </a>
             </div>
             <div class="forum-preview-desc">
-                {{ $forum->subTitle() }}
+                {!! $forum->subtitle() !!}
             </div>
         </div>
     </div>

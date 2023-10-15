@@ -23,7 +23,7 @@ class Forum extends Model
         return $this->imageID()->first();
     }
 
-    public function subTitle() {
+    public function subtitle() {
         return Formatter::apply($this->subtitle);
     }
 
@@ -89,9 +89,20 @@ class Forum extends Model
         return $this->hasMany(Thread::class, 'forum_id');
     }
 
-    public function getLatestThread()
+    /**
+     * @return Thread|null
+     */
+    public function getLatestThread(): ?Thread
     {
         return $this->threads()->orderBy('created_at', 'desc')->first();
+    }
+
+    public function canEdit(User|null $user): bool {
+        if ($user == null) {
+            return false;
+        }
+
+        return $user->hasPrivilege(Privilege::privilegeValueOf("FORUM_EDIT"));
     }
 
 }
