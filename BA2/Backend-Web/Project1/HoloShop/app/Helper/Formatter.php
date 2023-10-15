@@ -57,6 +57,10 @@ class Formatter
         return $content;
     }
 
+    public static function date(DateTime $dateTime) {
+        return $dateTime->format('M d, o');
+    }
+
     public static function timeAgo(DateTime $dateTime) {
         $now = new DateTime();
         $interval = $now->diff($dateTime);

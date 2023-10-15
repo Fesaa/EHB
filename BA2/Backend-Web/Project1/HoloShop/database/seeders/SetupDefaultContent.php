@@ -43,6 +43,31 @@ I decided to sit down with my parents one evening, nervous but determined. I exp
 Fast forward to today, and I can proudly say that my relationship with my parents has only grown stronger. They've embraced my identity with open arms, and we've had so many heartfelt conversations since that day. I couldn't be happier or more grateful for their acceptance and love. Remember, there's always hope, and the people who truly care about you will accept you for who you are. 🏳️‍🌈❤️"
         ]);
 
+        Post::factory()->create([
+           'thread_id' => $COMING_OUT->id,
+           'user_id' => 1,
+           'content' => "Thank you for sharing your story! I'm so happy for you, and I hope your experience can inspire others to be true to themselves. 🥰"
+        ]);
+
+        Post::factory()->create([
+           'thread_id' => $COMING_OUT->id,
+           'user_id' => 3,
+           'content' => "I'm so glad your parents were supportive! I'm sure it took a lot of courage to come out, and I'm happy it went well. 🤗"
+        ]);
+
+        Post::factory()->create([
+           'thread_id' => $COMING_OUT->id,
+           'user_id' => 4,
+           'content' => "That's so sweet! I'm glad you have such a loving family. 🥰"
+        ]);
+
+        Post::factory()->create([
+           'thread_id' => $COMING_OUT->id,
+           'user_id' => 5,
+           'content' => "I'm so happy for you! I'm glad your parents were supportive. 🤗"
+        ]);
+
+
         $APPLYING_FOR_STAFF = Thread::factory()->create([
             'forum_id' => $FAQ->id,
             'user_id' => 1,
@@ -69,6 +94,12 @@ Thank you for making our forum a great place!
 
 Best regards,
 HoloShop Team",
+        ]);
+
+        Post::factory()->create([
+           'thread_id' => $APPLYING_FOR_STAFF->id,
+           'user_id' => 4,
+           'content' => "I'm interested! I'll apply right away. 🤗"
         ]);
     }
 }

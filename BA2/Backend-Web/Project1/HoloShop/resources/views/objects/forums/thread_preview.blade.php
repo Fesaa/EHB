@@ -18,7 +18,7 @@
             </div>
             <div class="thread-preview-desc">
                 <a class="coloured-link" href="{{ route('profile.show', ["id" => $owner->id]) }}"> {{ $owner->name }}</a>
-                - {{ $thread->created_at->format('M d, o') }}
+                - {{ Formatter::date($thread->created_at) }}
             </div>
         </div>
     </div>

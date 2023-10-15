@@ -5,10 +5,37 @@
 #thread-main {
 }
 
+#thread-content {
+    padding: 1em 5em;
+}
+
+#thread-content > p {
+    font-size: x-small;
+}
+
 #thread-title {
     text-align: center;
 }
 
 #thread-description {
+    border-bottom: 0.5px solid var(--accent);
+}
+
+.thread-post {
+    margin: 1em 5em;
+}
+
+.post-content-box {
     padding: 1em 5em;
+    flex: 1;
+}
+
+.post-content-box > p {
+    font-size: x-small;
+}
+.post-content {
+    margin-top: 1em;
+    padding-bottom: 1em;
+    width: 100%;
+    border-bottom: 0.5px solid var(--accent);
 }
