@@ -86,8 +86,10 @@ class Profile extends Model
         return $url;
     }
 
-
     public function isBirthday(): bool {
+        if ($this->birthday == null) {
+            return false;
+        }
         $today = new DateTime();
         try {
             $birthday = new DateTime($this->birthday);

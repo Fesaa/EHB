@@ -2,9 +2,10 @@
 
 <div class="flex-column">
     <div class="profile-full flex-row float {{ $user->isStaff() ? "staff-border" : "" }}"
-    style="background-image: url({{ $profile->bannerPicture() }})
-"
-    >
+    style="background-image: url({{ $profile->bannerPicture() }});
+    @if($user->profile()->isBirthday())
+            box-shadow: 2px 2px 2px 2px rgba(250, 123, 200, 0.9), 2px 2px 2px 2px rgba(120, 175, 255, 0.9), 2px 2px 2px 2px rgba(255, 211, 101, 0.9);
+    @endif">
         <img class="profile-image" src="{{ $profile->profilePicture() }}" alt="IMAGE">
 
         <div class="profile-info-container flex-column">

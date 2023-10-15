@@ -3,9 +3,9 @@
 @endphp
 <link rel="stylesheet" href="{{ asset('css/partials/header.css') }}">
 
-<header class="float">
+<header class="float shiny-float">
     <h1 class="name">
-        HoloShop
+        <a class="rainbow-text" href="{{ route('home') }}">HoloShop</a>
     </h1>
 
     <ul>

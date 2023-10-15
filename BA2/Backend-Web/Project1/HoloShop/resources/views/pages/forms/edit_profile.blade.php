@@ -26,7 +26,7 @@
             @if($user->hasPrivilege(Privilege::privilegeValueOf('TITLE_EDIT')))
                 <input type="text" name="title" id="title" value="{{ $profile->title }}"><br>
             @else
-                <h3 id="title" style="text-align: center;"> {{ $profile->getTitle() }} </h3>
+                <h3 id="title" style="text-align: center;"> {{ $profile->title() }} </h3>
                 <p id="title-tooltip" style="display: none; font-size: small;">You can't change your title</p>
             @endif
 
@@ -34,11 +34,7 @@
             <input type="text" name="pronouns" id="pronouns" value="{{ $profile->pronouns }}"><br>
 
             <label for="birthday">Birthday</label><br>
-            <input type="date" name="birthday" id="birthday" value="
-           @if($profile->birthday != null)
-            {{ $profile->birthday->format('o-m-d') }}
-           @endif
-            "><br>
+            <input type="date" name="birthday" id="birthday" value="@if($profile->birthday != null){{ $profile->birthday->format('o-m-d') }}@endif"><br>
 
             <label for="location">Location</label><br>
             <input type="text" name="location" id="location" value="{{ $profile->location }}"><br>
