@@ -8,7 +8,7 @@
         <li class="sidebar-button"><a href="{{ route('home') }}">Home</a></li>
         <li class="sidebar-button"><a>What's new</a></li>
         <li class="sidebar-button"><a>Shop</a></li>
-        <li class="sidebar-button"><a href="{{ route('forum.index') }}">Forums</a></li>
+        <li class="sidebar-button"><a href="{{ route('forums.index') }}">Forums</a></li>
         <li class="sidebar-button"><a href="{{ route('members') }}">Members</a></li>
         <li class="no-hover"></li>
         <li class="no-hover"></li>

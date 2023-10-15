@@ -68,6 +68,10 @@ class User extends Authenticatable
         return $this->hasPriv($roles, $privilege);
     }
 
+    public function hasPrivilegeByString(string $privilege): bool {
+        return $this->hasPrivilege(Privilege::privilegeValueOf($privilege));
+    }
+
     private function hasPriv($roles, int $privilege): bool {
         foreach ($roles as $role) {
             if ($role->hasPrivilege($privilege))

@@ -98,6 +98,10 @@ class Thread extends Model
         return $visible;
     }
 
+    /**
+     * @param int $id
+     * @return Thread|null
+     */
     public static function getThread(int $id) {
         return static::with('cloaks')->where(['id' => $id])->first();
     }
@@ -134,5 +138,13 @@ class Thread extends Model
 
 
         return $user->hasPrivilege(Privilege::privilegeValueOf("THREAD_EDIT"));
+    }
+
+    public function hasLock(string $name): bool {
+        return $this->locks()->where(["name" => $name])->first() != null;
+    }
+
+    public function hasCloak(string $name): bool {
+        return $this->cloaks()->where(["name" => $name])->first() != null;
     }
 }

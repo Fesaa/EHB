@@ -144,6 +144,7 @@ class SetupPrivileges extends Seeder
             'value' => 1 << 21
         ]);
 
+
         Privilege::factory()->create([
             'name' => 'TITLE_EDIT',
             'description' => 'Edit own title',
@@ -154,6 +155,31 @@ class SetupPrivileges extends Seeder
             'name' => 'NOT_GLOBAL_SITE',
             'description' => 'Used to ban members',
             'value' => 1 << 26
+        ]);
+
+
+        Privilege::factory()->create([
+            'name' => 'FORUM_CLOAK_STAFF',
+            'description' => 'Only allow staff to see the forum',
+            'value' => 1 << 32
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'FORUM_LOCK_STAFF',
+            'description' => 'Only allow staff to post in the forum',
+            'value' => 1 << 33
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'THREAD_CLOAK_STAFF',
+            'description' => 'Only allow staff to see the thread',
+            'value' => 1 << 34
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'THREAD_LOCK_STAFF',
+            'description' => 'Only allow staff to post in the thread',
+            'value' => 1 << 35
         ]);
     }
 }

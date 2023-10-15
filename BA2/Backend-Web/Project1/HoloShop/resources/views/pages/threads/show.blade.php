@@ -15,7 +15,7 @@
                 <div class="flex-row info-row">
                     <div class="creation-date"> {{ Formatter::date($thread->created_at) }} </div>
                     @if($thread->canEdit(User::AuthUser()))
-                        <a href="" class="clean-link">✏️</a>
+                        <a href="{{ route('threads.edit', $thread->id) }}" class="clean-link">✏️</a>
                     @endif
                 </div>
                 <div id="thread-title">
@@ -28,7 +28,7 @@
         </div>
         <div id="thread-posts">
             @php
-            $posts = $thread->getReplies();
+                $posts = $thread->getReplies();
             @endphp
 
             @if(sizeof($posts) > 0)
@@ -47,14 +47,9 @@
                             <div class="post-content">
                                 {!! $post->content() !!}
                             </div>
-                            <div class="post-signature">
-                                <!-- TODO: Add signature -->
-                            </div>
                         </div>
                     </div>
                 @endforeach
-            @else
-                <p> No posts to show </p>
             @endif
         </div>
     </div>

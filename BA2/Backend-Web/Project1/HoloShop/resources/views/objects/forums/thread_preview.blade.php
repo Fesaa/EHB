@@ -12,7 +12,7 @@
         <img src="{{ $profile->profilePicture() }}"  alt="threads-image">
         <div class="flex-column">
             <div class="thread-preview-title">
-                <a class="coloured-link" href="{{ route('forum.thread', ["id" => $thread->id]) }}">
+                <a class="coloured-link" href="{{ route('threads.show', ["thread" => $thread->id]) }}">
                     {{ $thread->title }}
                 </a>
             </div>

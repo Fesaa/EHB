@@ -52,5 +52,21 @@ class Privilege extends Model
         return static::where('name', 'LIKE', 'FORUM_CLOAK_%')->get();
     }
 
+    /**
+     * @return Privilege[]
+     */
+    public static function getAllThreadLocks()
+    {
+        return static::where('name', 'LIKE', 'THREAD_LOCK_%')->get();
+    }
+
+    /**
+     * @return Privilege[]
+     */
+    public static function getAllThreadCloaks()
+    {
+        return static::where('name', 'LIKE', 'THREAD_CLOAK_%')->get();
+    }
+
 
 }

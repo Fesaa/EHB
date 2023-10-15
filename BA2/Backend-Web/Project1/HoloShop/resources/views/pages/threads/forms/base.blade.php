@@ -1,44 +1,33 @@
-@php
-use \App\Models\Forum;
-    /**
-     * @var Forum $forum
-     */
-
-    if ($forum == null) {
-        $title = "";
-        $subtitle = "";
-        $description = "";
-    } else {
-        $title = $forum->title;
-        $subtitle = $forum->subtitle;
-        $description = $forum->description;
-    }
-@endphp
-
 <link rel="stylesheet" href="{{ asset("css/shared/forms.css") }}">
 <link rel="stylesheet" href="{{ asset("css/pages/forums/forms/forum.css") }}">
 
 <div class="styled-form-container">
-    <form class="styled-form label-left" method="post" action=" {{ route('forum.forms.edit.handle', ["id" => $id]) }}">
+    <form class="styled-form label-left"
+          method="post"
+          action="{{ $route }}">
         @csrf
+        @method($method)
+
+        <input type="number" name="forum_id" value="{{ $forum_id }}" hidden>
 
         <label for="title">Title</label><br>
         <input type="text" name="title" id="title" value="{{ $title }}"><br>
 
-        @include('objects.forms.bbcode', ["label" => "Subtitle", "type"=> "subtitle", "value" => $subtitle])
-        @include('objects.forms.bbcode', ["label" => "Description", "type"=> "description", "value" => $description])
-        @include('objects.forms.asset', ["label" => "Forum image", "type"=> "image"])
+        @include('objects.forms.bbcode', ["label" => "Content", "type"=> "content", "value" => $content])
+
+        @if(\App\Models\User::AuthUser()->hasPrivilegeByString("FEATURED_EDIT"))
+            @include('objects.forms.asset', ["label" => "Banner image", "type"=> "image"])
+        @endif
 
         <div class="flex-row">
             <div id="forum-cloaks" class="dropdown-holder">
                 <label id="forum-dropdown-cloaks-btn" class="form-btn dropdown-button" onclick="cloaks()">Assign cloaks</label>
                 <div id="forum-dropdown-cloaks-content" class="hidden dropdown-content flex-column" style="margin-top: 1em">
-                    @foreach(\App\Models\Privilege::getAllForumCloaks() as $cloak)
+                    @foreach(\App\Models\Privilege::getAllThreadCloaks() as $cloak)
                         <label><input type="checkbox" name="{{ $cloak->name }}" value="{{ $cloak->name }}"
-                              @if($forum != null && $forum->hasCloak($cloak->name))
-                                  checked="checked"
-                                @endif
-                            >{{ $cloak->name()}}</label>
+                                      @if($thread != null && $thread->hasCloak($cloak->name))
+                                          checked="checked"
+                                @endif>{{ $cloak->name()}}</label>
                     @endforeach
                 </div>
             </div>
@@ -46,12 +35,11 @@ use \App\Models\Forum;
             <div id="forum-locks" class="dropdown-holder">
                 <label id="forum-dropdown-locks-btn" class="form-btn dropdown-button" onclick="locks()">Assign locks</label>
                 <div id="forum-dropdown-locks-content" class="hidden dropdown-content flex-column" style="margin-top: 1em">
-                    @foreach(\App\Models\Privilege::getAllForumLocks() as $lock)
+                    @foreach(\App\Models\Privilege::getAllThreadLocks() as $lock)
                         <label><input type="checkbox" name="{{ $lock->name }}" value="{{ $lock->name }}"
-                            @if($forum != null && $forum->hasLock($lock->name))
-                                checked="checked"
-                            @endif
-                            >{{ $lock->name()}}</label>
+                                      @if($thread != null && $thread->hasLock($lock->name))
+                                          checked="checked"
+                                @endif>{{ $lock->name()}}</label>
                     @endforeach
                 </div>
             </div>

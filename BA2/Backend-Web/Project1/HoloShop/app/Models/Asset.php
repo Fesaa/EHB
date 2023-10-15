@@ -48,7 +48,7 @@ class Asset extends Model
         return $asset;
     }
 
-    public static function fromData(UploadedFile $file): Asset {
+    public static function fromFile(UploadedFile $file): Asset {
         $data = base64_encode(file_get_contents($file));
         $asset = Asset::where(["data" => $data])->first();
         if ($asset == null) {

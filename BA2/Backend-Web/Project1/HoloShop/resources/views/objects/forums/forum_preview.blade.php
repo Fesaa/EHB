@@ -11,7 +11,7 @@
         <img src="{{ $forum->image() }}"  alt="forums-image">
         <div class="flex-column">
             <div class="forum-preview-title">
-                <a class="coloured-link" href="{{ route('forum.page', ["id" => $forum->id]) }}">
+                <a class="coloured-link" href="{{ route('forums.show', ["forum" => $forum->id]) }}">
                     {{ $forum->title }}
                 </a>
             </div>
@@ -33,7 +33,7 @@
             <img src="{{ $profile->profilePicture() }}" alt="pfp">
             <div class="flex-column">
                 <div class="forum-preview-title limit-chars">
-                    <a class="coloured-link" href=" {{ route('forum.thread', ["id" => $thread->id]) }}">
+                    <a class="coloured-link" href=" {{ route('threads.show', ["thread" => $thread->id]) }}">
                         {{ $thread->title }}
                     </a>
                 </div>
@@ -44,6 +44,4 @@
             </div>
         </div>
     @endif
-
-
 </div>

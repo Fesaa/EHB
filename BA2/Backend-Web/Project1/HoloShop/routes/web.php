@@ -7,6 +7,8 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\ThreadControllerr;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\isAuthenticated;
 use App\Http\Middleware\isStaff;
@@ -33,6 +35,14 @@ Route::get('/404', function() {
     return view('pages.status.404');
 })->name('404');
 
+
+Route::resource('forums', ForumController::class);
+Route::resource('threads', ThreadController::class);
+
+
+
+
+
 // Profile routes
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('/members', [UserController::class, 'members'])->name('members');
@@ -50,18 +60,6 @@ Route::prefix('/account')
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('.profile');
     Route::post('/profile', [ProfileController::class, 'handle'])->name('.profile.update');
-    });
-
-// Forum routes
-Route::prefix('/forum')
-    ->name('forum.')
-    ->group(function () {
-        Route::get('/', [ForumController::class, 'index'])->name('index');
-        Route::get('/{id}', [ForumController::class, 'forum'])->name('page');
-        Route::get('/edit/{id}', [ForumController::class, 'edit'])->name('forms.edit');
-        Route::post('/edit/{id}', [ForumController::class, 'updateForum'])->name('forms.edit.handle');
-
-        Route::get('thread/{id}', [ForumController::class, 'thread'])->name('thread');
     });
 
 // Auth routes

@@ -8,13 +8,13 @@
 
 @section('main-content')
     <ul id="forums-list">
-    @if(sizeof($forums) > 0)
-        @foreach($forums as $forum)
-            <li>@include('objects.forums.forum_preview', ['forum' => $forum])</li>
-        @endforeach
-    @else
-        <h1>There are no forums!</h1>
-    @endif
+        @if(sizeof($forums) > 0)
+            @foreach($forums as $forum)
+                <li>@include('objects.forums.forum_preview', ['forum' => $forum])</li>
+            @endforeach
+        @else
+            <h1>There are no forums!</h1>
+        @endif
         @auth()
             @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("FORUM_CREATE")))
                 <li>
@@ -22,13 +22,19 @@
                         <button id="forum-dropdown-btn" class="form-btn dropdown-button">Create new forum</button>
                     </div>
                     <div id="forum-dropdown-content" class="hidden dropdown-content">
-                        @include('objects.forms.forum', ["forum" => null, "id" => $forum->id + 1])
+                        @include('pages.forums.forms.base', [
+                                "method" => "post",
+                                "route" => route('forums.store'),
+                                "forum" => null,
+                                "title" => "",
+                                "subtitle" => "",
+                                "description" => "",
+                            ])
                     </div>
                 </li>
             @endif
         @endauth
     </ul>
-
     <script>
         const button = document.getElementById('forum-dropdown-btn');
         const dropdownContent = document.getElementById('forum-dropdown-content');
@@ -50,7 +56,6 @@
             }
         });
     </script>
-
 @endsection
 
 @section('errors-title')

@@ -151,13 +151,13 @@ class ProfileController extends Controller
         if ($pfp_url != null) {
             $profile->pfp_asset_id = Asset::fromURL($pfp_url)->id;
         } elseif ($pfp_file != null) {
-            $profile->pfp_asset_id = Asset::fromData($pfp_file)->id;
+            $profile->pfp_asset_id = Asset::fromFile($pfp_file)->id;
         }
 
         if ($banner_url != null) {
             $profile->banner_asset_id = Asset::fromURL($banner_url)->id;
         } elseif ($banner_file != null) {
-            $profile->banner_asset_id = Asset::fromData($banner_file)->id;
+            $profile->banner_asset_id = Asset::fromFile($banner_file)->id;
         }
 
         $profile->save();
