@@ -20,7 +20,7 @@ use App\Models\User;
                 </div>
             </div>
         </div>
-        <div id="forum-threads" class="float">
+        <div id="forum-threads" class="flex-column">
             @php
             $threads = Thread::getVisibleThreads(User::AuthUser(), $forum->id)
             @endphp

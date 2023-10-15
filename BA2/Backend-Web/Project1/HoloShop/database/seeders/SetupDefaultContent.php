@@ -45,7 +45,7 @@ Fast forward to today, and I can proudly say that my relationship with my parent
 
         $APPLYING_FOR_STAFF = Thread::factory()->create([
             'forum_id' => $FAQ->id,
-            'user_id' => 2,
+            'user_id' => 1,
             'title' => 'Applying for staff',
             'content' => "[center][size=4][color=#003366]🌐 Forum Moderation Application 🌐[/color][/size][/center]
 
@@ -68,7 +68,7 @@ Your dedication helps us keep our community respectful. Contact [color=#003399]C
 Thank you for making our forum a great place!
 
 Best regards,
-[Your Forum Name] Team",
+HoloShop Team",
         ]);
     }
 }

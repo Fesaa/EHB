@@ -1,0 +1,14 @@
+#thread-holder {
+    justify-content: space-between;
+}
+
+#thread-main {
+}
+
+#thread-title {
+    text-align: center;
+}
+
+#thread-description {
+    padding: 1em 5em;
+}

@@ -58,6 +58,8 @@ Route::prefix('/forum')
     ->group(function () {
         Route::get('/', [ForumController::class, 'index'])->name('index');
         Route::get('/{id}', [ForumController::class, 'forum'])->name('page');
+
+        Route::get('thread/{id}', [ForumController::class, 'thread'])->name('thread');
     });
 
 // Auth routes

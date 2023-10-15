@@ -30,7 +30,7 @@
             <img src="{{ $profile->profilePicture() }}" alt="pfp">
             <div class="flex-column">
                 <div class="forum-preview-title limit-chars">
-                    <a class="coloured-link" href="">
+                    <a class="coloured-link" href=" {{ route('forum.thread', ["id" => $thread->id]) }}">
                         {{ $thread->title }}
                     </a>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Helper;
 
 use App\Models\Asset;
 use DateTime;
+use PheRum\BBCode\BBCodeParser;
 use PheRum\BBCode\Facades\BBCode;
 
 class Formatter
@@ -13,7 +14,15 @@ class Formatter
     {
         $content = preg_replace('/<script>.*<\/script>/s', '', $content);
         $content = static::replaceAssetTags($content);
+        $content = str_replace("\n", '<br>', $content);
         return BBCode::parse($content);
+    }
+
+    public static function applyTitle(string $content): string
+    {
+        $parser = new BBCodeParser();
+        $content = preg_replace('/<script>.*<\/script>/s', '', $content);
+        return $parser->only('size', 'bold', 'italic', 'color', 'center', 'underline')->parse($content);
     }
 
     private static function replaceAssetTags($content) {
@@ -70,6 +79,10 @@ class Formatter
                     $result .= ' ';
                 }
                 $result .= $minutesAgo . ($minutesAgo == 1 ? ' minute' : ' minutes');
+            }
+
+            if ($result == '') {
+                return 'Just now';
             }
 
             return $result . ' ago';

@@ -37,6 +37,8 @@
     margin-top: 5em;
     width: 85%;
     align-self: center;
+
+    justify-content: space-between;
 }
 
 

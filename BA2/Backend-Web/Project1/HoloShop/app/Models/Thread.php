@@ -53,6 +53,11 @@ class Thread extends Model
         return Formatter::apply($this->content);
     }
 
+    public function title()
+    {
+        return Formatter::applyTitle($this->title);
+    }
+
     /**
      * @return Post[]
      */
@@ -91,6 +96,10 @@ class Thread extends Model
             }
         }
         return $visible;
+    }
+
+    public static function getThread(int $id) {
+        return static::with('cloaks')->where(['id' => $id])->first();
     }
 
     // TODO: Check functionally after posts are implemented
