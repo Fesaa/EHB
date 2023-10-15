@@ -1,30 +1,30 @@
 
-.forum-preview {
+.thread-preview {
     justify-content: space-between;
 }
 
-.forum-preview-info {
+.thread-preview-info {
     padding: 1em;
 }
 
-.forum-preview-info > img {
+.thread-preview-info > img {
     width: 64px;
     height: 64px;
     border-radius: 2em;
 }
 
-.forum-preview-info > div {
+.thread-preview-info > div {
     justify-content: center;
     margin-left: 1em;
 }
 
-.forum-preview-title {
+.thread-preview-title {
     font-weight: bolder;
     font-size: larger;
     padding-bottom: 5px;
 }
 
-.forum-preview-desc {
+.thread-preview-desc {
     font-size: smaller;
 }
 

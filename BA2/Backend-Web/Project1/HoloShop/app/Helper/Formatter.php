@@ -3,6 +3,7 @@
 namespace App\Helper;
 
 use App\Models\Asset;
+use DateTime;
 use PheRum\BBCode\Facades\BBCode;
 
 class Formatter
@@ -45,5 +46,33 @@ class Formatter
         }, $content);
 
         return $content;
+    }
+
+    public static function timeAgo(DateTime $dateTime) {
+        $now = new DateTime();
+        $interval = $now->diff($dateTime);
+
+        if ($interval->d > 0) {
+            $daysAgo = $interval->d;
+            return $daysAgo . ($daysAgo == 1 ? ' day' : ' days') . ' ago';
+        } else {
+            $hoursAgo = $interval->h;
+            $minutesAgo = $interval->i;
+
+            $result = '';
+
+            if ($hoursAgo > 0) {
+                $result .= $hoursAgo . ($hoursAgo == 1 ? ' hour' : ' hours');
+            }
+
+            if ($minutesAgo > 0) {
+                if ($hoursAgo > 0) {
+                    $result .= ' ';
+                }
+                $result .= $minutesAgo . ($minutesAgo == 1 ? ' minute' : ' minutes');
+            }
+
+            return $result . ' ago';
+        }
     }
 }

@@ -85,4 +85,13 @@ class Forum extends Model
         return static::where(["id" => $id])->first();
     }
 
+    public function threads() {
+        return $this->hasMany(Thread::class, 'forum_id');
+    }
+
+    public function getLatestThread()
+    {
+        return $this->threads()->orderBy('created_at', 'desc')->first();
+    }
+
 }
