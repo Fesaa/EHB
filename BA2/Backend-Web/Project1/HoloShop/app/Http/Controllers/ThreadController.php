@@ -6,6 +6,7 @@ use App\Models\Asset;
 use App\Models\Privilege;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ThreadController extends Controller
@@ -59,33 +60,7 @@ class ThreadController extends Controller
         $thread->title = $request->input('title');
         $thread->content = $request->input('content');
         $thread->user_id = User::AuthUser()->id;
-        if ($request->get('image-url') != null) {
-            $thread->image_id = Asset::fromURL($request->get('image-url'))->id;
-        } elseif ($request->get('image-file') != null) {
-            $thread->image_id = Asset::fromFile($request->file('image-file'))->id;
-        }
-
-        $locks = Privilege::getAllThreadLocks();
-        $cloaks = Privilege::getAllThreadCloaks();
-        foreach ($locks as $lock) {
-            if ($request->has($lock->name)) {
-                $thread->locks()->attach($lock->id);
-            } else {
-                $thread->locks()->detach($lock->id);
-            }
-        }
-
-        foreach ($cloaks as $cloak) {
-            if ($request->has($cloak->name)) {
-                $thread->cloaks()->attach($cloak->id);
-            } else {
-                $thread->cloaks()->detach($cloak->id);
-            }
-        }
-
-        $thread->save();
-
-        return redirect()->route('threads.show', $thread->id);
+        return $this->updateThreadFromRequest($request, $thread);
     }
 
     /**
@@ -158,14 +133,27 @@ class ThreadController extends Controller
             return redirect()->route('home');
         }
 
-        if ($request->get('title') != null) {
-            $thread->title = $request->input('title');
-        }
+        $thread->title = $request->input('title');
+        $thread->content = $request->input('content');
 
-        if ($request->get('content') != null) {
-            $thread->content = $request->input('content');
-        }
+        return $this->updateThreadFromRequest($request, $thread);
+    }
 
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+
+    /**
+     * @param Request $request
+     * @param Thread $thread
+     * @return RedirectResponse
+     */
+    private function updateThreadFromRequest(Request $request, Thread $thread): RedirectResponse
+    {
         if ($request->get('image-url') != null) {
             $thread->image_id = Asset::fromURL($request->get('image-url'))->id;
         } elseif ($request->get('image-file') != null) {
@@ -174,7 +162,6 @@ class ThreadController extends Controller
 
         $locks = Privilege::getAllThreadLocks();
         $cloaks = Privilege::getAllThreadCloaks();
-
         foreach ($locks as $lock) {
             if ($request->has($lock->name)) {
                 $thread->locks()->attach($lock->id);
@@ -194,13 +181,5 @@ class ThreadController extends Controller
         $thread->save();
 
         return redirect()->route('threads.show', $thread->id);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

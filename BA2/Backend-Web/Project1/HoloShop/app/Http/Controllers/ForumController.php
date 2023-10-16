@@ -6,6 +6,7 @@ use App\Models\Asset;
 use App\Models\Forum;
 use App\Models\Privilege;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -61,36 +62,7 @@ class ForumController extends Controller
         ]);
 
         $forum = new Forum();
-        $forum->title = $request->get('title');
-        $forum->subtitle = $request->get('subtitle');
-        $forum->description = $request->get('description');
-        if ($request->get('image-url') != null) {
-            $forum->image_id = Asset::fromURL($request->get('image-url'))->id;
-        } elseif ($request->get('image-file') != null) {
-            $forum->image_id = Asset::fromFile($request->file('image-file'))->id;
-        }
-
-        $locks = Privilege::getAllForumLocks();
-        $cloaks = Privilege::getAllForumCloaks();
-        foreach ($locks as $lock) {
-            if ($request->has($lock->name)) {
-                $forum->locks()->attach($lock->id);
-            } else {
-                $forum->locks()->detach($lock->id);
-            }
-        }
-
-        foreach ($cloaks as $cloak) {
-            if ($request->has($cloak->name)) {
-                $forum->cloaks()->attach($cloak->id);
-            } else {
-                $forum->cloaks()->detach($cloak->id);
-            }
-        }
-
-        $forum->save();
-
-        return redirect()->route('forums.show', ['forum' => $forum->id]);
+        return $this->updateForumFromRequest($request, $forum);
     }
 
     /**
@@ -142,9 +114,9 @@ class ForumController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            "title" => "nullable|string",
-            "subtitle" => "nullable|string",
-            "description" => "nullable|string",
+            "title" => "required|string",
+            "subtitle" => "required|string",
+            "description" => "required|string",
             'image-url' => "nullable|url",
             'image-file' => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
@@ -162,17 +134,29 @@ class ForumController extends Controller
             return redirect()->route('forums.index');
         }
 
-        if ($request->get('title') != null) {
-            $forum->title = $request->get('title');
-        }
+        return $this->updateForumFromRequest($request, $forum);
+    }
 
-        if ($request->get('subtitle') != null) {
-            $forum->subtitle = $request->get('subtitle');
-        }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 
-        if ($request->get('description') != null) {
-            $forum->description = $request->get('description');
-        }
+    /**
+     * @param Request $request
+     * @param Forum $forum
+     * @return RedirectResponse
+     */
+    private function updateForumFromRequest(Request $request, Forum $forum): RedirectResponse
+    {
+        $forum->title = $request->get('title');
+
+        $forum->subtitle = $request->get('subtitle');
+
+        $forum->description = $request->get('description');
 
         if ($request->get('image-url') != null) {
             $forum->image_id = Asset::fromURL($request->get('image-url'))->id;
@@ -201,13 +185,5 @@ class ForumController extends Controller
         $forum->save();
 
         return redirect()->route('forums.show', ['forum' => $forum->id]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

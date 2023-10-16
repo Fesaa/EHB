@@ -9,29 +9,6 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -105,26 +82,11 @@ class ProfileController extends Controller
         }
 
         $profile = $user->profile();
-
-        if ($request->get('pronouns') != null) {
-            $profile->pronouns = $request->get('pronouns');
-        }
-
-        if ($request->get('aboutme') != null) {
-            $profile->bio = $request->get('aboutme');
-        }
-
-        if ($request->get('birthday') != null) {
-            $profile->birthday = $request->get('birthday');
-        }
-
-        if ($request->get('title') != null) {
-            $profile->title = $request->get('title');
-        }
-
-        if ($request->get('location') != null) {
-            $profile->location = $request->get('location');
-        }
+        $profile->pronouns = $request->get('pronouns');
+        $profile->bio = $request->get('aboutme');
+        $profile->birthday = $request->get('birthday');
+        $profile->title = $request->get('title');
+        $profile->location = $request->get('location');
 
         if ($request->file('pfp-url') != null) {
             $profile->pfp_asset_id = Asset::fromURL($request->file('pfp-url'))->id;
@@ -134,14 +96,6 @@ class ProfileController extends Controller
 
         $user->save();
         $profile->save();
-        return redirect()->route('profiles.show', ['profiles' => $user->id]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('profiles.show', ['profile' => $user->id]);
     }
 }
