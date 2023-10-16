@@ -133,28 +133,52 @@ class SetupPrivileges extends Seeder
         ]);
 
         Privilege::factory()->create([
+            'name' => 'FORUM_LOCK',
+            'description' => 'Lock forums',
+            'value' => 1 << 20,
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'FORUM_CLOAK',
+            'description' => 'Lock forums',
+            'value' => 1 << 21,
+        ]);
+
+        Privilege::factory()->create([
             'name' => 'THREAD_EDIT',
             'description' => 'Edit thread contents from other users',
-            'value' => 1 << 20
+            'value' => 1 << 22
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'THREAD_LOCK',
+            'description' => 'Lock threads',
+            'value' => 1 << 23,
+        ]);
+
+        Privilege::factory()->create([
+            'name' => 'THREAD_CLOAK',
+            'description' => 'Lock threads',
+            'value' => 1 << 24,
         ]);
 
         Privilege::factory()->create([
             'name' => 'POST_EDIT',
             'description' => 'Edit post contents from other users',
-            'value' => 1 << 21
+            'value' => 1 << 25
         ]);
 
 
         Privilege::factory()->create([
             'name' => 'TITLE_EDIT',
             'description' => 'Edit own title',
-            'value' => 1 << 25
+            'value' => 1 << 26
         ]);
 
         Privilege::factory()->create([
             'name' => 'NOT_GLOBAL_SITE',
             'description' => 'Used to ban members',
-            'value' => 1 << 26
+            'value' => 1 << 27
         ]);
 
 

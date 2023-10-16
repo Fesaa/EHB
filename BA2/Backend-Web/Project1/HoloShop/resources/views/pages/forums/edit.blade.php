@@ -8,6 +8,8 @@
     "title" => $forum->title,
     "subtitle" => $forum->subtitle,
     "description" => $forum->description,
+    "cloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_CLOAK"),
+    "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_LOCK"),
 ])
 @endsection
 

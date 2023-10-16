@@ -56,6 +56,8 @@
                     "thread" => null,
                     "title" => "",
                     "content" => "",
+                    "cloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_CLOAK"),
+                    "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_LOCK"),
                     ])
                 </div>
 

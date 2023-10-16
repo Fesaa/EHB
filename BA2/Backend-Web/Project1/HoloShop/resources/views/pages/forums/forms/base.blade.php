@@ -16,29 +16,33 @@
         @include('objects.forms.asset', ["label" => "Forum image", "type"=> "image"])
 
         <div class="flex-row">
-            <div id="forum-cloaks" class="dropdown-holder">
-                <label id="forum-dropdown-cloaks-btn" class="form-btn dropdown-button" onclick="cloaks()">Assign cloaks</label>
-                <div id="forum-dropdown-cloaks-content" class="hidden dropdown-content flex-column" style="margin-top: 1em">
-                    @foreach(\App\Models\Privilege::getAllForumCloaks() as $cloak)
-                        <label><input type="checkbox" name="{{ $cloak->name }}" value="{{ $cloak->name }}"
-                              @if($forum != null && $forum->hasCloak($cloak->name))
-                                  checked="checked"
-                              @endif>{{ $cloak->name()}}</label>
-                    @endforeach
+            @if($cloaks)
+                <div id="forum-cloaks" class="dropdown-holder">
+                    <label id="forum-dropdown-cloaks-btn" class="form-btn dropdown-button" onclick="cloaks()">Assign cloaks</label>
+                    <div id="forum-dropdown-cloaks-content" class="hidden dropdown-content flex-column" style="margin-top: 1em">
+                        @foreach(\App\Models\Privilege::getAllForumCloaks() as $cloak)
+                            <label><input type="checkbox" name="{{ $cloak->name }}" value="{{ $cloak->name }}"
+                                          @if($forum != null && $forum->hasCloak($cloak->name))
+                                              checked="checked"
+                                    @endif>{{ $cloak->name()}}</label>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
 
-            <div id="forum-locks" class="dropdown-holder">
-                <label id="forum-dropdown-locks-btn" class="form-btn dropdown-button" onclick="locks()">Assign locks</label>
-                <div id="forum-dropdown-locks-content" class="hidden dropdown-content flex-column" style="margin-top: 1em">
-                    @foreach(\App\Models\Privilege::getAllForumLocks() as $lock)
-                        <label><input type="checkbox" name="{{ $lock->name }}" value="{{ $lock->name }}"
-                              @if($forum != null && $forum->hasLock($lock->name))
-                                  checked="checked"
-                              @endif>{{ $lock->name()}}</label>
-                    @endforeach
+            @if($locks)
+                <div id="forum-locks" class="dropdown-holder">
+                    <label id="forum-dropdown-locks-btn" class="form-btn dropdown-button" onclick="locks()">Assign locks</label>
+                    <div id="forum-dropdown-locks-content" class="hidden dropdown-content flex-column" style="margin-top: 1em">
+                        @foreach(\App\Models\Privilege::getAllForumLocks() as $lock)
+                            <label><input type="checkbox" name="{{ $lock->name }}" value="{{ $lock->name }}"
+                                          @if($forum != null && $forum->hasLock($lock->name))
+                                              checked="checked"
+                                    @endif>{{ $lock->name()}}</label>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <br><br><br>
         <input type="submit" value="Save" class="styled-form-confirm">

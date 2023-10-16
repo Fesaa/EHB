@@ -23,6 +23,7 @@ class SetupDefaultAccounts extends Seeder
             'email' => 'founder@localhost',
             'password' => bcrypt('password'),
         ]);
+        $admin_account->populateFields();
 
         $admin_account->roles()->attach($ADMIN);
         $admin_account->roles()->attach($STAFF);
@@ -32,6 +33,7 @@ class SetupDefaultAccounts extends Seeder
             'email' => 'moderator@localhost',
             'password' => bcrypt('password'),
         ]);
+        $moderator_account->populateFields();
 
         $moderator_account->roles()->attach($MODERATOR);
         $moderator_account->roles()->attach($STAFF);
@@ -41,6 +43,7 @@ class SetupDefaultAccounts extends Seeder
             'email' => 'admin@ehb.be',
             'password' => bcrypt('Password!124'),
         ]);
+        $ehb_account->populateFields();
 
         $ehb_account->roles()->attach($ADMIN);
         $ehb_account->roles()->attach($STAFF);
@@ -62,6 +65,7 @@ class SetupDefaultAccounts extends Seeder
                 'email' => $email,
                 'password' => $password,
             ]);
+            $user->populateFields();
 
             $user->roles()->attach($MEMBER);
 

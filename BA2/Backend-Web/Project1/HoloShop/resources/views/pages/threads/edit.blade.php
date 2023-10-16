@@ -8,6 +8,8 @@
     "thread" => $thread,
     "title" => $thread->title,
     "content" => $thread->content,
+    "cloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("THREAD_CLOAK"),
+    "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("THREAD_LOCK"),
 ])
 @endsection
 

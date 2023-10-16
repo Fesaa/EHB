@@ -61,6 +61,8 @@
                     "route" => route('posts.store'),
                     "thread_id" => $thread->id,
                     "content" => "",
+                    "cloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("THREAD_CLOAK"),
+                    "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("THREAD_LOCK"),
                     ])
                 </div>
 

@@ -51,7 +51,7 @@ class User extends Authenticatable
      */
     private mixed $roles;
 
-    private Role $highestRole;
+    private Role|null $highestRole;
 
     private Profile $profile;
 

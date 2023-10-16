@@ -16,6 +16,10 @@ class SetupDefaultProfiles extends Seeder
         $moderator = User::where(['name' => 'Rebecca'])->first();
         $ehb = User::where(['name' => 'admin'])->first();
 
+        $founder->populateFields();
+        $moderator->populateFields();
+        $ehb->populateFields();
+
         $profile = $founder->profile();
         $profile->title = 'Founder';
         $profile->pfp_asset_id = 1;
