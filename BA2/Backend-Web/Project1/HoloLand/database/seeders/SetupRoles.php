@@ -41,6 +41,11 @@ class SetupRoles extends Seeder
         $THREAD_EDIT = Privilege::where(['name' => "THREAD_EDIT"])->first();
         $POST_EDIT = Privilege::where(['name' => "POST_EDIT"])->first();
 
+        $FORUM_CLOAK_STAFF = Privilege::where(['name' => "FORUM_CLOAK_STAFF"])->first();
+        $FORUM_LOCK_STAFF = Privilege::where(['name' => "FORUM_LOCK_STAFF"])->first();
+        $THREAD_CLOAK_STAFF = Privilege::where(['name' => "THREAD_CLOAK_STAFF"])->first();
+        $THREAD_LOCK_STAFF = Privilege::where(['name' => "THREAD_LOCK_STAFF"])->first();
+
         $TITLE_EDIT = Privilege::where(['name' => "TITLE_EDIT"])->first();
         $NOT_GLOBAL_SITE = Privilege::where(['name' => "NOT_GLOBAL_SITE"])->first();
 
@@ -57,7 +62,7 @@ class SetupRoles extends Seeder
                 $DASHBOARD_FEATURED->value | $FEATURED_EDIT->value |
                 $DASHBOARD_MEMBERS->value | $MEMBERS_EDIT_PROFILE->value | $MEMBERS_EDIT_ROLES->value |
                 $DASHBOARD_PUNISHMENTS->value | $PUNISHMENTS_ISSUE->value | $FORUM_CREATE->value | $FORUM_EDIT->value |
-                $THREAD_EDIT->value | $POST_EDIT->value
+                $THREAD_EDIT->value | $POST_EDIT->value | $FORUM_CLOAK_STAFF->value | $FORUM_LOCK_STAFF->value
         ]);
 
         Role::factory()->create([
@@ -70,6 +75,7 @@ class SetupRoles extends Seeder
                 $DASHBOARD_LOGS->value | $LOGS_MODERATION->value | $LOGS_POSTS->value | $LOGS_ACTIVITY->value |
                 $DASHBOARD_MEMBERS->value | $MEMBERS_EDIT_PROFILE->value |
                 $DASHBOARD_PUNISHMENTS->value | $PUNISHMENTS_ISSUE->value | $THREAD_EDIT->value | $POST_EDIT->value
+
         ]);
 
         Role::factory()->create([
@@ -78,7 +84,7 @@ class SetupRoles extends Seeder
             'title' => 'Staff',
             'colour' => null,
             'weight' => 500,
-            'privilege' => $TITLE_EDIT->value,
+            'privilege' => $TITLE_EDIT->value | $THREAD_CLOAK_STAFF->value | $THREAD_LOCK_STAFF->value,
         ]);
 
         Role::factory()->create([

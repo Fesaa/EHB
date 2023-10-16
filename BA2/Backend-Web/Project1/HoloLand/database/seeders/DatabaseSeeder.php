@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             SetupDefaultAssets::class,
             SetupDefaultAccounts::class,
             SetupDefaultProfiles::class,
-            SetupDefaultContent::class,
+            SetupForum::class,
         ]);
     }
 }

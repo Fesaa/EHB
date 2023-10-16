@@ -9,6 +9,7 @@
         <li class="sidebar-button"><a href="{{ route('whatsnew') }}">What's new</a></li>
         <li class="sidebar-button"><a href="{{ route('forums.index') }}">Forums</a></li>
         <li class="sidebar-button"><a href="{{ route('users.index') }}">Members</a></li>
+        <li class="sidebar-button"><a href="{{ route('threads.show', 7) }}">Rules</a></li>
         <li class="no-hover"></li>
         <li class="no-hover"></li>
         <li class="no-hover"></li>
