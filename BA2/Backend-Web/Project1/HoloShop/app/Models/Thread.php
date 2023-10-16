@@ -147,4 +147,28 @@ class Thread extends Model
     public function hasCloak(string $name): bool {
         return $this->cloaks()->where(["name" => $name])->first() != null;
     }
+
+    public function canPostOn(User|null $user): bool
+    {
+        if ($user == null) {
+            return false;
+        }
+
+        if (!$this->canSee($user)) {
+            return false;
+        }
+
+        $locks = $this->locks()->get();
+
+        if ($locks->count() == 0) {
+            return true;
+        }
+
+        foreach ($locks as $lock) {
+            if ($user->hasPrivilege($lock->value)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

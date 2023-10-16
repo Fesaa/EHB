@@ -53,4 +53,9 @@ class Post extends Model
 
         return $user->hasPrivilege(Privilege::privilegeValueOf("POST_EDIT"));
     }
+
+    public static function getPost($id)
+    {
+        return Post::where('id', $id)->first();
+    }
 }

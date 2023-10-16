@@ -12,5 +12,5 @@
 @endsection
 
 @section('errors-title')
-    Couldn't create thread
+    Couldn't edit thread
 @endsection

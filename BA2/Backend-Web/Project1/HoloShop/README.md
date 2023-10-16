@@ -14,6 +14,7 @@ These are issues that I found while playing around, and hadn't have time to fix 
 - `/admin/logs` loads extremely slow- find new image
 - `/admin/logs/*` filter isn't hold into place correctly
 - `/forum/*` description overflows if it has no spaces
+- The post editor makes the posts bigger
 
 # Extra TODO's
 These are TODO's I originally wasn't going to implement, and aren't needed. But would be fun!

@@ -41,7 +41,7 @@
                             <div class="flex-row info-row">
                                 <div class="creation-date"> {{ Formatter::date($post->created_at) }} </div>
                                 @if($post->canEdit(User::AuthUser()))
-                                    <a href="" class="clean-link">✏️</a>
+                                    <a href=" {{ route('posts.edit', ["post" => $post->id]) }} " class="clean-link">✏️</a>
                                 @endif
                             </div>
                             <div class="post-content">
@@ -50,6 +50,43 @@
                         </div>
                     </div>
                 @endforeach
+            @endif
+            @if($thread->canPostOn(User::AuthUser()))
+
+                <div class="flex-row" style="justify-content: center">
+                    <button id="post-dropdown-btn" class="form-btn dropdown-button">Create new post</button>
+                </div>
+
+                <div id="post-dropdown-content" class="hidden dropdown-content">
+                    @include('pages.posts.forms.base', [
+                    "method" => "post",
+                    "route" => route('posts.store'),
+                    "thread_id" => $thread->id,
+                    "content" => "",
+                    ])
+                </div>
+
+                <script>
+                    const button = document.getElementById('post-dropdown-btn');
+                    const dropdownContent = document.getElementById('post-dropdown-content');
+
+                    // Add a click event listener to the button
+                    button.addEventListener('click', () => {
+                        if (dropdownContent.style.display === 'none' || dropdownContent.style.display === '') {
+                            // Show the dropdown with a gradual animation
+                            dropdownContent.style.display = 'flex';
+                            setTimeout(() => {
+                                dropdownContent.style.opacity = '1';
+                            }, 10);
+                        } else {
+                            // Hide the dropdown with a gradual animation
+                            dropdownContent.style.opacity = '0';
+                            setTimeout(() => {
+                                dropdownContent.style.display = 'none';
+                            }, 300); // Adjust the duration of the animation (in milliseconds) as needed
+                        }
+                    });
+                </script>
             @endif
         </div>
     </div>
