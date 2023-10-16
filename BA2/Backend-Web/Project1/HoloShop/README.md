@@ -19,9 +19,10 @@ These are issues that I found while playing around, and hadn't have time to fix 
 # Extra TODO's
 These are TODO's I originally wasn't going to implement, and aren't needed. But would be fun!
 - Users with the `FORUMS_CREATE` privilege should get a message on the forums page to create a forum if none are present
+- Re-order ccs files
 
 # Development Standards
-These are some standars I tried to follow, or will follow/implement in my project to keep it orderly for me.
+These are some standards I tried to follow, or will follow/implement in my project to keep it orderly for me.
 
 ## Empty getters
 A getter that might return something indicating an absence should be named `get<Name>`, one that never returns null should be named `<Name>`.
@@ -29,13 +30,6 @@ I.e. `Forum#getVisibleForums` but `User#profile`
 
 ## Imports
 **Always** use imports instead of complete name spaces. In `.blade.php` files make a `@php` block at the top of the file and import there. The long stuff is just plain ugly.
-
-## Model vs Controller
-The model should implement non-static methods that provide extra data (`User#profile`) on an instance of the Mode, 
-and provide static method for database queries (`Profile#pfpAsset`). The controller should implement all routing, and post logic,
-but also updating instances of the Model. There may be a private `Controller#update` method that takes all fields and updates the model
-if the field isn't empty.
-
 
 ## Privilege Namings
 All name (keys) for privileges stored in the database should follow the following format
