@@ -148,7 +148,7 @@ class Thread extends Model
         }
 
         if ($user->id == $this->user_id) {
-            return true;
+            return $this->canPostOn($user);
         }
 
 

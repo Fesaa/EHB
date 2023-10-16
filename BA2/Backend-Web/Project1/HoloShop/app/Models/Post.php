@@ -38,6 +38,9 @@ class Post extends Model
         return $user;
     }
 
+    /**
+     * @return Thread
+     */
     public function owningThread()
     {
         return $this->thread()->first();
@@ -49,7 +52,7 @@ class Post extends Model
         }
 
         if ($user->id == $this->user_id) {
-            return true;
+            return $this->owningThread()->canPostOn($user);
         }
 
 

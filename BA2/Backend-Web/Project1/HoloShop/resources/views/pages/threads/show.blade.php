@@ -7,6 +7,7 @@
 
 @section('main-content')
     <div id="thread-holder" class="flex-column">
+        <h1 style="padding-left: 2em">{{  $thread->title }}</h1>
         <div id="thread-main" class="flex-row float shiny-bg">
             <div id="thread-owner">
                 @include('objects.profiles.small_profile', ["member" => $thread->owner(), "profile" => $thread->owner()->profile()])
@@ -17,9 +18,6 @@
                     @if($thread->canEdit(User::AuthUser()))
                         <a href="{{ route('threads.edit', $thread->id) }}" class="clean-link">✏️</a>
                     @endif
-                </div>
-                <div id="thread-title">
-                    <h1>{!!  $thread->title() !!}</h1>
                 </div>
                 <div id="thread-description">
                     {!! $thread->content() !!}
