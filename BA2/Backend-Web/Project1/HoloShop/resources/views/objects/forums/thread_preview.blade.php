@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="thread-preview-desc">
-                <a class="coloured-link" href="{{ route('profile.show', ["id" => $owner->id]) }}"> {{ $owner->name }}</a>
+                <a class="coloured-link" href="{{ route('profiles.show', ["profile" => $owner->id]) }}"> {{ $owner->name }}</a>
                 - {{ Formatter::date($thread->created_at) }}
             </div>
         </div>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="thread-preview-desc">
                     {{ Formatter::timeAgo($post->created_at) }} -
-                    <a class="coloured-link" href="{{ route('profile.show', ["id" => $owner->id]) }}"> {{ $owner->name }}</a>
+                    <a class="coloured-link" href="{{ route('profiles.show', ["id" => $owner->id]) }}"> {{ $owner->name }}</a>
                 </div>
             </div>
         </div>

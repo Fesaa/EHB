@@ -31,7 +31,7 @@
                 @if(sizeof($online) > 0)
                     @foreach($online as $activity)
                         <li><a class="clean-link"
-                               href="{{ route('profile.show', $activity->user_id) }}">{!! $activity->name() !!}</a>
+                               href="{{ route('profiles.show', $activity->user_id) }}">{!! $activity->name() !!}</a>
                         </li>
                     @endforeach
                 @else
@@ -41,15 +41,16 @@
         </div>
     </div>
 
-    @php($birthdays = \App\Http\Controllers\UserController::getTodaysBirthDays())
+    @php($birthdays = \App\Models\Profile::getTodaysBirthdays())
     @if(sizeof($birthdays) > 0)
         <div class="float shiny-bg">
             <div class="infobar-title">Birthdays</div>
             <div class="infobar-content">
                 <ul class="flat-list" style="flex-wrap: wrap; font-size: smaller">
-                    @foreach(\App\Http\Controllers\UserController::getTodaysBirthDays() as $user)
+                    @foreach($birthdays as $profile)
+                        @php($user = $profile->owningUser())
                         <li><a class="clean-link"
-                               href="{{ route('profile.show', $user->id) }}">{!! $user->colouredName() !!}</a></li>
+                               href="{{ route('profiles.show', $user->id) }}">{!! $user->colouredName() !!}</a></li>
                     @endforeach
                 </ul>
             </div>

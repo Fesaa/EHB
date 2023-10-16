@@ -12,11 +12,11 @@
         @auth()
             <li class="nav-button secondary-button"><a>Post</a></li>
             <li class="nav-button secondary-button"><a href="{{ route('logout') }}">Logout</a></li>
-            <li class="nav-button no-hover secondary-button"><a href="{{ route('account') }}">{{ User::AuthUser()->name }}</a> </li>
+            <li class="nav-button no-hover secondary-button"><a href="{{ route('users.show', User::AuthUser()->id) }}">{{ User::AuthUser()->name }}</a> </li>
         @endauth
         @guest()
             <li class="nav-button secondary-button"><a href="{{ route('login') }}">Login</a></li>
-            <li class="nav-button secondary-button"><a href="{{ route('register') }}">Register</a></li>
+            <li class="nav-button secondary-button"><a href="{{ route('users.create') }}">Register</a></li>
         @endguest
     </ul>
 </header>

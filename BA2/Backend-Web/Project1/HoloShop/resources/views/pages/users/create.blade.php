@@ -5,7 +5,7 @@
 
 @section('main-content')
     <div class="styled-form-container">
-        <form action="{{ route('register') }}" method="post" class="styled-form" >
+        <form action="{{ route('users.store') }}" method="post" class="styled-form" >
             @csrf
 
             <label for="name">Name:</label><br>

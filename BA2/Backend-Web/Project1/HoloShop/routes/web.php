@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\PostController;
@@ -9,9 +8,7 @@ use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ThreadController;
-use App\Http\Controllers\ThreadControllerr;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\isAuthenticated;
 use App\Http\Middleware\isStaff;
 use Illuminate\Support\Facades\Route;
 
@@ -41,37 +38,11 @@ Route::resource('forums', ForumController::class);
 Route::resource('threads', ThreadController::class);
 Route::resource('posts', PostController::class);
 Route::resource('profiles', ProfileController::class);
-
-
-
-
-
-// Profile routes
-Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
-Route::get('/members', [UserController::class, 'members'])->name('members');
-Route::get('/profile', [ProfileController::class, 'own'])->name('profile.own');
-
-// Account
-Route::prefix('/account')
-    ->middleware(isAuthenticated::class)
-    ->name('account')
-    ->group(function() {
-    Route::get('/', [UserController::class, 'dashboard'])->name('');
-
-    Route::get('/security', [UserController::class, 'security'])->name('.security');
-    Route::post('/security', [UserController::class, 'update'])->name('.security.update');
-    });
-
-// Auth routes
-Route::get('/login', [AuthController::class, 'show'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::post('register', [AuthController::class, 'register']);
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-
-Route::get('/ban', [AuthController::class, 'ban'])->name('ban');
+Route::resource('users', UserController::class);
+Route::get('login', [UserController::class, 'showLogin'])->name('login');
+Route::post('login', [UserController::class, 'login'])->name('login.handle');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/ban', [UserController::class, 'ban'])->name('ban');
 
 // Admin routes
 Route::prefix('/admin')

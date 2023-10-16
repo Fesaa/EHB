@@ -7,12 +7,16 @@
 
         <div class="options float">
             <ul>
-                <li class="options-list-section"><a class="clean-link" href="{{ route('account') }}">YOUR ACCOUNT</a></li>
-                <li><a href="{{ route('profile.own') }}">Your profile</a></li>
+                @php
+                $user = \App\Models\User::AuthUser();
+                $profile = $user->profile();
+                @endphp
+                <li class="options-list-section"><a class="clean-link" href="{{ route('users.show', $user->id) }}">YOUR ACCOUNT</a></li>
+                <li><a href="{{ route('profiles.show', $profile->id) }}">Your profile</a></li>
                 <li><a>Your posts</a></li>
-                <li class="options-list-section"><a class="clean-link" href="{{ route('account') }}">SETTINGS</a></li>
-                <li><a href="{{ route('account.security') }}">Security</a></li>
-                <li><a href="{{ route('profiles.show', ["profile" => \App\Models\User::AuthUser()->id]) }}">Profile</a></li>
+                <li class="options-list-section"><a class="clean-link" href="{{ route('users.show', $user->id) }}">SETTINGS</a></li>
+                <li><a href="{{ route('users.edit',$user->id) }}">Security</a></li>
+                <li><a href="{{ route('profiles.edit', ["profile" => $profile->id]) }}">Profile</a></li>
                 <li><a>Preferences</a></li>
                 <li><a href="{{ route('logout') }}">Log out</a></li>
             </ul>

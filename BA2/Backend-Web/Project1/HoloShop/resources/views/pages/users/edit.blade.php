@@ -5,8 +5,9 @@
 
 @section('form')
     <div class="styled-form-container">
-        <form class="styled-form label-left" method="post" action="{{ route('account.security.update', ["user" => $user]) }}" enctype="multipart/form-data" >
+        <form class="styled-form label-left" method="post" action="{{ route('users.update', ["user" => $user->id]) }}" enctype="multipart/form-data" >
             @csrf
+            @method('PUT')
 
             <label for="email">Email</label>
             <input type="email" name="email" id="email" value="{{ $user->email }}"><br>

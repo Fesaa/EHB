@@ -10,8 +10,12 @@ use PheRum\BBCode\Facades\BBCode;
 class Formatter
 {
 
-    public static function apply(string $content): string
+    public static function apply(string|null $content): string
     {
+        if ($content == null) {
+            return '';
+        }
+
         $content = preg_replace('/<script>.*<\/script>/s', '', $content);
         $content = static::replaceAssetTags($content);
         $content = str_replace("\n", '<br>', $content);

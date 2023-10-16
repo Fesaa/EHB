@@ -7,6 +7,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 class Profile extends Model
 {
@@ -109,5 +110,28 @@ class Profile extends Model
 
     public function formattedBio(): string {
         return Formatter::apply($this->bio);
+    }
+
+    public function owningUser(): User
+    {
+        return $this->user()->first();
+    }
+
+
+    public static function getProfile(int $id): Profile|null
+    {
+        return Profile::where('user_id', $id)->first();
+    }
+
+    /**
+     * @return Profile[]
+     */
+    public static function getTodaysBirthdays()
+    {
+        return static::whereNotNull('birthday')
+            ->get()
+            ->filter(function (Profile $profile) {
+                return $profile->isBirthday();
+            });
     }
 }

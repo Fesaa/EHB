@@ -39,7 +39,7 @@
                 </div>
                 <div class="forum-preview-desc">
                     {{ Formatter::timeAgo($thread->created_at) }} -
-                    <a class="coloured-link" href="{{ route('profile.show', ["id" => $owner->id]) }}"> {{ $owner->name }}</a>
+                    <a class="coloured-link" href="{{ route('profiles.show', ["profile" => $profile->id]) }}"> {{ $owner->name }}</a>
                 </div>
             </div>
         </div>

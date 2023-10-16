@@ -31,7 +31,7 @@ class Post extends Model
         return Formatter::apply($this->content);
     }
 
-    public function owner()
+    public function owner(): User|null
     {
         return $this->user()->first();
     }

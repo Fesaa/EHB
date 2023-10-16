@@ -2,45 +2,150 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LoginLog;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
-    public function dashboard()
-    {
-        if (!auth()->check()) {
-            return redirect()->route('login');
-        }
 
-        return view('pages.account.dashboard');
+    private readonly Role $MEMBER;
+
+    public function __construct()
+    {
+        $this->MEMBER = Role::where(['name' => 'MEMBER'])->first();
     }
 
-    public function security() {
-        if (!auth()->check()) {
-            return redirect()->route('login');
-        }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
 
-        return view('pages.forms.edit_user', [
-            'user' => User::AuthUser()
+        $users = User::all()->sortBy('created_at');
+        return view('pages.users.index', [
+            'users' => $users
         ]);
     }
 
-    public function update() {
-        if (!auth()->check()) {
-            return redirect()->route('login');
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        if (User::AuthUser() != null) {
+            return redirect()->route('home');
         }
 
-        $user = User::AuthUser();
+        return view('pages.users.create');
+    }
 
-        validator(request()->all(), [
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'user' => 'required|min:4|max:25',
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        $user = User::create([
+            'name' => request()->get('user'),
+            'email' => request()->get('email'),
+            'password' => bcrypt(request()->get('password')),
+        ]);
+
+        $user->roles()->attach($this->MEMBER);
+        $user->save();
+
+        if(auth()->attempt(request()->only('email', 'password'))) {
+            return redirect('/');
+        }
+
+        return redirect('/login')->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
+
+    /**
+     * Show the login screen
+     */
+    public function showLogin()
+    {
+        if (User::AuthUser() != null) {
+            return redirect()->route('home');
+        }
+
+        return view('pages.users.login');
+    }
+
+    /**
+     * Login the user
+     */
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if ($this->tryLogin()) {
+            return redirect('/');
+        }
+
+        return redirect('/login')->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        if (User::AuthUser()->id != $id) {
+            return redirect()->route('home');
+        }
+
+        return view('pages.users.dashboard');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        if (User::AuthUser()->id != $id) {
+            return redirect()->route('home');
+        }
+
+        return view('pages.users.edit', [
+            'user' => User::AuthUser(),
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+
+        if (User::AuthUser()->id != $id) {
+            return redirect()->route('home');
+        }
+
+        $request->validate([
             'email' => 'nullable|email',
             'old-password' => 'required|min:8|max:255',
             'password' => 'nullable|min:8|max:255',
             'password-confirm' => 'nullable|same:password'
-        ])->validate();
+        ]);
 
+        $user = User::AuthUser();
 
         if (!auth()->attempt([
             'email' => $user->email,
@@ -66,26 +171,43 @@ class UserController extends Controller
             }
         }
         $user->save();
-        return redirect()->route('account');
+        return redirect()->route('users.show', $id);
     }
 
-
-    public function members() {
-        $users = User::all()->sortBy('created_at');
-        return view('pages.members', [
-            'users' => $users
-        ]);
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 
-    public static function getTodaysBirthDays(): array {
-        $users = User::all()->sortBy('created_at');
-        $birthdays = [];
-        foreach ($users as $user) {
-            $profile = $user->profile();
-            if ($profile->isBirthday()) {
-                $birthdays[] = $user;
-            }
+    private function tryLogin(): bool {
+        if(auth()->attempt(request()->only('email', 'password'))) {
+            LoginLog::create([
+                'email' => request()->get('email'),
+                'ip_address' => request()->ip(),
+                'user_agent' => request()->userAgent(),
+                'success' => true
+            ])->save();
+            return true;
         }
-        return $birthdays;
+        LoginLog::create([
+            'email' => request()->get('email'),
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent(),
+            'success' => false
+        ])->save();
+
+        return false;
+    }
+
+    public function logout() {
+        auth()->logout();
+        return redirect('/');
+    }
+
+    public function ban() {
+        return view('pages.status.ban');
     }
 }

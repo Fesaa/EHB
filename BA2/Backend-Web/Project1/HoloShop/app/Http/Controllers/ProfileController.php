@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asset;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -37,14 +38,14 @@ class ProfileController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::where(["id" => $id])->first();
-        if ($user == null) {
+        $profile = Profile::getProfile($id);
+        if ($profile == null) {
             return redirect('/404');
         }
 
-        return view('pages.profile.show', [
-            'user' => $user,
-            'profile' => $user->profile()
+        return view('pages.profiles.show', [
+            'user' => $profile->owningUser(),
+            'profile' => $profile,
         ]);
     }
 
@@ -63,7 +64,7 @@ class ProfileController extends Controller
             return redirect()->route('home'); // TODO: Change to not allowed page
         }
 
-        return view('pages.profile.edit', [
+        return view('pages.profiles.edit', [
             'user' => User::AuthUser(),
             'profile' => User::AuthUser()->profile()
         ]);
@@ -133,7 +134,7 @@ class ProfileController extends Controller
 
         $user->save();
         $profile->save();
-        return redirect()->route('profiles.show', ['profile' => $user->id]);
+        return redirect()->route('profiles.show', ['profiles' => $user->id]);
     }
 
     /**

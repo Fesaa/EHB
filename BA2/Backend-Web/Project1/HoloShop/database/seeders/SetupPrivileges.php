@@ -98,7 +98,7 @@ class SetupPrivileges extends Seeder
 
         Privilege::factory()->create([
             'name' => 'MEMBERS_EDIT_PROFILE',
-            'description' => 'Edit members profile',
+            'description' => 'Edit members profiles',
             'value' => 1 << 14
         ]);
 
