@@ -32,13 +32,13 @@
 
             @if(sizeof($posts) > 0)
                 @foreach($posts as $post)
-                    <div class="float thread-post flex-row">
+                    <div id="thread-post-{{ $post->id }}" class="float thread-post flex-row">
                         <div class="post-owner">
                             @include('objects.profiles.small_profile', ["member" => $post->owner(), "profile" => $post->owner()->profile()])
                         </div>
                         <div class="post-content-box flex-column">
                             <div class="flex-row info-row">
-                                <div class="creation-date"> {{ Formatter::date($post->created_at) }} </div>
+                                <a class="creation-date clean-link" href="#thread-post-{{ $post->id }}"> {{ Formatter::date($post->created_at) }} </a>
                                 @if($post->canEdit(User::AuthUser()))
                                     <a href=" {{ route('posts.edit', ["post" => $post->id]) }} " class="clean-link">✏️</a>
                                 @endif

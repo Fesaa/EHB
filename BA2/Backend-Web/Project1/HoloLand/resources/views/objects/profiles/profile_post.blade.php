@@ -49,23 +49,23 @@
 
 <div class="profile-post-div flex-row">
     <img src="{{ $post->owner()->profile()->profilePicture() }}" alt="pfp">
-    <div class="profile-post-content flex-column full-flex">
+    <div id="profile-post-{{$post->id}}" class="profile-post-content flex-column full-flex">
         <div class="flex-row">
             <a class="profile-link" href="{{ route('profiles.show', $post->owner()->profile()->id) }}">{!!  $post->owner()->colouredName() !!}</a>
             <div style="margin-left: 5px; font-size: smaller">
-                 {{ \App\Helper\Formatter::timeAgo($post->created_at) }}
+                 <a class="clean-link" href="#profile-post-{{$post->id}}">{{ \App\Helper\Formatter::timeAgo($post->created_at) }}</a>
             </div>
         </div>
         <div class="profile-post-text">{!!  $post->content() !!}</div>
         <div class="profile-post-replies">
             @foreach($post->getReplies() as $reply)
-                <div class="profile-post-reply-div flex-row">
+                <div id="profile-post-{{$reply->id}}" class="profile-post-reply-div flex-row">
                     <img src="{{ $reply->owner()->profile()->profilePicture() }}" alt="pfp">
                     <div class="profile-post-content flex-column">
                         <div class="flex-row">
                             <a class="profile-link" href="{{ route('profiles.show', $reply->owner()->profile()->id) }}">{!!  $reply->owner()->colouredName() !!}</a>
                             <div style="margin-left: 5px; font-size: smaller">
-                                {{ \App\Helper\Formatter::timeAgo($reply->created_at) }}
+                                <a class="clean-link" href="#profile-post-{{$reply->id}}">{{ \App\Helper\Formatter::timeAgo($reply->created_at) }}</a>
                             </div>
                         </div>
                         <div class="profile-post-text">{!! $reply->content() !!}</div>
