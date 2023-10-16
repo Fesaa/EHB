@@ -163,6 +163,7 @@ class ForumController extends Controller
         } elseif ($request->get('image-file') != null) {
             $forum->image_id = Asset::fromFile($request->file('image-file'))->id;
         }
+        $forum->save();
 
         $locks = Privilege::getAllForumLocks();
         $cloaks = Privilege::getAllForumCloaks();
@@ -182,7 +183,6 @@ class ForumController extends Controller
             }
         }
 
-        $forum->save();
 
         return redirect()->route('forums.show', ['forum' => $forum->id]);
     }

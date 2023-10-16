@@ -159,6 +159,7 @@ class ThreadController extends Controller
         } elseif ($request->get('image-file') != null) {
             $thread->image_id = Asset::fromFile($request->file('image-file'))->id;
         }
+        $thread->save();
 
         $locks = Privilege::getAllThreadLocks();
         $cloaks = Privilege::getAllThreadCloaks();
@@ -178,7 +179,7 @@ class ThreadController extends Controller
             }
         }
 
-        $thread->save();
+
 
         return redirect()->route('threads.show', $thread->id);
     }

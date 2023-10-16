@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helper\Formatter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Thread extends Model
 {
@@ -66,9 +67,19 @@ class Thread extends Model
         return $this->posts()->get();
     }
 
+    public function replyCount(): int
+    {
+        return $this->posts()->count();
+    }
+
+    public function viewCount(): int
+    {
+        return Activity::where('url', 'like', '%/threads/' . $this->id)->count();
+    }
+
     public function canSee(User|null $user)
     {
-        $c = $this->locks->count();
+        $c = $this->cloaks->count();
         if ($user == null || $c == 0) {
             return $c == 0;
         }
@@ -88,6 +99,9 @@ class Thread extends Model
             return static::whereDoesntHave('cloaks')->where(['forum_id' => $id])->get()->sortBy('updated_at');
         }
 
+        /**
+         * @var Thread[] $threads
+         */
         $threads = static::with('cloaks')->where(['forum_id' => $id])->get()->sortBy('updated_at');
         $visible = [];
         foreach ($threads as $thread) {
@@ -109,7 +123,6 @@ class Thread extends Model
     // TODO: Check functionally after posts are implemented
     public function getLatestPost()
     {
-        return array();
         return $this->posts()->orderBy('created_at', 'desc')->first();
     }
 

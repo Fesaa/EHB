@@ -93,9 +93,32 @@ class Forum extends Model
     /**
      * @return Thread|null
      */
-    public function getLatestThread(): ?Thread
+    public function getLatestThread(User|null $user): ?Thread
     {
-        return $this->threads()->orderBy('created_at', 'desc')->first();
+        if ($user == null) {
+            return $this->threads()->whereDoesntHave('cloaks')->orderBy('created_at', 'desc')->first();
+        }
+
+        /**
+         * @var Thread|null $thread
+         */
+        $ids = [];
+        do {
+            $thread = $this->latestButNotWithID($ids);
+            if ($thread != null && $thread->canSee($user)) {
+                return $thread;
+            }
+            if ($thread != null) {
+                $ids[] = $thread->id;
+            }
+        } while ($thread != null);
+
+        return null;
+    }
+
+    private function latestButNotWithID(array $ids): Thread|null
+    {
+        return $this->threads()->whereNotIn('id', $ids)->orderBy('created_at', 'desc')->first();
     }
 
     public function canEdit(User|null $user): bool {

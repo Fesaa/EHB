@@ -4,6 +4,10 @@
     margin-bottom: 1em;
 }
 
+.thread-info {
+    padding: 1em;
+}
+
 .thread-preview-info {
     padding: 1em;
 }
@@ -12,6 +16,7 @@
     width: 64px;
     height: 64px;
     border-radius: 2em;
+    padding-left: 1em;
 }
 
 .thread-preview-info > div {
@@ -25,7 +30,7 @@
     padding-bottom: 5px;
 }
 
-.thread-preview-desc {
+.thread-preview-info > div {
     font-size: smaller;
 }
 

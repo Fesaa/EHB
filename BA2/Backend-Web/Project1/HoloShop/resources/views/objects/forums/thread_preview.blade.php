@@ -22,30 +22,23 @@
             </div>
         </div>
     </div>
-
     @php
         $post = $thread->getLatestPost();
+        if ($post == null) {
+            $post = $thread;
+        }
+        $owner = $post->owner();
+        $profile = $owner->profile();
     @endphp
-    @if($post != null)
-        @php
-            $owner = $post->owner();
-            $profile = $owner->profile();
-        @endphp
-        <div class="thread-preview-info flex-row">
-            <img src="{{ $profile->profilePicture() }}" alt="pfp">
-            <div class="flex-column">
-                <div class="thread-preview-title limit-chars">
-                    <a class="coloured-link" href="">
-                        {{ $post->title }}
-                    </a>
-                </div>
-                <div class="thread-preview-desc">
-                    {{ Formatter::timeAgo($post->created_at) }} -
-                    <a class="coloured-link" href="{{ route('profiles.show', ["id" => $owner->id]) }}"> {{ $owner->name }}</a>
-                </div>
-            </div>
+    <div class="thread-preview-info flex-row">
+        <div class="flex-column">
+            <div>Replies: <strong> {{ $thread->replyCount() }} </strong> </div>
+            <div>Views: <strong> {{ $thread->viewCount() }} </strong></div>
         </div>
-    @endif
-
-
+        <div style="padding-left: 5em" class="flex-column">
+            <div>{{ Formatter::timeAgo($post->created_at) }} <br></div>
+            <div><a class="coloured-link" href="{{ route('profiles.show', $owner->id) }}"> {{ $owner->name }}</a></div>
+        </div>
+        <img src="{{ $profile->profilePicture() }}" alt="pfp">
+    </div>
 </div>

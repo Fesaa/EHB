@@ -22,7 +22,7 @@
     </div>
 
     @php
-    $thread = $forum->getLatestThread();
+    $thread = $forum->getLatestThread(\App\Models\User::AuthUser());
     @endphp
     @if($thread != null)
         @php
