@@ -46,6 +46,25 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * @var Role[]|null
+     */
+    private mixed $roles;
+
+    private Role $highestRole;
+
+    private Profile $profile;
+
+    private bool $staff;
+
+    public function populateFields(): void
+    {
+        $this->roles = $this->roles()->get();
+        $this->profile = $this->profileSetup();
+        $this->staff = $this->hasRole('STAFF');
+        $this->highestRole = $this->roles()->orderBy('weight', 'desc')->first();
+    }
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'roles_users');
@@ -54,26 +73,19 @@ class User extends Authenticatable
     public function hasRole(string $name): bool
     {
         $name = strtoupper($name);
-        $roles = $this->roles()->get();
-        foreach ($roles as $role) {
+        foreach ($this->roles as $role) {
             if (strtoupper($role->name) == $name)
                 return true;
         }
         return false;
     }
 
-    public function hasPrivilege(int $privilege): bool {
-        // Should add caches later for performance
-        $roles = $this->roles()->get();
-        return $this->hasPriv($roles, $privilege);
-    }
-
     public function hasPrivilegeByString(string $privilege): bool {
         return $this->hasPrivilege(Privilege::privilegeValueOf($privilege));
     }
 
-    private function hasPriv($roles, int $privilege): bool {
-        foreach ($roles as $role) {
+    public function hasPrivilege(int $privilege): bool {
+        foreach ($this->roles as $role) {
             if ($role->hasPrivilege($privilege))
                 return true;
         }
@@ -83,9 +95,8 @@ class User extends Authenticatable
     public function allPrivileges(): array {
         $all = Privilege::all()->sortBy('id');
         $privileges = [];
-        $roles = $this->roles()->get();
         foreach ($all as $privilege) {
-            if ($this->hasPriv($roles, $privilege->value)) {
+            if ($this->hasPrivilege($privilege->value)) {
                 $privileges[] = $privilege;
             }
         }
@@ -93,7 +104,7 @@ class User extends Authenticatable
     }
 
     public function isStaff(): bool {
-        return $this->hasRole("STAFF");
+        return $this->staff;
     }
 
     public function isAuth(): bool {
@@ -108,7 +119,7 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function profile(): Profile {
+    private function profileSetup(): Profile {
         $profile = $this->profileLink()->first();
         if ($profile == null) {
             $profile = new Profile();
@@ -117,12 +128,16 @@ class User extends Authenticatable
         return $this->profileLink()->first();
     }
 
+    public function profile(): Profile {
+        return $this->profile;
+    }
+
     public function getHighestRole(): Role {
-        return $this->roles()->orderBy('weight', 'desc')->first();
+        return $this->highestRole;
     }
 
     public function colour(): string {
-        return $this->getHighestRole()->colour() ?? env("DEFAULT_ROLE_COLOUR", "#808080");
+        return $this->highestRole->colour() ?? env("DEFAULT_ROLE_COLOUR", "#808080");
     }
 
     public function canEdit(User $other): bool
@@ -135,7 +150,7 @@ class User extends Authenticatable
             return false;
         }
 
-        if ($this->getHighestRole()->outRanks($other->getHighestRole())) {
+        if ($this->highestRole->outRanks($other->getHighestRole())) {
             return true;
         }
 

@@ -33,7 +33,9 @@ class Post extends Model
 
     public function owner(): User|null
     {
-        return $this->user()->first();
+        $user = $this->user()->first();
+        $user->populateFields();
+        return $user;
     }
 
     public function owningThread()

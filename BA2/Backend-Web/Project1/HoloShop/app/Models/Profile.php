@@ -53,11 +53,6 @@ class Profile extends Model
         return $this->bannerAssetID()->first();
     }
 
-    private function getUser(): User|null
-    {
-        return $this->user()->first();
-    }
-
     public function profilePicture(): string {
         $default = env('DEFAULT_PFP_URL', 'https://forums.cubecraftcdn.com/xenforo/data/avatars/o/224/224741.jpg?1695386528');
         $asset = $this->getProfilePictureAsset();
@@ -105,7 +100,7 @@ class Profile extends Model
             return $this->title;
         }
 
-        return $this->getUser()->getHighestRole()->title();
+        return $this->owningUser()->getHighestRole()->title();
     }
 
     public function formattedBio(): string {
@@ -114,7 +109,9 @@ class Profile extends Model
 
     public function owningUser(): User
     {
-        return $this->user()->first();
+        $user = $this->user()->first();
+        $user->populateFields();
+        return $user;
     }
 
 
