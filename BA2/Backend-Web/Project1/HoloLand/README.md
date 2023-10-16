@@ -5,6 +5,9 @@ Holoshop
 Stuff that I've put off to work on other functionality
 - Creating new roles from the admin panel
 - Punish users & list punishments
+- Add featured switch on threads edit
+- Add change date on threads (for ordering featured page)
+- Make forums have a weight for ordering on the forums page
 
 # Known issues
 These are issues that I found while playing around, and hadn't have time to fix them then

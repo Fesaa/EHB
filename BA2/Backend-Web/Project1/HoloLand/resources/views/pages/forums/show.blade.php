@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{ asset('css/pages/forums/forum_page.css') }}">
 
 @section('main-content')
+    <p class="road-links"><a href="{{ route('forums.index') }}">Forums</a></p>
     <div id="forum-holder" class="flex-column">
         <div id="forum-info" class="float flex-row">
             <img src="{{ $forum->image() }}"  alt="forums-image">

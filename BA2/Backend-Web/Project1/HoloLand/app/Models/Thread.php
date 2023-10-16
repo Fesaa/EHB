@@ -134,6 +134,11 @@ class Thread extends Model
         return $user;
     }
 
+    public function owningForum(): Forum
+    {
+        return $this->forum()->first();
+    }
+
     public function bannerImage(): string {
         $default = env('DEFAULT_THREAD_BANNER', 'https://static.vecteezy.com/system/resources/previews/027/775/631/non_2x/sunset-in-the-field-cute-kawaii-lo-fi-background-fluffy-clouds-park-2d-cartoon-landscape-illustration-lofi-aesthetic-wallpaper-desktop-japanese-anime-scenery-dreamy-vibes-vector.jpg');
         $asset = $this->banner()->first();

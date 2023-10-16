@@ -113,3 +113,12 @@
 .shiny-bg {
     background: linear-gradient(10deg, #FFFAF0, white);
 }
+
+.road-links > a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.road-links > a:hover {
+    text-decoration: underline;
+}

@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ asset('css/pages/forums/thread_page.css') }}">
 
 @section('main-content')
+    <p class="road-links"><a href="{{ route('forums.index') }}">Forums</a> -> <a href="{{ route('forums.show', $thread->owningForum()->id) }}">{{ $thread->owningForum()->title }}</a></p>
     <div id="thread-holder" class="flex-column">
         <h1 style="padding-left: 2em">{{  $thread->title }}</h1>
         <div id="thread-main" class="flex-row float shiny-bg">
