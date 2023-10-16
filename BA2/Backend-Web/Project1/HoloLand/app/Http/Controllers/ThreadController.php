@@ -50,6 +50,7 @@ class ThreadController extends Controller
         $request->validate([
             "forum_id" => "required|integer|exists:forums,id",
             "title" => "required|string|max:255",
+            "featured" => "nullable",
             "content" => "required|string",
             'image-url' => "nullable|url",
             'image-file' => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
@@ -60,6 +61,13 @@ class ThreadController extends Controller
         $thread->title = $request->input('title');
         $thread->content = $request->input('content');
         $thread->user_id = User::AuthUser()->id;
+
+        if ($request->input('featured') != null) {
+            $thread->featured = $request->input('featured');
+        } else {
+            $thread->featured = false;
+        }
+
         return $this->updateThreadFromRequest($request, $thread);
     }
 
@@ -119,6 +127,7 @@ class ThreadController extends Controller
         $request->validate([
             "forum_id" => "required|integer|exists:forums,id",
             "title" => "nullable|string|max:255",
+            "featured" => "nullable",
             "content" => "nullable|string",
             'image-url' => "nullable|url",
             'image-file' => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
@@ -135,6 +144,12 @@ class ThreadController extends Controller
 
         $thread->title = $request->input('title');
         $thread->content = $request->input('content');
+
+        if ($request->input('featured') != null) {
+            $thread->featured = $request->input('featured');
+        } else {
+            $thread->featured = false;
+        }
 
         return $this->updateThreadFromRequest($request, $thread);
     }
