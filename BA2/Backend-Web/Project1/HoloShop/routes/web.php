@@ -40,6 +40,7 @@ Route::get('/404', function() {
 Route::resource('forums', ForumController::class);
 Route::resource('threads', ThreadController::class);
 Route::resource('posts', PostController::class);
+Route::resource('profiles', ProfileController::class);
 
 
 
@@ -59,9 +60,6 @@ Route::prefix('/account')
 
     Route::get('/security', [UserController::class, 'security'])->name('.security');
     Route::post('/security', [UserController::class, 'update'])->name('.security.update');
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('.profile');
-    Route::post('/profile', [ProfileController::class, 'handle'])->name('.profile.update');
     });
 
 // Auth routes

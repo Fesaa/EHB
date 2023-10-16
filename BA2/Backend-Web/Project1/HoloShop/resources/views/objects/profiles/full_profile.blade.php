@@ -32,7 +32,7 @@
                 <p>Joined: {{ $user->created_at->format("d/m/o") }}</p>
                 <p>Total Posts: 7</p>
                 @if($user->isAuth())
-                    <a href="{{ route('account.profile') }}" class="edit-btn">Edit Profile</a>
+                    <a href="{{ route('profiles.edit', ["profile" => $user->id]) }}" class="edit-btn">Edit Profile</a>
                 @endif
             </div>
         </div>

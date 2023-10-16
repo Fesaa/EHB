@@ -14,7 +14,7 @@
         <li class="no-hover"></li>
         <li class="no-hover"></li>
         @auth()
-            <li class="sidebar-button"><a href="{{ route('profile.own') }}">Profile</a></li>
+            <li class="sidebar-button"><a href="{{ route('profiles.show', ["profile" => User::AuthUser()->id]) }}">Profile</a></li>
             <li class="sidebar-button"><a href="{{ route('account') }}">Account</a> </li>
             @if(User::AuthUser()->isStaff())
                 <li class="sidebar-button"><a href="{{ route('admin.dashboard') }}">Staff panel</a></li>

@@ -148,6 +148,11 @@ class User extends Authenticatable
         return '<div style="color:' . $colour . '; font-weight: bolder;">' . $this->name . '</div>';
     }
 
+    public static function getUser(int $id): User|null
+    {
+        return User::where(["id" => $id])->first();
+    }
+
 
     // This is for typing- ffs
     public static function AuthUser(): User|null

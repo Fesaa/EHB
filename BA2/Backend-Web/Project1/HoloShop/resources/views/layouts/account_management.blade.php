@@ -12,7 +12,7 @@
                 <li><a>Your posts</a></li>
                 <li class="options-list-section"><a class="clean-link" href="{{ route('account') }}">SETTINGS</a></li>
                 <li><a href="{{ route('account.security') }}">Security</a></li>
-                <li><a href="{{ route('account.profile') }}">Profile</a></li>
+                <li><a href="{{ route('profiles.show', ["profile" => \App\Models\User::AuthUser()->id]) }}">Profile</a></li>
                 <li><a>Preferences</a></li>
                 <li><a href="{{ route('logout') }}">Log out</a></li>
             </ul>
