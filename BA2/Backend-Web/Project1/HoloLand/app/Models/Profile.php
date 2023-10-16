@@ -7,6 +7,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 
 class Profile extends Model
@@ -41,6 +42,11 @@ class Profile extends Model
     public function bannerAssetID(): BelongsTo
     {
         return $this->belongsTo(Asset::class, 'banner_asset_id');
+    }
+
+    public function profilePosts(): HasMany
+    {
+        return $this->hasMany(ProfilePost::class);
     }
 
     private function getProfilePictureAsset(): Asset|null
@@ -112,6 +118,11 @@ class Profile extends Model
         $user = $this->user()->first();
         $user->populateFields();
         return $user;
+    }
+
+    public function getProfilePosts()
+    {
+        return $this->profilePosts()->get();
     }
 
 

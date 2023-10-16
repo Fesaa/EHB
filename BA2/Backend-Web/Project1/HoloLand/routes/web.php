@@ -6,6 +6,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfilePostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
@@ -46,6 +47,7 @@ Route::get('/404', function() {
 Route::resource('forums', ForumController::class);
 Route::resource('threads', ThreadController::class);
 Route::resource('posts', PostController::class);
+Route::resource('profileposts', ProfilePostController::class);
 Route::resource('profiles', ProfileController::class);
 Route::resource('users', UserController::class);
 Route::get('login', [UserController::class, 'showLogin'])->name('login');
