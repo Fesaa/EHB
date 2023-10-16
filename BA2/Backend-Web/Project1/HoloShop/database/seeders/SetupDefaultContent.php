@@ -40,7 +40,8 @@ Hey there, fellow forum members! I wanted to share my heartwarming experience of
 
 I decided to sit down with my parents one evening, nervous but determined. I explained to them that I had something important to share. As I spoke my truth, their initial expressions of surprise and concern gradually shifted into understanding and support. They asked questions, not to judge, but to learn and empathize. The love they showed me in that moment was overwhelming, and I could see their desire to see me happy and authentic.
 
-Fast forward to today, and I can proudly say that my relationship with my parents has only grown stronger. They've embraced my identity with open arms, and we've had so many heartfelt conversations since that day. I couldn't be happier or more grateful for their acceptance and love. Remember, there's always hope, and the people who truly care about you will accept you for who you are. 🏳️‍🌈❤️"
+Fast forward to today, and I can proudly say that my relationship with my parents has only grown stronger. They've embraced my identity with open arms, and we've had so many heartfelt conversations since that day. I couldn't be happier or more grateful for their acceptance and love. Remember, there's always hope, and the people who truly care about you will accept you for who you are. 🏳️‍🌈❤️",
+            'featured' => true,
         ]);
 
         Post::factory()->create([
@@ -94,6 +95,7 @@ Thank you for making our forum a great place!
 
 Best regards,
 HoloShop Team",
+            'featured' => true,
         ]);
 
         Post::factory()->create([

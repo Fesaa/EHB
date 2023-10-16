@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('banner_id')->nullable()->constrained('assets');
             $table->string('title');
             $table->text('content');
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }

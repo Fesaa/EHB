@@ -26,8 +26,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.index');
+    return view('pages.index', [
+        'featuredThreads' => \App\Models\Thread::featuredThreads(),
+        'newsThreads' => \App\Models\Thread::newsThreads(),
+    ]);
 })->name('home');
+
+Route::get('/whatsnew', function () {
+    return view('pages.whatsnew', [
+        'threads' => \App\Models\Thread::recentThreads(),
+    ]);
+})->name('whatsnew');
 
 Route::get('/404', function() {
     return view('pages.status.404');

@@ -155,9 +155,9 @@ class ThreadController extends Controller
     private function updateThreadFromRequest(Request $request, Thread $thread): RedirectResponse
     {
         if ($request->get('image-url') != null) {
-            $thread->image_id = Asset::fromURL($request->get('image-url'))->id;
+            $thread->banner_id = Asset::fromURL($request->get('image-url'))->id;
         } elseif ($request->get('image-file') != null) {
-            $thread->image_id = Asset::fromFile($request->file('image-file'))->id;
+            $thread->banner_id = Asset::fromFile($request->file('image-file'))->id;
         }
         $thread->save();
 

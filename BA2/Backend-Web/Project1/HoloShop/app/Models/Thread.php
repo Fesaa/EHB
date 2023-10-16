@@ -17,6 +17,7 @@ class Thread extends Model
         'banner_id',
         'title',
         'content',
+        'featured'
     ];
 
     public function forum()
@@ -133,7 +134,7 @@ class Thread extends Model
         return $user;
     }
 
-    public function getBannerImage(): string {
+    public function bannerImage(): string {
         $default = env('DEFAULT_THREAD_BANNER', 'https://static.vecteezy.com/system/resources/previews/027/775/631/non_2x/sunset-in-the-field-cute-kawaii-lo-fi-background-fluffy-clouds-park-2d-cartoon-landscape-illustration-lofi-aesthetic-wallpaper-desktop-japanese-anime-scenery-dreamy-vibes-vector.jpg');
         $asset = $this->banner()->first();
         if ($asset == null) {
@@ -188,5 +189,39 @@ class Thread extends Model
             }
         }
         return false;
+    }
+
+    /**
+     * @return Thread[]
+     */
+    public static function featuredThreads()
+    {
+        return static::where('featured', true)->orderBy('created_at', 'desc')->get();
+    }
+
+    /**
+     * @return Thread[]
+     */
+    public static function newsThreads()
+    {
+        $newsForum = Forum::where('title', 'News')->first();
+        if ($newsForum == null) {
+            return [];
+        }
+
+        return static::where('forum_id', $newsForum->id)
+            ->where('featured', false)
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    /**
+     * @return Thread[]
+     */
+    public static function recentThreads()
+    {
+        return static::orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
     }
 }

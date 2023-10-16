@@ -6,7 +6,7 @@
 <div class="sidebar flex-column float shiny-bg" style="justify-content: space-between">
     <ul>
         <li class="sidebar-button"><a href="{{ route('home') }}">Home</a></li>
-        <li class="sidebar-button"><a>What's new</a></li>
+        <li class="sidebar-button"><a href="{{ route('whatsnew') }}">What's new</a></li>
         <li class="sidebar-button"><a href="{{ route('forums.index') }}">Forums</a></li>
         <li class="sidebar-button"><a href="{{ route('users.index') }}">Members</a></li>
         <li class="no-hover"></li>
