@@ -24,6 +24,9 @@ class UserController extends Controller
     {
 
         $users = User::all()->sortBy('created_at');
+        foreach ($users as $user) {
+            $user->populateFields();
+        }
         return view('pages.users.index', [
             'users' => $users
         ]);

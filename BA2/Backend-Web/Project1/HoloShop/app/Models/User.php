@@ -165,7 +165,12 @@ class User extends Authenticatable
 
     public static function getUser(int $id): User|null
     {
-        return User::where(["id" => $id])->first();
+        $user = User::where(["id" => $id])->first();
+        if ($user == null) {
+            return null;
+        }
+        $user->populateFields();
+        return $user;
     }
 
 
