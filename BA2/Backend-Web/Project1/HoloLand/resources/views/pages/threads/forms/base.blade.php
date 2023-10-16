@@ -17,7 +17,7 @@
 
         @if(\App\Models\User::AuthUser()->hasPrivilegeByString("FEATURED_EDIT"))
             <label for="featured">Featured?</label>
-            <input type="checkbox" id="featured" name="featured" @if($thread->featured)checked="checked"@endif>
+            <input type="checkbox" id="featured" name="featured" @if($thread != null && $thread->featured)checked="checked"@endif>
             @include('objects.forms.asset', ["label" => "Banner image", "type"=> "image"])
         @endif
 

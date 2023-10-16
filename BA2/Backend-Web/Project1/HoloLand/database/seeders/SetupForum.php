@@ -43,11 +43,11 @@ We're absolutely thrilled to bring you the latest, the greatest, and the most se
 
 📣 What to Expect?
 
-    Breaking News 🚀
-    Exclusive Interviews with Creators 🎤
-    Convention Coverage 🌆
-    In-Depth Analysis 🤓
-    And So Much More!
+    [*] Breaking News 🚀
+    [*] Exclusive Interviews with Creators 🎤
+    [*] Convention Coverage 🌆
+    [*] In-Depth Analysis 🤓
+    [*] And So Much More!
 
 🎉 So, how do we celebrate? 🎉
 
@@ -62,7 +62,8 @@ Feel the excitement in the air? It's palpable! 🥰 Join the fun, let's celebrat
 
 [i]🎉🌟 Let the Grand Opening festivities begin! 🌟🎉[/i]",
             'featured' => true,
-            'created_at' => (new \DateTime())->sub(new \DateInterval('P2D'))
+            'created_at' => (new \DateTime())->sub(new \DateInterval('P2D')),
+            'updated_at' => (new \DateTime())->sub(new \DateInterval('P2D')),
         ]);
 
         Thread::factory()->create([
@@ -83,16 +84,17 @@ In Home Matters, we understand that life isn't just about anime and fandoms; it'
 
 🤗 What Can You Do Here?
 
-    Share your personal stories, challenges, and triumphs.
-    Offer advice and a helping hand to those who need it.
-    Create a bond with fellow members based on shared experiences.
+    [*] Share your personal stories, challenges, and triumphs.
+    [*] Offer advice and a helping hand to those who need it.
+    [*] Create a bond with fellow members based on shared experiences.
 
 Your home life is a significant part of who you are, and we want to be there for you through it all. So, don't hesitate to open up and let your heart out. Whether you're celebrating a family milestone or seeking guidance through a tough time, Home Matters is here to embrace you with open arms.
 
 This forum is open, 24/7, for you to share, care, and connect. We look forward to seeing you in Home Matters, where open hearts are always welcome! 💖🏡
 
 [i]🏡 Your home away from home - Home Matters: Where open hearts thrive![/i]",
-            'created_at' => (new \DateTime())->sub(new \DateInterval('P1D'))
+            'created_at' => (new \DateTime())->sub(new \DateInterval('P1D')),
+            'updated_at' => (new \DateTime())->sub(new \DateInterval('P1D')),
         ]);
     }
 
@@ -119,10 +121,10 @@ So, I decided to step into the world of cosplaying as [color=#ff0000][b]Naruto U
 
 Cosplay Highlights:
 
-    - I practiced Naruto's signature \"Shadow Clone Jutsu\" moves for weeks (and almost knocked over some furniture! 😆).
-    - I couldn't stop grinning the moment I put on the iconic headband.
-    - My friends couldn't recognize me - mission accomplished!
-    - Attending an anime convention as Naruto was an absolute blast, and the reactions from fellow fans were priceless.
+    [*] I practiced Naruto's signature \"Shadow Clone Jutsu\" moves for weeks (and almost knocked over some furniture! 😆).
+    [*] I couldn't stop grinning the moment I put on the iconic headband.
+    [*] My friends couldn't recognize me - mission accomplished!
+    [*] Attending an anime convention as Naruto was an absolute blast, and the reactions from fellow fans were priceless.
 
 Now, here's the exciting part – I'd love to hear your first cosplay stories, too! What character did you embody, and how did you feel in that amazing moment when you brought your favorite character to life? Share your anecdotes, photos, and lessons learned. We're all ears! 🤗
 
@@ -131,7 +133,8 @@ Let's relive the magic of our first cosplay adventures together and inspire futu
 So, don't be shy – spill the beans on your first cosplay journey, and let's celebrate the vibrant world of anime and cosplay! 🌟
 
 [i]🌟 Cosplay - Where fantasy becomes reality, and community becomes family! 🌟[/i]",
-            'created_at' => (new \DateTime())->sub(new \DateInterval('PT5H'))
+            'created_at' => (new \DateTime())->sub(new \DateInterval('PT5H')),
+            'updated_at' => (new \DateTime())->sub(new \DateInterval('PT5H')),
         ]);
 
         Thread::factory()->create([
@@ -146,10 +149,10 @@ The excitement and nervousness were swirling inside me as I put on my school uni
 
 First Day Highlights:
 
-    Meeting new friends and feeling that instant connection.
-    The butterflies in my stomach during the first class.
-    The awe of exploring a new place filled with knowledge and possibilities.
-    That overwhelming sense of growing up.
+    [*] Meeting new friends and feeling that instant connection.
+    [*] The butterflies in my stomach during the first class.
+    [*] The awe of exploring a new place filled with knowledge and possibilities.
+    [*] That overwhelming sense of growing up.
 
 I'm sharing this with you all because I'd love to hear about your first day of school experiences too. How did you feel? What was the most memorable part of that special day for you? Let's talk about our shared journey through the world of education and growing up!
 
@@ -158,7 +161,8 @@ Remembering our first days at school is not just nostalgic; it's a reminder of h
 Let's make this thread a place of inspiration and reflection, celebrating the beginning of every young scholar's journey.
 
 [i]📚 Education is the key to unlocking our potential, and our stories are the ink in the book of life. 📚[/i]",
-            'created_at' => (new \DateTime())->sub(new \DateInterval('PT3H'))
+            'created_at' => (new \DateTime())->sub(new \DateInterval('PT3H')),
+            'updated_at' => (new \DateTime())->sub(new \DateInterval('PT3H')),
         ]);
     }
 
@@ -311,7 +315,8 @@ Our moderation team is here to ensure the rules are followed. Violating these ru
 By participating in HoloLand, you agree to abide by these rules and guidelines. We appreciate your cooperation and look forward to an enjoyable and enriching experience for all members. If you have any questions or concerns about the rules, please feel free to reach out to the moderation team.
 
 [i]🤝 Thank you for being a valued part of HoloLand, and enjoy your time here![/i]",
-            'created_at' => (new \DateTime())->sub(new \DateInterval('PT3H54M'))
+            'created_at' => (new \DateTime())->sub(new \DateInterval('PT3H54M')),
+            'updated_at' => (new \DateTime())->sub(new \DateInterval('PT3H54M')),
         ]);
 
         $RULES->locks()->attach($STAFF_LOCK);

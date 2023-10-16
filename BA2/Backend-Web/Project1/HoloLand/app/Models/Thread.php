@@ -97,13 +97,13 @@ class Thread extends Model
     // but should be possible with a join on the posts table. If only I could raw sql in eloquent...
     public static function getVisibleThreads(User|null $user, int $id) {
         if ($user == null) {
-            return static::whereDoesntHave('cloaks')->where(['forum_id' => $id])->get()->sortBy('updated_at');
+            return static::whereDoesntHave('cloaks')->where(['forum_id' => $id])->get()->sortByDesc('updated_at');
         }
 
         /**
          * @var Thread[] $threads
          */
-        $threads = static::with('cloaks')->where(['forum_id' => $id])->get()->sortBy('updated_at');
+        $threads = static::with('cloaks')->where(['forum_id' => $id])->get()->sortByDesc('updated_at');
         $visible = [];
         foreach ($threads as $thread) {
             if ($thread->canSee($user)) {
