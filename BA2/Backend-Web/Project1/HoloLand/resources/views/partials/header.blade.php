@@ -5,7 +5,7 @@
 
 <header class="float shiny-float">
     <h1 class="name">
-        <a class="rainbow-text" href="{{ route('home') }}">HoloShop</a>
+        <a class="rainbow-text" href="{{ route('home') }}">HoloLand</a>
     </h1>
 
     <ul>
