@@ -147,12 +147,15 @@ class Thread extends Model
             return false;
         }
 
+        if ($user->hasPrivilege(Privilege::privilegeValueOf("THREAD_EDIT"))) {
+            return true;
+        }
+
         if ($user->id == $this->user_id) {
             return $this->canPostOn($user);
         }
 
-
-        return $user->hasPrivilege(Privilege::privilegeValueOf("THREAD_EDIT"));
+        return false;
     }
 
     public function hasLock(string $name): bool {

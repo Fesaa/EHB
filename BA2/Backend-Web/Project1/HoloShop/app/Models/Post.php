@@ -51,12 +51,15 @@ class Post extends Model
             return false;
         }
 
+        if ($user->hasPrivilege(Privilege::privilegeValueOf("POST_EDIT"))) {
+            return true;
+        }
+
         if ($user->id == $this->user_id) {
             return $this->owningThread()->canPostOn($user);
         }
 
-
-        return $user->hasPrivilege(Privilege::privilegeValueOf("POST_EDIT"));
+        return false;
     }
 
     public static function getPost($id)
