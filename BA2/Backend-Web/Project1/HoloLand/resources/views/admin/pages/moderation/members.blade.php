@@ -2,6 +2,9 @@
     use App\Models\User;
     use App\Models\Privilege;
     use App\Models\Role;
+    /**
+    * @var User[] $members
+    */
 @endphp
 @extends('admin.layouts.dashboard')
 <link rel="stylesheet" href="{{ asset("css/admin/pages/moderation/members.css") }}">
@@ -23,6 +26,7 @@
                 @endif
             </tr>
             @foreach($members as $member)
+                @php($member->populateFields())
                 <tr>
                     <th>{{ $member->id }}</th>
                     <th id="{{ "member-name-" . $member->id }}">{{ $member->name }}</th>
