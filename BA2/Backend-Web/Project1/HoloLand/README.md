@@ -15,7 +15,7 @@ Stuff that I've put off to work on other functionality
 These are issues that I found while playing around, and hadn't have time to fix them then
 
 - `/admin/logs/login` pushes the sidebar all the way to the side
-- `ROLES_EDIT_MISC` does not give you access to the edit button
+- ~~`ROLES_EDIT_MISC` does not give you access to the edit button~~
 - `/admin/logs` loads extremely slow- find new image
 - `/admin/logs/*` filter isn't hold into place correctly
 - `/forum/*` description overflows if it has no spaces
