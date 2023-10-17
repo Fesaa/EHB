@@ -49,10 +49,10 @@ Route::get('/404', function() {
 
 
 Route::resource('forums', ForumController::class);
-Route::resource('threads', ThreadController::class);
-Route::resource('posts', PostController::class);
-Route::resource('profileposts', ProfilePostController::class);
-Route::resource('profiles', ProfileController::class);
+Route::resource('threads', ThreadController::class)->except(['index']);
+Route::resource('posts', PostController::class)->except(['index', 'create', 'show']);
+Route::resource('profileposts', ProfilePostController::class)->except(['index', 'create', 'edit', 'update']);
+Route::resource('profiles', ProfileController::class)->except(['index', 'create', 'destroy']);
 Route::resource('users', UserController::class);
 Route::get('login', [UserController::class, 'showLogin'])->name('login');
 Route::post('login', [UserController::class, 'login'])->name('login.handle');
