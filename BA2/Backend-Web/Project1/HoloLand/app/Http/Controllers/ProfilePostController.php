@@ -47,14 +47,13 @@ class ProfilePostController extends Controller
         $profilePost = new ProfilePost();
         if ($request->input("profilepost_id") != null) {
             $profilePost->profile_post_id = $request->input("profilepost_id");
-        } else if ($request->input("profile_id") != null) {
-            $profilePost->profile_id = $request->input("profile_id");
         }
+        $profilePost->profile_id = $request->input("profile_id");
         $profilePost->user_id = User::AuthUser()->id;
         $profilePost->content = $request->input("message");
         $profilePost->save();
 
-        return redirect()->route("profiles.show", ["profile" => $request->input("profile_id")]);
+        return redirect()->to(route("profiles.show", ["profile" => $request->input("profile_id")]) . "#profile-post-" . $profilePost->id);
     }
 
     /**
@@ -62,7 +61,14 @@ class ProfilePostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = ProfilePost::getById($id);
+        if ($post == null) {
+            return redirect('/404');
+        }
+
+        return redirect()->to(route('profiles.show', $post->owningProfile()->id) . "#profile-post-" . $post->id);
+
+
     }
 
     /**

@@ -68,4 +68,9 @@ class ProfilePost extends Model
     {
         return Formatter::apply($this->content);
     }
+
+    public static function getById(string $id): ProfilePost|null
+    {
+        return static::where('id', $id)->first();
+    }
 }

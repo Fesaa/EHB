@@ -122,7 +122,10 @@ class Profile extends Model
 
     public function getProfilePosts()
     {
-        return $this->profilePosts()->get();
+        return $this->profilePosts()
+            ->where('profile_post_id', null)
+            ->orderByDesc('created_at')
+            ->get();
     }
 
 

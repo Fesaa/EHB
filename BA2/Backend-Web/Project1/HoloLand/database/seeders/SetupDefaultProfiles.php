@@ -24,7 +24,7 @@ class SetupDefaultProfiles extends Seeder
         $profile->title = 'Founder';
         $profile->pfp_asset_id = 1;
         $profile->banner_asset_id = 4;
-        $profile->bio = "Hey there, fabulous forum fanatics! 🌟 I'm the [b]quirky queen bee[/b] behind this online hangout, and let me tell you, it's all about bringing the sparkle to your digital life! 👑✨ When I'm not dreaming up emojis or sipping on unicorn lattes (extra glitter, please), you can find me navigating the wacky world of internet with the same passion and zeal as a puppy chasing its tail. I believe that our forum is more than just a place to chat; it's a vibrant, virtual garden where friendships bloom and ideas take flight. So, grab your coffee, throw on your favorite emoji pajamas, and let's spread the love and laughter, one post at a time! 💬💕 [center] [asset id=2 width=1000 height=2000] [/center]";
+        $profile->bio = "Hey there, fabulous forum fanatics! 🌟 I'm the [b]quirky queen bee[/b] behind this online hangout, and let me tell you, it's all about bringing the sparkle to your digital life! 👑✨ When I'm not dreaming up emojis or sipping on unicorn lattes (extra glitter, please), you can find me navigating the wacky world of internet with the same passion and zeal as a puppy chasing its tail. I believe that our forum is more than just a place to chat; it's a vibrant, virtual garden where friendships bloom and ideas take flight. So, grab your coffee, throw on your favorite emoji pajamas, and let's spread the love and laughter, one post at a time! 💬💕";
         $profile->save();
 
         $profile = $moderator->profile();
