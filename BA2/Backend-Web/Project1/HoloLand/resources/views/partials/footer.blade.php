@@ -17,6 +17,7 @@
                     <li><a class="footer-link" href="{{ route('forums.show', 4) }}">FAQ</a></li>
                     <li><a class="footer-link" href="{{ route('threads.show', 7) }}">Rules</a></li>
                     <li><a class="footer-link" href="{{ route('forums.show', 5) }}">Support</a></li>
+                    <li><a class="footer-link" href="{{ route('about') }}">About</a></li>
                 </ul>
             </div>
         </div>
