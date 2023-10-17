@@ -13,7 +13,7 @@
                 <li class="options-list-section"><a class="clean-link"
                                                     href="{{ route('admin.dashboard') }}">HOLOSHOP</a></li>
                 @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_ROLES')))
-                    <li><a href="{{ route('admin.roles') }}">Roles</a></li>
+                    <li><a href="{{ route('admin.roles.index') }}">Roles</a></li>
                 @endif
                 @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_PRIVILEGES')))
                     <li><a href="{{ route('admin.privileges') }}">Privileges</a></li>

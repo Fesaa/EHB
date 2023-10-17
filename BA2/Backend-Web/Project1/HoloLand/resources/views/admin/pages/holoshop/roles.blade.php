@@ -73,14 +73,17 @@
         <div class="flex-row" style="justify-content: center">
             <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;"
                  id="delete-form-holder">
-                <form class="styled-form" id="delete-role" method="post"
-                      action="{{ route('admin.holoshop.roles.destroy') }}">
+                <form class="styled-form flex-column" id="delete-role" method="post"
+                      action="{{ route('admin.roles.destroy', 0) }}">
                     @csrf
                     @method('DELETE')
-                    <input id="role-id-input" name="id" type="number" value="0" hidden>
+                    <input id="role-id-input-delete" name="role_id" type="number" value="0" hidden>
 
-                    <input type="button" value="Cancel" class="styled-form-confirm" onclick="closeDeleteForm()">
-                    <input type="submit" value="Yes" class="styled-form-confirm" style="font-weight: bold">
+                    <label>Are you sure you want to delete this role</label>
+                    <div class="flex-row" style="justify-content: center;">
+                        <input type="button" value="Cancel" class="styled-form-confirm styled-input" onclick="closeDeleteForm()">
+                        <input type="submit" value="Yes" class="styled-form-confirm styled-input" style="font-weight: bold">
+                    </div>
                 </form>
             </div>
         </div>
@@ -90,10 +93,12 @@
             <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;"
                  id="form-holder">
                 <form class="styled-form" id="update-role-privileges" method="post"
-                      action="{{ route('admin.holoshop.roles.update') }}">
+                      action="{{ route('admin.roles.update', 0) }}">
                     @csrf
+                    @method('PUT')
+
                     <h3 id="role-update-title" style="text-align: center"></h3>
-                    <input id="role-id-input" name="id" type="number" value="0" hidden>
+                    <input id="role-id-input-update" name="role_id" type="number" value="0" hidden>
 
                     <div class="flex-row" style="flex-wrap: wrap; justify-content: space-between; margin-bottom: 1em">
                         <label class="styled-label" for="title">Title</label>
@@ -135,12 +140,10 @@
             <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;"
                  id="new-form-holder">
                 <form class="styled-form" id="new-role-privileges" method="post"
-                      action="{{ route('admin.holoshop.roles.store') }}">
+                      action="{{ route('admin.roles.store') }}">
                     @csrf
-                    @method('PUT')
 
                     <h3 id="new-role-title" style="text-align: center">New Role</h3>
-                    <input id="new-role-id-input" name="id" type="number" value="0" hidden>
                     <div class="flex-row" style="flex-wrap: wrap; justify-content: space-between; margin-bottom: 1em">
                         <div style="flex: 40%; display: flex;">
                             <label class="styled-label" for="key" style="width: 6em">Key</label>

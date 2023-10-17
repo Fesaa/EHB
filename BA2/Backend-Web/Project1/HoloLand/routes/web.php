@@ -62,23 +62,30 @@ Route::get('/ban', [UserController::class, 'ban'])->name('ban');
 // Admin routes
 Route::prefix('/admin')
     ->middleware(isStaff::class)
-    ->name('admin')
+    ->name('admin.')
     ->group(function() {
-        Route::get('', [AdminController::class, 'index'])->name('.dashboard');
+        Route::resource('roles', RoleController::class)
+            ->except([
+                'create',
+                'show',
+                'edit',
+            ]);
 
-        Route::get('/privileges', [AdminController::class, 'privileges'])->name('.privileges');
-        Route::post('/privileges', [PrivilegeController::class, 'handle'])->name('.holoshop.privileges.update');
 
-        Route::get('/roles', [AdminController::class, 'roles'])->name('.roles');
-        Route::post('/roles/privileges', [RoleController::class, 'update'])->name('.holoshop.roles.update');
-        Route::put('/roles', [RoleController::class, 'store'])->name('.holoshop.roles.store');
-        Route::delete('/roles', [RoleController::class, 'destroy'])->name('.holoshop.roles.destroy');
 
-        Route::get('/members', [AdminController::class, 'members'])->name('.members');
-        Route::get('/members/edit/{id}', [ProfileController::class, 'edit_other'])->name('.members.edit');
-        Route::post('/members/roles/edit', [AdminController::class, 'update_roles'])->name('.members.edit.roles.update');
 
-        Route::get('/logs', [AdminController::class, 'logs'])->name('.logs');
-        Route::get('/logs/login', [LogController::class, 'login'])->name('.logs.login');
-        Route::get('/logs/activity', [LogController::class, 'activity'])->name('.logs.activity');
+        Route::get('', [AdminController::class, 'index'])->name('dashboard');
+
+        Route::get('/privileges', [AdminController::class, 'privileges'])->name('privileges');
+        Route::post('/privileges', [PrivilegeController::class, 'handle'])->name('holoshop.privileges.update');
+
+
+
+        Route::get('/members', [AdminController::class, 'members'])->name('members');
+        Route::get('/members/edit/{id}', [ProfileController::class, 'edit_other'])->name('members.edit');
+        Route::post('/members/roles/edit', [AdminController::class, 'update_roles'])->name('members.edit.roles.update');
+
+        Route::get('/logs', [AdminController::class, 'logs'])->name('logs');
+        Route::get('/logs/login', [LogController::class, 'login'])->name('logs.login');
+        Route::get('/logs/activity', [LogController::class, 'activity'])->name('logs.activity');
     });

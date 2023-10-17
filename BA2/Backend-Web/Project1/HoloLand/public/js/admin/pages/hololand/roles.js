@@ -34,7 +34,7 @@ function deleteRole(id) {
     closeForm();
     closeNewForm();
 
-    let idField = document.getElementById("role-id-input");
+    let idField = document.getElementById("role-id-input-delete");
     idField.value = id;
 
     deleteFormHolder.style.display = "flex";
@@ -77,7 +77,7 @@ function editRole(id) {
             }
         }
     });
-    document.getElementById('role-id-input').value = id;
+    document.getElementById('role-id-input-update').value = id;
     form_holder = document.getElementById("form-holder");
     form_holder.style.display = "flex";
 }
