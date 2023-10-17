@@ -44,7 +44,7 @@ class PostController extends Controller
         $post->user_id = User::AuthUser()->id;
         $post->save();
 
-        return redirect()->route('threads.show', ['thread' => $post->thread_id]);
+        return redirect()->to(route('threads.show', ['thread' => $post->thread_id]) . "#thread-post-" . $post->id);
     }
 
     /**
@@ -109,7 +109,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('threads.show', ['thread' => $post->thread_id]);
+        return redirect()->to(route('threads.show', ['thread' => $post->thread_id]) . "#thread-post-" . $post->id);
 
     }
 

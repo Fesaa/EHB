@@ -66,7 +66,7 @@ class ProfilePostController extends Controller
             return redirect('/404');
         }
 
-        return redirect()->to(route('profiles.show', $post->owningProfile()->id) . "#profile-post-" . $post->id);
+        return redirect()->to(route('profiles.show', $post->profile_id) . "#profile-post-" . $post->id);
 
 
     }
