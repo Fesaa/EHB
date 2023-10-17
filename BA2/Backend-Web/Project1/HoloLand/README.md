@@ -26,6 +26,7 @@ These are TODO's I originally wasn't going to implement, and aren't needed. But 
 - Users with the `FORUMS_CREATE` privilege should get a message on the forums page to create a forum if none are present
 - Re-order ccs files
 - Check for XSS & client-side validation
+- Think about changing members role form, it works well. Just looks odds when scrolling, but it's pretty small so maybe not worth it
 
 # Development Standards
 These are some standards I tried to follow, or will follow/implement in my project to keep it orderly for me.

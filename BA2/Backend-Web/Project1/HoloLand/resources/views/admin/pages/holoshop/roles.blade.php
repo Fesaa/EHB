@@ -46,56 +46,51 @@
             @endforeach
         </table>
     </div>
+
+    <div class="flex-row" style="justify-content: center">
+        <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;" id="form-holder">
+            <form class="styled-form" id="update-role-privileges" method="post"
+                  action="{{ route('admin.holoshop.roles.update') }}">
+                @csrf
+                <h3 id="role-update-title" style="text-align: center"></h3>
+                <input id="role-id-input" name="id" type="number" value="0" hidden>
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT_MISC")))
+                    <div class="flex-row" style="flex-wrap: wrap; justify-content: space-between; margin-bottom: 1em">
+                        <label class="styled-label" for="title">Title</label>
+                        <input class="styled-input" id="title" name="title" type="text" style="color: {{ $role->colour }}"
+                               value="{{ $role->title() }}"><br>
+
+                        <label class="styled-label" for="colour">Colour</label>
+                        <input class="styled-input" id="colour" name="colour" type="text" style="color: {{ $role->colour }}"
+                               value="{{ $role->colour }}"><br>
+
+                        <label class="styled-label" for="description">Description</label>
+                        <textarea class="styled-textarea" id="description" name="description" cols="30"
+                                  rows="2">{{ $role->description }}</textarea><br>
+                    </div>
+                @endif
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT_PRIVILEGES")))
+                    <div class="flex-row" style="flex-wrap: wrap;">
+                        @foreach(Privilege::all() as $privilege)
+                            <label style="flex: 20%">
+                                <!-- TODO: Description on hover -->
+                                <input type="checkbox" name="{{ $privilege->name }}" value="{{ $privilege->value }}">
+                                {{ $privilege->name() }}
+                            </label>
+                        @endforeach
+                    </div>
+                @endif
+                <br>
+                <input type="button" value="Close" class="styled-form-confirm" onclick="closeForm()">
+                <input type="submit" value="Save" class="styled-form-confirm" style="font-weight: bold">
+            </form>
+        </div>
+    </div>
+
 @endsection
 
-<div id="form-popup" class="flex-column">
-    <div id="form-popup-2" class="flex-row" style="justify-content: center">
-        <form class="styled-form" id="update-role-privileges" method="post"
-              action="{{ route('admin.holoshop.roles.update') }}" style="max-width: 400px">
-            @csrf
-            <h3 id="role-update-title" style="text-align: center"></h3>
-            <input id="role-id-input" name="id" type="number" value="0" hidden>
-            @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT_MISC")))
-                <label for="title">Title</label>
-                <input class="no-style" id="title" name="title" type="text" style="color: {{ $role->colour }}"
-                       value="{{ $role->title() }}"><br>
-
-                <label for="colour">Colour</label>
-                <input class="no-style" id="colour" name="colour" type="text" style="color: {{ $role->colour }}"
-                       value="{{ $role->colour }}"><br>
-
-                <label for="description">Description</label>
-                <textarea class="no-style" id="description" name="description" cols="30"
-                          rows="2">{{ $role->description }}</textarea><br>
-            @endif
-            @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT_PRIVILEGES")))
-                <div class="flex-row" style="flex-wrap: wrap;">
-                    @foreach(Privilege::all() as $privilege)
-                        <label style="flex: 40%">
-                            <!-- TODO: Description on hover -->
-                            <input type="checkbox" name="{{ $privilege->name }}" value="{{ $privilege->value }}">
-                            {{ $privilege->name() }}
-                        </label>
-                    @endforeach
-                </div>
-            @endif
-            <br>
-            <input type="button" value="Close" class="styled-form-confirm" onclick="closeForm()">
-            <input type="submit" value="Save" class="styled-form-confirm" style="font-weight: bold">
-        </form>
-    </div>
-</div>
-
 <script>
-    form_popup = document.getElementById("form-popup");
-    form_popup_2 = document.getElementById("form-popup-2");
-    [form_popup, form_popup_2].forEach(f => {
-        f.addEventListener('click', function (event) {
-            if (event.target === f) {
-                form_popup.style.display = "none";
-            }
-        });
-    })
+    form_holder = document.getElementById("form-holder");
 
     let colour = document.getElementById("colour");
     let title = document.getElementById("title");
@@ -106,7 +101,7 @@
     });
 
     function closeForm() {
-        form_popup.style.display = "none";
+        form_holder.style.display = "none";
     }
 
     function editRole(id) {
@@ -129,7 +124,7 @@
         description.value = form_description.innerText;
 
         let form_title_h3 = document.getElementById('role-update-title')
-        form_title_h3.innerHTML = "Update " + form_name.innerHTML
+        form_title_h3.innerHTML = "Update role " + form_name.innerHTML
 
         const checkboxes = form.querySelectorAll('input[type="checkbox"]');
         const privileges = document.querySelectorAll('.option_' + id);
@@ -143,7 +138,7 @@
             }
         });
         document.getElementById('role-id-input').value = id;
-        let popup = document.getElementById("form-popup");
-        popup.style.display = "flex";
+        form_holder = document.getElementById("form-holder");
+        form_holder.style.display = "flex";
     }
 </script>

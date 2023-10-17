@@ -22,7 +22,18 @@
     font-weight: bold;
 }
 
-.styled-form > input,textarea:not(.no-style) {
+.styled-label {
+    align-self: center;
+    font-weight: bold;
+}
+
+.styled-input, .styled-textarea {
+    padding: 10px;
+    border: 1px solid #eeebe3;
+    border-radius: 15px;
+}
+
+.styled-form > input,textarea:not(.no-style){
     padding: 10px;
     border: 1px solid #eeebe3;
     border-radius: 15px;
