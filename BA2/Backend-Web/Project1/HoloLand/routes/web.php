@@ -39,6 +39,10 @@ Route::get('/whatsnew', function () {
     ]);
 })->name('whatsnew');
 
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
+
 Route::get('/404', function() {
     return view('pages.status.404');
 })->name('404');

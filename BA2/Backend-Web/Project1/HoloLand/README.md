@@ -8,6 +8,8 @@ Stuff that I've put off to work on other functionality
 - Add featured switch on threads edit
 - Add change date on threads (for ordering featured page)
 - Make forums have a weight for ordering on the forums page
+- Delete forums, threads, posts, profile posts, etc
+- Contact page
 
 # Known issues
 These are issues that I found while playing around, and hadn't have time to fix them then
@@ -23,6 +25,7 @@ These are issues that I found while playing around, and hadn't have time to fix 
 These are TODO's I originally wasn't going to implement, and aren't needed. But would be fun!
 - Users with the `FORUMS_CREATE` privilege should get a message on the forums page to create a forum if none are present
 - Re-order ccs files
+- Check for XSS & client-side validation
 
 # Development Standards
 These are some standards I tried to follow, or will follow/implement in my project to keep it orderly for me.
