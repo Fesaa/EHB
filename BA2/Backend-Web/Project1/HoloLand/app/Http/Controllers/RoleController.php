@@ -58,6 +58,29 @@ class RoleController extends Controller
         return $this->setRoleFromRequest($role);
     }
 
+    public function destroy()
+    {
+        if (!auth()->check()) {
+            return redirect()->route('home');
+        }
+
+        if (!User::AuthUser()->hasPrivilegeByString('ROLES_EDIT')) {
+            return redirect()->route('home');
+        }
+
+        validator(request()->all(), [
+            'id' => 'required|integer',
+        ])->validate();
+
+        $role = Role::find(request()->input('id'));
+        if ($role == null) {
+            return redirect()->route('admin.roles');
+        }
+
+        $role->delete();
+        return redirect()->route('admin.roles');
+    }
+
     private function setRoleFromRequest($role)
     {
         $privileges = Privilege::all();

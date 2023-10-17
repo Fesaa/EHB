@@ -21,6 +21,7 @@
                 <th>Updated at</th>
                 @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT")))
                     <th>Edit</th>
+                    <th>Delete</th>
                 @endif
             </tr>
             @foreach($roles as $role)
@@ -42,6 +43,9 @@
                     @if(User::AuthUser()->hasPrivilegeByString("ROLES_EDIT"))
                         <th>
                             <div onclick="editRole({{$role->id}})" class="hover-cursor">✏️</div>
+                        </th>
+                        <th>
+                            <div onclick="deleteRole({{$role->id}})" class="hover-cursor">🗑️</div>
                         </th>
                     @endif
                 </tr>
@@ -65,6 +69,23 @@
     </div>
 
     @if(User::AuthUser()->hasPrivilegeByString("ROLES_EDIT"))
+
+        <div class="flex-row" style="justify-content: center">
+            <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;"
+                 id="delete-form-holder">
+                <form class="styled-form" id="delete-role" method="post"
+                      action="{{ route('admin.holoshop.roles.destroy') }}">
+                    @csrf
+                    @method('DELETE')
+                    <input id="role-id-input" name="id" type="number" value="0" hidden>
+
+                    <input type="button" value="Cancel" class="styled-form-confirm" onclick="closeDeleteForm()">
+                    <input type="submit" value="Yes" class="styled-form-confirm" style="font-weight: bold">
+                </form>
+            </div>
+        </div>
+
+
         <div class="flex-row" style="justify-content: center">
             <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;"
                  id="form-holder">

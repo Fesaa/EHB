@@ -1,5 +1,6 @@
 form_holder = document.getElementById("form-holder");
 newFormHolder = document.getElementById("new-form-holder");
+deleteFormHolder = document.getElementById("delete-form-holder");
 
 let colour = document.getElementById("colour");
 let title = document.getElementById("title");
@@ -25,8 +26,23 @@ function closeNewForm() {
     newFormHolder.style.display = "none";
 }
 
+function closeDeleteForm() {
+    deleteFormHolder.style.display = "none";
+}
+
+function deleteRole(id) {
+    closeForm();
+    closeNewForm();
+
+    let idField = document.getElementById("role-id-input");
+    idField.value = id;
+
+    deleteFormHolder.style.display = "flex";
+}
+
 function editRole(id) {
     closeNewForm();
+    closeDeleteForm();
     let form = document.getElementById("update-role-privileges");
 
     let form_weight = document.getElementById("role-weight-" + id);
@@ -68,7 +84,6 @@ function editRole(id) {
 
 function newRole() {
     closeForm();
-    let form = document.getElementById('new-role-privileges');
-    newFormHolder = document.getElementById("new-form-holder");
+    closeDeleteForm();
     newFormHolder.style.display = "flex";
 }
