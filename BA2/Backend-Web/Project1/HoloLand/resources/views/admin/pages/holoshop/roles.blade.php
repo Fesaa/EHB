@@ -12,19 +12,21 @@
         <table class="dashboard-table">
             <tr class="dashboard-table-header">
                 <th>ID</th>
+                <th>Weight</th>
                 <th>Name</th>
                 <th>Title</th>
                 <th>Colour</th>
                 <th>Description</th>
                 <th>Privileges</th>
                 <th>Updated at</th>
-                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT_PRIVILEGES")))
+                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT")))
                     <th>Edit</th>
                 @endif
             </tr>
             @foreach($roles as $role)
                 <tr>
                     <th>{{ $role->id }}</th>
+                    <th id="{{ "role-weight-" . $role->id }}">{{ $role->weight }}</th>
                     <th id="{{ "role-name-" . $role->id }}">{{ $role->name }}</th>
                     <th id="{{ "role-title-" . $role->id }}"
                         style="color: {{ $role->colour() }}">{{ $role->title() }}</th>
@@ -37,39 +39,60 @@
                             @endforeach
                         </select></th>
                     <th>{{ $role->updated_at->format("d/m/o") }}</th>
-                    @if(User::AuthUser()->hasPrivilegeByString("ROLES_EDIT_PRIVILEGES") || User::AuthUser()->hasPrivilegeByString("ROLES_EDIT_MISC"))
+                    @if(User::AuthUser()->hasPrivilegeByString("ROLES_EDIT"))
                         <th>
                             <div onclick="editRole({{$role->id}})" class="hover-cursor">✏️</div>
                         </th>
                     @endif
                 </tr>
             @endforeach
+            @if(User::AuthUser()->hasPrivilegeByString("ROLES_EDIT"))
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>
+                        <div onclick="newRole()" class="hover-cursor">➕</div>
+                    </th>
+                </tr>
+            @endif
         </table>
     </div>
 
-    <div class="flex-row" style="justify-content: center">
-        <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;" id="form-holder">
-            <form class="styled-form" id="update-role-privileges" method="post"
-                  action="{{ route('admin.holoshop.roles.update') }}">
-                @csrf
-                <h3 id="role-update-title" style="text-align: center"></h3>
-                <input id="role-id-input" name="id" type="number" value="0" hidden>
-                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT_MISC")))
+    @if(User::AuthUser()->hasPrivilegeByString("ROLES_EDIT"))
+        <div class="flex-row" style="justify-content: center">
+            <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;"
+                 id="form-holder">
+                <form class="styled-form" id="update-role-privileges" method="post"
+                      action="{{ route('admin.holoshop.roles.update') }}">
+                    @csrf
+                    <h3 id="role-update-title" style="text-align: center"></h3>
+                    <input id="role-id-input" name="id" type="number" value="0" hidden>
+
                     <div class="flex-row" style="flex-wrap: wrap; justify-content: space-between; margin-bottom: 1em">
                         <label class="styled-label" for="title">Title</label>
-                        <input class="styled-input" id="title" name="title" type="text" style="color: {{ $role->colour }}"
+                        <input class="styled-input" id="title" name="title" type="text"
+                               style="color: {{ $role->colour }}"
                                value="{{ $role->title() }}"><br>
 
                         <label class="styled-label" for="colour">Colour</label>
-                        <input class="styled-input" id="colour" name="colour" type="text" style="color: {{ $role->colour }}"
+                        <input class="styled-input" id="colour" name="colour" type="text"
+                               style="color: {{ $role->colour }}"
                                value="{{ $role->colour }}"><br>
 
                         <label class="styled-label" for="description">Description</label>
                         <textarea class="styled-textarea" id="description" name="description" cols="30"
                                   rows="2">{{ $role->description }}</textarea><br>
                     </div>
-                @endif
-                @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("ROLES_EDIT_PRIVILEGES")))
+                    <label class="styled-label" for="weight">Weight</label>
+                    <input class="styled-input" id="weight" name="weight" type="number"
+                           value="{{ $role->weight }}"><br>
+
                     <div class="flex-row" style="flex-wrap: wrap;">
                         @foreach(Privilege::all() as $privilege)
                             <label style="flex: 20%">
@@ -79,66 +102,71 @@
                             </label>
                         @endforeach
                     </div>
-                @endif
-                <br>
-                <input type="button" value="Close" class="styled-form-confirm" onclick="closeForm()">
-                <input type="submit" value="Save" class="styled-form-confirm" style="font-weight: bold">
-            </form>
+
+                    <br>
+                    <input type="button" value="Close" class="styled-form-confirm" onclick="closeForm()">
+                    <input type="submit" value="Save" class="styled-form-confirm" style="font-weight: bold">
+                </form>
+            </div>
         </div>
-    </div>
 
+        <div class="flex-row" style="justify-content: center">
+            <div class="flex-row" style="justify-content: center; display: none; max-width: 85%; margin-top: 2em;"
+                 id="new-form-holder">
+                <form class="styled-form" id="new-role-privileges" method="post"
+                      action="{{ route('admin.holoshop.roles.store') }}">
+                    @csrf
+                    @method('PUT')
+
+                    <h3 id="new-role-title" style="text-align: center">New Role</h3>
+                    <input id="new-role-id-input" name="id" type="number" value="0" hidden>
+                    <div class="flex-row" style="flex-wrap: wrap; justify-content: space-between; margin-bottom: 1em">
+                        <div style="flex: 40%; display: flex;">
+                            <label class="styled-label" for="key" style="width: 6em">Key</label>
+                            <input class="styled-input" id="key" name="name" type="text" value=""><br>
+                        </div>
+
+                        <div style="flex: 40%; display: flex;">
+                            <label class="styled-label" for="new-title" style="width: 6em">Title</label>
+                            <input class="styled-input" id="new-title" name="title" type="text"
+                                   style="color: rgb(128,128,128)"
+                                   value=""><br>
+                        </div>
+
+                        <div style="flex: 40%; display: flex;">
+                            <label class="styled-label" for="new-colour" style="width: 6em">Colour</label>
+                            <input class="styled-input" id="new-colour" name="colour" type="text"
+                                   style="color: rgb(128,128,128)"
+                                   value="gray"><br>
+                        </div>
+
+                        <div style="flex: 40%; display: flex;">
+                            <label class="styled-label" for="new-description" style="width: 6em">Description</label>
+                            <input class="styled-input" id="new-description" name="description" type="text"
+                                   value=""><br>
+                        </div>
+                    </div>
+
+                    <label class="styled-label" for="weight">Weight</label>
+                    <input class="styled-input" id="weight" name="weight" type="number"
+                           value="{{ $role->weight }}"><br>
+
+                    <div class="flex-row" style="flex-wrap: wrap;">
+                        @foreach(Privilege::all() as $privilege)
+                            <label style="flex: 20%">
+                                <!-- TODO: Description on hover -->
+                                <input type="checkbox" name="{{ $privilege->name }}" value="{{ $privilege->value }}">
+                                {{ $privilege->name() }}
+                            </label>
+                        @endforeach
+                    </div>
+                    <br>
+                    <input type="button" value="Close" class="styled-form-confirm" onclick="closeNewForm()">
+                    <input type="submit" value="Save" class="styled-form-confirm" style="font-weight: bold">
+                </form>
+            </div>
+        </div>
+
+        <script src="{{ asset('js/admin/pages/hololand/roles.js') }}"></script>
+    @endif
 @endsection
-
-<script>
-    form_holder = document.getElementById("form-holder");
-
-    let colour = document.getElementById("colour");
-    let title = document.getElementById("title");
-    let description = document.getElementById("description");
-    colour.addEventListener('input', function (event) {
-        colour.style.color = colour.value;
-        title.style.color = colour.value;
-    });
-
-    function closeForm() {
-        form_holder.style.display = "none";
-    }
-
-    function editRole(id) {
-        let form = document.getElementById("update-role-privileges");
-
-        let form_name = document.getElementById("role-name-" + id);
-        let form_title = document.getElementById("role-title-" + id);
-        let form_colour = document.getElementById("role-colour-" + id);
-        let form_description = document.getElementById("role-description-" + id);
-
-
-        let colour = document.getElementById("colour");
-        let title = document.getElementById("title");
-        let description = document.getElementById("description");
-
-        title.value = form_title.innerText;
-        title.style.color = form_colour.innerText;
-        colour.value = form_colour.innerText;
-        colour.style.color = form_colour.innerText;
-        description.value = form_description.innerText;
-
-        let form_title_h3 = document.getElementById('role-update-title')
-        form_title_h3.innerHTML = "Update role " + form_name.innerHTML
-
-        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
-        const privileges = document.querySelectorAll('.option_' + id);
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = false;
-            for (let i = 0; i < privileges.length; i++) {
-                if (checkbox.value === privileges[i].value) {
-                    checkbox.checked = true;
-                    break
-                }
-            }
-        });
-        document.getElementById('role-id-input').value = id;
-        form_holder = document.getElementById("form-holder");
-        form_holder.style.display = "flex";
-    }
-</script>

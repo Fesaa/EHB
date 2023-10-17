@@ -71,6 +71,7 @@ Route::prefix('/admin')
 
         Route::get('/roles', [AdminController::class, 'roles'])->name('.roles');
         Route::post('/roles/privileges', [RoleController::class, 'update'])->name('.holoshop.roles.update');
+        Route::put('/roles', [RoleController::class, 'store'])->name('.holoshop.roles.store');
 
         Route::get('/members', [AdminController::class, 'members'])->name('.members');
         Route::get('/members/edit/{id}', [ProfileController::class, 'edit_other'])->name('.members.edit');
