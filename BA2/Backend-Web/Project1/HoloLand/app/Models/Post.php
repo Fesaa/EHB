@@ -66,4 +66,9 @@ class Post extends Model
     {
         return Post::where('id', $id)->first();
     }
+
+    public static function latestLogs()
+    {
+        return static::orderBy('created_at', 'desc')->take(100)->get();
+    }
 }

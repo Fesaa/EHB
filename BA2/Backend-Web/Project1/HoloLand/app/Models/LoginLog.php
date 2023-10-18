@@ -41,7 +41,7 @@ class LoginLog extends Model implements ILog
     public static function latestLogs()
     {
         return static::orderBy('created_at', 'desc')
-            ->take(1000)
+            ->take(100)
             ->get();
     }
 

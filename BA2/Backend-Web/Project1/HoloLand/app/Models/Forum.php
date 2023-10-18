@@ -161,4 +161,9 @@ class Forum extends Model
         return false;
     }
 
+    public static function latestLogs()
+    {
+        return static::orderBy('created_at', 'desc')->take(100)->get();
+    }
+
 }

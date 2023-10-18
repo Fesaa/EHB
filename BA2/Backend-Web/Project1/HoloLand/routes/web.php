@@ -88,4 +88,8 @@ Route::prefix('/admin')
         Route::get('/logs', [AdminController::class, 'logs'])->name('logs');
         Route::get('/logs/login', [LogController::class, 'login'])->name('logs.login');
         Route::get('/logs/activity', [LogController::class, 'activity'])->name('logs.activity');
+        Route::get('/logs/posts/thread', [LogController::class, 'threadPosts'])->name('logs.posts.thread');
+        Route::get('/logs/posts/profile', [LogController::class, 'profilePosts'])->name('logs.posts.profile');
+        Route::get('/logs/threads', [LogController::class, 'threads'])->name('logs.threads');
+        Route::get('/logs/forums', [LogController::class, 'forums'])->name('logs.forums');
     });

@@ -229,4 +229,9 @@ class Thread extends Model
             ->limit(5)
             ->get();
     }
+
+    public static function latestLogs()
+    {
+        return static::orderBy('created_at', 'desc')->take(100)->get();
+    }
 }

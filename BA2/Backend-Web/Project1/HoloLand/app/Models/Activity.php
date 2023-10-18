@@ -77,7 +77,7 @@ class Activity extends Model
      */
     public static function latestLogs()
     {
-        return static::orderBy('created_at', 'desc')->take(1000)->get();
+        return static::orderBy('created_at', 'desc')->take(100)->get();
     }
 
 }

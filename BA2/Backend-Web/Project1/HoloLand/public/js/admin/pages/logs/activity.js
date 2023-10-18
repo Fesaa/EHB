@@ -8,9 +8,10 @@ function filterRows(val, index) {
     for (let i = 2; i < rows.length; i++) {
         const row = rows[i];
         const cells = row.getElementsByTagName('th');
-        const cell = cells[index];
-        if (cell) {
-            if (cell.innerText.toLowerCase().includes(val.toLowerCase())) {
+        if (cells) {
+            if (cells[0].innerText.toLowerCase().includes(filterName.value.toLowerCase())
+                && cells[1].innerText.toLowerCase().includes(filterUrl.value.toLowerCase())
+                && cells[2].innerText.toLowerCase().includes(filterTime.value.toLowerCase())) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';

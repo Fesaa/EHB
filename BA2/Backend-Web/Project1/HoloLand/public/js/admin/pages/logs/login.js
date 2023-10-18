@@ -6,13 +6,16 @@ const filterTime = document.getElementById('loginlogs-filter-time');
 
 const rows = document.getElementsByTagName('tr') ;
 
-function filterRows(val, index) {
+function filterRows() {
     for (let i = 2; i < rows.length; i++) {
         const row = rows[i];
         const cells = row.getElementsByTagName('th');
-        const cell = cells[index];
-        if (cell) {
-            if (cell.innerText.toLowerCase().includes(val.toLowerCase())) {
+        if (cells) {
+            if (cells[0].innerText.toLowerCase().includes(filterEmail.value.toLowerCase())
+                && cells[1].innerText.toLowerCase().includes(filterIp.value.toLowerCase())
+                && cells[2].innerText.toLowerCase().includes(filterUserAgent.value.toLowerCase())
+                && cells[3].innerText.toLowerCase().includes(filterOutcome.value.toLowerCase())
+                && cells[4].innerText.toLowerCase().includes(filterTime.value.toLowerCase())) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';
@@ -22,17 +25,17 @@ function filterRows(val, index) {
 }
 
 filterEmail.addEventListener('change', function () {
-    filterRows(this.value, 0);
+    filterRows();
 })
 filterIp.addEventListener('change', function () {
-    filterRows(this.value, 1);
+    filterRows();
 })
 filterUserAgent.addEventListener('change', function () {
-    filterRows(this.value, 2);
+    filterRows();
 })
 filterOutcome.addEventListener('change', function () {
-    filterRows(this.value, 3);
+    filterRows();
 })
 filterTime.addEventListener('change', function () {
-    filterRows(this.value, 4);
+    filterRows();
 })

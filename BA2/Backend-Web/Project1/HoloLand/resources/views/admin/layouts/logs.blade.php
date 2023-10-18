@@ -19,10 +19,13 @@
                     <li><a href="{{ route('admin.logs.activity') }}">Activity</a></li>
                 @endif
                 @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('LOGS_MODERATION')))
-                    <li><a href="{{ route('admin.roles') }}">Moderation</a></li>
+                    <li><a href="">Moderation</a></li>
                 @endif
                 @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('LOGS_POSTS')))
-                    <li><a href="{{ route('admin.roles') }}">Posts</a></li>
+                    <li><a href="{{ route('admin.logs.posts.thread') }}">Thread Posts</a></li>
+                    <li><a href="{{ route('admin.logs.posts.profile') }}">Profile Posts</a></li>
+                    <li><a href="{{ route('admin.logs.threads') }}">Threads</a></li>
+                    <li><a href="{{ route('admin.logs.forums') }}">Forums</a></li>
                 @endif
                 <li class="options-list-section"><a href="{{ route('admin.dashboard') }}">BACK</a></li>
             </ul>
