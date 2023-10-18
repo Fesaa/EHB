@@ -73,16 +73,17 @@
                 </div>
             @endforeach
                 @auth()
-                    <div class="new-post flex-row" style="justify-content: space-between; margin-top: 2rem">
+                    <div class="new-post flex-row profile-post-content" style="margin-top: 1em">
                         <img src="{{ \App\Models\User::AuthUser()->profile()->profilePicture() }}" alt="pfp"
                              style="width: 32px; height: 32px; border-radius: 25%">
-                        <form class="flex-column" method="post" style="align-items: center" action="{{ route('profileposts.store') }}">
+                        <form class="flex-column" method="post" style="flex: 1; margin: 0 1em 0 1em" action="{{ route('profileposts.store') }}">
                             @csrf
                             <input type="hidden" name="profile_id" value="{{ $post->profile_id }}">
                             <input type="hidden" name="profilepost_id" value="{{ $post->id }}">
-                            <textarea id="message" name="message" cols="80" rows="2" style="border-radius: 1rem; padding: 1rem; background: var(--background)"></textarea>
-                            <input type="submit" value="Post"
-                                   style="background: var(--primary); border: none; border-radius: 20px; padding: 5px 15px 5px 15px; width: fit-content; margin-top: 10px">
+                            <textarea id="message" name="message" cols="80" rows="2" style="border-radius: 1rem; padding: 1rem; background: var(--background);"></textarea>
+                            <div class="flex-row" style="justify-content: center">
+                                <input type="submit" value="Post" style="background: var(--primary); border: none; border-radius: 20px; padding: 5px 15px 5px 15px; width: fit-content; margin-top: 10px">
+                            </div>
                         </form>
                     </div>
                 @endauth
