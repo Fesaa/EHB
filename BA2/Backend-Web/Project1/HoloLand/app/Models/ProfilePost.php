@@ -88,4 +88,15 @@ class ProfilePost extends Model
             ->limit(5)
             ->get();
     }
+
+    /**
+     * @return ProfilePost[]
+     */
+    public static function recentTopPosts()
+    {
+        return static::orderBy('created_at', 'desc')
+            ->where('profile_post_id', null)
+            ->limit(5)
+            ->get();
+    }
 }

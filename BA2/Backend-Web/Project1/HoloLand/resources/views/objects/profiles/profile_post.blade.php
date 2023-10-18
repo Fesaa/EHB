@@ -58,7 +58,9 @@
             <div class="flex-row">
                 <a class="profile-link" href="{{ route('profiles.show', $post->owner()->profile()->id) }}">{!!  $post->owner()->colouredName() !!}</a>
                 @if($recipient)
-                    <span class="flex-row"> &nbsp; > &nbsp; {!! $post->owningProfile()->owningUser()->colouredName() !!}</span>
+                    @php($recipient = $post->owningProfile()->owningUser())
+                    <span class="flex-row"> &nbsp; > &nbsp;</span>
+                    <a class="clean-link" href="{{ route('profiles.show', $recipient->id) }}">{!! $recipient->colouredName() !!}</a>
                 @endif
             </div>
             <div style="margin-left: 5px; font-size: smaller">

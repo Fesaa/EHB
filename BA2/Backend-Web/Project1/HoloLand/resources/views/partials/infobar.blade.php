@@ -56,4 +56,13 @@
             </div>
         </div>
     @endif
+
+    <div class="float shiny-bg">
+        <div class="infobar-title">Profile Posts</div>
+        <div class="infobar-content">
+            @foreach(\App\Models\ProfilePost::recentTopPosts() as $post)
+                @include('objects.profiles.mini_profile_post', ["post" => $post])
+            @endforeach
+        </div>
+    </div>
 </div>
