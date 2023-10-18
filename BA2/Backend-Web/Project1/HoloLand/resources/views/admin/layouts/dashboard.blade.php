@@ -11,7 +11,7 @@
         <div class="options float" id="admin-dashboard-menu">
             <ul>
                 <li class="options-list-section"><a class="clean-link"
-                                                    href="{{ route('admin.dashboard') }}">HOLOSHOP</a></li>
+                                                    href="{{ route('admin.dashboard') }}">HOLOLAND</a></li>
                 @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_ROLES')))
                     <li><a href="{{ route('admin.roles.index') }}">Roles</a></li>
                 @endif

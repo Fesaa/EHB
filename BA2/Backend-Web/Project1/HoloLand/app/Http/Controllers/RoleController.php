@@ -23,7 +23,7 @@ class RoleController extends Controller
         $roles = Role::all()->sortByDesc('weight');
         $privileges = Privilege::all()->sortBy('id');
 
-        return view('admin.pages.holoshop.roles', [
+        return view('admin.pages.hololand.roles', [
             'roles' => $roles,
             'privileges' => $privileges
         ]);

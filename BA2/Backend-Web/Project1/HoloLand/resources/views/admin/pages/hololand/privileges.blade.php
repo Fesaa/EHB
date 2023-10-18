@@ -3,7 +3,7 @@
     use App\Models\Privilege;
 @endphp
 @extends('admin.layouts.dashboard')
-<link rel="stylesheet" href="{{ asset("css/admin/pages/holoshop/privileges.css") }}">
+<link rel="stylesheet" href="{{ asset("css/admin/pages/hololand/privileges.css") }}">
 <link rel="stylesheet" href="{{ asset("css/shared/tables.css") }}">
 
 @section('dashboard-content')
@@ -22,7 +22,7 @@
                     @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("PRIVILEGES_EDIT")))
                         <th class="flex-row" style="justify-content: center">
                             <form class="flex-row"
-                                  action="{{ route('admin.holoshop.privileges.update') }}" method="POST">
+                                  action="{{ route('admin.hololand.privileges.update') }}" method="POST">
                                 @csrf
                                 <input type="number" name="id" value="{{ $privilege->id }}" hidden>
                                 <textarea name="description" cols="50" rows="1">{{ $privilege->description }}</textarea>

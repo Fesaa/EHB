@@ -25,7 +25,7 @@ class PrivilegeController extends Controller
 
         static::update(request('id'), request('description'));
 
-        return view('admin.pages.holoshop.privileges', [
+        return view('admin.pages.hololand.privileges', [
             'privileges' => Privilege::all()->sortBy('id')
         ]);
     }

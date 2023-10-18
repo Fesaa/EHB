@@ -77,7 +77,7 @@ Route::prefix('/admin')
         Route::get('', [AdminController::class, 'index'])->name('dashboard');
 
         Route::get('/privileges', [AdminController::class, 'privileges'])->name('privileges');
-        Route::post('/privileges', [PrivilegeController::class, 'handle'])->name('holoshop.privileges.update');
+        Route::post('/privileges', [PrivilegeController::class, 'handle'])->name('hololand.privileges.update');
 
 
 

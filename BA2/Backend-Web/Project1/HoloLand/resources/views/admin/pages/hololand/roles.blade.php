@@ -3,7 +3,7 @@
     use App\Models\Privilege;
 @endphp
 @extends('admin.layouts.dashboard')
-<link rel="stylesheet" href="{{ asset("css/admin/pages/holoshop/roles.css") }}">
+<link rel="stylesheet" href="{{ asset("css/admin/pages/hololand/roles.css") }}">
 <link rel="stylesheet" href="{{ asset("css/shared/tables.css") }}">
 <link rel="stylesheet" href="{{ asset("css/shared/forms.css") }}">
 

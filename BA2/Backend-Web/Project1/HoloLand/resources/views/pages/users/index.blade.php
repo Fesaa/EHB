@@ -4,7 +4,7 @@
 
 @section('main-content')
     <div class="flex-row" style="justify-content: center">
-        <h1 class="float members-title">HoloShop has {{sizeof($users)}} members!</h1>
+        <h1 class="float members-title">HoloLand has {{sizeof($users)}} members!</h1>
     </div>
     <div class="member-grid">
         @foreach($users as $user)

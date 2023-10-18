@@ -45,7 +45,7 @@ class AdminController extends Controller
 
         $privileges = Privilege::all()->sortBy('id');
 
-        return view('admin.pages.holoshop.privileges', [
+        return view('admin.pages.hololand.privileges', [
             'privileges' => $privileges
         ]);
     }
@@ -62,7 +62,7 @@ class AdminController extends Controller
         $roles = Role::all()->sortByDesc('weight');
         $privileges = Privilege::all()->sortBy('id');
 
-        return view('admin.pages.holoshop.roles', [
+        return view('admin.pages.hololand.roles', [
             'roles' => $roles,
             'privileges' => $privileges
         ]);
