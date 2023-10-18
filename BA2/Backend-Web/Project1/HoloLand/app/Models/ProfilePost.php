@@ -78,4 +78,14 @@ class ProfilePost extends Model
     {
         return static::orderBy('created_at', 'desc')->take(100)->get();
     }
+
+    /**
+     * @return ProfilePost[]
+     */
+    public static function recentPosts()
+    {
+        return static::orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+    }
 }

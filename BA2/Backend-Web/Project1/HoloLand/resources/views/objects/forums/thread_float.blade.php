@@ -13,7 +13,7 @@
             <div>{{ \App\Helper\Formatter::date($thread->created_at) }}</div>
         </div>
     </div>
-    <div> {!! $thread->content() !!} </div>
+    <div style="max-height: 250px; text-overflow: ellipsis; overflow: hidden"> {!! $thread->content() !!} </div>
     <div class="floating-thread-footer flex-row">
         <div>Thread - Replies: {{ $thread->replyCount() }}</div>
         <a class="read-more" href="{{ route("threads.show", $thread->id) }}">Read More</a>

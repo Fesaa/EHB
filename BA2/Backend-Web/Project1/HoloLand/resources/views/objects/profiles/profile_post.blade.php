@@ -47,11 +47,20 @@
 
 </style>
 
+@php
+/** @var \App\Models\ProfilePost $post */
+@endphp
+
 <div class="profile-post-div flex-row">
     <img src="{{ $post->owner()->profile()->profilePicture() }}" alt="pfp">
     <div id="profile-post-{{$post->id}}" class="profile-post-content flex-column full-flex">
-        <div class="flex-row">
-            <a class="profile-link" href="{{ route('profiles.show', $post->owner()->profile()->id) }}">{!!  $post->owner()->colouredName() !!}</a>
+        <div class="flex-row" style="justify-content: space-between">
+            <div class="flex-row">
+                <a class="profile-link" href="{{ route('profiles.show', $post->owner()->profile()->id) }}">{!!  $post->owner()->colouredName() !!}</a>
+                @if($recipient)
+                    <span class="flex-row"> &nbsp; > &nbsp; {!! $post->owningProfile()->owningUser()->colouredName() !!}</span>
+                @endif
+            </div>
             <div style="margin-left: 5px; font-size: smaller">
                  <a class="clean-link" href="#profile-post-{{$post->id}}">{{ \App\Helper\Formatter::timeAgo($post->created_at) }}</a>
             </div>
@@ -61,8 +70,8 @@
             @foreach($post->getReplies() as $reply)
                 <div id="profile-post-{{$reply->id}}" class="profile-post-reply-div flex-row">
                     <img src="{{ $reply->owner()->profile()->profilePicture() }}" alt="pfp">
-                    <div class="profile-post-content flex-column">
-                        <div class="flex-row">
+                    <div class="profile-post-content flex-column full-flex">
+                        <div class="flex-row full-flex" style="justify-content: space-between">
                             <a class="profile-link" href="{{ route('profiles.show', $reply->owner()->profile()->id) }}">{!!  $reply->owner()->colouredName() !!}</a>
                             <div style="margin-left: 5px; font-size: smaller">
                                 <a class="clean-link" href="#profile-post-{{$reply->id}}">{{ \App\Helper\Formatter::timeAgo($reply->created_at) }}</a>
@@ -72,7 +81,7 @@
                     </div>
                 </div>
             @endforeach
-                @auth()
+                @if($postBox)
                     <div class="new-post flex-row profile-post-content" style="margin-top: 1em">
                         <img src="{{ \App\Models\User::AuthUser()->profile()->profilePicture() }}" alt="pfp"
                              style="width: 32px; height: 32px; border-radius: 25%">
@@ -86,7 +95,7 @@
                             </div>
                         </form>
                     </div>
-                @endauth
+                @endif
         </div>
     </div>
 </div>

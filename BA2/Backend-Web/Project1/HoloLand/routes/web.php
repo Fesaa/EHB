@@ -11,6 +11,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\isStaff;
+use App\Models\ProfilePost;
+use \App\Models\Thread;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,14 +30,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.index', [
-        'featuredThreads' => \App\Models\Thread::featuredThreads(),
-        'newsThreads' => \App\Models\Thread::newsThreads(),
+        'featuredThreads' => Thread::featuredThreads(),
+        'newsThreads' => Thread::newsThreads(),
     ]);
 })->name('home');
 
 Route::get('/whatsnew', function () {
     return view('pages.whatsnew', [
-        'threads' => \App\Models\Thread::recentThreads(),
+        'threads' => Thread::recentThreads(),
+        'posts' => ProfilePost::recentPosts(),
     ]);
 })->name('whatsnew');
 

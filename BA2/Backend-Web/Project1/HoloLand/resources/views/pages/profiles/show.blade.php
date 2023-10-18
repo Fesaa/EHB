@@ -24,7 +24,7 @@
 
 
             @foreach($profile->getProfilePosts() as $post)
-                @include('objects.profiles.profile_post', ['post' => $post])
+                @include('objects.profiles.profile_post', ['post' => $post, 'postBox' => auth()->user() != null, 'recipient' => false])
             @endforeach
         </div>
     </div>
