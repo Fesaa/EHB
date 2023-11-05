@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('thread_forms', function (Blueprint $table) {
             $table->id();
             $table->foreignId('forum_id')->constrained('forums');
+            $table->integer('field_count');
             $table->enum('type', ['text', 'big-text', 'bool']); // Keeping it simple, I hate js
             $table->string('label');
             $table->string('description')->nullable();

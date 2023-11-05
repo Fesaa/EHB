@@ -3,7 +3,7 @@
 
 <div id="form-container">
 
-    <input name="field-counter" id="field-counter" type="number" value="{{ sizeof($fields) }}" hidden="hidden">
+    <input name="field-counter" id="field-counter" type="number" value="0" hidden="hidden">
 
     <div class="form-buttons">
         <label class="form-btn dropdown-button" onclick="addField('text', 'Text')">Add Text</label>
@@ -15,7 +15,7 @@
 <script>
     const formContainer = document.getElementById('form-container');
     const fieldCounter = document.getElementById('field-counter');
-    let fieldCount = {{ sizeof($fields) }};
+    let fieldCount = 0;
     function addField(type, name) {
         addFilledField(type, name, "", "", "");
     }

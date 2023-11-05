@@ -15,6 +15,7 @@ class ThreadForm extends Model
         'label',
         'name',
         'placeholder',
+        'field_count'
     ];
 
     public function forum()

@@ -201,6 +201,8 @@ class ForumController extends Controller
             return;
         }
 
+        $ids = [];
+
         for ($count = 0; $count < $fieldCount; $count++) {
             $fieldType = $request->get('field-type-' . $count);
             if ($fieldType == null) {
@@ -217,13 +219,22 @@ class ForumController extends Controller
             $fieldDescription = $request->get('field-desc-' . $count);
             $fieldPlaceHolder = $request->get('field-placeholder-' . $count);
 
-            $field = new ThreadForm();
+            $field = ThreadForm::where(['forum_id' => $id, 'field_count' => $count])->first();
+            if ($field == null) {
+                $field = new ThreadForm();
+            }
+
+            $field->field_count = $count;
             $field->forum_id = $id;
             $field->label = $fieldTitle;
             $field->description = $fieldDescription;
             $field->placeholder = $fieldPlaceHolder;
             $field->type = $fieldType;
             $field->save();
+
+            $ids[] = $field->id;
         }
+
+        ThreadForm::whereNotIn('id', $ids)->where(['forum_id' => $id])->delete();
     }
 }

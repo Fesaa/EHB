@@ -182,7 +182,7 @@ class Forum extends Model
      * @return ThreadForm[]
      */
     public function getFormFields() {
-        return $this->form()->get();
+        return $this->form()->orderBy('field_count')->get();
     }
 
 }
