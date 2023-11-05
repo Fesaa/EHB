@@ -49,11 +49,8 @@
             @endforeach
         </table>
     </div>
-@endsection
-
-@if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
-    <div id="form-popup" class="flex-column">
-        <div id="form-popup-2" class="flex-row" style="justify-content: center">
+    @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
+        <div id="form-holder" class="flex-row" style="display: none; justify-content: center; flex: 1; margin-top: 1em;">
             <form class="styled-form" id="update-member-roles" method="post"
                   action="{{ route('admin.members.edit.roles.update') }}">
                 @csrf
@@ -73,22 +70,13 @@
                 <input type="submit" value="Save" class="styled-form-confirm" style="font-weight: bold">
             </form>
         </div>
-    </div>
-@endif
+    @endif
+@endsection
 
 <script>
-    form_popup = document.getElementById("form-popup");
-    form_popup_2 = document.getElementById("form-popup-2");
-    [form_popup, form_popup_2].forEach(f => {
-        f.addEventListener('click', function (event) {
-            if (event.target === f) {
-                form_popup.style.display = "none";
-            }
-        });
-    })
-
     function closeForm() {
-        form_popup.style.display = "none";
+        const form_holder = document.getElementById('form-holder');
+        form_holder.style.display = "none";
     }
 
     function editMemberRoles(id) {
@@ -109,7 +97,7 @@
             }
         });
         document.getElementById('member-id-input').value = id;
-        let popup = document.getElementById("form-popup");
-        popup.style.display = "flex";
+        const form_holder = document.getElementById('form-holder');
+        form_holder.style.display = "";
     }
 </script>

@@ -3,31 +3,25 @@ Holoshop
 
 # TODO's
 Stuff that I've put off to work on other functionality
-- Creating new roles from the admin panel
 - Punish users & list punishments
-- Add featured switch on threads edit
 - Add change date on threads (for ordering featured page)
 - Make forums have a weight for ordering on the forums page
 - Delete forums, threads, posts, profile posts, etc
 - Contact page
 
 # Known issues
-These are issues that I found while playing around, and hadn't have time to fix them then
+These are issues that I found while playing around, and hadn't have time to fix them then (or don't know how to fix them / won't bc it's styling)
 
 - `/admin/logs/login` pushes the sidebar all the way to the side
-- ~~`ROLES_EDIT_MISC` does not give you access to the edit button~~
-- ~~`/admin/logs` loads extremely slow- find new image~~
 - `/admin/logs/*` filter isn't hold into place correctly
 - `/forum/*` description overflows if it has no spaces
 - The post editor makes the posts bigger
 - Infobar content has inconsistent padding
+- Forum Form creater has missing styling in the full edit
 
 # Extra TODO's
 These are TODO's I originally wasn't going to implement, and aren't needed. But would be fun!
-- Users with the `FORUMS_CREATE` privilege should get a message on the forums page to create a forum if none are present
 - Re-order ccs files
-- Check for XSS & client-side validation
-- Think about changing members role form, it works well. Just looks odds when scrolling, but it's pretty small so maybe not worth it
 
 # Development Standards
 These are some standards I tried to follow, or will follow/implement in my project to keep it orderly for me.
