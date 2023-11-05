@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asset;
+use App\Models\Forum;
 use App\Models\Privilege;
 use App\Models\Thread;
+use App\Models\ThreadForm;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -51,15 +53,35 @@ class ThreadController extends Controller
             "forum_id" => "required|integer|exists:forums,id",
             "title" => "required|string|max:255",
             "featured" => "nullable",
-            "content" => "required|string",
+            "content" => "nullable|string",
             'image-url' => "nullable|url",
             'image-file' => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ]);
 
         $thread = new Thread();
+        $fields = ThreadForm::where('forum_id', $request->input('forum_id'))->get();
+        if ($fields != null && sizeof($fields) > 0) {
+            $content = "";
+            foreach ($fields as $_ => $field) {
+                $s = $request->get($field->id);
+                if ($s == null || $s == "") {
+                    return redirect()->route('threads.create')->withErrors(['error' => 'Please fill out all fields']);
+                }
+                if ($field->type == "bool") {
+                    $s = $s == "on" ? "Yes" : "No";
+                }
+
+                $content .= "\n[color=#404aa0][size=5]" . $field->id . ") " . $field->label . "[/size][/color]\n" . $s . "\n";
+            }
+            $thread->content = $content;
+        } else {
+            $request->validate(["content" => "required|string"]);
+            $thread->content = $request->input('content');
+        }
+
         $thread->forum_id = $request->input('forum_id');
         $thread->title = $request->input('title');
-        $thread->content = $request->input('content');
+
         $thread->user_id = User::AuthUser()->id;
 
         if ($request->input('featured') != null) {
@@ -112,6 +134,7 @@ class ThreadController extends Controller
         return view('pages.threads.edit', [
             "thread" => $thread,
             "id" => $thread->id,
+            "forum" => Forum::getForum($thread->forum_id),
         ]);
     }
 

@@ -4,7 +4,7 @@
 @endphp
 @extends('layouts.master')
 <link rel="stylesheet" href="{{ asset('css/pages/forums/index.css') }}">
-<link rel="stylesheet" href="{{ asset("css/pages/forums/forms/forum.css") }}">
+<link rel="stylesheet" href="{{ asset("css/pages/forums/forms/forum_form.css") }}">
 
 @section('main-content')
     <ul id="forums-list">
@@ -31,6 +31,7 @@
                                 "description" => "",
                                 "cloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_CLOAK"),
                                 "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_LOCK"),
+                                "fields" => []
                             ])
                     </div>
                 </li>

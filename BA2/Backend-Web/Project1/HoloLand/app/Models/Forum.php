@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 
 class Forum extends Model
@@ -19,6 +21,11 @@ class Forum extends Model
         'description',
         'image_id',
     ];
+
+    public function form(): HasMany
+    {
+        return $this->HasMany(ThreadForm::class);
+    }
 
     public function imageAsset(): Asset|null {
         return $this->imageID()->first();
@@ -164,6 +171,18 @@ class Forum extends Model
     public static function latestLogs()
     {
         return static::orderBy('created_at', 'desc')->take(100)->get();
+    }
+
+    public function hasForm(): bool
+    {
+        return $this->form()->first() != null;
+    }
+
+    /**
+     * @return ThreadForm[]
+     */
+    public function getFormFields() {
+        return $this->form()->get();
     }
 
 }

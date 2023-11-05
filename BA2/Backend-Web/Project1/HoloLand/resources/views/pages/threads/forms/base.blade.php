@@ -1,10 +1,16 @@
+@php
+    /**
+     * @var \App\Models\Forum $forum
+     */
+@endphp
 <link rel="stylesheet" href="{{ asset("css/shared/forms.css") }}">
 <link rel="stylesheet" href="{{ asset("css/pages/forums/forms/forum.css") }}">
 
-<div class="styled-form-container">
+<div class="styled-form-container" style="flex: 1">
     <form class="styled-form label-left"
           method="post"
-          action="{{ $route }}">
+          action="{{ $route }}"
+          style="min-width: 400px">
         @csrf
         @method($method)
 
@@ -13,7 +19,12 @@
         <label for="title">Title</label><br>
         <input type="text" name="title" id="title" value="{{ $title }}"><br>
 
-        @include('objects.forms.bbcode', ["label" => "Content", "type"=> "content", "value" => $content])
+        @if($thread == null && $forum->hasForm())
+            @include('pages.threads.forms.base_form', ["fields" => $forum->getFormFields()])
+        @else
+            @include('objects.forms.bbcode', ["label" => "Content", "type"=> "content", "value" => $content])
+        @endif
+
 
         @if(\App\Models\User::AuthUser()->hasPrivilegeByString("FEATURED_EDIT"))
             <label for="featured">Featured?</label>
@@ -21,7 +32,7 @@
             @include('objects.forms.asset', ["label" => "Banner image", "type"=> "image"])
         @endif
 
-        <div class="flex-row">
+        <div class="flex-row" style="margin: 20px">
             @if($cloaks)
                 <div id="forum-cloaks" class="dropdown-holder">
                     <label id="forum-dropdown-cloaks-btn" class="form-btn dropdown-button" onclick="cloaks()">Assign cloaks</label>
@@ -30,7 +41,8 @@
                             <label><input type="checkbox" name="{{ $cloak->name }}" value="{{ $cloak->name }}"
                                           @if($thread != null && $thread->hasCloak($cloak->name))
                                               checked="checked"
-                                    @endif>{{ $cloak->name()}}</label>
+                                          @endif
+                                >{{ $cloak->name()}}</label>
                         @endforeach
                     </div>
                 </div>

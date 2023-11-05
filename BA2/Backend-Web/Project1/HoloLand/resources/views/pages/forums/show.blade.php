@@ -15,7 +15,7 @@
     <p class="road-links"><a href="{{ route('forums.index') }}">Forums</a></p>
     <div id="forum-holder" class="flex-column">
         <div id="forum-info" class="float flex-row">
-            <img src="{{ $forum->image() }}"  alt="forums-image">
+            <img src="{{ $forum->image() }}" alt="forums-image">
             <div class="flex-column full-flex">
                 <div class="flex-row info-row">
                     <div class="creation-date"> {{ Formatter::date($forum->created_at) }} </div>
@@ -51,15 +51,16 @@
 
                 <div id="thread-dropdown-content" class="hidden dropdown-content">
                     @include('pages.threads.forms.base', [
-                    "method" => "post",
-                    "route" => route('threads.store'),
-                    "forum_id" => $forum->id,
-                    "thread" => null,
-                    "title" => "",
-                    "content" => "",
-                    "cloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_CLOAK"),
-                    "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_LOCK"),
-                    ])
+                            "method" => "post",
+                            "route" => route('threads.store'),
+                            "forum_id" => $forum->id,
+                            "thread" => null,
+                            "title" => "",
+                            "content" => "",
+                            "cloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_CLOAK"),
+                            "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_LOCK"),
+                            "fields" => $forum->getFormFields(),
+                            ])
                 </div>
 
                 <script>

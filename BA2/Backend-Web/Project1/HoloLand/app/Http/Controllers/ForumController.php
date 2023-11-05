@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asset;
 use App\Models\Forum;
 use App\Models\Privilege;
+use App\Models\ThreadForm;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -183,7 +184,46 @@ class ForumController extends Controller
             }
         }
 
+        $this->handleForm($request, $forum->id);
+
 
         return redirect()->route('forums.show', ['forum' => $forum->id]);
+    }
+
+    private function handleForm(Request $request, int $id) {
+        $fieldCount = $request->get('field-counter');
+
+        if ($fieldCount == null) {
+            return;
+        }
+
+        if ($fieldCount < 1) {
+            return;
+        }
+
+        for ($count = 0; $count < $fieldCount; $count++) {
+            $fieldType = $request->get('field-type-' . $count);
+            if ($fieldType == null) {
+                continue;
+            }
+
+            $request->validate([
+                "field-title-" . $count => "required|string|max:255",
+                "field-desc-" . $count => "nullable|string|max:255",
+                "field-placeholder-" . $count => "nullable|string|max:255",
+            ]);
+
+            $fieldTitle = $request->get('field-title-' . $count);
+            $fieldDescription = $request->get('field-desc-' . $count);
+            $fieldPlaceHolder = $request->get('field-placeholder-' . $count);
+
+            $field = new ThreadForm();
+            $field->forum_id = $id;
+            $field->label = $fieldTitle;
+            $field->description = $fieldDescription;
+            $field->placeholder = $fieldPlaceHolder;
+            $field->type = $fieldType;
+            $field->save();
+        }
     }
 }

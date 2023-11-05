@@ -14,8 +14,7 @@
         @include('objects.forms.bbcode', ["label" => "Subtitle", "type"=> "subtitle", "value" => $subtitle])
         @include('objects.forms.bbcode', ["label" => "Description", "type"=> "description", "value" => $description])
         @include('objects.forms.asset', ["label" => "Forum image", "type"=> "image"])
-
-        <div class="flex-row">
+        <div class="flex-row" style="margin: 30px">
             @if($cloaks)
                 <div id="forum-cloaks" class="dropdown-holder">
                     <label id="forum-dropdown-cloaks-btn" class="form-btn dropdown-button" onclick="cloaks()">Assign cloaks</label>
@@ -44,8 +43,17 @@
                 </div>
             @endif
         </div>
-        <br><br><br>
-        <input type="submit" value="Save" class="styled-form-confirm">
+        <div class="flex-row" style="flex: 1; justify-content: center;">
+            <div class="flex-column" style="flex: 1;">
+                <div class="flex-row" style="flex: 1; justify-content: center">
+                    <label id="forum-dropdown-form-btn" class="form-btn dropdown-button" onclick="formFunc()">Make thread creation form</label>
+                </div>
+                <div id="forum-dropdown-form-content" class="hidden dropdown-content" style="padding: 20px; justify-content: center">
+                    @include('pages.forums.forms.form_base', ["fields" => $fields])
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Save" class="styled-form-confirm" style="margin-top: 1em">
     </form>
 </div>
 
@@ -55,6 +63,9 @@
 
     const locksButton = document.getElementById('forum-dropdown-locks-btn');
     const locksDropdownContent = document.getElementById('forum-dropdown-locks-content');
+
+    const formButton = document.getElementById('forum-dropdown-form-btn');
+    const formDropdownContent = document.getElementById('forum-dropdown-form-content');
 
 
     function dropdownmixer(el) {
@@ -79,6 +90,10 @@
 
     function locks() {
         dropdownmixer(locksDropdownContent);
+    }
+
+    function formFunc() {
+        dropdownmixer(formDropdownContent);
     }
 
 </script>
