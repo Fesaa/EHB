@@ -217,6 +217,15 @@ class ThreadController extends Controller
             }
         }
 
+        $autoLocks = $thread->owningForum()->autoThreadLocks()->get();
+        foreach ($autoLocks as $autoLock) {
+            $thread->locks()->attach($autoLock->id);
+        }
+
+        $autoCloaks = $thread->owningForum()->autoThreadCloaks()->get();
+        foreach ($autoCloaks as $autoCloak) {
+            $thread->cloaks()->attach($autoCloak->id);
+        }
 
 
         return redirect()->route('threads.show', $thread->id);

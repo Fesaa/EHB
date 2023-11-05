@@ -31,6 +31,8 @@
                                 "description" => "",
                                 "cloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_CLOAK"),
                                 "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("FORUM_LOCK"),
+                                "autoCloaks" => \App\Models\User::AuthUser()->hasPrivilegeByString("THREAD_CLOAK"),
+                                "autoLocks" => \App\Models\User::AuthUser()->hasPrivilegeByString("THREAD_LOCK"),
                                 "fields" => []
                             ])
                     </div>

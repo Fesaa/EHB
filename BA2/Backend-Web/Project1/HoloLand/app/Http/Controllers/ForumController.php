@@ -184,6 +184,25 @@ class ForumController extends Controller
             }
         }
 
+        $threadLocks = Privilege::getAllThreadLocks();
+        $threadCloaks = Privilege::getAllThreadCloaks();
+        foreach ($threadLocks as $lock) {
+            if ($request->has($lock->name)) {
+                $forum->autoThreadLocks()->attach($lock->id);
+            } else {
+                $forum->autoThreadLocks()->detach($lock->id);
+            }
+        }
+
+        foreach ($threadCloaks as $cloak) {
+            if ($request->has($cloak->name)) {
+                $forum->autoThreadCloaks()->attach($cloak->id);
+            } else {
+                $forum->autoThreadCloaks()->detach($cloak->id);
+            }
+        }
+
+
         $this->handleForm($request, $forum->id);
 
 

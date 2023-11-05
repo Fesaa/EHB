@@ -90,7 +90,7 @@ class Thread extends Model
                 return true;
             }
         }
-        return false;
+        return $this->user_id == $user->id;
     }
 
     // TODO: Order on threads with latest posts, rater than creation date. This is a bit more complicated,

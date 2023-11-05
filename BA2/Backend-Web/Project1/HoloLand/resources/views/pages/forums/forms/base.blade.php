@@ -43,6 +43,35 @@
                 </div>
             @endif
         </div>
+        <div class="flex-row" style="margin: 30px">
+            @if($autoCloaks)
+                <div id="forum-cloaks" class="dropdown-holder">
+                    <label id="forum-dropdown-auto-cloaks-btn" class="form-btn dropdown-button" onclick="autoCloaks()">Assign auto Thread cloaks</label>
+                    <div id="forum-dropdown-auto-cloaks-content" class="hidden dropdown-content flex-column" style="margin-top: 1em">
+                        @foreach(\App\Models\Privilege::getAllThreadCloaks() as $cloak)
+                            <label><input type="checkbox" name="{{ $cloak->name }}" value="{{ $cloak->name }}"
+                                          @if($forum != null && $forum->hasAutoThreadCloak($cloak->name))
+                                              checked="checked"
+                                    @endif>{{ $cloak->name()}}</label>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+            @if($autoLocks)
+                <div id="forum-locks" class="dropdown-holder">
+                    <label id="forum-dropdown-auto-locks-btn" class="form-btn dropdown-button" onclick="autoLocks()">Assign auto Thread locks</label>
+                    <div id="forum-dropdown-auto-locks-content" class="hidden dropdown-content flex-column" style="margin-top: 1em">
+                        @foreach(\App\Models\Privilege::getAllThreadLocks() as $lock)
+                            <label><input type="checkbox" name="{{ $lock->name }}" value="{{ $lock->name }}"
+                                          @if($forum != null && $forum->hasAutoThreadLock($lock->name))
+                                              checked="checked"
+                                    @endif>{{ $lock->name()}}</label>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
         <div class="flex-row" style="flex: 1; justify-content: center;">
             <div class="flex-column" style="flex: 1;">
                 <div class="flex-row" style="flex: 1; justify-content: center">
@@ -66,6 +95,12 @@
 
     const formButton = document.getElementById('forum-dropdown-form-btn');
     const formDropdownContent = document.getElementById('forum-dropdown-form-content');
+
+    const autoCloaksButton = document.getElementById('forum-dropdown-auto-cloaks-btn');
+    const autoCloaksDropdownContent = document.getElementById('forum-dropdown-auto-cloaks-content');
+
+    const autoLocksButton = document.getElementById('forum-dropdown-auto-locks-btn');
+    const autoLocksDropdownContent = document.getElementById('forum-dropdown-auto-locks-content');
 
 
     function dropdownmixer(el) {
@@ -94,6 +129,14 @@
 
     function formFunc() {
         dropdownmixer(formDropdownContent);
+    }
+
+    function autoCloaks() {
+        dropdownmixer(autoCloaksDropdownContent);
+    }
+
+    function autoLocks() {
+        dropdownmixer(autoLocksDropdownContent);
     }
 
 </script>

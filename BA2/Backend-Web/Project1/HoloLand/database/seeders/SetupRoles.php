@@ -40,6 +40,8 @@ class SetupRoles extends Seeder
         $FORUM_LOCK = Privilege::where(['name' => "FORUM_LOCK"])->first();
         $FORUM_CLOAK = Privilege::where(['name' => "FORUM_CLOAK"])->first();
         $THREAD_EDIT = Privilege::where(['name' => "THREAD_EDIT"])->first();
+        $THREAD_LOCK = Privilege::where(['name' => "THREAD_LOCK"])->first();
+        $THREAD_CLOAK = Privilege::where(['name' => "THREAD_CLOAK"])->first();
         $POST_EDIT = Privilege::where(['name' => "POST_EDIT"])->first();
 
         $FORUM_CLOAK_STAFF = Privilege::where(['name' => "FORUM_CLOAK_STAFF"])->first();
@@ -62,7 +64,7 @@ class SetupRoles extends Seeder
                 $DASHBOARD_FEATURED->value | $FEATURED_EDIT->value |
                 $DASHBOARD_MEMBERS->value | $MEMBERS_EDIT_PROFILE->value | $MEMBERS_EDIT_ROLES->value |
                 $DASHBOARD_PUNISHMENTS->value | $PUNISHMENTS_ISSUE->value | $FORUM_CREATE->value | $FORUM_EDIT->value |
-                $FORUM_LOCK->value | $FORUM_CLOAK->value |
+                $FORUM_LOCK->value | $FORUM_CLOAK->value | $THREAD_LOCK->value | $THREAD_CLOAK->value |
                 $THREAD_EDIT->value | $POST_EDIT->value | $FORUM_CLOAK_STAFF->value | $FORUM_LOCK_STAFF->value
         ]);
 

@@ -60,6 +60,14 @@ class Forum extends Model
         return $this->belongsToMany(Privilege::class, 'forum_cloaks', 'forum_id', 'privilege_id');
     }
 
+    public function autoThreadLocks(): BelongsToMany {
+        return $this->belongsToMany(Privilege::class, 'forums_auto_thread_locks', 'forum_id', 'privilege_id');
+    }
+
+    public function autoThreadCloaks(): BelongsToMany {
+        return $this->belongsToMany(Privilege::class, 'forums_auto_thread_cloaks', 'forum_id', 'privilege_id');
+    }
+
     public function canSee(User|null $user): bool {
         $c = $this->cloaks()->count();
         if ($user == null || $c == 0) {
@@ -142,6 +150,14 @@ class Forum extends Model
 
     public function hasCloak(string $name): bool {
         return $this->cloaks()->where(["name" => $name])->first() != null;
+    }
+
+    public function hasAutoThreadLock(string $name): bool {
+        return $this->autoThreadLocks()->where(["name" => $name])->first() != null;
+    }
+
+    public function hasAutoThreadCloak(string $name): bool {
+        return $this->autoThreadCloaks()->where(["name" => $name])->first() != null;
     }
 
     public function canPostOn(User|null $user): bool
