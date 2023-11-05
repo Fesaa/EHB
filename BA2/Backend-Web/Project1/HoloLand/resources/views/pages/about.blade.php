@@ -39,6 +39,13 @@
                    This privilege is, by default, only granted to the <span class="code-block">ADMIN</span> role.
                    Permission distribution may be changed through the staff panel.
                </p>
+                <p class="important-note">
+                    The privilege system is a lot more complicated than a dumb admin or not. <br>
+                    Roles have certain privileges, and users have certain roles. Privileges are just numbers (1 << n). And roles have a privilege value which is their sum. <br>
+                    This allows for a lot more flexibility, and a lot more control.<br>
+
+                    I.e. after seeding, only admins can edit other users roles. But if you wanted some else to be able to do this. You can!!
+                </p>
             </li>
             <li class="canvas-requirement-box" id="profile-age">
                 <h4>Profile page</h4>
@@ -74,7 +81,14 @@
             <li class="canvas-requirement-box" id="contact-page">
                 <h4>Contact Page</h4>
                 <p>
-                    To implement.
+                    Users can contact the staff of the forums via the <a href="{{ route('forums.show', 5) }}" target="_blank">Support</a> forum.
+                    Threads in here can only be viewed by the user who created it, and the staff. <br>
+                </p>
+                <p class="important-note">
+                    When making a thread the form is changed dynamically. Check the forum edit, see have a look at custom forms for making threads.
+                    This is wayyy cooler than a static form. It currently supports three different input types. But these can be extended. <br>
+                    Arguably, they're implemented terrible and mostly hardcoded. And should be changed to actual php classes implementing an interface.
+                    But I felt like this was out of scope of the project, and I want to go and work with actual programming languages that give me proper types.
                 </p>
             </li>
         </ul>

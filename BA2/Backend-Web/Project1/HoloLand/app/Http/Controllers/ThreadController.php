@@ -64,10 +64,8 @@ class ThreadController extends Controller
             $content = "";
             foreach ($fields as $_ => $field) {
                 $s = $request->get($field->id);
-                if (($s == null || $s == "") && $field->type != "bool") {
-                    return redirect()->route('threads.create')->withErrors(['error' => 'Please fill out all fields']);
-                } else {
-                    $s = $s == null ? "" : $s;
+                if ($s == null) {
+                    $s = "N/A";
                 }
                 if ($field->type == "bool") {
                     $s = $s == "on" ? "Yes" : "No";
