@@ -6,6 +6,7 @@ use App\Models\Forum;
 use App\Models\Post;
 use App\Models\Privilege;
 use App\Models\Thread;
+use App\Models\ThreadForm;
 use Illuminate\Database\Seeder;
 
 class SetupForum extends Seeder
@@ -19,6 +20,7 @@ class SetupForum extends Seeder
         $this->talkCorner();
         $this->HomeMatters();
         $this->FAQ();
+        $this->Support();
     }
 
     private function news(): void
@@ -321,5 +323,49 @@ By participating in HoloLand, you agree to abide by these rules and guidelines. 
 
         $RULES->locks()->attach($STAFF_LOCK);
 
+    }
+
+    private function Support(): void {
+        $SUPPORT = Forum::factory()->create([
+            'title' => 'Support',
+            'subtitle' => 'Need help? We got you covered!',
+            'description' => "Welcome to the HoloLand Support Forum, where you can find answers to your questions and get help from our dedicated support team. 🌟 We understand that navigating a new platform can be challenging, so we've created this forum to provide you with the assistance you need. Whether you're having trouble with your account, need help with a technical issue, or have a general inquiry, we're here to help! Only members of our staff team, and you, can see threads you make.",
+            'image_id' => 15,
+            ]);
+
+        $THREAD_CLOAK_STAFF = Privilege::where(['name' => "THREAD_CLOAK_STAFF"])->first();
+        $SUPPORT->autoThreadCloaks()->attach($THREAD_CLOAK_STAFF);
+
+        ThreadForm::factory()->create([
+            'forum_id' => 5,
+            'type' => 'text',
+            'label' => 'Email',
+            'field_count' => 0,
+        ]);
+
+        ThreadForm::factory()->create([
+            'forum_id' => 5,
+            'type' => 'big-text',
+            'label' => 'Message',
+            'description' => 'message',
+            'field_count' => 2,
+        ]);
+
+        ThreadForm::factory()->create([
+            'forum_id' => 5,
+            'type' => 'bool',
+            'label' => 'I read the FAQ',
+            'field_count' => 3,
+        ]);
+
+        $THREAD = Thread::factory()->create([
+            'forum_id' => 5,
+            'user_id' => 7,
+            'title' => 'Change email',
+            'content' => "Hi! I'm a bit lost, I'm trying to change my email to newEmail@example.com but can't find how. Can you help me?",
+        ]);
+
+        // We have to manually assign the cloak here since the logic does not run database side...
+        $THREAD->cloaks()->attach($THREAD_CLOAK_STAFF);
     }
 }

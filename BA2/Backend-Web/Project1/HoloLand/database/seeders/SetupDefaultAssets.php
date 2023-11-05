@@ -65,8 +65,12 @@ class SetupDefaultAssets extends Seeder
             'url' => 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2c%2F6d%2F55%2F2c6d55161b62332ace235a69805bd797.jpg&f=1&nofb=1&ipt=c00d96195152ae5092446c5a4ab775198e614bc39399858499004a7aac3ed03b&ipo=images'
         ]);
 
-        Asset::factory()->create([
+        Asset::factory()->create([ // 14
             'url' => 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.kgjGEvtnQwKlBSwPAzbHlwHaD4%26pid%3DApi&f=1&ipt=1192363fed075fbca0b069a5044bfa25cc5efe2ff0d9a4ffdf3b80505b1ac80f&ipo=images'
+        ]);
+
+        Asset::factory()->create([ // 15
+           'url' => 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Fsupport-icon.png&f=1&nofb=1&ipt=7bff375836a6b16eb4ca167d0b4bfa967a48bba1db1760156f390cb49f7742fb&ipo=images'
         ]);
     }
 }
