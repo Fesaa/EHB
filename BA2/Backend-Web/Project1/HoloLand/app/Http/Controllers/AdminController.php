@@ -115,4 +115,82 @@ class AdminController extends Controller
             'members' => $members
         ]);
     }
+
+    public function punishments() {
+        if (!auth()->check()) {
+            return redirect()->route('home');
+        }
+
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_PUNISHMENTS'))) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return view('admin.pages.moderation.punishments', [
+            'members' => User::all()->sortBy('id')
+        ]);
+    }
+
+    public function ban(Request $request) {
+        if (User::AuthUser() == null) {
+            return redirect()->route('home');
+        }
+
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('PUNISHMENTS_ISSUE'))) {
+            return redirect()->route('home');
+        }
+
+        $request->validate([
+            "id" => "required|integer"
+        ]);
+        $id = $request->input('id');
+
+        $user = User::getUser($id);
+        if ($user == null) {
+            return redirect()->route('admin.punishments');
+        }
+        if (!User::AuthUser()->canPunish($user)) {
+            return redirect()->route('admin.punishments')->withErrors('You cannot ban ' . $user->name . ".");
+        }
+
+        $BAN_ROLE = Role::where('name', 'BANNED')->first();
+        $user->roles()->attach($BAN_ROLE);
+        $user->save();
+
+        return redirect()->route('admin.punishments');
+    }
+
+    public function unban(Request $request) {
+        if (User::AuthUser() == null) {
+            return redirect()->route('home');
+        }
+
+        if (!User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('PUNISHMENTS_ISSUE'))) {
+            return redirect()->route('home');
+        }
+
+        $request->validate([
+            "id" => "required|integer"
+        ]);
+        $id = $request->input('id');
+
+        $user = User::getUser($id);
+
+        if ($user == null) {
+            return redirect()->route('admin.punishments');
+        }
+
+        if (!$user->banned()) {
+            return redirect()->route('admin.punishments')->withErrors($user->name . ' is not banned.');
+        }
+
+        if (!User::AuthUser()->canPunish($user)) {
+            return redirect()->route('admin.punishments')->withErrors('You cannot unban ' . $user->name . ".");
+        }
+
+        $BAN_ROLE = Role::where('name', 'BANNED')->first();
+        $user->roles()->detach($BAN_ROLE);
+        $user->save();
+
+        return redirect()->route('admin.punishments');
+    }
 }

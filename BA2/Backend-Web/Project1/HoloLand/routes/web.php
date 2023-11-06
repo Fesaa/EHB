@@ -85,8 +85,11 @@ Route::prefix('/admin')
 
 
         Route::get('/members', [AdminController::class, 'members'])->name('members');
-        Route::get('/members/edit/{id}', [ProfileController::class, 'edit_other'])->name('members.edit');
         Route::post('/members/roles/edit', [AdminController::class, 'update_roles'])->name('members.edit.roles.update');
+
+        Route::get('/punishments', [AdminController::class, 'punishments'])->name('punishments');
+        Route::post('/punishments/ban', [AdminController::class, 'ban'])->name('punishments.ban');
+        Route::post('/punishments/unban', [AdminController::class, 'unban'])->name('punishments.unban');
 
         Route::get('/logs', [AdminController::class, 'logs'])->name('logs');
         Route::get('/logs/login', [LogController::class, 'login'])->name('logs.login');

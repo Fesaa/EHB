@@ -30,7 +30,7 @@
                     <li><a href="{{ route('admin.members') }}">Members</A></li>
                 @endif
                 @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf('DASHBOARD_PUNISHMENTS')))
-                    <li><a href="">Punishments</a></li>
+                    <li><a href="{{ route('admin.punishments') }}">Punishments</a></li>
                 @endif
             </ul>
         </div>

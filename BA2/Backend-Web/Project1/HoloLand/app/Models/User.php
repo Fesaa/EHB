@@ -74,8 +74,10 @@ class User extends Authenticatable
     {
         $name = strtoupper($name);
         foreach ($this->roles as $role) {
-            if (strtoupper($role->name) == $name)
+            if (strtoupper($role->name) == $name) {
                 return true;
+            }
+
         }
         return false;
     }
@@ -86,8 +88,10 @@ class User extends Authenticatable
 
     public function hasPrivilege(int $privilege): bool {
         foreach ($this->roles as $role) {
-            if ($role->hasPrivilege($privilege))
+            if ($role->hasPrivilege($privilege)) {
                 return true;
+            }
+
         }
         return false;
     }
@@ -109,8 +113,9 @@ class User extends Authenticatable
 
     public function isAuth(): bool {
         $user = User::AuthUser();
-        if ($user == null)
+        if ($user == null) {
             return false;
+        }
         return $this->id == $user->id;
     }
 
@@ -161,6 +166,22 @@ class User extends Authenticatable
     public function colouredName(): string {
         $colour = $this->colour();
         return '<div style="color:' . $colour . '; font-weight: bolder;">' . $this->name . '</div>';
+    }
+
+    public function canPunish(User $user): bool {
+        if (!$this->hasPrivilege(Privilege::privilegeValueOf('PUNISHMENTS_ISSUE'))) {
+            return false;
+        }
+
+        if ($this->highestRole->outRanks($user->getHighestRole())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function banned(): bool {
+        return $this->hasRole('BANNED');
     }
 
     public static function getUser(int $id): User|null

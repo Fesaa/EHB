@@ -26,6 +26,7 @@
 
 .dashboard-table-submit-change:hover {
     color: limegreen;
+    cursor: pointer;
 }
 
 .dashboard-table-btn {

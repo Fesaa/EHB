@@ -19,7 +19,6 @@
                 <th>Name</th>
                 <th>Title</th>
                 <th>Member since</th>
-                <th>Profile</th>
                 <th>Roles</th>
                 @if(User::AuthUser()->hasPrivilege(Privilege::privilegeValueOf("MEMBERS_EDIT_ROLES")))
                     <th>Edit</th>
@@ -32,8 +31,6 @@
                     <th id="{{ "member-name-" . $member->id }}">{{ $member->name }}</th>
                     <th style="color: {{ $member->colour() }}">{{ $member->profile()->title() }}</th>
                     <th>{{ $member->created_at->format('d/m/o') }}</th>
-                    <th style="text-align: center"><a class="dashboard-table-btn"
-                                                      href="{{ route('admin.members.edit', $member->id) }}">✏️</a></th>
                     <th><select class="roles-select">
                             @foreach($member->roles()->get() as $role)
                                 <option class="option_{{$member->id}}"
