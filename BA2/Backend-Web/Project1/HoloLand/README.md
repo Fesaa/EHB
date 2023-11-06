@@ -3,10 +3,9 @@ Holoshop
 
 # TODO's
 Stuff that I've put off to work on other functionality
-- Punish users & list punishments
 
 # Known issues
-These are issues that I found while playing around, and hadn't have time to fix them then (or don't know how to fix them / won't bc it's styling)
+These are issues that I found while playing around, and haven't had time to fix them (or don't know how to fix them / won't bc it's styling)
 
 - `/admin/logs/login` pushes the sidebar all the way to the side
 - `/admin/logs/*` filter isn't hold into place correctly
@@ -44,6 +43,14 @@ The system will auto generate some keys with `1 << 32` and above for locking for
 
 
 # Odd stuff happening?
+
+## Missing some folders?
+
+Run the `fix.sh` file. It will create the folders, and files that are missing.
+
+It'll also set up a key, and migrate the db for you.
+
+Idk how to make one for Windows... sorry
 
 ## `Call to undefined function Termwind\ValueObjects\mb_strimwidth()`
 Install php extension `mbstring`
