@@ -12,12 +12,7 @@ namespace World
 
         void SetAttack(double attack);
 
-        double GetDefense();
-
-        void SetDefense(double defense);
-
         bool TakeDamage(IEntity attacker);
 
-        void die();
     }
 }
