@@ -17,7 +17,14 @@
                 <div class="flex-row info-row">
                     <div class="creation-date"> {{ Formatter::date($thread->created_at) }} </div>
                     @if($thread->canEdit(User::AuthUser()))
-                        <a href="{{ route('threads.edit', $thread->id) }}" class="clean-link">✏️</a>
+                        <div class="flex-row">
+                            <a href=" {{ route('threads.edit', ["thread" => $thread->id]) }} " class="clean-link">✏️</a>
+                            <form action="{{ route('threads.destroy', ["thread" => $thread->id]) }}" method="post" style="margin-left: 1em">
+                                @csrf
+                                @method("delete")
+                                <input type="submit" value="🗑️">
+                            </form>
+                        </div>
                     @endif
                 </div>
                 <div id="thread-description">
@@ -40,7 +47,14 @@
                             <div class="flex-row info-row">
                                 <a class="creation-date clean-link" href="#thread-post-{{ $post->id }}"> {{ Formatter::date($post->created_at) }} </a>
                                 @if($post->canEdit(User::AuthUser()))
-                                    <a href=" {{ route('posts.edit', ["post" => $post->id]) }} " class="clean-link">✏️</a>
+                                    <div class="flex-row">
+                                        <a href=" {{ route('posts.edit', ["post" => $post->id]) }} " class="clean-link">✏️</a>
+                                        <form action="{{ route('posts.destroy', ["post" => $post->id]) }}" method="post" style="margin-left: 1em">
+                                            @csrf
+                                            @method("delete")
+                                            <input type="submit" value="🗑️">
+                                        </form>
+                                    </div>
                                 @endif
                             </div>
                             <div class="post-content">
@@ -66,7 +80,6 @@
                     "locks" => \App\Models\User::AuthUser()->hasPrivilegeByString("THREAD_LOCK"),
                     ])
                 </div>
-
                 <script>
                     const button = document.getElementById('post-dropdown-btn');
                     const dropdownContent = document.getElementById('post-dropdown-content');

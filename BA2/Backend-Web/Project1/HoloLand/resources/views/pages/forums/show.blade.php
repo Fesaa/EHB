@@ -20,7 +20,14 @@
                 <div class="flex-row info-row">
                     <div class="creation-date"> {{ Formatter::date($forum->created_at) }} </div>
                     @if($forum->canEdit(User::AuthUser()))
-                        <a href="{{ route('forums.edit', ["forum" => $forum->id]) }}" class="clean-link">✏️</a>
+                        <div class="flex-row">
+                            <a href=" {{ route('forums.edit', ["forum" => $forum->id]) }} " class="clean-link">✏️</a>
+                            <form action="{{ route('forums.destroy', ["forum" => $forum->id]) }}" method="post" style="margin-left: 1em">
+                                @csrf
+                                @method("delete")
+                                <input type="submit" value="🗑️">
+                            </form>
+                        </div>
                     @endif
                 </div>
                 <div id="forum-info-holder" class="flex-column">

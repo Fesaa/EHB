@@ -62,6 +62,10 @@ class Post extends Model
         return false;
     }
 
+    /**
+     * @param $id
+     * @return Post
+     */
     public static function getPost($id)
     {
         return Post::where('id', $id)->first();

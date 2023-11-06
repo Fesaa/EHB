@@ -118,6 +118,21 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (User::AuthUser() == null) {
+            return redirect()->route('home');
+        }
+
+        $post = Post::getPost($id);
+        if ($post == null) {
+            return redirect()->route('404');
+        }
+
+        if (!$post->canEdit(User::AuthUser())) {
+            return redirect()->route('home');
+        }
+
+        $post->delete();
+
+        return redirect()->to(route('threads.show', ['thread' => $post->thread_id]));
     }
 }

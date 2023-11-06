@@ -143,7 +143,23 @@ class ForumController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (User::AuthUser() == null) {
+            return redirect()->route('forums.index');
+        }
+
+        $forum = Forum::getForum($id);
+
+        if ($forum == null) {
+            return redirect()->route('forums.index');
+        }
+
+        if (!$forum->canEdit(User::AuthUser())) {
+            return redirect()->route('forums.index');
+        }
+
+        $forum->delete();
+
+        return redirect()->route('forums.index');
     }
 
     /**

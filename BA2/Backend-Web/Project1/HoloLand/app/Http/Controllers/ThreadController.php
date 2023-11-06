@@ -182,7 +182,23 @@ class ThreadController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (User::AuthUser() == null) {
+            return redirect()->route('home');
+        }
+
+        $thread = Thread::getThread($id);
+
+        if ($thread == null) {
+            return redirect()->route('404');
+        }
+
+        if (!$thread->canEdit(User::AuthUser())) {
+            return redirect()->route('home');
+        }
+
+        $thread->delete();
+
+        return redirect()->route('forums.show', $thread->forum_id);
     }
 
     /**
