@@ -14,6 +14,10 @@
         @include('objects.forms.bbcode', ["label" => "Subtitle", "type"=> "subtitle", "value" => $subtitle])
         @include('objects.forms.bbcode', ["label" => "Description", "type"=> "description", "value" => $description])
         @include('objects.forms.asset', ["label" => "Forum image", "type"=> "image"])
+
+        <label for="weight">Weight</label><br>
+        <input type="number" name="weight" id="weight" value="{{ $forum == null ? 0 : $forum->weight }}"><br>
+
         <div class="flex-row" style="margin: 30px">
             @if($cloaks)
                 <div id="forum-cloaks" class="dropdown-holder">

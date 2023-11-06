@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('subtitle');
             $table->text('description');
             $table->foreignId('image_id')->nullable()->constrained('assets');
+            $table->integer('weight')->default(0);
             $table->timestamps();
         });
 

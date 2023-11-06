@@ -32,6 +32,7 @@ class SetupForum extends Seeder
 
 Engage in discussions, share your thoughts, and dive deep into the world of anime news. Stay in the loop and be the first to know about the exciting developments and events that shape the anime universe. The News Forum is your source for staying connected to the pulse of HoloLand and the anime realm at large.",
             'image_id' => 10,
+            'weight' => 100,
         ]);
 
         Thread::factory()->create([
@@ -179,6 +180,7 @@ Home Matters is a safe haven for conversations that touch the core of our lives.
 
 Join us in embracing the warmth of our community, as we navigate the joys and tribulations of home life. 🏠 Home Matters is where HoloLand members come together to support and uplift one another in the journey of life's most personal chapters.",
             'image_id' => 12,
+            'weight' => 50,
         ]);
 
         $COMING_OUT = Thread::factory()->create([
@@ -230,6 +232,7 @@ Fast forward to today, and I can proudly say that my relationship with my parent
 
 Explore our FAQ to learn about account registration, post formatting, etiquette, and much more. If you can't find the answers you seek, feel free to reach out to our dedicated support team. At HoloLand, we're committed to making your anime-loving journey as smooth and enjoyable as possible. So, dive into the FAQ, and let us guide you through the wonderful world of HoloLand!",
             'image_id' => 7,
+            'weight' => 90,
         ]);
 
         $APPLICATIONS = Thread::factory()->create([
@@ -331,6 +334,7 @@ By participating in HoloLand, you agree to abide by these rules and guidelines. 
             'subtitle' => 'Need help? We got you covered!',
             'description' => "Welcome to the HoloLand Support Forum, where you can find answers to your questions and get help from our dedicated support team. 🌟 We understand that navigating a new platform can be challenging, so we've created this forum to provide you with the assistance you need. Whether you're having trouble with your account, need help with a technical issue, or have a general inquiry, we're here to help! Only members of our staff team, and you, can see threads you make.",
             'image_id' => 15,
+            'weight' => 80,
             ]);
 
         $THREAD_CLOAK_STAFF = Privilege::where(['name' => "THREAD_CLOAK_STAFF"])->first();

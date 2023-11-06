@@ -60,6 +60,7 @@ class ForumController extends Controller
             "description" => "required|string",
             'image-url' => "nullable|url",
             'image-file' => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'weight' => 'required|integer|min:0',
         ]);
 
         $forum = new Forum();
@@ -120,6 +121,7 @@ class ForumController extends Controller
             "description" => "required|string",
             'image-url' => "nullable|url",
             'image-file' => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            'weight' => 'required|integer|min:0',
         ]);
 
         $forum = Forum::getForum($id);
@@ -174,6 +176,8 @@ class ForumController extends Controller
         $forum->subtitle = $request->get('subtitle');
 
         $forum->description = $request->get('description');
+
+        $forum->weight = $request->get('weight');
 
         if ($request->get('image-url') != null) {
             $forum->image_id = Asset::fromURL($request->get('image-url'))->id;

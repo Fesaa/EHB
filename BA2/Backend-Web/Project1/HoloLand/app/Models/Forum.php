@@ -20,6 +20,7 @@ class Forum extends Model
         'subtitle',
         'description',
         'image_id',
+        'weight',
     ];
 
     public function form(): HasMany
@@ -82,12 +83,16 @@ class Forum extends Model
         return false;
     }
 
+    /**
+     * @param User|null $user
+     * @return Forum[]
+     */
     public static function getVisibleForums(User|null $user) {
         if ($user == null) {
-            return static::whereDoesntHave('cloaks')->get()->sortBy('created_at');
+            return static::whereDoesntHave('cloaks')->get()->sortBy('created_at')->sortByDesc('weight');
         }
 
-        $forums = static::with('cloaks')->get()->sortBy('created_at');
+        $forums = static::with('cloaks')->get()->sortBy('created_at')->sortByDesc('weight');
         $visible = [];
         foreach ($forums as $forum) {
             if ($forum->canSee($user)) {
@@ -106,6 +111,7 @@ class Forum extends Model
     }
 
     /**
+     * @param User|null $user
      * @return Thread|null
      */
     public function getLatestThread(User|null $user): ?Thread

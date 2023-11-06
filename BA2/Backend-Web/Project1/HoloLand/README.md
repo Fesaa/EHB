@@ -4,10 +4,7 @@ Holoshop
 # TODO's
 Stuff that I've put off to work on other functionality
 - Punish users & list punishments
-- Add change date on threads (for ordering featured page)
 - Make forums have a weight for ordering on the forums page
-- Delete forums, threads, posts, profile posts, etc
-- Contact page
 
 # Known issues
 These are issues that I found while playing around, and hadn't have time to fix them then (or don't know how to fix them / won't bc it's styling)
