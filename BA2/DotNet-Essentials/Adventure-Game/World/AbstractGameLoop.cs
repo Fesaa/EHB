@@ -139,30 +139,34 @@ namespace World
 
             // <isDead, droppedItems>
             KeyValuePair<bool, IEnumerable<Item>?> result = world.player.Attack(enemy);
+            bool isDead = result.Key;
+            IEnumerable<Item>? droppedItems = result.Value;
 
-            if (result.Key)
+            if (isDead)
             {
                 OnEnemyKill(enemy);
-                if (result.Value != null)
+                if (droppedItems != null)
                 {
-                    foreach (Item item in result.Value)
+                    var list = droppedItems.ToList();
+                    foreach (Item item in list)
                     {
                         world.player.AddItem(item);
                         OnItemPickup(item);
                     }
-                    Stat stat = rnd.Next(0, 2) == 0 ? Stat.Health : Stat.Damage;
-                    int modifier = rnd.Next(5, 21);
-                    Item boost = new Item($"Boost for killing {enemy.Name}", modifier, stat);
-                    world.player.AddItem(boost);
-                    OnItemPickup(boost);
+
+                    if (list.Count == 0)
+                    {
+                        Stat stat = rnd.Next(0, 2) == 0 ? Stat.Health : Stat.Damage;
+                        int modifier = rnd.Next(5, 16);
+                        Item boost = new Item($"Boost for killing {enemy.Name}", modifier, stat);
+                        world.player.AddItem(boost);
+                        OnItemPickup(boost);
+                    }
                 }
                 combat.RemoveContent(enemy);
                 return;
             }
-            else
-            {
-                OnEnemyDamage(enemy, world.player.Damage);
-            }
+            OnEnemyDamage(enemy, world.player.Damage);
 
             KeyValuePair<bool, IEnumerable<Item>?> enemyResult = enemy.Attack(world.player);
             if (enemyResult.Key)
