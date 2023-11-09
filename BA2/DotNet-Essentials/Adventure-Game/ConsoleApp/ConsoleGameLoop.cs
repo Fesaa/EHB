@@ -10,13 +10,18 @@ namespace ConsoleApp
         {
         }
 
-        protected override void OnPreTick()
+        protected override void OnPreTick(World.Action action)
         {
+            if (action == World.Action.Move)
+            {
+                return;
+            }
+
             Console.WriteLine("...");
             Console.ReadLine();
         }
 
-        protected override void OnPostTick()
+        protected override void OnPostTick(World.Action action)
         {
         }
 
