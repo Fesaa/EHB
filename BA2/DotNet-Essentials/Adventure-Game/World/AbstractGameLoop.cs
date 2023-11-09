@@ -150,6 +150,11 @@ namespace World
                         world.player.AddItem(item);
                         OnItemPickup(item);
                     }
+                    Stat stat = rnd.Next(0, 2) == 0 ? Stat.Health : Stat.Damage;
+                    int modifier = rnd.Next(5, 21);
+                    Item boost = new Item($"Boost for killing {enemy.Name}", modifier, stat);
+                    world.player.AddItem(boost);
+                    OnItemPickup(boost);
                 }
                 combat.RemoveContent(enemy);
                 return;

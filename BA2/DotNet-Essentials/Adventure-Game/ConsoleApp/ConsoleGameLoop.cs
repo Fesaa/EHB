@@ -62,13 +62,13 @@ namespace ConsoleApp
         protected override void OnEnemyAttack(IEntity enemy, int damage)
         {
             Console.Write(enemy.Name + " has attacked you for " + enemy.Damage + " damage.");
-            Console.WriteLine("You have " + this.GetPlayer().Health + " health left.");
+            Console.WriteLine(" You have " + this.GetPlayer().Health + " health left.");
         }
 
         protected override void OnEnemyDamage(IEntity enemy, int damage)
         {
             Console.Write("You have attacked " + enemy.Name + " for " + this.GetPlayer().Damage + " damage.");
-            Console.WriteLine("They have " + enemy.Health + " health left.");
+            Console.WriteLine(" They have " + enemy.Health + " health left.");
         }
 
         protected override void OnEnemyKill(IEntity enemy)

@@ -194,7 +194,7 @@ namespace World.Rooms
 
         private static Item generateItem()
         {
-            int r = rnd.Next(1, 5);
+            int r = rnd.Next(0, 4);
             // Lady of code forgive me
             Stat? stat =
                 r == 1
