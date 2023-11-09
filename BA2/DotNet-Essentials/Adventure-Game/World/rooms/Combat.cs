@@ -37,5 +37,24 @@ namespace World.Rooms
         {
             return Enemies.Count < Compass.Count && Enemies.Count < counter;
         }
+
+        public bool HasToAdvance()
+        {
+            return Enemies.Count == 0;
+        }
+
+        public List<Action> GetActions()
+        {
+            List<Action> actions = new List<Action>() { Action.Quit };
+            if (Enemies.Count > 0)
+            {
+                actions.Add(Action.Attack);
+            }
+            if (CanAdvance())
+            {
+                actions.Add(Action.Move);
+            }
+            return actions;
+        }
     }
 }

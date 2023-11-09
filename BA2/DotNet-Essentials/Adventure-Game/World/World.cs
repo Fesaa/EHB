@@ -35,5 +35,10 @@ namespace World
 
             currentRoom = roomsList.First();
         }
+
+        public bool isCompleted()
+        {
+            return rooms.Count == 0;
+        }
     }
 }

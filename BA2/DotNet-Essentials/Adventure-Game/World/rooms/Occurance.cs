@@ -37,5 +37,24 @@ namespace World.Rooms
         {
             return Items.Count < counter;
         }
+
+        public bool HasToAdvance()
+        {
+            return Items.Count == 0;
+        }
+
+        public List<Action> GetActions()
+        {
+            List<Action> actions = new List<Action>() { Action.Quit };
+            if (Items.Count > 0)
+            {
+                actions.Add(Action.Take);
+            }
+            if (CanAdvance())
+            {
+                actions.Add(Action.Move);
+            }
+            return actions;
+        }
     }
 }

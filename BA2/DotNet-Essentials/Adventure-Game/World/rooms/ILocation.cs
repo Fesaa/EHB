@@ -8,5 +8,8 @@ namespace World.Rooms
         public Compass Compass { get; }
 
         public bool CanAdvance();
+        public bool HasToAdvance();
+
+        public List<Action> GetActions();
     }
 }

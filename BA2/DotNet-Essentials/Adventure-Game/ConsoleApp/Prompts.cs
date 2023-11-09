@@ -6,20 +6,17 @@ namespace ConsoleApp
     public class Prompts
     {
 
-        public static Action PromptForAction(List<Action> exclude)
+        public static World.Action PromptForAction(List<World.Action> actions)
         {
             string s = "What would you like to do?";
             string error = "That is not a valid action. Please try again.";
-            Dictionary<string, Action> dict = new Dictionary<string, Action>();
+            Dictionary<string, World.Action> dict = new Dictionary<string, World.Action>();
 
-            foreach (Action action in Enum.GetValues(typeof(Action)))
+            foreach (World.Action action in actions)
             {
-                if (!exclude.Contains(action))
-                {
-                    string input = action.ToString().ToLower().Substring(0, 1);
-                    s += "\n" + input + ": " + action.ToString();
-                    dict.Add(input, action);
-                }
+                string input = action.ToString().ToLower().Substring(0, 1);
+                s += "\n" + input + ": " + action.ToString();
+                dict.Add(input, action);
             }
 
             return WaitAndValidateInput(s, dict, error, 3);
@@ -101,13 +98,4 @@ namespace ConsoleApp
 
         }
     }
-
-    public enum Action
-    {
-        Attack,
-        Move,
-        Take,
-        Quit,
-    }
-
 }
