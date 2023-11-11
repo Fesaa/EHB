@@ -2,14 +2,14 @@
 // source: addressbook.proto
 
 // Protobuf Java Version: 3.25.0
-package art.ameliah.ehb.shortburst.protobuf.adressbook;
+package art.ameliah.ehb.shortburst.protobuf.impl.adressbook;
 
 /**
- * Protobuf type {@code tutorial.AddressBook}
+ * Protobuf type {@code art.ameliah.ehb.shortburst.protobuf.AddressBook}
  */
 public final class AddressBook extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:tutorial.AddressBook)
+    // @@protoc_insertion_point(message_implements:art.ameliah.ehb.shortburst.protobuf.AddressBook)
     AddressBookOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use AddressBook.newBuilder() to construct.
@@ -29,54 +29,54 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_AddressBook_descriptor;
+    return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_AddressBook_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_AddressBook_fieldAccessorTable
+    return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_AddressBook_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook.class, art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook.Builder.class);
+            art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook.class, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook.Builder.class);
   }
 
   public static final int PEOPLE_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
-  private java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person> people_;
+  private java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person> people_;
   /**
-   * <code>repeated .tutorial.Person people = 1;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person> getPeopleList() {
+  public java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person> getPeopleList() {
     return people_;
   }
   /**
-   * <code>repeated .tutorial.Person people = 1;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.adressbook.PersonOrBuilder> 
+  public java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.impl.adressbook.PersonOrBuilder> 
       getPeopleOrBuilderList() {
     return people_;
   }
   /**
-   * <code>repeated .tutorial.Person people = 1;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
    */
   @java.lang.Override
   public int getPeopleCount() {
     return people_.size();
   }
   /**
-   * <code>repeated .tutorial.Person people = 1;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
    */
   @java.lang.Override
-  public art.ameliah.ehb.shortburst.protobuf.adressbook.Person getPeople(int index) {
+  public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person getPeople(int index) {
     return people_.get(index);
   }
   /**
-   * <code>repeated .tutorial.Person people = 1;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
    */
   @java.lang.Override
-  public art.ameliah.ehb.shortburst.protobuf.adressbook.PersonOrBuilder getPeopleOrBuilder(
+  public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.PersonOrBuilder getPeopleOrBuilder(
       int index) {
     return people_.get(index);
   }
@@ -121,10 +121,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook)) {
+    if (!(obj instanceof art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook)) {
       return super.equals(obj);
     }
-    art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook other = (art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook) obj;
+    art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook other = (art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook) obj;
 
     if (!getPeopleList()
         .equals(other.getPeopleList())) return false;
@@ -148,44 +148,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(byte[] data)
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(java.io.InputStream input)
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -193,26 +193,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseDelimitedFrom(java.io.InputStream input)
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseDelimitedFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -225,7 +225,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook prototype) {
+  public static Builder newBuilder(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -241,26 +241,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code tutorial.AddressBook}
+   * Protobuf type {@code art.ameliah.ehb.shortburst.protobuf.AddressBook}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:tutorial.AddressBook)
-      art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookOrBuilder {
+      // @@protoc_insertion_point(builder_implements:art.ameliah.ehb.shortburst.protobuf.AddressBook)
+      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_AddressBook_descriptor;
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_AddressBook_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_AddressBook_fieldAccessorTable
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_AddressBook_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook.class, art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook.Builder.class);
+              art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook.class, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook.Builder.class);
     }
 
-    // Construct using art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook.newBuilder()
+    // Construct using art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook.newBuilder()
     private Builder() {
 
     }
@@ -287,17 +287,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_AddressBook_descriptor;
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_AddressBook_descriptor;
     }
 
     @java.lang.Override
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook getDefaultInstanceForType() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook.getDefaultInstance();
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook getDefaultInstanceForType() {
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook.getDefaultInstance();
     }
 
     @java.lang.Override
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook build() {
-      art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook result = buildPartial();
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook build() {
+      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -305,15 +305,15 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook buildPartial() {
-      art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook result = new art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook(this);
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook buildPartial() {
+      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook result = new art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook(this);
       buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartialRepeatedFields(art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook result) {
+    private void buildPartialRepeatedFields(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook result) {
       if (peopleBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
           people_ = java.util.Collections.unmodifiableList(people_);
@@ -325,7 +325,7 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    private void buildPartial0(art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook result) {
+    private void buildPartial0(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook result) {
       int from_bitField0_ = bitField0_;
     }
 
@@ -363,16 +363,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook) {
-        return mergeFrom((art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook)other);
+      if (other instanceof art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook) {
+        return mergeFrom((art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook other) {
-      if (other == art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook.getDefaultInstance()) return this;
+    public Builder mergeFrom(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook other) {
+      if (other == art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook.getDefaultInstance()) return this;
       if (peopleBuilder_ == null) {
         if (!other.people_.isEmpty()) {
           if (people_.isEmpty()) {
@@ -426,9 +426,9 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              art.ameliah.ehb.shortburst.protobuf.adressbook.Person m =
+              art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person m =
                   input.readMessage(
-                      art.ameliah.ehb.shortburst.protobuf.adressbook.Person.parser(),
+                      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.parser(),
                       extensionRegistry);
               if (peopleBuilder_ == null) {
                 ensurePeopleIsMutable();
@@ -455,22 +455,22 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person> people_ =
+    private java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person> people_ =
       java.util.Collections.emptyList();
     private void ensurePeopleIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        people_ = new java.util.ArrayList<art.ameliah.ehb.shortburst.protobuf.adressbook.Person>(people_);
+        people_ = new java.util.ArrayList<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person>(people_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder, art.ameliah.ehb.shortburst.protobuf.adressbook.PersonOrBuilder> peopleBuilder_;
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.PersonOrBuilder> peopleBuilder_;
 
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person> getPeopleList() {
+    public java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person> getPeopleList() {
       if (peopleBuilder_ == null) {
         return java.util.Collections.unmodifiableList(people_);
       } else {
@@ -478,7 +478,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public int getPeopleCount() {
       if (peopleBuilder_ == null) {
@@ -488,9 +488,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person getPeople(int index) {
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person getPeople(int index) {
       if (peopleBuilder_ == null) {
         return people_.get(index);
       } else {
@@ -498,10 +498,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public Builder setPeople(
-        int index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person value) {
+        int index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person value) {
       if (peopleBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -515,10 +515,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public Builder setPeople(
-        int index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder builderForValue) {
+        int index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder builderForValue) {
       if (peopleBuilder_ == null) {
         ensurePeopleIsMutable();
         people_.set(index, builderForValue.build());
@@ -529,9 +529,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public Builder addPeople(art.ameliah.ehb.shortburst.protobuf.adressbook.Person value) {
+    public Builder addPeople(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person value) {
       if (peopleBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -545,10 +545,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public Builder addPeople(
-        int index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person value) {
+        int index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person value) {
       if (peopleBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -562,10 +562,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public Builder addPeople(
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder builderForValue) {
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder builderForValue) {
       if (peopleBuilder_ == null) {
         ensurePeopleIsMutable();
         people_.add(builderForValue.build());
@@ -576,10 +576,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public Builder addPeople(
-        int index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder builderForValue) {
+        int index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder builderForValue) {
       if (peopleBuilder_ == null) {
         ensurePeopleIsMutable();
         people_.add(index, builderForValue.build());
@@ -590,10 +590,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public Builder addAllPeople(
-        java.lang.Iterable<? extends art.ameliah.ehb.shortburst.protobuf.adressbook.Person> values) {
+        java.lang.Iterable<? extends art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person> values) {
       if (peopleBuilder_ == null) {
         ensurePeopleIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -605,7 +605,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public Builder clearPeople() {
       if (peopleBuilder_ == null) {
@@ -618,7 +618,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
     public Builder removePeople(int index) {
       if (peopleBuilder_ == null) {
@@ -631,16 +631,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder getPeopleBuilder(
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder getPeopleBuilder(
         int index) {
       return getPeopleFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.PersonOrBuilder getPeopleOrBuilder(
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.PersonOrBuilder getPeopleOrBuilder(
         int index) {
       if (peopleBuilder_ == null) {
         return people_.get(index);  } else {
@@ -648,9 +648,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.adressbook.PersonOrBuilder> 
+    public java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.impl.adressbook.PersonOrBuilder> 
          getPeopleOrBuilderList() {
       if (peopleBuilder_ != null) {
         return peopleBuilder_.getMessageOrBuilderList();
@@ -659,33 +659,33 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder addPeopleBuilder() {
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder addPeopleBuilder() {
       return getPeopleFieldBuilder().addBuilder(
-          art.ameliah.ehb.shortburst.protobuf.adressbook.Person.getDefaultInstance());
+          art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.getDefaultInstance());
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder addPeopleBuilder(
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder addPeopleBuilder(
         int index) {
       return getPeopleFieldBuilder().addBuilder(
-          index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.getDefaultInstance());
+          index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.getDefaultInstance());
     }
     /**
-     * <code>repeated .tutorial.Person people = 1;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person people = 1;</code>
      */
-    public java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder> 
+    public java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder> 
          getPeopleBuilderList() {
       return getPeopleFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder, art.ameliah.ehb.shortburst.protobuf.adressbook.PersonOrBuilder> 
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.PersonOrBuilder> 
         getPeopleFieldBuilder() {
       if (peopleBuilder_ == null) {
         peopleBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            art.ameliah.ehb.shortburst.protobuf.adressbook.Person, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder, art.ameliah.ehb.shortburst.protobuf.adressbook.PersonOrBuilder>(
+            art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.PersonOrBuilder>(
                 people_,
                 ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),
@@ -707,16 +707,16 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:tutorial.AddressBook)
+    // @@protoc_insertion_point(builder_scope:art.ameliah.ehb.shortburst.protobuf.AddressBook)
   }
 
-  // @@protoc_insertion_point(class_scope:tutorial.AddressBook)
-  private static final art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:art.ameliah.ehb.shortburst.protobuf.AddressBook)
+  private static final art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook();
+    DEFAULT_INSTANCE = new art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook();
   }
 
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook getDefaultInstance() {
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
@@ -752,7 +752,7 @@ private static final long serialVersionUID = 0L;
   }
 
   @java.lang.Override
-  public art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBook getDefaultInstanceForType() {
+  public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBook getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

@@ -2,14 +2,14 @@
 // source: addressbook.proto
 
 // Protobuf Java Version: 3.25.0
-package art.ameliah.ehb.shortburst.protobuf.adressbook;
+package art.ameliah.ehb.shortburst.protobuf.impl.adressbook;
 
 /**
- * Protobuf type {@code tutorial.Person}
+ * Protobuf type {@code art.ameliah.ehb.shortburst.protobuf.Person}
  */
 public final class Person extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:tutorial.Person)
+    // @@protoc_insertion_point(message_implements:art.ameliah.ehb.shortburst.protobuf.Person)
     PersonOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use Person.newBuilder() to construct.
@@ -31,19 +31,19 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_descriptor;
+    return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_fieldAccessorTable
+    return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            art.ameliah.ehb.shortburst.protobuf.adressbook.Person.class, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder.class);
+            art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.class, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder.class);
   }
 
   /**
-   * Protobuf enum {@code tutorial.Person.PhoneType}
+   * Protobuf enum {@code art.ameliah.ehb.shortburst.protobuf.Person.PhoneType}
    */
   public enum PhoneType
       implements com.google.protobuf.ProtocolMessageEnum {
@@ -142,7 +142,7 @@ private static final long serialVersionUID = 0L;
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.Person.getDescriptor().getEnumTypes().get(0);
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final PhoneType[] VALUES = values();
@@ -165,11 +165,11 @@ private static final long serialVersionUID = 0L;
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:tutorial.Person.PhoneType)
+    // @@protoc_insertion_point(enum_scope:art.ameliah.ehb.shortburst.protobuf.Person.PhoneType)
   }
 
   public interface PhoneNumberOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:tutorial.Person.PhoneNumber)
+      // @@protoc_insertion_point(interface_extends:art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -190,27 +190,27 @@ private static final long serialVersionUID = 0L;
         getNumberBytes();
 
     /**
-     * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+     * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
      * @return Whether the type field is set.
      */
     boolean hasType();
     /**
-     * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+     * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
      * @return The enum numeric value on the wire for type.
      */
     int getTypeValue();
     /**
-     * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+     * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
      * @return The type.
      */
-    art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType getType();
+    art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType getType();
   }
   /**
-   * Protobuf type {@code tutorial.Person.PhoneNumber}
+   * Protobuf type {@code art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber}
    */
   public static final class PhoneNumber extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:tutorial.Person.PhoneNumber)
+      // @@protoc_insertion_point(message_implements:art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber)
       PhoneNumberOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use PhoneNumber.newBuilder() to construct.
@@ -231,15 +231,15 @@ private static final long serialVersionUID = 0L;
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_PhoneNumber_descriptor;
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_PhoneNumber_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_PhoneNumber_fieldAccessorTable
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_PhoneNumber_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.class, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder.class);
+              art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.class, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder.class);
     }
 
     private int bitField0_;
@@ -293,26 +293,26 @@ private static final long serialVersionUID = 0L;
     public static final int TYPE_FIELD_NUMBER = 2;
     private int type_ = 0;
     /**
-     * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+     * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
      * @return Whether the type field is set.
      */
     @java.lang.Override public boolean hasType() {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+     * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
      * @return The enum numeric value on the wire for type.
      */
     @java.lang.Override public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+     * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
      * @return The type.
      */
-    @java.lang.Override public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType getType() {
-      art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType result = art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType.forNumber(type_);
-      return result == null ? art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType.UNRECOGNIZED : result;
+    @java.lang.Override public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType getType() {
+      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType result = art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType.forNumber(type_);
+      return result == null ? art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -361,10 +361,10 @@ private static final long serialVersionUID = 0L;
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber)) {
+      if (!(obj instanceof art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber)) {
         return super.equals(obj);
       }
-      art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber other = (art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber) obj;
+      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber other = (art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber) obj;
 
       if (hasNumber() != other.hasNumber()) return false;
       if (hasNumber()) {
@@ -399,44 +399,44 @@ private static final long serialVersionUID = 0L;
       return hash;
     }
 
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(byte[] data)
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(java.io.InputStream input)
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -444,26 +444,26 @@ private static final long serialVersionUID = 0L;
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseDelimitedFrom(java.io.InputStream input)
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseDelimitedFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber parseFrom(
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -476,7 +476,7 @@ private static final long serialVersionUID = 0L;
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber prototype) {
+    public static Builder newBuilder(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -492,26 +492,26 @@ private static final long serialVersionUID = 0L;
       return builder;
     }
     /**
-     * Protobuf type {@code tutorial.Person.PhoneNumber}
+     * Protobuf type {@code art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:tutorial.Person.PhoneNumber)
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder {
+        // @@protoc_insertion_point(builder_implements:art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber)
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_PhoneNumber_descriptor;
+        return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_PhoneNumber_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_PhoneNumber_fieldAccessorTable
+        return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_PhoneNumber_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.class, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder.class);
+                art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.class, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder.class);
       }
 
-      // Construct using art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.newBuilder()
+      // Construct using art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.newBuilder()
       private Builder() {
 
       }
@@ -533,17 +533,17 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_PhoneNumber_descriptor;
+        return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_PhoneNumber_descriptor;
       }
 
       @java.lang.Override
-      public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber getDefaultInstanceForType() {
-        return art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.getDefaultInstance();
+      public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber getDefaultInstanceForType() {
+        return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.getDefaultInstance();
       }
 
       @java.lang.Override
-      public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber build() {
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber result = buildPartial();
+      public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber build() {
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -551,14 +551,14 @@ private static final long serialVersionUID = 0L;
       }
 
       @java.lang.Override
-      public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber buildPartial() {
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber result = new art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber(this);
+      public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber buildPartial() {
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber result = new art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber result) {
+      private void buildPartial0(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber result) {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -606,16 +606,16 @@ private static final long serialVersionUID = 0L;
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber) {
-          return mergeFrom((art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber)other);
+        if (other instanceof art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber) {
+          return mergeFrom((art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber other) {
-        if (other == art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.getDefaultInstance()) return this;
+      public Builder mergeFrom(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber other) {
+        if (other == art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.getDefaultInstance()) return this;
         if (other.hasNumber()) {
           number_ = other.number_;
           bitField0_ |= 0x00000001;
@@ -758,21 +758,21 @@ private static final long serialVersionUID = 0L;
 
       private int type_ = 0;
       /**
-       * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+       * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
        * @return Whether the type field is set.
        */
       @java.lang.Override public boolean hasType() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+       * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
        * @return The enum numeric value on the wire for type.
        */
       @java.lang.Override public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+       * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
        * @param value The enum numeric value on the wire for type to set.
        * @return This builder for chaining.
        */
@@ -783,20 +783,20 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+       * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
        * @return The type.
        */
       @java.lang.Override
-      public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType getType() {
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType result = art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType.forNumber(type_);
-        return result == null ? art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType.UNRECOGNIZED : result;
+      public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType getType() {
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType result = art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType.forNumber(type_);
+        return result == null ? art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+       * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
        * @param value The type to set.
        * @return This builder for chaining.
        */
-      public Builder setType(art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneType value) {
+      public Builder setType(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -806,7 +806,7 @@ private static final long serialVersionUID = 0L;
         return this;
       }
       /**
-       * <code>optional .tutorial.Person.PhoneType type = 2;</code>
+       * <code>optional .art.ameliah.ehb.shortburst.protobuf.Person.PhoneType type = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearType() {
@@ -828,16 +828,16 @@ private static final long serialVersionUID = 0L;
       }
 
 
-      // @@protoc_insertion_point(builder_scope:tutorial.Person.PhoneNumber)
+      // @@protoc_insertion_point(builder_scope:art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber)
     }
 
-    // @@protoc_insertion_point(class_scope:tutorial.Person.PhoneNumber)
-    private static final art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber)
+    private static final art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber();
+      DEFAULT_INSTANCE = new art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber();
     }
 
-    public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber getDefaultInstance() {
+    public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -873,7 +873,7 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber getDefaultInstanceForType() {
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -995,41 +995,41 @@ private static final long serialVersionUID = 0L;
 
   public static final int PHONES_FIELD_NUMBER = 4;
   @SuppressWarnings("serial")
-  private java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber> phones_;
+  private java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber> phones_;
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
   @java.lang.Override
-  public java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber> getPhonesList() {
+  public java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber> getPhonesList() {
     return phones_;
   }
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder> 
+  public java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder> 
       getPhonesOrBuilderList() {
     return phones_;
   }
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
   @java.lang.Override
   public int getPhonesCount() {
     return phones_.size();
   }
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
   @java.lang.Override
-  public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber getPhones(int index) {
+  public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber getPhones(int index) {
     return phones_.get(index);
   }
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
   @java.lang.Override
-  public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder getPhonesOrBuilder(
+  public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder getPhonesOrBuilder(
       int index) {
     return phones_.get(index);
   }
@@ -1093,10 +1093,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof art.ameliah.ehb.shortburst.protobuf.adressbook.Person)) {
+    if (!(obj instanceof art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person)) {
       return super.equals(obj);
     }
-    art.ameliah.ehb.shortburst.protobuf.adressbook.Person other = (art.ameliah.ehb.shortburst.protobuf.adressbook.Person) obj;
+    art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person other = (art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person) obj;
 
     if (hasName() != other.hasName()) return false;
     if (hasName()) {
@@ -1147,44 +1147,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(byte[] data)
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(java.io.InputStream input)
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -1192,26 +1192,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseDelimitedFrom(java.io.InputStream input)
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseDelimitedFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person parseFrom(
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -1224,7 +1224,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(art.ameliah.ehb.shortburst.protobuf.adressbook.Person prototype) {
+  public static Builder newBuilder(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -1240,26 +1240,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code tutorial.Person}
+   * Protobuf type {@code art.ameliah.ehb.shortburst.protobuf.Person}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:tutorial.Person)
-      art.ameliah.ehb.shortburst.protobuf.adressbook.PersonOrBuilder {
+      // @@protoc_insertion_point(builder_implements:art.ameliah.ehb.shortburst.protobuf.Person)
+      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.PersonOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_descriptor;
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_fieldAccessorTable
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              art.ameliah.ehb.shortburst.protobuf.adressbook.Person.class, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.Builder.class);
+              art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.class, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.Builder.class);
     }
 
-    // Construct using art.ameliah.ehb.shortburst.protobuf.adressbook.Person.newBuilder()
+    // Construct using art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.newBuilder()
     private Builder() {
 
     }
@@ -1289,17 +1289,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.AddressBookProtos.internal_static_tutorial_Person_descriptor;
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.AddressBookProtos.internal_static_art_ameliah_ehb_shortburst_protobuf_Person_descriptor;
     }
 
     @java.lang.Override
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person getDefaultInstanceForType() {
-      return art.ameliah.ehb.shortburst.protobuf.adressbook.Person.getDefaultInstance();
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person getDefaultInstanceForType() {
+      return art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.getDefaultInstance();
     }
 
     @java.lang.Override
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person build() {
-      art.ameliah.ehb.shortburst.protobuf.adressbook.Person result = buildPartial();
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person build() {
+      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -1307,15 +1307,15 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person buildPartial() {
-      art.ameliah.ehb.shortburst.protobuf.adressbook.Person result = new art.ameliah.ehb.shortburst.protobuf.adressbook.Person(this);
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person buildPartial() {
+      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person result = new art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person(this);
       buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartialRepeatedFields(art.ameliah.ehb.shortburst.protobuf.adressbook.Person result) {
+    private void buildPartialRepeatedFields(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person result) {
       if (phonesBuilder_ == null) {
         if (((bitField0_ & 0x00000008) != 0)) {
           phones_ = java.util.Collections.unmodifiableList(phones_);
@@ -1327,7 +1327,7 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    private void buildPartial0(art.ameliah.ehb.shortburst.protobuf.adressbook.Person result) {
+    private void buildPartial0(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person result) {
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) != 0)) {
@@ -1379,16 +1379,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof art.ameliah.ehb.shortburst.protobuf.adressbook.Person) {
-        return mergeFrom((art.ameliah.ehb.shortburst.protobuf.adressbook.Person)other);
+      if (other instanceof art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person) {
+        return mergeFrom((art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(art.ameliah.ehb.shortburst.protobuf.adressbook.Person other) {
-      if (other == art.ameliah.ehb.shortburst.protobuf.adressbook.Person.getDefaultInstance()) return this;
+    public Builder mergeFrom(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person other) {
+      if (other == art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.getDefaultInstance()) return this;
       if (other.hasName()) {
         name_ = other.name_;
         bitField0_ |= 0x00000001;
@@ -1470,9 +1470,9 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 26
             case 34: {
-              art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber m =
+              art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber m =
                   input.readMessage(
-                      art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.parser(),
+                      art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.parser(),
                       extensionRegistry);
               if (phonesBuilder_ == null) {
                 ensurePhonesIsMutable();
@@ -1697,22 +1697,22 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber> phones_ =
+    private java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber> phones_ =
       java.util.Collections.emptyList();
     private void ensurePhonesIsMutable() {
       if (!((bitField0_ & 0x00000008) != 0)) {
-        phones_ = new java.util.ArrayList<art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber>(phones_);
+        phones_ = new java.util.ArrayList<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber>(phones_);
         bitField0_ |= 0x00000008;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder> phonesBuilder_;
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder> phonesBuilder_;
 
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber> getPhonesList() {
+    public java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber> getPhonesList() {
       if (phonesBuilder_ == null) {
         return java.util.Collections.unmodifiableList(phones_);
       } else {
@@ -1720,7 +1720,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public int getPhonesCount() {
       if (phonesBuilder_ == null) {
@@ -1730,9 +1730,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber getPhones(int index) {
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber getPhones(int index) {
       if (phonesBuilder_ == null) {
         return phones_.get(index);
       } else {
@@ -1740,10 +1740,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public Builder setPhones(
-        int index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber value) {
+        int index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber value) {
       if (phonesBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1757,10 +1757,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public Builder setPhones(
-        int index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder builderForValue) {
+        int index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder builderForValue) {
       if (phonesBuilder_ == null) {
         ensurePhonesIsMutable();
         phones_.set(index, builderForValue.build());
@@ -1771,9 +1771,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public Builder addPhones(art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber value) {
+    public Builder addPhones(art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber value) {
       if (phonesBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1787,10 +1787,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public Builder addPhones(
-        int index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber value) {
+        int index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber value) {
       if (phonesBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1804,10 +1804,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public Builder addPhones(
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder builderForValue) {
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder builderForValue) {
       if (phonesBuilder_ == null) {
         ensurePhonesIsMutable();
         phones_.add(builderForValue.build());
@@ -1818,10 +1818,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public Builder addPhones(
-        int index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder builderForValue) {
+        int index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder builderForValue) {
       if (phonesBuilder_ == null) {
         ensurePhonesIsMutable();
         phones_.add(index, builderForValue.build());
@@ -1832,10 +1832,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public Builder addAllPhones(
-        java.lang.Iterable<? extends art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber> values) {
+        java.lang.Iterable<? extends art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber> values) {
       if (phonesBuilder_ == null) {
         ensurePhonesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -1847,7 +1847,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public Builder clearPhones() {
       if (phonesBuilder_ == null) {
@@ -1860,7 +1860,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
     public Builder removePhones(int index) {
       if (phonesBuilder_ == null) {
@@ -1873,16 +1873,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder getPhonesBuilder(
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder getPhonesBuilder(
         int index) {
       return getPhonesFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder getPhonesOrBuilder(
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder getPhonesOrBuilder(
         int index) {
       if (phonesBuilder_ == null) {
         return phones_.get(index);  } else {
@@ -1890,9 +1890,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder> 
+    public java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder> 
          getPhonesOrBuilderList() {
       if (phonesBuilder_ != null) {
         return phonesBuilder_.getMessageOrBuilderList();
@@ -1901,33 +1901,33 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder addPhonesBuilder() {
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder addPhonesBuilder() {
       return getPhonesFieldBuilder().addBuilder(
-          art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.getDefaultInstance());
+          art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.getDefaultInstance());
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder addPhonesBuilder(
+    public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder addPhonesBuilder(
         int index) {
       return getPhonesFieldBuilder().addBuilder(
-          index, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.getDefaultInstance());
+          index, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.getDefaultInstance());
     }
     /**
-     * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+     * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
      */
-    public java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder> 
+    public java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder> 
          getPhonesBuilderList() {
       return getPhonesFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder> 
+        art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder> 
         getPhonesFieldBuilder() {
       if (phonesBuilder_ == null) {
         phonesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber.Builder, art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder>(
+            art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber.Builder, art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder>(
                 phones_,
                 ((bitField0_ & 0x00000008) != 0),
                 getParentForChildren(),
@@ -1949,16 +1949,16 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:tutorial.Person)
+    // @@protoc_insertion_point(builder_scope:art.ameliah.ehb.shortburst.protobuf.Person)
   }
 
-  // @@protoc_insertion_point(class_scope:tutorial.Person)
-  private static final art.ameliah.ehb.shortburst.protobuf.adressbook.Person DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:art.ameliah.ehb.shortburst.protobuf.Person)
+  private static final art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new art.ameliah.ehb.shortburst.protobuf.adressbook.Person();
+    DEFAULT_INSTANCE = new art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person();
   }
 
-  public static art.ameliah.ehb.shortburst.protobuf.adressbook.Person getDefaultInstance() {
+  public static art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
@@ -1994,7 +1994,7 @@ private static final long serialVersionUID = 0L;
   }
 
   @java.lang.Override
-  public art.ameliah.ehb.shortburst.protobuf.adressbook.Person getDefaultInstanceForType() {
+  public art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

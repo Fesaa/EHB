@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package tutorial;
+package art.ameliah.ehb.shortburst.protobuf;
 
 option java_multiple_files = true;
-option java_package = "art.ameliah.ehb.shortburst.protobuf.adressbook";
+option java_package = "art.ameliah.ehb.shortburst.protobuf.impl.adressbook";
 option java_outer_classname = "AddressBookProtos";
 
 message Person {
@@ -28,4 +28,19 @@ message Person {
 
 message AddressBook {
   repeated Person people = 1;
+}
+
+message GetResponse {
+  optional Person person = 1;
+  optional string error = 3;
+}
+
+message UploadResponse {
+  optional int32 id = 1;
+  optional string error = 3;
+}
+
+message AddressBookResponse {
+  optional AddressBook book = 1;
+  optional string error = 3;
 }

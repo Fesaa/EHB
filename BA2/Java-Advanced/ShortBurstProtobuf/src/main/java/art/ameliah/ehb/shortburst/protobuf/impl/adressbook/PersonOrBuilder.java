@@ -2,10 +2,10 @@
 // source: addressbook.proto
 
 // Protobuf Java Version: 3.25.0
-package art.ameliah.ehb.shortburst.protobuf.adressbook;
+package art.ameliah.ehb.shortburst.protobuf.impl.adressbook;
 
 public interface PersonOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:tutorial.Person)
+    // @@protoc_insertion_point(interface_extends:art.ameliah.ehb.shortburst.protobuf.Person)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -54,26 +54,26 @@ public interface PersonOrBuilder extends
       getEmailBytes();
 
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
-  java.util.List<art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber> 
+  java.util.List<art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber> 
       getPhonesList();
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
-  art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumber getPhones(int index);
+  art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumber getPhones(int index);
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
   int getPhonesCount();
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
-  java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder> 
+  java.util.List<? extends art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder> 
       getPhonesOrBuilderList();
   /**
-   * <code>repeated .tutorial.Person.PhoneNumber phones = 4;</code>
+   * <code>repeated .art.ameliah.ehb.shortburst.protobuf.Person.PhoneNumber phones = 4;</code>
    */
-  art.ameliah.ehb.shortburst.protobuf.adressbook.Person.PhoneNumberOrBuilder getPhonesOrBuilder(
+  art.ameliah.ehb.shortburst.protobuf.impl.adressbook.Person.PhoneNumberOrBuilder getPhonesOrBuilder(
       int index);
 }
