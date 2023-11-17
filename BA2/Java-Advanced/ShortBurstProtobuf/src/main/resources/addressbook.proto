@@ -6,6 +6,8 @@ option java_multiple_files = true;
 option java_package = "art.ameliah.ehb.shortburst.protobuf.impl.adressbook";
 option java_outer_classname = "AddressBookProtos";
 
+option go_package = "github.com/Fesaa/EHB/BA2/java-advanced/short-burst-protobuf/server/pbd";
+
 message Person {
   optional string name = 1;
   optional int32 id = 2;

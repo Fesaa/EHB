@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Random;
+
 public class Main {
 
     private static final String HOST = "http://127.0.0.1:8080";
@@ -18,6 +20,9 @@ public class Main {
     public static void main(String[] args) {
 
         UploadResponse response = uploadPerson(Provider.randomPerson());
+        for (int i = 0; i < (new Random()).nextInt(100); i++) {
+            uploadPerson(Provider.randomPerson());
+        }
 
         if (response.hasError()) {
             System.out.println("Error: " + response.getError());
@@ -39,7 +44,8 @@ public class Main {
             System.out.println("Error: " + addressBookResponse.getError());
             System.exit(1);
         } else {
-            System.out.println("Downloaded addressbook has " + addressBookResponse.getBook().getPeopleCount() + " people");
+            System.out.println("Downloaded addressbook has " + addressBookResponse.getBook().getPeopleCount() + " people: ");
+            addressBookResponse.getBook().getPeopleList().stream().map(Person::getName).forEach(System.out::println);
         }
 
 
