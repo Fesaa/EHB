@@ -50,6 +50,7 @@ func getAddressBook(w http.ResponseWriter, r *http.Request) {
 		data, err = proto.Marshal(&res)
 		if err != nil {
 			log.Println("Error marshaling response, but was succesful")
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 		bookCache = Cache[[]byte]{data, true}
@@ -68,7 +69,8 @@ func getPerson(w http.ResponseWriter, r *http.Request) {
 		res := pbd.GetResponse{Error: &s}
 		data, err := proto.Marshal(&res)
 		if err != nil {
-			log.Println("Error marshaling response, but was succesful")
+			log.Println("Error marshaling response, had invalid URL")
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 		w.WriteHeader(http.StatusInternalServerError)
@@ -83,7 +85,8 @@ func getPerson(w http.ResponseWriter, r *http.Request) {
 		res := pbd.GetResponse{Error: &s}
 		data, err := proto.Marshal(&res)
 		if err != nil {
-			log.Println("Error marshaling response, but was succesful")
+			log.Println("Error marshaling response, had invalid ID")
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 		w.WriteHeader(http.StatusInternalServerError)
@@ -96,6 +99,7 @@ func getPerson(w http.ResponseWriter, r *http.Request) {
 		data, err := proto.Marshal(&res)
 		if err != nil {
 			log.Println("Error marshaling response, but was succesful")
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 		w.WriteHeader(http.StatusOK)
@@ -107,7 +111,8 @@ func getPerson(w http.ResponseWriter, r *http.Request) {
 	res := pbd.GetResponse{Error: &s}
 	data, err := proto.Marshal(&res)
 	if err != nil {
-		log.Println("Error marshaling response, but was succesful")
+		log.Println("Error marshaling response, did not find person")
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 	w.WriteHeader(http.StatusNotFound)
