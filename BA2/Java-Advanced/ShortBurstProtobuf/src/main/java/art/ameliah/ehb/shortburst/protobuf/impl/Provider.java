@@ -35,7 +35,7 @@ public class Provider {
     }
 
     public static Person randomPerson() {
-        return randomPerson(rnd.nextInt(101, 1000000));
+        return randomPerson(rnd.nextInt(101, 1000));
     }
 
     private static Person randomPerson(int i) {

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -46,8 +47,7 @@ func getAddressBook(w http.ResponseWriter, r *http.Request) {
 		for _, v := range addressBook {
 			book.People = append(book.People, v)
 		}
-		res := pbd.AddressBookResponse{Book: book}
-		data, err = proto.Marshal(&res)
+		data, err = proto.Marshal(book)
 		if err != nil {
 			log.Println("Error marshaling response, but was succesful")
 			w.WriteHeader(http.StatusInternalServerError)
@@ -61,93 +61,64 @@ func getAddressBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func getPerson(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/x-protobuf")
+	w.Header().Set("Content-Type", "text/plain; charset=UTF-8")
 
 	parts := strings.Split(r.URL.Path, "/")
 	if len(parts) != 3 {
-		s := "Invalid URL"
-		res := pbd.GetResponse{Error: &s}
-		data, err := proto.Marshal(&res)
-		if err != nil {
-			log.Println("Error marshaling response, had invalid URL")
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write(data)
+		w.Write([]byte("Invalid URL"))
 		return
 	}
 
 	id := parts[len(parts)-1]
 	strConv, err := strconv.Atoi(id)
 	if err != nil {
-		s := "Invalid ID"
-		res := pbd.GetResponse{Error: &s}
-		data, err := proto.Marshal(&res)
-		if err != nil {
-			log.Println("Error marshaling response, had invalid ID")
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write(data)
+		w.Write([]byte("Invalid ID"))
 		return
 	}
 	personID := int32(strConv)
 	if person, ok := addressBook[personID]; ok {
-		res := pbd.GetResponse{Person: person}
-		data, err := proto.Marshal(&res)
+		data, err := proto.Marshal(person)
 		if err != nil {
 			log.Println("Error marshaling response, but was succesful")
 			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("Error marshaling response, but was succesful"))
 			return
 		}
+		w.Header().Set("Content-Type", "application/x-protobuf")
 		w.WriteHeader(http.StatusOK)
 		w.Write(data)
 		return
 	}
-
-	s := "Person not found"
-	res := pbd.GetResponse{Error: &s}
-	data, err := proto.Marshal(&res)
-	if err != nil {
-		log.Println("Error marshaling response, did not find person")
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
 	w.WriteHeader(http.StatusNotFound)
-	w.Write(data)
+	w.Write([]byte("Person not foun"))
 }
 
 func addPerson(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/x-protobuf")
+	w.Header().Set("Content-Type", "text/plain; charset=UTF-8")
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		log.Println("Error marshaling response, but was succesful")
+		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Error reading body, person not uploaded"))
 		return
 	}
 
 	var person pbd.Person
 	err = proto.Unmarshal(body, &person)
 	if err != nil {
-		log.Println("Error marshaling response, but was succesful")
+		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Error marshaling response, but was succesful"))
 		return
 	}
 
 	addressBook[*person.Id] = &person
 	bookCache.valid = false
 
-	response := pbd.UploadResponse{Id: person.Id}
-	data, err := proto.Marshal(&response)
-	if err != nil {
-		log.Println("Error marshaling response, but was succesful")
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
+	log.Println(fmt.Sprintf("Added person with id: %d", *person.Id))
 	w.WriteHeader(http.StatusOK)
-	w.Write(data)
+	w.Write([]byte(fmt.Sprintf("%d", *person.Id)))
 }
