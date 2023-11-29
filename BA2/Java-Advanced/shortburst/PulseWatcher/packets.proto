@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package art.ameliah.pulsewatcher;
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "art.ameliah.pulsewatcher.proto";
+option java_outer_classname = "Packets";
+
+option go_package = "proto/packets";
+
+message S2CPacket {
+  oneof packet {
+    S2CRegisterPacket registerPacket = 1;
+    S2CPingPacket pingPacket = 2;
+    S2CMetricPacket metricPacket = 3;
+  }
+}
+
+message C2SPacket {
+  string token = 1;
+
+  oneof packet {
+    C2SRegisterPacket registerPacket = 2;
+    C2SPingPacket pingPacket = 3;
+    C2SMetricPacket metricPacket = 4;
+  }
+}
+
+
+message S2CRegisterPacket {
+  string token = 1;
+}
+
+enum ClientType {
+  API_CLIENT = 0;
+  WEB_CLIENT = 1;
+  DC_BOT_CLIENT = 2;
+}
+
+message C2SRegisterPacket {
+  string token = 1;
+  string name = 2;
+
+  Config config = 3;
+
+  ClientType clientType = 4;
+}
+
+message Config {
+  repeated ConfigField fields = 1;
+  repeated MutableConfigField mutableFields = 2;
+}
+
+message ConfigField {
+  string name = 1;
+  string value = 2;
+}
+
+message MutableConfigField {
+  string name = 1;
+  string currentValue = 2;
+}
+
+message S2CPingPacket {
+  google.protobuf.Timestamp timestamp = 1;
+}
+
+message C2SPingPacket {
+  google.protobuf.Timestamp timestamp = 1;
+}
+
+message S2CMetricPacket {
+}
+
+message C2SMetricPacket {
+  int64 ramUsage = 1;
+  int64 uptime = 2;
+
+  oneof metrics {
+    APIClientMetric apiClientMetric = 3;
+  }
+}
+
+message APIClientMetric {
+  string host = 1;
+  string os = 2;
+  string port = 3;
+
+  repeated APIEndPointMetric apiEndPointMetrics = 4;
+}
+
+message APIEndPointMetric {
+  string endPoint = 1;
+  int64 hits = 2;
+  int64 errors = 3;
+}
+
