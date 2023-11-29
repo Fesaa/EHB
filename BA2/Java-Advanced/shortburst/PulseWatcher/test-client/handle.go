@@ -48,9 +48,16 @@ func (c *Client) handlePacket(packet *packets.S2CPacket) {
 	case *packets.S2CPacket_MetricPacket:
 		c.handleMetricPacket(packet.GetMetricPacket())
 		break
+	case *packets.S2CPacket_ChangeConfigPacket:
+		c.handleChangeConfigPacket(packet.GetChangeConfigPacket())
+        break
 	default:
 		log.Println("Unknown packet type")
 	}
+}
+
+func (c *Client) handleChangeConfigPacket(packet *packets.S2CChangeConfigPacket) {
+
 }
 
 func (c *Client) handleMetricPacket(packet *packets.S2CMetricPacket) {
