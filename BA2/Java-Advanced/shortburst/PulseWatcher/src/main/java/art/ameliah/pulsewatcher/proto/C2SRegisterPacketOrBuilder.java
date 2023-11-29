@@ -33,19 +33,19 @@ public interface C2SRegisterPacketOrBuilder extends
       getNameBytes();
 
   /**
-   * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+   * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
    * @return Whether the config field is set.
    */
   boolean hasConfig();
   /**
-   * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+   * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
    * @return The config.
    */
-  art.ameliah.pulsewatcher.proto.Config getConfig();
+  art.ameliah.pulsewatcher.proto.C2SConfig getConfig();
   /**
-   * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+   * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
    */
-  art.ameliah.pulsewatcher.proto.ConfigOrBuilder getConfigOrBuilder();
+  art.ameliah.pulsewatcher.proto.C2SConfigOrBuilder getConfigOrBuilder();
 
   /**
    * <code>.art.ameliah.pulsewatcher.ClientType clientType = 4;</code>

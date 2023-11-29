@@ -53,5 +53,20 @@ public interface S2CPacketOrBuilder extends
    */
   art.ameliah.pulsewatcher.proto.S2CMetricPacketOrBuilder getMetricPacketOrBuilder();
 
+  /**
+   * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+   * @return Whether the changeConfigPacket field is set.
+   */
+  boolean hasChangeConfigPacket();
+  /**
+   * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+   * @return The changeConfigPacket.
+   */
+  art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket getChangeConfigPacket();
+  /**
+   * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+   */
+  art.ameliah.pulsewatcher.proto.S2CChangeConfigPacketOrBuilder getChangeConfigPacketOrBuilder();
+
   art.ameliah.pulsewatcher.proto.S2CPacket.PacketCase getPacketCase();
 }

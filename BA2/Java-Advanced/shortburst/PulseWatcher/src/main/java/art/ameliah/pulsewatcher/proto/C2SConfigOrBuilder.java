@@ -4,8 +4,8 @@
 // Protobuf Java Version: 3.25.1
 package art.ameliah.pulsewatcher.proto;
 
-public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:art.ameliah.pulsewatcher.Config)
+public interface C2SConfigOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:art.ameliah.pulsewatcher.C2SConfig)
     com.google.protobuf.MessageOrBuilder {
 
   /**

@@ -122,9 +122,9 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int CONFIG_FIELD_NUMBER = 3;
-  private art.ameliah.pulsewatcher.proto.Config config_;
+  private art.ameliah.pulsewatcher.proto.C2SConfig config_;
   /**
-   * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+   * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
    * @return Whether the config field is set.
    */
   @java.lang.Override
@@ -132,19 +132,19 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+   * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
    * @return The config.
    */
   @java.lang.Override
-  public art.ameliah.pulsewatcher.proto.Config getConfig() {
-    return config_ == null ? art.ameliah.pulsewatcher.proto.Config.getDefaultInstance() : config_;
+  public art.ameliah.pulsewatcher.proto.C2SConfig getConfig() {
+    return config_ == null ? art.ameliah.pulsewatcher.proto.C2SConfig.getDefaultInstance() : config_;
   }
   /**
-   * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+   * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
    */
   @java.lang.Override
-  public art.ameliah.pulsewatcher.proto.ConfigOrBuilder getConfigOrBuilder() {
-    return config_ == null ? art.ameliah.pulsewatcher.proto.Config.getDefaultInstance() : config_;
+  public art.ameliah.pulsewatcher.proto.C2SConfigOrBuilder getConfigOrBuilder() {
+    return config_ == null ? art.ameliah.pulsewatcher.proto.C2SConfig.getDefaultInstance() : config_;
   }
 
   public static final int CLIENTTYPE_FIELD_NUMBER = 4;
@@ -726,31 +726,31 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private art.ameliah.pulsewatcher.proto.Config config_;
+    private art.ameliah.pulsewatcher.proto.C2SConfig config_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        art.ameliah.pulsewatcher.proto.Config, art.ameliah.pulsewatcher.proto.Config.Builder, art.ameliah.pulsewatcher.proto.ConfigOrBuilder> configBuilder_;
+        art.ameliah.pulsewatcher.proto.C2SConfig, art.ameliah.pulsewatcher.proto.C2SConfig.Builder, art.ameliah.pulsewatcher.proto.C2SConfigOrBuilder> configBuilder_;
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      * @return Whether the config field is set.
      */
     public boolean hasConfig() {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      * @return The config.
      */
-    public art.ameliah.pulsewatcher.proto.Config getConfig() {
+    public art.ameliah.pulsewatcher.proto.C2SConfig getConfig() {
       if (configBuilder_ == null) {
-        return config_ == null ? art.ameliah.pulsewatcher.proto.Config.getDefaultInstance() : config_;
+        return config_ == null ? art.ameliah.pulsewatcher.proto.C2SConfig.getDefaultInstance() : config_;
       } else {
         return configBuilder_.getMessage();
       }
     }
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      */
-    public Builder setConfig(art.ameliah.pulsewatcher.proto.Config value) {
+    public Builder setConfig(art.ameliah.pulsewatcher.proto.C2SConfig value) {
       if (configBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -764,10 +764,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      */
     public Builder setConfig(
-        art.ameliah.pulsewatcher.proto.Config.Builder builderForValue) {
+        art.ameliah.pulsewatcher.proto.C2SConfig.Builder builderForValue) {
       if (configBuilder_ == null) {
         config_ = builderForValue.build();
       } else {
@@ -778,13 +778,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      */
-    public Builder mergeConfig(art.ameliah.pulsewatcher.proto.Config value) {
+    public Builder mergeConfig(art.ameliah.pulsewatcher.proto.C2SConfig value) {
       if (configBuilder_ == null) {
         if (((bitField0_ & 0x00000004) != 0) &&
           config_ != null &&
-          config_ != art.ameliah.pulsewatcher.proto.Config.getDefaultInstance()) {
+          config_ != art.ameliah.pulsewatcher.proto.C2SConfig.getDefaultInstance()) {
           getConfigBuilder().mergeFrom(value);
         } else {
           config_ = value;
@@ -799,7 +799,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      */
     public Builder clearConfig() {
       bitField0_ = (bitField0_ & ~0x00000004);
@@ -812,33 +812,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      */
-    public art.ameliah.pulsewatcher.proto.Config.Builder getConfigBuilder() {
+    public art.ameliah.pulsewatcher.proto.C2SConfig.Builder getConfigBuilder() {
       bitField0_ |= 0x00000004;
       onChanged();
       return getConfigFieldBuilder().getBuilder();
     }
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      */
-    public art.ameliah.pulsewatcher.proto.ConfigOrBuilder getConfigOrBuilder() {
+    public art.ameliah.pulsewatcher.proto.C2SConfigOrBuilder getConfigOrBuilder() {
       if (configBuilder_ != null) {
         return configBuilder_.getMessageOrBuilder();
       } else {
         return config_ == null ?
-            art.ameliah.pulsewatcher.proto.Config.getDefaultInstance() : config_;
+            art.ameliah.pulsewatcher.proto.C2SConfig.getDefaultInstance() : config_;
       }
     }
     /**
-     * <code>.art.ameliah.pulsewatcher.Config config = 3;</code>
+     * <code>.art.ameliah.pulsewatcher.C2SConfig config = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        art.ameliah.pulsewatcher.proto.Config, art.ameliah.pulsewatcher.proto.Config.Builder, art.ameliah.pulsewatcher.proto.ConfigOrBuilder> 
+        art.ameliah.pulsewatcher.proto.C2SConfig, art.ameliah.pulsewatcher.proto.C2SConfig.Builder, art.ameliah.pulsewatcher.proto.C2SConfigOrBuilder> 
         getConfigFieldBuilder() {
       if (configBuilder_ == null) {
         configBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            art.ameliah.pulsewatcher.proto.Config, art.ameliah.pulsewatcher.proto.Config.Builder, art.ameliah.pulsewatcher.proto.ConfigOrBuilder>(
+            art.ameliah.pulsewatcher.proto.C2SConfig, art.ameliah.pulsewatcher.proto.C2SConfig.Builder, art.ameliah.pulsewatcher.proto.C2SConfigOrBuilder>(
                 getConfig(),
                 getParentForChildren(),
                 isClean());

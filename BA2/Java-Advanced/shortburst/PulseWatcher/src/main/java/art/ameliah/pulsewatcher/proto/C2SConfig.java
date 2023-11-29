@@ -5,18 +5,18 @@
 package art.ameliah.pulsewatcher.proto;
 
 /**
- * Protobuf type {@code art.ameliah.pulsewatcher.Config}
+ * Protobuf type {@code art.ameliah.pulsewatcher.C2SConfig}
  */
-public final class Config extends
+public final class C2SConfig extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:art.ameliah.pulsewatcher.Config)
-    ConfigOrBuilder {
+    // @@protoc_insertion_point(message_implements:art.ameliah.pulsewatcher.C2SConfig)
+    C2SConfigOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use Config.newBuilder() to construct.
-  private Config(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use C2SConfig.newBuilder() to construct.
+  private C2SConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private Config() {
+  private C2SConfig() {
     fields_ = java.util.Collections.emptyList();
     mutableFields_ = java.util.Collections.emptyList();
   }
@@ -25,20 +25,20 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new Config();
+    return new C2SConfig();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_Config_descriptor;
+    return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_C2SConfig_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_Config_fieldAccessorTable
+    return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_C2SConfig_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            art.ameliah.pulsewatcher.proto.Config.class, art.ameliah.pulsewatcher.proto.Config.Builder.class);
+            art.ameliah.pulsewatcher.proto.C2SConfig.class, art.ameliah.pulsewatcher.proto.C2SConfig.Builder.class);
   }
 
   public static final int FIELDS_FIELD_NUMBER = 1;
@@ -170,10 +170,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof art.ameliah.pulsewatcher.proto.Config)) {
+    if (!(obj instanceof art.ameliah.pulsewatcher.proto.C2SConfig)) {
       return super.equals(obj);
     }
-    art.ameliah.pulsewatcher.proto.Config other = (art.ameliah.pulsewatcher.proto.Config) obj;
+    art.ameliah.pulsewatcher.proto.C2SConfig other = (art.ameliah.pulsewatcher.proto.C2SConfig) obj;
 
     if (!getFieldsList()
         .equals(other.getFieldsList())) return false;
@@ -203,44 +203,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(byte[] data)
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(java.io.InputStream input)
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -248,26 +248,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static art.ameliah.pulsewatcher.proto.Config parseDelimitedFrom(java.io.InputStream input)
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static art.ameliah.pulsewatcher.proto.Config parseDelimitedFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static art.ameliah.pulsewatcher.proto.Config parseFrom(
+  public static art.ameliah.pulsewatcher.proto.C2SConfig parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -280,7 +280,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(art.ameliah.pulsewatcher.proto.Config prototype) {
+  public static Builder newBuilder(art.ameliah.pulsewatcher.proto.C2SConfig prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -296,26 +296,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code art.ameliah.pulsewatcher.Config}
+   * Protobuf type {@code art.ameliah.pulsewatcher.C2SConfig}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:art.ameliah.pulsewatcher.Config)
-      art.ameliah.pulsewatcher.proto.ConfigOrBuilder {
+      // @@protoc_insertion_point(builder_implements:art.ameliah.pulsewatcher.C2SConfig)
+      art.ameliah.pulsewatcher.proto.C2SConfigOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_Config_descriptor;
+      return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_C2SConfig_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_Config_fieldAccessorTable
+      return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_C2SConfig_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              art.ameliah.pulsewatcher.proto.Config.class, art.ameliah.pulsewatcher.proto.Config.Builder.class);
+              art.ameliah.pulsewatcher.proto.C2SConfig.class, art.ameliah.pulsewatcher.proto.C2SConfig.Builder.class);
     }
 
-    // Construct using art.ameliah.pulsewatcher.proto.Config.newBuilder()
+    // Construct using art.ameliah.pulsewatcher.proto.C2SConfig.newBuilder()
     private Builder() {
 
     }
@@ -349,17 +349,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_Config_descriptor;
+      return art.ameliah.pulsewatcher.proto.Packets.internal_static_art_ameliah_pulsewatcher_C2SConfig_descriptor;
     }
 
     @java.lang.Override
-    public art.ameliah.pulsewatcher.proto.Config getDefaultInstanceForType() {
-      return art.ameliah.pulsewatcher.proto.Config.getDefaultInstance();
+    public art.ameliah.pulsewatcher.proto.C2SConfig getDefaultInstanceForType() {
+      return art.ameliah.pulsewatcher.proto.C2SConfig.getDefaultInstance();
     }
 
     @java.lang.Override
-    public art.ameliah.pulsewatcher.proto.Config build() {
-      art.ameliah.pulsewatcher.proto.Config result = buildPartial();
+    public art.ameliah.pulsewatcher.proto.C2SConfig build() {
+      art.ameliah.pulsewatcher.proto.C2SConfig result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -367,15 +367,15 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public art.ameliah.pulsewatcher.proto.Config buildPartial() {
-      art.ameliah.pulsewatcher.proto.Config result = new art.ameliah.pulsewatcher.proto.Config(this);
+    public art.ameliah.pulsewatcher.proto.C2SConfig buildPartial() {
+      art.ameliah.pulsewatcher.proto.C2SConfig result = new art.ameliah.pulsewatcher.proto.C2SConfig(this);
       buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartialRepeatedFields(art.ameliah.pulsewatcher.proto.Config result) {
+    private void buildPartialRepeatedFields(art.ameliah.pulsewatcher.proto.C2SConfig result) {
       if (fieldsBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
           fields_ = java.util.Collections.unmodifiableList(fields_);
@@ -396,7 +396,7 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    private void buildPartial0(art.ameliah.pulsewatcher.proto.Config result) {
+    private void buildPartial0(art.ameliah.pulsewatcher.proto.C2SConfig result) {
       int from_bitField0_ = bitField0_;
     }
 
@@ -434,16 +434,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof art.ameliah.pulsewatcher.proto.Config) {
-        return mergeFrom((art.ameliah.pulsewatcher.proto.Config)other);
+      if (other instanceof art.ameliah.pulsewatcher.proto.C2SConfig) {
+        return mergeFrom((art.ameliah.pulsewatcher.proto.C2SConfig)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(art.ameliah.pulsewatcher.proto.Config other) {
-      if (other == art.ameliah.pulsewatcher.proto.Config.getDefaultInstance()) return this;
+    public Builder mergeFrom(art.ameliah.pulsewatcher.proto.C2SConfig other) {
+      if (other == art.ameliah.pulsewatcher.proto.C2SConfig.getDefaultInstance()) return this;
       if (fieldsBuilder_ == null) {
         if (!other.fields_.isEmpty()) {
           if (fields_.isEmpty()) {
@@ -1057,23 +1057,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:art.ameliah.pulsewatcher.Config)
+    // @@protoc_insertion_point(builder_scope:art.ameliah.pulsewatcher.C2SConfig)
   }
 
-  // @@protoc_insertion_point(class_scope:art.ameliah.pulsewatcher.Config)
-  private static final art.ameliah.pulsewatcher.proto.Config DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:art.ameliah.pulsewatcher.C2SConfig)
+  private static final art.ameliah.pulsewatcher.proto.C2SConfig DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new art.ameliah.pulsewatcher.proto.Config();
+    DEFAULT_INSTANCE = new art.ameliah.pulsewatcher.proto.C2SConfig();
   }
 
-  public static art.ameliah.pulsewatcher.proto.Config getDefaultInstance() {
+  public static art.ameliah.pulsewatcher.proto.C2SConfig getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Config>
-      PARSER = new com.google.protobuf.AbstractParser<Config>() {
+  private static final com.google.protobuf.Parser<C2SConfig>
+      PARSER = new com.google.protobuf.AbstractParser<C2SConfig>() {
     @java.lang.Override
-    public Config parsePartialFrom(
+    public C2SConfig parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1092,17 +1092,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<Config> parser() {
+  public static com.google.protobuf.Parser<C2SConfig> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Config> getParserForType() {
+  public com.google.protobuf.Parser<C2SConfig> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public art.ameliah.pulsewatcher.proto.Config getDefaultInstanceForType() {
+  public art.ameliah.pulsewatcher.proto.C2SConfig getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

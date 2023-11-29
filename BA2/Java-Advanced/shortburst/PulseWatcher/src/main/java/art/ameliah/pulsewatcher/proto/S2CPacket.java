@@ -48,6 +48,7 @@ private static final long serialVersionUID = 0L;
     REGISTERPACKET(1),
     PINGPACKET(2),
     METRICPACKET(3),
+    CHANGECONFIGPACKET(4),
     PACKET_NOT_SET(0);
     private final int value;
     private PacketCase(int value) {
@@ -68,6 +69,7 @@ private static final long serialVersionUID = 0L;
         case 1: return REGISTERPACKET;
         case 2: return PINGPACKET;
         case 3: return METRICPACKET;
+        case 4: return CHANGECONFIGPACKET;
         case 0: return PACKET_NOT_SET;
         default: return null;
       }
@@ -176,6 +178,37 @@ private static final long serialVersionUID = 0L;
     return art.ameliah.pulsewatcher.proto.S2CMetricPacket.getDefaultInstance();
   }
 
+  public static final int CHANGECONFIGPACKET_FIELD_NUMBER = 4;
+  /**
+   * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+   * @return Whether the changeConfigPacket field is set.
+   */
+  @java.lang.Override
+  public boolean hasChangeConfigPacket() {
+    return packetCase_ == 4;
+  }
+  /**
+   * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+   * @return The changeConfigPacket.
+   */
+  @java.lang.Override
+  public art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket getChangeConfigPacket() {
+    if (packetCase_ == 4) {
+       return (art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket) packet_;
+    }
+    return art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.getDefaultInstance();
+  }
+  /**
+   * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+   */
+  @java.lang.Override
+  public art.ameliah.pulsewatcher.proto.S2CChangeConfigPacketOrBuilder getChangeConfigPacketOrBuilder() {
+    if (packetCase_ == 4) {
+       return (art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket) packet_;
+    }
+    return art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -199,6 +232,9 @@ private static final long serialVersionUID = 0L;
     if (packetCase_ == 3) {
       output.writeMessage(3, (art.ameliah.pulsewatcher.proto.S2CMetricPacket) packet_);
     }
+    if (packetCase_ == 4) {
+      output.writeMessage(4, (art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket) packet_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -219,6 +255,10 @@ private static final long serialVersionUID = 0L;
     if (packetCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, (art.ameliah.pulsewatcher.proto.S2CMetricPacket) packet_);
+    }
+    if (packetCase_ == 4) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, (art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket) packet_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -249,6 +289,10 @@ private static final long serialVersionUID = 0L;
         if (!getMetricPacket()
             .equals(other.getMetricPacket())) return false;
         break;
+      case 4:
+        if (!getChangeConfigPacket()
+            .equals(other.getChangeConfigPacket())) return false;
+        break;
       case 0:
       default:
     }
@@ -275,6 +319,10 @@ private static final long serialVersionUID = 0L;
       case 3:
         hash = (37 * hash) + METRICPACKET_FIELD_NUMBER;
         hash = (53 * hash) + getMetricPacket().hashCode();
+        break;
+      case 4:
+        hash = (37 * hash) + CHANGECONFIGPACKET_FIELD_NUMBER;
+        hash = (53 * hash) + getChangeConfigPacket().hashCode();
         break;
       case 0:
       default:
@@ -419,6 +467,9 @@ private static final long serialVersionUID = 0L;
       if (metricPacketBuilder_ != null) {
         metricPacketBuilder_.clear();
       }
+      if (changeConfigPacketBuilder_ != null) {
+        changeConfigPacketBuilder_.clear();
+      }
       packetCase_ = 0;
       packet_ = null;
       return this;
@@ -471,6 +522,10 @@ private static final long serialVersionUID = 0L;
       if (packetCase_ == 3 &&
           metricPacketBuilder_ != null) {
         result.packet_ = metricPacketBuilder_.build();
+      }
+      if (packetCase_ == 4 &&
+          changeConfigPacketBuilder_ != null) {
+        result.packet_ = changeConfigPacketBuilder_.build();
       }
     }
 
@@ -531,6 +586,10 @@ private static final long serialVersionUID = 0L;
           mergeMetricPacket(other.getMetricPacket());
           break;
         }
+        case CHANGECONFIGPACKET: {
+          mergeChangeConfigPacket(other.getChangeConfigPacket());
+          break;
+        }
         case PACKET_NOT_SET: {
           break;
         }
@@ -582,6 +641,13 @@ private static final long serialVersionUID = 0L;
               packetCase_ = 3;
               break;
             } // case 26
+            case 34: {
+              input.readMessage(
+                  getChangeConfigPacketFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              packetCase_ = 4;
+              break;
+            } // case 34
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1038,6 +1104,148 @@ private static final long serialVersionUID = 0L;
       packetCase_ = 3;
       onChanged();
       return metricPacketBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket, art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.Builder, art.ameliah.pulsewatcher.proto.S2CChangeConfigPacketOrBuilder> changeConfigPacketBuilder_;
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     * @return Whether the changeConfigPacket field is set.
+     */
+    @java.lang.Override
+    public boolean hasChangeConfigPacket() {
+      return packetCase_ == 4;
+    }
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     * @return The changeConfigPacket.
+     */
+    @java.lang.Override
+    public art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket getChangeConfigPacket() {
+      if (changeConfigPacketBuilder_ == null) {
+        if (packetCase_ == 4) {
+          return (art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket) packet_;
+        }
+        return art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.getDefaultInstance();
+      } else {
+        if (packetCase_ == 4) {
+          return changeConfigPacketBuilder_.getMessage();
+        }
+        return art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     */
+    public Builder setChangeConfigPacket(art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket value) {
+      if (changeConfigPacketBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        packet_ = value;
+        onChanged();
+      } else {
+        changeConfigPacketBuilder_.setMessage(value);
+      }
+      packetCase_ = 4;
+      return this;
+    }
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     */
+    public Builder setChangeConfigPacket(
+        art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.Builder builderForValue) {
+      if (changeConfigPacketBuilder_ == null) {
+        packet_ = builderForValue.build();
+        onChanged();
+      } else {
+        changeConfigPacketBuilder_.setMessage(builderForValue.build());
+      }
+      packetCase_ = 4;
+      return this;
+    }
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     */
+    public Builder mergeChangeConfigPacket(art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket value) {
+      if (changeConfigPacketBuilder_ == null) {
+        if (packetCase_ == 4 &&
+            packet_ != art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.getDefaultInstance()) {
+          packet_ = art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.newBuilder((art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket) packet_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          packet_ = value;
+        }
+        onChanged();
+      } else {
+        if (packetCase_ == 4) {
+          changeConfigPacketBuilder_.mergeFrom(value);
+        } else {
+          changeConfigPacketBuilder_.setMessage(value);
+        }
+      }
+      packetCase_ = 4;
+      return this;
+    }
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     */
+    public Builder clearChangeConfigPacket() {
+      if (changeConfigPacketBuilder_ == null) {
+        if (packetCase_ == 4) {
+          packetCase_ = 0;
+          packet_ = null;
+          onChanged();
+        }
+      } else {
+        if (packetCase_ == 4) {
+          packetCase_ = 0;
+          packet_ = null;
+        }
+        changeConfigPacketBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     */
+    public art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.Builder getChangeConfigPacketBuilder() {
+      return getChangeConfigPacketFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     */
+    @java.lang.Override
+    public art.ameliah.pulsewatcher.proto.S2CChangeConfigPacketOrBuilder getChangeConfigPacketOrBuilder() {
+      if ((packetCase_ == 4) && (changeConfigPacketBuilder_ != null)) {
+        return changeConfigPacketBuilder_.getMessageOrBuilder();
+      } else {
+        if (packetCase_ == 4) {
+          return (art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket) packet_;
+        }
+        return art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.art.ameliah.pulsewatcher.S2CChangeConfigPacket changeConfigPacket = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket, art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.Builder, art.ameliah.pulsewatcher.proto.S2CChangeConfigPacketOrBuilder> 
+        getChangeConfigPacketFieldBuilder() {
+      if (changeConfigPacketBuilder_ == null) {
+        if (!(packetCase_ == 4)) {
+          packet_ = art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.getDefaultInstance();
+        }
+        changeConfigPacketBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket, art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket.Builder, art.ameliah.pulsewatcher.proto.S2CChangeConfigPacketOrBuilder>(
+                (art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket) packet_,
+                getParentForChildren(),
+                isClean());
+        packet_ = null;
+      }
+      packetCase_ = 4;
+      onChanged();
+      return changeConfigPacketBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

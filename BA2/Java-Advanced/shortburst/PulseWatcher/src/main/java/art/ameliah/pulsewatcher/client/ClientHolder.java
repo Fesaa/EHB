@@ -17,7 +17,6 @@ public class ClientHolder {
     // Name -> Client
     private final Map<String, Collection<Pair<CloseStatus, AbstractClient>>> inActiveClients = new HashMap<>();
 
-
     public void registerClient(WebSocketSession session, AbstractClient client) {
         activeClients.put(session.getId(), client);
     }
@@ -72,6 +71,15 @@ public class ClientHolder {
         }
 
         return data;
+    }
+
+    public AbstractClient getClient(String sessionID) {
+        for (AbstractClient client : getActiveClients()) {
+            if (client.getSession().getId().equals(sessionID)) {
+                return client;
+            }
+        }
+        return null;
     }
 
     public static class SharedData {

@@ -1,5 +1,10 @@
 package art.ameliah.pulsewatcher.ws;
 
+import art.ameliah.pulsewatcher.client.AbstractClient;
+import art.ameliah.pulsewatcher.client.ClientConfig;
+import art.ameliah.pulsewatcher.proto.MutableConfigField;
+import art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket;
+import art.ameliah.pulsewatcher.proto.S2CPacket;
 import art.ameliah.pulsewatcher.webui.WebUIHandler;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -64,5 +69,29 @@ public class WSWebUIHandler extends AbstractWSHandler {
     @Override
     protected void cleanup(WebSocketSession session, CloseStatus status) {
         handles.remove(session.getId());
+    }
+
+    private void requestConfigChange(String sessionID, ClientConfig.Field field) {
+        AbstractClient client = WSClientHandler.get().getClientHolder().getClient(sessionID);
+        if (client == null) {
+            throw new IllegalStateException("Cannot request config change for client that is not registered");
+        }
+
+        S2CChangeConfigPacket changeConfigPacket = S2CChangeConfigPacket
+                .newBuilder()
+                .setConfigField(MutableConfigField.
+                        newBuilder()
+                        .setName(field.name())
+                        .setCurrentValue(field.value())
+                        .build())
+                .build();
+
+        S2CPacket packet = S2CPacket
+                .newBuilder()
+                .setChangeConfigPacket(changeConfigPacket)
+                .build();
+
+        client.send(packet);
+
     }
 }

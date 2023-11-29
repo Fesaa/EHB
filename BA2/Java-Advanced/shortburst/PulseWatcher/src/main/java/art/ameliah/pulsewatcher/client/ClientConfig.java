@@ -1,6 +1,6 @@
 package art.ameliah.pulsewatcher.client;
 
-import art.ameliah.pulsewatcher.proto.Config;
+import art.ameliah.pulsewatcher.proto.C2SConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -10,7 +10,7 @@ public class ClientConfig {
 
     private final Field[] mutableFields;
 
-    public ClientConfig(Config config) {
+    public ClientConfig(C2SConfig config) {
 
         this.fields = config.getFieldsList()
                 .stream()
