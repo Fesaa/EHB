@@ -1,4 +1,6 @@
 import './assets/main.css'
+import './assets/header.css'
+import './assets/tables.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
