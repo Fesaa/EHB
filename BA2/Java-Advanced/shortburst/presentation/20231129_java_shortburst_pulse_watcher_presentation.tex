@@ -15,6 +15,7 @@
 \usepackage{tikz} 
 
 
+
 \title[Pulse Watcher]
 {Java Advanced - Short Burst Project}
 
@@ -139,13 +140,22 @@
 \subsection{Implementation}
 
 \begin{frame}{Backend}{Springboot}
-% meme - starter pack
-% Annotations
-% Hide all implementation
+
+\includegraphics[width=\linewidth,keepaspectratio]{spring_boot_meme.png}
+
+
 \end{frame}
 
 \begin{frame}{Backend}{Server $<$-$>$ Client Web Socket}
-% Show Java code
+
+\includegraphics[width=\linewidth,keepaspectratio]{code_snippet.png}
+
+\end{frame}
+
+\begin{frame}{Backend}{Server $<$-$>$ Client Web Socket}
+
+\includegraphics[width=\linewidth,keepaspectratio,height=0.7\textwidth]{code_snippet_2.png}
+
 \end{frame}
 
 \begin{frame}{Backend}{Life cycle}
@@ -179,37 +189,38 @@ server/.style ={draw, circle, fill=cyan} ]
 \end{frame}
 
 \begin{frame}{API}{Protobuffers}
-% Show change config packet
-% Show short protofbuf def and list advantages
+\begin{figure}
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{code_snippet_3.png}
+\caption{{\bf S}erver to {\bf C}lient Packet}
+\end{subfigure}
+\begin{subfigure}[h]{0.45\linewidth}
+\includegraphics[width=\linewidth]{code_snippet_4.png}
+\caption{C2S Register Packet}
+\end{subfigure}
+\end{figure}
 \end{frame}
 
+\begin{frame}{API}{Protobuffers}
+
+\begin{itemize}
+\item Actual Types
+\item Not language depended
+\item Smart compiler
+\end{itemize}
+{\tiny protoc -I=./ --java\_out=./src/main/java/ --go\_out=./test-client/  packets.proto}
+
+\includegraphics[width=\linewidth,height=0.5\textwidth]{code_snippet_5.png}
+\end{frame}
 
 
 \section*{Summary}
 
 \begin{frame}{Summary}
-
-  % Keep the summary *very short*.
   \begin{itemize}
-  \item
-    The \alert{first main message} of your talk in one or two lines.
-  \item
-    The \alert{second main message} of your talk in one or two lines.
-  \item
-    Perhaps a \alert{third message}, but not more than that.
-  \end{itemize}
-  
-  % The following outlook is optional.
-  \vskip0pt plus.5fill
-  \begin{itemize}
-  \item
-    Outlook
-    \begin{itemize}
-    \item
-      Something you haven't solved.
-    \item
-      Something else you haven't solved.
-    \end{itemize}
+  \item Front end development \alert{SUCKS}.
+  \item Google's \alert{protocol buffers} are wicked cool.
+  \item Spring Boot is impressive but, \alert{a black box}.
   \end{itemize}
 \end{frame}
 
@@ -236,7 +247,12 @@ server/.style ={draw, circle, fill=cyan} ]
   \bibitem{vue-docs}
     Evan You
     \newblock {\em Vue.js - \url{https://vuejs.org/}}
-    \newblock \textcopyright 2023
+    \newblock \textcopyright 2104-2023
+    
+    \bibitem{spring-boot}
+    VMware Tanzu
+    \newblock {\em Spring Boot - \url{https://spring.io/}}
+    \newblock \textcopyright 2005-2023
   \end{thebibliography}
 \end{frame}
 
