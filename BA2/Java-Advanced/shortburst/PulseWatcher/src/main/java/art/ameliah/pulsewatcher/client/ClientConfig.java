@@ -1,6 +1,8 @@
 package art.ameliah.pulsewatcher.client;
 
 import art.ameliah.pulsewatcher.proto.Config;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class ClientConfig {
 
@@ -31,6 +33,31 @@ public class ClientConfig {
 
     public record Field(String name, String value) {
 
+    }
+
+    public JsonObject toJson() {
+        JsonObject obj = new JsonObject();
+
+        JsonArray fields = new JsonArray();
+        for (Field field : getFields()) {
+            JsonObject fieldObj = new JsonObject();
+            fieldObj.addProperty("name", field.name());
+            fieldObj.addProperty("value", field.value());
+            fields.add(fieldObj);
+        }
+
+        JsonArray mutableFields = new JsonArray();
+        for (Field field : getMutableFields()) {
+            JsonObject fieldObj = new JsonObject();
+            fieldObj.addProperty("name", field.name());
+            fieldObj.addProperty("value", field.value());
+            mutableFields.add(fieldObj);
+        }
+
+        obj.add("fields", fields);
+        obj.add("mutableFields", mutableFields);
+
+        return obj;
     }
 
 }

@@ -4,6 +4,9 @@ import art.ameliah.pulsewatcher.proto.C2SRegisterPacket;
 import art.ameliah.pulsewatcher.ws.WSClientHandler;
 import art.ameliah.pulsewatcher.proto.APIClientMetric;
 import art.ameliah.pulsewatcher.proto.C2SMetricPacket;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.protobuf.Timestamp;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -30,11 +33,41 @@ public class ApiClient extends AbstractClient {
         metrics.put(System.currentTimeMillis(), metric);
     }
 
-    public List<APIClientMetric> metricsAfter(long time) {
-        return metrics.entrySet()
+    @Override
+    public ClientHolder.SharedData getSharedData(long time) {
+        Long[] pingArray = getPings()
+                .stream()
+                .map(t -> (long)t.getNanos())
+                .filter(t -> t > time)
+                .toArray(Long[]::new);
+
+        JsonObject[] metricArray = metrics.entrySet()
                 .stream()
                 .filter(e -> e.getKey() > time)
-                .map(Map.Entry::getValue)
-                .toList();
+                .map(e -> {
+                    APIClientMetric m = e.getValue();
+                    long t = e.getKey();
+
+                    JsonObject obj = new JsonObject();
+                    obj.addProperty("host", m.getHost());
+                    obj.addProperty("port", m.getPort());
+                    obj.addProperty("os", m.getOs());
+
+                    JsonArray metrics = new JsonArray();
+                    m.getApiEndPointMetricsList().forEach(a -> {
+                        JsonObject apiObj = new JsonObject();
+                        apiObj.addProperty("endpoint", a.getEndPoint());
+                        apiObj.addProperty("hits", a.getHits());
+                        apiObj.addProperty("errors", a.getErrors());
+                        metrics.add(apiObj);
+                    });
+                    obj.add("metrics", metrics);
+                    obj.addProperty("time", t);
+
+                    return obj;
+                })
+                .toArray(JsonObject[]::new);
+
+        return new ClientHolder.SharedData(getName(), getSession().getId(), pingArray, metricArray, getConfig());
     }
 }

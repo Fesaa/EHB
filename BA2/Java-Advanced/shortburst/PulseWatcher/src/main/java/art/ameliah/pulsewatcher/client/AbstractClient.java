@@ -13,6 +13,8 @@ import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,11 +33,12 @@ public abstract class AbstractClient implements C2SPackerHandler {
     private final String name;
     protected final RepeatingTaskHandler handler = new RepeatingTaskHandler();
 
-    protected final ClientConfig config;
+    private final ClientConfig config;
 
     private final Queue<S2CPacket> packetQueue = new ArrayDeque<>();
     private boolean isSending = false;
 
+    private final List<Timestamp> pings = new ArrayList<>();
     private Timestamp lastPing = null;
 
     public AbstractClient(WebSocketSession session, C2SRegisterPacket packet) {
@@ -84,7 +87,11 @@ public abstract class AbstractClient implements C2SPackerHandler {
     }
 
     protected void handleC2SPingPacket(C2SPingPacket packet) {
-        lastPing = packet.getTimestamp();
+
+        Timestamp current = packet.getTimestamp();
+
+        pings.add(current);
+        lastPing = current;
     }
 
     public void send(S2CPacket packet) {
@@ -127,5 +134,14 @@ public abstract class AbstractClient implements C2SPackerHandler {
         return config;
     }
 
+    public List<Timestamp> getPings() {
+        return pings;
+    }
+
     abstract void handleC2SMetricPacket(C2SMetricPacket packet);
+
+    public ClientHolder.SharedData getSharedData() {
+        return getSharedData(0);
+    };
+    public abstract ClientHolder.SharedData getSharedData(long time);
 }
