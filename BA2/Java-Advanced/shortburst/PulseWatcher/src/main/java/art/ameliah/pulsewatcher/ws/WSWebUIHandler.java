@@ -33,6 +33,7 @@ public class WSWebUIHandler extends AbstractWSHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
+        /*
         List<String> username = session.getHandshakeHeaders().get("username");
         List<String> password = session.getHandshakeHeaders().get("password");
 
@@ -50,6 +51,7 @@ public class WSWebUIHandler extends AbstractWSHandler {
             close(session, CloseStatus.BAD_DATA);
             return;
         }
+        */
 
         handles.put(session.getId(), new WebUIHandler(session));
     }

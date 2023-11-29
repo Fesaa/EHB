@@ -15,11 +15,19 @@ public class WSConfig implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(wsHandler(), "/ws")
                 .addInterceptors(new HttpSessionHandshakeInterceptor());
+
+        registry.addHandler(wsWebUIHandler(), "/ws/webui")
+                .addInterceptors(new HttpSessionHandshakeInterceptor());
     }
 
     @Bean
     public WSClientHandler wsHandler() {
         return new WSClientHandler();
+    }
+
+    @Bean
+    public WSWebUIHandler wsWebUIHandler() {
+        return new WSWebUIHandler();
     }
 
 }

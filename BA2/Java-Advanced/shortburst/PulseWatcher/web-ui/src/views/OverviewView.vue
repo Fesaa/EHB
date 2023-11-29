@@ -1,4 +1,46 @@
 <script setup lang="ts">
+import axios from "axios";
+import {ref} from "vue";
+
+let services = ref<any[]>([]);
+let serviceName = ref<string>('');
+let sessionId = ref<string>('');
+
+function filterTable() {
+  const table = document.getElementById('service-table');
+  if (table) {
+    const rows = table.getElementsByClassName('data-row');
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      const name = row.getElementsByTagName('td')[1];
+      const session = row.getElementsByTagName('td')[2];
+      if (name && session) {
+        const nameText = name.innerText || name.textContent;
+        const sessionText = session.innerText || session.textContent;
+        if (nameText!.includes(serviceName.value) && sessionText!.includes(sessionId.value)) {
+          row.setAttribute('style', 'display: ')
+        } else {
+          row.setAttribute('style', 'display: none')
+        }
+      }
+    }
+  }
+
+}
+
+function loadServices() {
+  axios.get('http://127.0.0.1:8080/api/services')
+      .then((resp) => {
+        const tempRow = document.getElementById('temp-row');
+        tempRow!.style.display = 'none';
+        services.value = resp.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+}
+
+loadServices()
 
 </script>
 
@@ -11,23 +53,35 @@
       <div id="filter-holder">
         <div class="filter-cell">
           <label for="filter-name">Search by service name</label>
-          <input type="text" id="filter-name">
+          <input type="text" id="filter-name" v-model="serviceName" @input="filterTable">
         </div>
         <div class="filter-cell">
           <label for="filter-name">Search by session id</label>
-          <input type="text" id="filter-session">
+          <input type="text" id="filter-session" v-model="sessionId" @input="filterTable">
+        </div>
+        <div>
+          <button @click="loadServices">Refresh</button>
         </div>
       </div>
 
-      <table class="dashboard-table scrollable-table">
+      <table id="service-table" class="dashboard-table scrollable-table">
         <tr class="dashboard-table-header">
+          <th>Active?</th>
           <th>Name</th>
           <th>Session ID</th>
-          <th>Active</th>
-          <th>Uptime</th>
           <th></th>
         </tr>
-        Waiting for data...
+        <tr id="temp-row">
+          <th>Waiting for data...</th>
+        </tr>
+
+        <tr v-for="service in services" :key="service.sessionId" class="data-row">
+          <td>{{service.active ? "✅" : "❌"}}</td>
+          <td>{{service.name}}</td>
+          <td>{{service.sessionId}}</td>
+          <td><a :href="'/service/' + service.name + '/' + service.sessionId + '/details'">View</a></td>
+        </tr>
+
       </table>
     </div>
   </main>

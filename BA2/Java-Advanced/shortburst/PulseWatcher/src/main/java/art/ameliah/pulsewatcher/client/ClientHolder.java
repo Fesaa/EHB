@@ -47,8 +47,8 @@ public class ClientHolder {
         return activeClients.values();
     }
 
-    public Collection<Collection<Pair<CloseStatus, AbstractClient>>> getInActiveClients() {
-        return inActiveClients.values();
+    public Map<String, Collection<Pair<CloseStatus, AbstractClient>>> getInActiveClients() {
+        return inActiveClients;
     }
 
     public Map<String, Collection<SharedData>> getDataDump() {
@@ -63,7 +63,7 @@ public class ClientHolder {
                     .add(client.getSharedData(time));
         }
 
-        for (var set : getInActiveClients()) {
+        for (var set : getInActiveClients().values()) {
             for (var pair : set) {
                 data.computeIfAbsent(pair.right().getName(), k -> new ArrayList<>())
                         .add(pair.right().getSharedData(time).setActive(false));

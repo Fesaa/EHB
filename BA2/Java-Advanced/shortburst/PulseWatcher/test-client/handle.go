@@ -137,7 +137,7 @@ func (c *Client) handleRegisterPacket(packet *packets.S2CRegisterPacket) {
 		Token:      packet.Token,
 		Name:       "Test API Client",
 		ClientType: packets.ClientType_API_CLIENT,
-		Config: &packets.Config{
+		Config: &packets.C2SConfig{
 			Fields: []*packets.ConfigField{
 				{
 					Name:  "host",

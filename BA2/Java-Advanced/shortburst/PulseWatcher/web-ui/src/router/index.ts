@@ -22,13 +22,30 @@ const router = createRouter({
     {
       path: "/service/:name",
       name: "service",
-      component: () => import("../views/ServiceView.vue")
+      component: () => import("../views/service/ServiceView.vue")
     },
     {
-      path: "/service/:name/:id",
+      path: "/service/:name/:id/details",
       name: "service-id",
-      component: () => import("../views/SessionView.vue")
-    }
+      component: () => import("../views/service/SessionView.vue"),
+      props(to) {
+        return {
+          session: to.params.id,
+          name: to.params.name
+        }
+      },
+    },
+    {
+      path: "/service/:name/:id/metrics",
+      name: "service-id",
+      component: () => import("../views/service/SessionView.vue"),
+      props(to) {
+        return {
+          session: to.params.id,
+          name: to.params.name
+        }
+      },
+    },
   ]
 })
 

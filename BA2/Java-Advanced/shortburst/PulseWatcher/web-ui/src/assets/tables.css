@@ -6,6 +6,7 @@
 
 .dashboard-table td, .dashboard-table th {
     font-size: small;
+    text-align: center;
 }
 
 .dashboard-table tr:nth-child(even){
