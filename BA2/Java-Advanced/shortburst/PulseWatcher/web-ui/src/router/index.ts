@@ -6,7 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'overview',
+      name: 'home',
       component: HomeView
     },
     {
@@ -22,29 +22,30 @@ const router = createRouter({
     {
       path: "/service/:name",
       name: "service",
-      component: () => import("../views/service/ServiceView.vue")
-    },
-    {
-      path: "/service/:name/:id/details",
-      name: "service-id",
-      component: () => import("../views/service/SessionView.vue"),
-      props(to) {
-        return {
-          session: to.params.id,
-          name: to.params.name
+      children: [
+        {
+          path: "overview",
+          name: "service-overview",
+          component: () => import("../views/service/ServiceView.vue"),
+        },
+        {
+          path: "session/:id",
+          name: "session",
+          component: () => import("../views/service/SessionView.vue"),
+          children: [
+            {
+              path: "details",
+              name: "session-details",
+              component: () => import("../views/service/session/SessionDetailsView.vue"),
+            },
+            {
+              path: "metrics",
+              name: "session-metrics",
+              component: () => import("../views/service/session/SessionMetricsView.vue"),
+            }
+          ]
         }
-      },
-    },
-    {
-      path: "/service/:name/:id/metrics",
-      name: "service-id",
-      component: () => import("../views/service/SessionView.vue"),
-      props(to) {
-        return {
-          session: to.params.id,
-          name: to.params.name
-        }
-      },
+      ]
     },
   ]
 })

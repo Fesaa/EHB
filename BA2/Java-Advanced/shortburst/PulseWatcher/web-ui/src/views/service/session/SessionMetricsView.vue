@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  $END$
+  <h1>METRICS</h1>
 </template>
 
 <style scoped>
