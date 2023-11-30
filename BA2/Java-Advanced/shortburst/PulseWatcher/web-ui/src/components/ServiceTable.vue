@@ -68,14 +68,16 @@ function overviewListener(i: Websocket, ev: MessageEvent) {
 }
 
 onMounted(() => {
-  const socket: Websocket = inject('websocket')
+  const socket: Websocket | undefined = inject('websocket')
+  if (socket == undefined) return;
   socket.send(props.initial_request)
 
   socket.addEventListener(WebsocketEvent.message, overviewListener)
 })
 
 onUnmounted(() => {
-  const socket: Websocket = inject('websocket')
+  const socket: Websocket | undefined = inject('websocket')
+  if (socket == undefined) return;
   socket.removeEventListener(WebsocketEvent.message, overviewListener)
 })
 
