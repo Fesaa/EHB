@@ -2,6 +2,7 @@ package art.ameliah.pulsewatcher.events;
 
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class EventsAPI {
 
@@ -10,6 +11,7 @@ public class EventsAPI {
     private static EventsAPI instance = null;
 
     private final Map<Object, Map<Class<Event>, Collection<Method>>> listeners = new HashMap<>();
+    private final Logger log = Logger.getLogger(EventsAPI.class.getName());
 
     public EventsAPI() {
         if (instance != null) {
@@ -27,6 +29,7 @@ public class EventsAPI {
 
     public void fire(Event event) {
         Objects.requireNonNull(event, "event cannot be null");
+        log.info("Firing event " + event.getClass().getName());
         Class<? extends Event> eventClass = event.getClass();
         listeners.forEach((key, value) -> value.getOrDefault(eventClass, EMPTY)
                 .forEach(method -> {
@@ -63,8 +66,7 @@ public class EventsAPI {
                 throw new RuntimeException("Method " + method.getName() + " has @Subscribe annotation but parameter is not an Event");
             }
 
-            listeners.put(listener, new HashMap<>());
-            listeners.get(listener)
+            listeners.computeIfAbsent(listener, k -> new HashMap<>())
                     .computeIfAbsent((Class<Event>) eventClass,
                             k -> new ArrayList<>())
                     .add(method);
