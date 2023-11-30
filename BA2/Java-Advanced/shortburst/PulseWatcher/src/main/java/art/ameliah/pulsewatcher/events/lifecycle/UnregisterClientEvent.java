@@ -27,10 +27,14 @@ public class UnregisterClientEvent implements Event {
     public String toJsonString() {
         JsonObject obj = new JsonObject();
         obj.addProperty("type", "unregister_client");
-        obj.addProperty("name", client.getName());
-        obj.addProperty("active", false);
-        obj.addProperty("status", status.getCode());
-        obj.addProperty("reason", status.getReason());
+
+        JsonObject clientObj = new JsonObject();
+        clientObj.addProperty("name", client.getName());
+        clientObj.addProperty("sessionId", client.getSession().getId());
+        clientObj.addProperty("active", false);
+        clientObj.addProperty("reason", status.getReason());
+
+        obj.add("client", clientObj);
         return obj.toString();
     }
 }

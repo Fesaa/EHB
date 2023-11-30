@@ -139,7 +139,7 @@ public abstract class AbstractClient implements C2SPackerHandler {
         JsonObject obj = new JsonObject();
         obj.addProperty("name", getName());
         obj.addProperty("sessionId", getSession().getId());
-        obj.addProperty("active", true);
+        obj.addProperty("active", getSession().isOpen());
         return obj;
     }
 

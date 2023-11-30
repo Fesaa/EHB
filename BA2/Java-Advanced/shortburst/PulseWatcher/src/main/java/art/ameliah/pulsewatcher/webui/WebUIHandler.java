@@ -38,7 +38,7 @@ public class WebUIHandler {
         try {
             msg = (new Gson()).fromJson(message.getPayload(), JsonObject.class);
         } catch (JsonSyntaxException e) {
-            log.log(Level.SEVERE, "Failed to parse JSON from " + session.getId(), e);
+            log.log(Level.SEVERE, "Failed to parse JSON from " + session.getId() + "\n" + message.getPayload(), e);
             return;
         }
 
@@ -79,17 +79,21 @@ public class WebUIHandler {
         Collection<AbstractClient> activeClients = WSClientHandler.get().getClientHolder().getActiveClients();
         Map<String, Collection<Pair<CloseStatus, AbstractClient>>> inactiveClients = WSClientHandler.get().getClientHolder().getInActiveClients();
 
-        JsonArray out = new JsonArray();
+        JsonObject out = new JsonObject();
+        out.addProperty("type", "clientList");
+
+        JsonArray array = new JsonArray();
 
         activeClients.stream()
                 .map(AbstractClient::minimalClientInfo)
-                .forEach(out::add);
+                .forEach(array::add);
         inactiveClients.values().stream()
                 .flatMap(Collection::stream)
                 .map(Pair::right)
                 .map(AbstractClient::minimalClientInfo)
-                .forEach(out::add);
+                .forEach(array::add);
 
+        out.add("clients", array);
         sendTextMessage(new TextMessage(out.toString()));
     }
 

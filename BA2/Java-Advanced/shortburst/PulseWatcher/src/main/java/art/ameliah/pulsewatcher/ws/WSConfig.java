@@ -17,7 +17,7 @@ public class WSConfig implements WebSocketConfigurer {
                 .addInterceptors(new HttpSessionHandshakeInterceptor());
 
         registry.addHandler(wsWebUIHandler(), "/ws/webui")
-                .addInterceptors(new HttpSessionHandshakeInterceptor());
+                .setAllowedOriginPatterns("http://localhost:*");
     }
 
     @Bean

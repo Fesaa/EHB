@@ -20,9 +20,13 @@ public class RegisterClientEvent implements Event {
     public String toJsonString() {
         JsonObject obj = new JsonObject();
         obj.addProperty("type", "register_client");
-        obj.addProperty("name", client.getName());
-        obj.addProperty("sessionId", client.getSession().getId());
-        obj.addProperty("active", true);
+
+        JsonObject clientObj = new JsonObject();
+        clientObj.addProperty("name", client.getName());
+        clientObj.addProperty("sessionId", client.getSession().getId());
+        clientObj.addProperty("active", true);
+
+        obj.add("client", clientObj);
         return obj.toString();
     }
 }
