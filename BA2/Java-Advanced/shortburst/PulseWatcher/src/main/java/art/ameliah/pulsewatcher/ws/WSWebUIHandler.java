@@ -14,7 +14,7 @@ public class WSWebUIHandler extends AbstractWSHandler {
 
     private static WSWebUIHandler instance = null;
     private final Logger log = Logger.getLogger(WSWebUIHandler.class.getName());
-    private Map<String, WebUIHandler> handles = new HashMap<>();
+    private final Map<String, WebUIHandler> handles = new HashMap<>();
 
     public WSWebUIHandler() {
         instance = this;

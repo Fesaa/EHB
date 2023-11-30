@@ -150,7 +150,6 @@ public abstract class AbstractClient implements C2SPackerHandler {
         return getSharedData(0);
     }
 
-    ;
 
     public abstract ClientHolder.SharedData getSharedData(long time);
 }
