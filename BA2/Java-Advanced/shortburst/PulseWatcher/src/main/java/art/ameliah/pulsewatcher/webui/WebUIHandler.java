@@ -19,6 +19,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +54,7 @@ public class WebUIHandler {
                 requestConfigChange(msg);
                 break;
             case "requestclientlist":
-                requestClientList();
+                requestClientList(msg.getAsJsonArray("names"));
                 break;
             case "setcurrentfocus":
                 setCurrentFocus(msg);
@@ -75,9 +76,10 @@ public class WebUIHandler {
         currentFocus = focus.getAsString();
     }
 
-    private void requestClientList() {
+    private void requestClientList(JsonArray namesArray) {
         Collection<AbstractClient> activeClients = WSClientHandler.get().getClientHolder().getActiveClients();
         Map<String, Collection<Pair<CloseStatus, AbstractClient>>> inactiveClients = WSClientHandler.get().getClientHolder().getInActiveClients();
+        List<String> names = namesArray == null ? null : namesArray.asList().stream().map(JsonElement::getAsString).toList();
 
         JsonObject out = new JsonObject();
         out.addProperty("type", "clientList");
@@ -85,11 +87,13 @@ public class WebUIHandler {
         JsonArray array = new JsonArray();
 
         activeClients.stream()
+                .filter(c -> names == null || names.contains(c.getName()))
                 .map(AbstractClient::minimalClientInfo)
                 .forEach(array::add);
         inactiveClients.values().stream()
                 .flatMap(Collection::stream)
                 .map(Pair::right)
+                .filter(c -> names == null || names.contains(c.getName()))
                 .map(AbstractClient::minimalClientInfo)
                 .forEach(array::add);
 
