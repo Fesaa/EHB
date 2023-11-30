@@ -3,8 +3,11 @@ package art.ameliah.pulsewatcher.client;
 import art.ameliah.pulsewatcher.client.runnables.MetricTask;
 import art.ameliah.pulsewatcher.client.runnables.PingResponseTask;
 import art.ameliah.pulsewatcher.client.runnables.PingTask;
+import art.ameliah.pulsewatcher.events.EventsAPI;
+import art.ameliah.pulsewatcher.events.updates.PingResponseEvent;
 import art.ameliah.pulsewatcher.proto.*;
 import art.ameliah.pulsewatcher.tasks.RepeatingTaskHandler;
+import art.ameliah.pulsewatcher.utils.Pair;
 import art.ameliah.pulsewatcher.ws.WSClientHandler;
 import com.google.gson.JsonObject;
 import com.google.protobuf.Timestamp;
@@ -34,9 +37,10 @@ public abstract class AbstractClient implements C2SPackerHandler {
     private final ClientConfig config;
 
     private final Queue<S2CPacket> packetQueue = new ArrayDeque<>();
-    private final List<Timestamp> pings = new ArrayList<>();
+    private final List<Pair<Long, Long>> pings = new ArrayList<>();
     private boolean isSending = false;
     private Timestamp lastPing = null;
+    private long lastPingRequest = 0L;
 
     public AbstractClient(WebSocketSession session, C2SRegisterPacket packet) {
         this.session = session;
@@ -84,11 +88,11 @@ public abstract class AbstractClient implements C2SPackerHandler {
     }
 
     protected void handleC2SPingPacket(C2SPingPacket packet) {
+        var pair = Pair.of(System.currentTimeMillis(), System.currentTimeMillis() - lastPingRequest);
+        pings.add(pair);
+        lastPing = packet.getTimestamp();
 
-        Timestamp current = packet.getTimestamp();
-
-        pings.add(current);
-        lastPing = current;
+        EventsAPI.get().fire(new PingResponseEvent(this, pair.right(), pair.left()));
     }
 
     public void send(S2CPacket packet) {
@@ -131,8 +135,12 @@ public abstract class AbstractClient implements C2SPackerHandler {
         return config;
     }
 
-    public List<Timestamp> getPings() {
+    public List<Pair<Long, Long>> getPings() {
         return pings;
+    }
+
+    public void setLastPingRequest(long lastPingRequest) {
+        this.lastPingRequest = lastPingRequest;
     }
 
     public JsonObject minimalClientInfo() {
@@ -142,7 +150,6 @@ public abstract class AbstractClient implements C2SPackerHandler {
         obj.addProperty("active", getSession().isOpen());
         return obj;
     }
-
 
     abstract void handleC2SMetricPacket(C2SMetricPacket packet);
 

@@ -20,6 +20,8 @@ public class PingTask extends Task {
                     .setPingPacket(c2SPacket)
                     .build();
             client.send(packet);
+
+            client.setLastPingRequest(System.currentTimeMillis());
         });
     }
 }

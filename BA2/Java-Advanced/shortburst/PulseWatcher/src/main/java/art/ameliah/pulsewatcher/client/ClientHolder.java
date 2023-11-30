@@ -94,18 +94,20 @@ public class ClientHolder {
 
         private final String name;
         private final String sessionID;
-        private final Long[] pings;
+        private final Pair<Long, Long>[] pings;
         private final JsonObject[] metrics;
         private final ClientConfig config;
+        private final JsonObject info;
 
         private boolean active = true;
 
-        public SharedData(String name, String sessionID, Long[] pings, JsonObject[] metrics, ClientConfig config) {
+        public SharedData(String name, String sessionID, Pair<Long, Long>[] pings, JsonObject[] metrics, ClientConfig config, JsonObject info) {
             this.name = name;
             this.sessionID = sessionID;
             this.pings = pings;
             this.metrics = metrics;
             this.config = config;
+            this.info = info;
         }
 
         public SharedData setActive(boolean active) {
@@ -119,14 +121,17 @@ public class ClientHolder {
             obj.addProperty("session_id", sessionID);
 
             JsonArray pings = new JsonArray();
-            for (Long ping : this.pings) {
-                pings.add(ping);
+            for (Pair<Long, Long> ping : this.pings) {
+                JsonObject pingObj = new JsonObject();
+                pingObj.addProperty("time", ping.left());
+                pingObj.addProperty("ping", ping.right());
+                pings.add(pingObj);
             }
             obj.add("pings", pings);
 
             JsonObject metrics = new JsonObject();
             for (JsonObject metric : this.metrics) {
-                metrics.add(metric.get("time").getAsString(), metric);
+                metrics.add(metric.get("time").getAsString(), metric.get("metrics"));
             }
             obj.add("metrics", metrics);
             if (active) {
@@ -134,6 +139,8 @@ public class ClientHolder {
             }
 
             obj.addProperty("Active", active);
+
+            obj.add("info", info);
 
             return obj;
         }
