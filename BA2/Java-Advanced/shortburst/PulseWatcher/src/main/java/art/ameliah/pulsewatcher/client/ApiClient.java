@@ -1,17 +1,15 @@
 package art.ameliah.pulsewatcher.client;
 
-import art.ameliah.pulsewatcher.proto.C2SRegisterPacket;
-import art.ameliah.pulsewatcher.ws.WSClientHandler;
 import art.ameliah.pulsewatcher.proto.APIClientMetric;
 import art.ameliah.pulsewatcher.proto.C2SMetricPacket;
+import art.ameliah.pulsewatcher.proto.C2SRegisterPacket;
+import art.ameliah.pulsewatcher.ws.WSClientHandler;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.protobuf.Timestamp;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ApiClient extends AbstractClient {
@@ -37,7 +35,7 @@ public class ApiClient extends AbstractClient {
     public ClientHolder.SharedData getSharedData(long time) {
         Long[] pingArray = getPings()
                 .stream()
-                .map(t -> (long)t.getNanos())
+                .map(t -> (long) t.getNanos())
                 .filter(t -> t > time)
                 .toArray(Long[]::new);
 

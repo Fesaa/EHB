@@ -1,6 +1,6 @@
 package art.ameliah.pulsewatcher.client;
 
-import art.ameliah.pulsewatcher.proto.*;
+import art.ameliah.pulsewatcher.proto.C2SPacket;
 import org.springframework.web.socket.WebSocketSession;
 
 public interface C2SPackerHandler {

@@ -1,11 +1,12 @@
 package art.ameliah.pulsewatcher.client;
 
-import art.ameliah.pulsewatcher.proto.*;
-import art.ameliah.pulsewatcher.ws.WSClientHandler;
 import art.ameliah.pulsewatcher.client.runnables.MetricTask;
 import art.ameliah.pulsewatcher.client.runnables.PingResponseTask;
 import art.ameliah.pulsewatcher.client.runnables.PingTask;
+import art.ameliah.pulsewatcher.proto.*;
 import art.ameliah.pulsewatcher.tasks.RepeatingTaskHandler;
+import art.ameliah.pulsewatcher.ws.WSClientHandler;
+import com.google.gson.JsonObject;
 import com.google.protobuf.Timestamp;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.CloseStatus;
@@ -24,21 +25,17 @@ public abstract class AbstractClient implements C2SPackerHandler {
     public final int DEFAULT_TRIES = 1;
     public final long PING_TIME_OUT = 5_000L;
     public final long PING_INTERVAL = 10_000L;
-    private final long METRIC_INTERVAL = 15_000L;
-
     protected final Logger log = Logger.getLogger(AbstractClient.class.getName());
-
+    protected final RepeatingTaskHandler handler = new RepeatingTaskHandler();
+    private final long METRIC_INTERVAL = 15_000L;
     private final WebSocketSession session;
     private final String token;
     private final String name;
-    protected final RepeatingTaskHandler handler = new RepeatingTaskHandler();
-
     private final ClientConfig config;
 
     private final Queue<S2CPacket> packetQueue = new ArrayDeque<>();
-    private boolean isSending = false;
-
     private final List<Timestamp> pings = new ArrayList<>();
+    private boolean isSending = false;
     private Timestamp lastPing = null;
 
     public AbstractClient(WebSocketSession session, C2SRegisterPacket packet) {
@@ -138,10 +135,22 @@ public abstract class AbstractClient implements C2SPackerHandler {
         return pings;
     }
 
+    public JsonObject minimalClientInfo() {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("name", getName());
+        obj.addProperty("sessionId", getSession().getId());
+        obj.addProperty("active", true);
+        return obj;
+    }
+
+
     abstract void handleC2SMetricPacket(C2SMetricPacket packet);
 
     public ClientHolder.SharedData getSharedData() {
         return getSharedData(0);
-    };
+    }
+
+    ;
+
     public abstract ClientHolder.SharedData getSharedData(long time);
 }

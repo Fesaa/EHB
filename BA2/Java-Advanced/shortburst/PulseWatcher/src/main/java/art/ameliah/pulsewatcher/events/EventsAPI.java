@@ -5,16 +5,11 @@ import java.util.*;
 
 public class EventsAPI {
 
+    private static final ArrayList<Method> EMPTY = new ArrayList<>();
+
     private static EventsAPI instance = null;
 
     private final Map<Object, Map<Class<Event>, Collection<Method>>> listeners = new HashMap<>();
-
-    public static EventsAPI get() {
-        if (instance == null) {
-            throw new RuntimeException("EventsAPI not initialized");
-        }
-        return instance;
-    }
 
     public EventsAPI() {
         if (instance != null) {
@@ -23,9 +18,17 @@ public class EventsAPI {
         instance = this;
     }
 
+    public static EventsAPI get() {
+        if (instance == null) {
+            throw new RuntimeException("EventsAPI not initialized");
+        }
+        return instance;
+    }
+
     public void fire(Event event) {
-        listeners.forEach(
-                (key, value) -> value.getOrDefault(event.getClass(), new ArrayList<>())
+        Objects.requireNonNull(event, "event cannot be null");
+        Class<? extends Event> eventClass = event.getClass();
+        listeners.forEach((key, value) -> value.getOrDefault(eventClass, EMPTY)
                 .forEach(method -> {
                     try {
                         method.invoke(key, event);
@@ -63,7 +66,7 @@ public class EventsAPI {
             listeners.put(listener, new HashMap<>());
             listeners.get(listener)
                     .computeIfAbsent((Class<Event>) eventClass,
-                    k -> new ArrayList<>())
+                            k -> new ArrayList<>())
                     .add(method);
         }
     }

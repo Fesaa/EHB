@@ -3,7 +3,6 @@ package art.ameliah.pulsewatcher.ws;
 
 import art.ameliah.pulsewatcher.client.AbstractClient;
 import art.ameliah.pulsewatcher.client.ApiClient;
-import art.ameliah.pulsewatcher.client.C2SPackerHandler;
 import art.ameliah.pulsewatcher.client.ClientHolder;
 import art.ameliah.pulsewatcher.proto.C2SPacket;
 import art.ameliah.pulsewatcher.proto.C2SRegisterPacket;
@@ -14,13 +13,18 @@ import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class WSClientHandler extends AbstractWSHandler {
 
     private static WSClientHandler instance = null;
+    private final Logger log = Logger.getLogger(WSClientHandler.class.getName());
+    private final Map<String, String> preC2SRegisterSessions = new HashMap<>();
+    private final ClientHolder clientHolder = new ClientHolder();
 
     public WSClientHandler() {
         instance = this;
@@ -29,12 +33,6 @@ public class WSClientHandler extends AbstractWSHandler {
     public static WSClientHandler get() {
         return instance;
     }
-
-    private final Logger log = Logger.getLogger(WSClientHandler.class.getName());
-
-    private final Map<String, String> preC2SRegisterSessions = new HashMap<>();
-
-    private final ClientHolder clientHolder = new ClientHolder();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -102,7 +100,7 @@ public class WSClientHandler extends AbstractWSHandler {
 
     @Override
     protected void cleanup(WebSocketSession session, CloseStatus status) {
-        log.info("Removing "+ session.getId() + " with reason " + status.getCode()
+        log.info("Removing " + session.getId() + " with reason " + status.getCode()
                 + " " + status.getReason() + " from trackers.");
 
         clientHolder.unregisterClient(session, status);

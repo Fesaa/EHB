@@ -1,7 +1,8 @@
 package art.ameliah.pulsewatcher.client;
 
 import art.ameliah.pulsewatcher.events.EventsAPI;
-import art.ameliah.pulsewatcher.events.RegisterClientEvent;
+import art.ameliah.pulsewatcher.events.lifecycle.RegisterClientEvent;
+import art.ameliah.pulsewatcher.events.lifecycle.UnregisterClientEvent;
 import art.ameliah.pulsewatcher.proto.C2SPacket;
 import art.ameliah.pulsewatcher.utils.Pair;
 import com.google.gson.JsonArray;
@@ -9,7 +10,10 @@ import com.google.gson.JsonObject;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClientHolder {
 
@@ -31,8 +35,9 @@ public class ClientHolder {
         }
         activeClients.remove(session.getId());
         client.close();
-        inActiveClients.computeIfAbsent(client.getName(),k -> new ArrayList<>()).add(Pair.of(status, client));
+        inActiveClients.computeIfAbsent(client.getName(), k -> new ArrayList<>()).add(Pair.of(status, client));
 
+        EventsAPI.get().fire(new UnregisterClientEvent(client, status));
     }
 
 
