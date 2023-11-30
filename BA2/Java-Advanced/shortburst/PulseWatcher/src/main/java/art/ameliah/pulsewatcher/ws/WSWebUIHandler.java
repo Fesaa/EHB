@@ -2,6 +2,9 @@ package art.ameliah.pulsewatcher.ws;
 
 import art.ameliah.pulsewatcher.client.AbstractClient;
 import art.ameliah.pulsewatcher.client.ClientConfig;
+import art.ameliah.pulsewatcher.events.EventsAPI;
+import art.ameliah.pulsewatcher.events.RegisterClientEvent;
+import art.ameliah.pulsewatcher.events.Subscribe;
 import art.ameliah.pulsewatcher.proto.MutableConfigField;
 import art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket;
 import art.ameliah.pulsewatcher.proto.S2CPacket;
@@ -21,6 +24,8 @@ public class WSWebUIHandler extends AbstractWSHandler {
 
     public WSWebUIHandler() {
         instance = this;
+
+        EventsAPI.get().registerListener(this);
     }
 
     public static WSWebUIHandler get() {
@@ -30,6 +35,11 @@ public class WSWebUIHandler extends AbstractWSHandler {
     private final Logger log = Logger.getLogger(WSWebUIHandler.class.getName());
 
     private Map<String, WebUIHandler> handles = new HashMap<>();
+
+    @Subscribe
+    public void onRegisterClient(RegisterClientEvent e) {
+        log.info("Registering client " + e.getClient().getName());
+    }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {

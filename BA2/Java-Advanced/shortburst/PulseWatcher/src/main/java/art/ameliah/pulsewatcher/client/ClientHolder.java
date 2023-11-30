@@ -1,5 +1,7 @@
 package art.ameliah.pulsewatcher.client;
 
+import art.ameliah.pulsewatcher.events.EventsAPI;
+import art.ameliah.pulsewatcher.events.RegisterClientEvent;
 import art.ameliah.pulsewatcher.proto.C2SPacket;
 import art.ameliah.pulsewatcher.utils.Pair;
 import com.google.gson.JsonArray;
@@ -19,6 +21,7 @@ public class ClientHolder {
 
     public void registerClient(WebSocketSession session, AbstractClient client) {
         activeClients.put(session.getId(), client);
+        EventsAPI.get().fire(new RegisterClientEvent(client));
     }
 
     public void unregisterClient(WebSocketSession session, CloseStatus status) {
