@@ -71,44 +71,34 @@
 
 \begin{frame}{Process monitoring}
   \begin{itemize}
-  \item
-    Use \texttt{itemize} a lot.
-  \item
-    Use very short sentences or short phrases.
+  \item Programs fail
+  \item Using \texttt{ssh} to check is inpracticle
+  \item Central system \& standard
+  \item Keeping an eye on usage
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Features \& Technologies}
-
-  You can create overlays\dots
+  This project uses:
   \begin{itemize}
-  \item using the \texttt{pause} command:
+  \item BackEnd
     \begin{itemize}
-    \item
-      First item.
-      \pause
-    \item    
-      Second item.
+    \item Spring Boot
+    \item Web Sockets
+	\item Protocol Buffers
     \end{itemize}
-  \item
-    using overlay specifications:
+  \item FrontEnd
     \begin{itemize}
-    \item<3->
-      First item.
-    \item<4->
-      Second item.
+    \item Vue.js
+    \item Chart.js
     \end{itemize}
-  \item
-    using the general \texttt{uncover} command:
+  \item Client
     \begin{itemize}
-      \uncover<5->{\item
-        First item.}
-      \uncover<6->{\item
-        Second item.}
+      \item Test Client in Go
+      \item But could be {\bf anything}
     \end{itemize}
   \end{itemize}
 \end{frame}
-
 
 \subsection{Examples}
 
@@ -132,9 +122,23 @@
 \subsection{Demo}
 
 \begin{frame}{Web UI}{Vue.js}
+
+\includegraphics[width=\linewidth,keepaspectratio]{web_ui_1.png}
+
 \end{frame}
 
+
 \begin{frame}{Web UI}{Vue.js}
+
+\includegraphics[width=\linewidth,keepaspectratio]{web_ui_2.png}
+
+\end{frame}
+
+
+\begin{frame}{Web UI}{Vue.js}
+
+\includegraphics[width=\linewidth,keepaspectratio]{web_ui_3.png}
+
 \end{frame}
 
 \subsection{Implementation}
@@ -218,7 +222,7 @@ server/.style ={draw, circle, fill=cyan} ]
 
 \begin{frame}{Summary}
   \begin{itemize}
-  \item Front end development \alert{SUCKS}.
+  \item Front end development \alert{is a pain}.
   \item Google's \alert{protocol buffers} are wicked cool.
   \item Spring Boot is impressive but, \alert{a black box}.
   \end{itemize}
