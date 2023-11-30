@@ -19,11 +19,16 @@ type Client struct {
 
 var returnMessage string = "Default Value"
 var port string = "2020"
+var name string = "Test API Client"
 
 func main() {
 	port = os.Getenv("PORT")
 	if port == "" {
 		port = "2020"
+	}
+	name = os.Getenv("NAME")
+	if name == "" {
+		name = "Test API Client"
 	}
 
 	start = time.Now()
