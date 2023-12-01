@@ -1,0 +1,1 @@
+protoc -I=./ --java_out=./src/main/java/ --go_out=./test-client/  packets.proto

@@ -1,0 +1,52 @@
+.dashboard-table {
+    padding: 2em;
+
+    border: 1px solid dimgray;
+}
+
+.dashboard-table td, .dashboard-table th {
+    font-size: small;
+    text-align: center;
+}
+
+.dashboard-table tr:nth-child(even){
+    background-color: var(--little-alpha);
+}
+
+.dashboard-table tr:hover:not(.dashboard-table-header):not(.sticky-row) {
+    background-color: var(--big-alpha);
+}
+
+.dashboard-table-header {
+    text-align: center;
+    background-color: var(--accent);
+    color: white;
+}
+.dashboard-table-submit-change {
+    background: none;
+    border: none;
+}
+
+.dashboard-table-submit-change:hover {
+    color: limegreen;
+    cursor: pointer;
+}
+
+.dashboard-table-btn {
+    margin: 5px;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.scrollable-table-container {
+    min-height: 50px;
+}
+
+.scrollable-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sticky-row {
+    position: sticky;
+}
