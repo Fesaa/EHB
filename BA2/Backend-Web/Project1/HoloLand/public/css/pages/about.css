@@ -1,0 +1,24 @@
+
+#about-me {
+    padding: 3em;
+}
+
+.canvas-header {
+    text-decoration: underline;
+}
+
+.canvas-requirement-box > p {
+    font-size: small;
+}
+
+.code-block {
+    font-family: 'Source Code Pro', monospace;
+    background: whitesmoke;
+}
+
+.important-note {
+    background: rgba(230, 0, 0, 0.4);
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 5px;
+}

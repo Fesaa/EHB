@@ -1,0 +1,12 @@
+.member-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.members-title {
+    margin-bottom: 20px;
+    padding: 10px;
+    text-align: center;
+    max-width: max-content;
+}

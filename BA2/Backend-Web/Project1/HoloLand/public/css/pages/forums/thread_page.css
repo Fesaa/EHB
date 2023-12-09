@@ -1,0 +1,42 @@
+#thread-holder {
+    justify-content: space-between;
+}
+
+#thread-main {
+}
+
+#thread-content {
+    padding: 1em 1em 5em 2em;
+    flex: 1;
+}
+
+#thread-content > p {
+    font-size: x-small;
+}
+
+#thread-title {
+    text-align: center;
+}
+
+#thread-posts > div {
+    margin: 1em 5em;
+}
+
+.post-content-box {
+    padding: 1em 5em;
+    flex: 1;
+}
+
+.post-content {
+    margin-top: 1em;
+    padding-bottom: 1em;
+    width: 100%;
+}
+
+.creation-date {
+    font-size: x-small;
+}
+
+.info-row {
+    justify-content: space-between;
+}

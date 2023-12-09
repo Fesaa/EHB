@@ -1,0 +1,14 @@
+.staff-welcome {
+    padding: 2em;
+}
+
+.staff-welcome > p {
+    margin: 0.25em;
+}
+
+.dashboard-meme {
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.memecreator.org%2Fstatic%2Fimages%2Fmemes%2F3986493.jpg&f=1&nofb=1&ipt=7a15655fa21eb7f610b2e4385d892b97732c8d4ab1581b6e84a8849ee2e42661&ipo=images");
+    height: 400px;
+    width: 400px;
+    align-self: center;
+}

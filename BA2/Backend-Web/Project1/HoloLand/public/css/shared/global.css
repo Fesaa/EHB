@@ -1,0 +1,124 @@
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flat-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.flat-list > li {
+    padding: 5px;
+}
+
+.primary-button {
+    background: var(--primary);
+}
+
+.primary-button:not(.no-hover):hover {
+    transform: translate(0, -3px);
+    transition: ease 0.2s;
+    cursor: pointer;
+}
+
+.no-hover:hover > a {
+    cursor: default !important;
+}
+.no-hover:hover {
+    cursor: default !important;
+}
+
+.secondary-button {
+    background: var(--secondary);
+}
+
+.secondary-button:not(.no-hover):hover {
+    transform: translate(0, -3px);
+    transition: ease 0.2s;
+    cursor: pointer;
+}
+
+.float {
+    background: var(--little-alpha);
+    border-radius: 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    cursor: pointer;
+}
+
+
+.staff-border {
+    border-radius: 20px;
+    padding: 0.5em;
+
+    box-shadow: 2px 2px 2px 2px rebeccapurple;
+}
+
+.full-flex {
+    flex: 1;
+}
+
+.clean-link {
+    text-decoration: none;
+    color: var(--text) !important;
+}
+
+.clean-link:hover {
+    text-decoration: none;
+    color: var(--text) !important;
+}
+
+.coloured-link {
+    text-decoration: none;
+    color: var(--text) !important;
+}
+
+.coloured-link:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    color: var(--primary) !important;
+}
+
+#form-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+
+    display: none;
+}
+
+.hover-cursor {
+    cursor: pointer;
+}
+
+.shiny-float {
+    box-shadow: 5px 5px 10px rgba(250, 134, 196, 0.7);
+}
+
+.shiny-bg {
+    background: linear-gradient(10deg, #FFFAF0, white);
+}
+
+.road-links > a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.road-links > a:hover {
+    text-decoration: underline;
+}

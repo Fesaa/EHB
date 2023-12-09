@@ -1,0 +1,7 @@
+#forums-list {
+    list-style: none;
+}
+
+#forums-list > li {
+    margin: 2em;
+}

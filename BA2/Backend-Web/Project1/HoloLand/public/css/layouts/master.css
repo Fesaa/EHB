@@ -1,0 +1,102 @@
+:root {
+    --background: #F0F8FF;
+    --primary: #b2b7e0;
+    --secondary: #e4c5e8;
+    --accent: #404aa0;
+    --text: darkslategray;
+
+    --little-alpha: white;
+    --big-alpha: silver;
+
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#body {
+    padding: 0;
+    margin: 0 5em;
+    min-height: 1080px;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.master-formatting {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    flex-grow: 1;
+    margin: 0.5em 1em;
+}
+
+.master-formatting-sidebar {
+    flex-basis: 7%;
+    padding: 0.5em;
+}
+
+.master-formatting-main-content {
+    flex: 1;
+    padding: 0.5em;
+}
+
+.master-formatting-infobar {
+    flex-basis: 7%;
+    padding: 0.5em;
+}
+
+
+#error-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+
+    display: none;
+}
+
+#error-popup {
+    align-self: center;
+}
+
+#error-close {
+    align-self: center;
+    cursor: pointer;
+
+    background: var(--secondary);
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#error-close:hover {
+    transform: translate(-3px, -3px);
+    transition: ease 0.2s;
+}
+
+.errors {
+    width: fit-content;
+}
+
+.errors > p {
+    text-align: center;
+}
+
+.errors {
+    background: lightcoral;
+
+    align-self: center;
+    margin-top: 1em;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}

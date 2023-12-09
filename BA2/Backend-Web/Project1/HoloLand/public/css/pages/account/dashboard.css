@@ -1,0 +1,11 @@
+.account-welcome {
+    padding: 2em;
+}
+
+.account-welcome > p {
+    margin: 0.25em;
+}
+
+.master-formatting-infobar {
+    display: block !important;
+}

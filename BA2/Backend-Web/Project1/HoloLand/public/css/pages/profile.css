@@ -1,0 +1,11 @@
+.master-formatting-infobar {
+    display: none;
+}
+
+
+.profile-posts-container {
+    width: 75%;
+    align-self: center;
+    margin-top: 1em;
+    padding: 1em;
+}

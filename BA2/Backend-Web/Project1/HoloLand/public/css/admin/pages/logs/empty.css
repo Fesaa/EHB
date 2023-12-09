@@ -1,0 +1,19 @@
+.master-formatting-infobar {
+    display: block !important;
+}
+
+.logs-welcome {
+    padding: 2em;
+}
+
+.logs-welcome > p {
+    margin: 0.25em;
+}
+
+.logs-meme {
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fclipground.com%2Fimages%2Flog-png-7.png&f=1&nofb=1&ipt=205babb6d36dac542b9e75d8b099b50590fe23acea2d277f89d568adf1956f3b&ipo=images");
+    height: 267px;
+    width: 400px;
+    align-self: center;
+    border-radius: 5%;
+}
