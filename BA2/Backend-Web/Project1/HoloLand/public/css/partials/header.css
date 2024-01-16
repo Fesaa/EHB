@@ -1,0 +1,50 @@
+header {
+    margin: 1em;
+    width: 85%;
+    align-self: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header .name {
+    padding-left: 2em;
+    flex-basis: 33%;
+    font-family: 'Pacifico', cursive;
+}
+
+.rainbow-text {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.rainbow-text:hover {
+    background-image: linear-gradient(45deg, lightblue, lightpink, white, lightpink, lightblue);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+header > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+
+    flex-basis: 33%;
+    list-style-type: none;
+    align-self: center;
+}
+
+.nav-button {
+    padding: 0.5em 1em;
+    margin: 0 1em;
+    border-radius: 20px;
+    align-self: center;
+}
+
+.nav-button > a {
+    text-decoration: none;
+    color: var(--text);
+}
+

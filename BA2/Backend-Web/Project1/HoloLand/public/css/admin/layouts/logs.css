@@ -1,0 +1,12 @@
+.master-formatting-infobar {
+    display: none;
+}
+
+#admin-dashboard {
+    justify-content: flex-start;
+    flex: 1;
+}
+
+#admin-dashboard-menu {
+    display: none;
+}

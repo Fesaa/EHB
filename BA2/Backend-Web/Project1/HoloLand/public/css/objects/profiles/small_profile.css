@@ -1,0 +1,31 @@
+
+.small-profile {
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.small-profile-name {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.3em;
+    margin: 0 0 0.5rem;
+
+    width: 75%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.small-profile > img {
+    border-radius: 20px;
+    padding: 1em;
+    width: 128px;
+}
+
+.small-profile > a {
+    text-decoration: none;
+    color: var(--text)
+}
+

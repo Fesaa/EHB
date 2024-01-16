@@ -1,0 +1,34 @@
+
+
+
+.infobar {
+    height: 95%;
+
+}
+
+.infobar > div {
+    margin: 1em 0;
+    width: 250px;
+}
+
+.infobar-title {
+    font-weight: bolder;
+    border-bottom: 2px solid var(--accent);
+    padding: 0.5em 0.5em;
+    text-align: center;
+}
+
+.infobar-content {
+    margin-top: 0;
+    padding: 0 10px;
+}
+
+.infobar-staff-list {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.infobar-staff-list > li {
+    margin: 0;
+}

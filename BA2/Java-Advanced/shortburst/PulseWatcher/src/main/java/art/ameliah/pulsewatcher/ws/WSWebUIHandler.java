@@ -1,23 +1,20 @@
 package art.ameliah.pulsewatcher.ws;
 
-import art.ameliah.pulsewatcher.client.AbstractClient;
-import art.ameliah.pulsewatcher.client.ClientConfig;
-import art.ameliah.pulsewatcher.proto.MutableConfigField;
-import art.ameliah.pulsewatcher.proto.S2CChangeConfigPacket;
-import art.ameliah.pulsewatcher.proto.S2CPacket;
+import art.ameliah.pulsewatcher.events.EventsAPI;
 import art.ameliah.pulsewatcher.webui.WebUIHandler;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
 public class WSWebUIHandler extends AbstractWSHandler {
 
     private static WSWebUIHandler instance = null;
+    private final Logger log = Logger.getLogger(WSWebUIHandler.class.getName());
+    private final Map<String, WebUIHandler> handles = new HashMap<>();
 
     public WSWebUIHandler() {
         instance = this;
@@ -26,10 +23,6 @@ public class WSWebUIHandler extends AbstractWSHandler {
     public static WSWebUIHandler get() {
         return instance;
     }
-
-    private final Logger log = Logger.getLogger(WSWebUIHandler.class.getName());
-
-    private Map<String, WebUIHandler> handles = new HashMap<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
@@ -54,6 +47,7 @@ public class WSWebUIHandler extends AbstractWSHandler {
         */
 
         handles.put(session.getId(), new WebUIHandler(session));
+        EventsAPI.get().registerListener(handles.get(session.getId()));
     }
 
     @Override
@@ -70,30 +64,7 @@ public class WSWebUIHandler extends AbstractWSHandler {
 
     @Override
     protected void cleanup(WebSocketSession session, CloseStatus status) {
+        EventsAPI.get().unregisterListener(handles.get(session.getId()));
         handles.remove(session.getId());
-    }
-
-    private void requestConfigChange(String sessionID, ClientConfig.Field field) {
-        AbstractClient client = WSClientHandler.get().getClientHolder().getClient(sessionID);
-        if (client == null) {
-            throw new IllegalStateException("Cannot request config change for client that is not registered");
-        }
-
-        S2CChangeConfigPacket changeConfigPacket = S2CChangeConfigPacket
-                .newBuilder()
-                .setConfigField(MutableConfigField.
-                        newBuilder()
-                        .setName(field.name())
-                        .setCurrentValue(field.value())
-                        .build())
-                .build();
-
-        S2CPacket packet = S2CPacket
-                .newBuilder()
-                .setChangeConfigPacket(changeConfigPacket)
-                .build();
-
-        client.send(packet);
-
     }
 }

@@ -31,10 +31,6 @@ public class ClientConfig {
         return mutableFields;
     }
 
-    public record Field(String name, String value) {
-
-    }
-
     public JsonObject toJson() {
         JsonObject obj = new JsonObject();
 
@@ -58,6 +54,10 @@ public class ClientConfig {
         obj.add("mutableFields", mutableFields);
 
         return obj;
+    }
+
+    public record Field(String name, String value) {
+
     }
 
 }

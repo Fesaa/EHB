@@ -1,18 +1,21 @@
 package art.ameliah.pulsewatcher.client;
 
-import art.ameliah.pulsewatcher.proto.C2SRegisterPacket;
-import art.ameliah.pulsewatcher.ws.WSClientHandler;
 import art.ameliah.pulsewatcher.proto.APIClientMetric;
 import art.ameliah.pulsewatcher.proto.C2SMetricPacket;
+import art.ameliah.pulsewatcher.proto.C2SRegisterPacket;
+import art.ameliah.pulsewatcher.utils.Pair;
+import art.ameliah.pulsewatcher.ws.WSClientHandler;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.protobuf.Timestamp;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
 
 public class ApiClient extends AbstractClient {
 
@@ -35,39 +38,44 @@ public class ApiClient extends AbstractClient {
 
     @Override
     public ClientHolder.SharedData getSharedData(long time) {
-        Long[] pingArray = getPings()
+        Pair<Long, Long>[] pingArray = getPings()
                 .stream()
-                .map(t -> (long)t.getNanos())
-                .filter(t -> t > time)
-                .toArray(Long[]::new);
+                .filter(e -> e.left() > time)
+                .toArray(Pair[]::new);
+
+        JsonObject info = new JsonObject();
+
+        APIClientMetric lastMetric = metrics.get(metrics.keySet().stream().max(Long::compareTo).orElse(0L));
+        if (lastMetric != null) {
+            info.addProperty("host", lastMetric.getHost());
+            info.addProperty("port", lastMetric.getPort());
+            info.addProperty("os", lastMetric.getOs());
+        }
 
         JsonObject[] metricArray = metrics.entrySet()
                 .stream()
                 .filter(e -> e.getKey() > time)
                 .map(e -> {
-                    APIClientMetric m = e.getValue();
+                    APIClientMetric metric = e.getValue();
                     long t = e.getKey();
 
-                    JsonObject obj = new JsonObject();
-                    obj.addProperty("host", m.getHost());
-                    obj.addProperty("port", m.getPort());
-                    obj.addProperty("os", m.getOs());
+                    JsonObject metricObj = new JsonObject();
+                    metricObj.addProperty("time", t);
 
                     JsonArray metrics = new JsonArray();
-                    m.getApiEndPointMetricsList().forEach(a -> {
+                    metric.getApiEndPointMetricsList().stream().map(m -> {
                         JsonObject apiObj = new JsonObject();
-                        apiObj.addProperty("endpoint", a.getEndPoint());
-                        apiObj.addProperty("hits", a.getHits());
-                        apiObj.addProperty("errors", a.getErrors());
-                        metrics.add(apiObj);
-                    });
-                    obj.add("metrics", metrics);
-                    obj.addProperty("time", t);
+                        apiObj.addProperty("endpoint", m.getEndPoint());
+                        apiObj.addProperty("hits", m.getHits());
+                        apiObj.addProperty("errors", m.getErrors());
+                        return apiObj;
+                    }).forEach(metrics::add);
 
-                    return obj;
+                    metricObj.add("metrics", metrics);
+                    return metricObj;
                 })
                 .toArray(JsonObject[]::new);
 
-        return new ClientHolder.SharedData(getName(), getSession().getId(), pingArray, metricArray, getConfig());
+        return new ClientHolder.SharedData(getName(), getSession().getId(), pingArray, metricArray, getConfig(), info);
     }
 }

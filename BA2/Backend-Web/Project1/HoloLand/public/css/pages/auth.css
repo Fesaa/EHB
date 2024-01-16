@@ -1,0 +1,14 @@
+
+.master-formatting-main-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.master-formatting-infobar {
+    display: none;
+}
+
+.styled-form {
+    width: 300px !important;
+}

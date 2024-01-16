@@ -50,14 +50,18 @@ func (c *Client) handlePacket(packet *packets.S2CPacket) {
 		break
 	case *packets.S2CPacket_ChangeConfigPacket:
 		c.handleChangeConfigPacket(packet.GetChangeConfigPacket())
-        break
+		break
 	default:
 		log.Println("Unknown packet type")
 	}
 }
 
 func (c *Client) handleChangeConfigPacket(packet *packets.S2CChangeConfigPacket) {
-
+	if packet.ConfigField.Name == "message" {
+		returnMessage = packet.ConfigField.CurrentValue
+	} else {
+		log.Println("Unknown config field" + packet.ConfigField.Name)
+	}
 }
 
 func (c *Client) handleMetricPacket(packet *packets.S2CMetricPacket) {
@@ -142,7 +146,7 @@ func (c *Client) handleRegisterPacket(packet *packets.S2CRegisterPacket) {
 
 	register := &packets.C2SRegisterPacket{
 		Token:      packet.Token,
-		Name:       "Test API Client",
+		Name:       name,
 		ClientType: packets.ClientType_API_CLIENT,
 		Config: &packets.C2SConfig{
 			Fields: []*packets.ConfigField{

@@ -1,0 +1,96 @@
+.styled-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+}
+
+.styled-form {
+    width: fit-content;
+    padding: 20px;
+    background-color: #eeebe3; /* Optional background color for the form */
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.styled-form > label {
+    align-self: center;
+    font-weight: bold;
+}
+
+.styled-label {
+    align-self: center;
+    font-weight: bold;
+}
+
+.styled-input, .styled-textarea {
+    padding: 10px;
+    border: 1px solid #eeebe3;
+    border-radius: 15px;
+}
+
+.styled-form > input,textarea:not(.no-style){
+    padding: 10px;
+    border: 1px solid #eeebe3;
+    border-radius: 15px;
+}
+
+.styled-form > p {
+    font-size: xx-small;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.styled-form-confirm {
+    padding-top: 10px;
+}
+
+.styled-form-confirm:hover {
+    background-color: #8AAA79;
+}
+
+.label-left > label {
+    align-self: flex-start !important;
+}
+
+.form-btn {
+    border-radius: 20px;
+    background: var(--little-alpha);
+    border: 2px solid black;
+}
+
+.form-btn, label {
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* Hide the dropdown content by default */
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+    padding: 10px;
+    z-index: 1;
+}
+
+/* Style for the button */
+.dropdown-button {
+    padding: 10px;
+
+}
+
+.dropdown-button:hover {
+    transform: translate(0, -2px);
+}
+
+.dropdown-holder {
+    flex: 50%;
+}
