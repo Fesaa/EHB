@@ -1,13 +1,14 @@
 package art.ameliah.ehb.vraag2.database.entity;
 
 
+import art.ameliah.ehb.vraag2.models.Named;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Symptom {
+public class Symptom implements Named {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,7 @@ public class Symptom {
     @Column(name = "description")
     private String desc;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "patients_symptoms",
             joinColumns = { @JoinColumn(name = "symptom_id")},

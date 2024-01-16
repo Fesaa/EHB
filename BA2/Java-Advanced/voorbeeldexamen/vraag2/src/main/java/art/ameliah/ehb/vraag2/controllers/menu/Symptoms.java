@@ -4,11 +4,11 @@ import art.ameliah.ehb.vraag2.database.Disco;
 import art.ameliah.ehb.vraag2.database.entity.Symptom;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.hibernate.Session;
+
+import static art.ameliah.ehb.vraag2.utils.JavaFXUtils.SimpleErrorAlert;
 
 public class Symptoms {
 
@@ -24,14 +24,13 @@ public class Symptoms {
 
     public void onSubmit(ActionEvent e) {
         if (name.getText().isEmpty() || desc.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid input");
-            alert.setHeaderText("Invalid input");
-            alert.setContentText("Please fill in all fields");
-            alert.showAndWait();
+            SimpleErrorAlert("Invalid input", "Please fill in all fields");
             return;
         }
         Symptom symptom = new Symptom(name.getText(), desc.getText());
         Disco.get().save(symptom);
+
+        name.setText("");
+        desc.setText("");
     }
 }

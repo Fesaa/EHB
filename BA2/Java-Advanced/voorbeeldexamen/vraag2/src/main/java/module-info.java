@@ -6,7 +6,7 @@ module vraag2 {
     requires javafx.fxml;
 
     opens art.ameliah.ehb.vraag2.database to org.hibernate.orm.core;
-    opens art.ameliah.ehb.vraag2.database.entity to org.hibernate.orm.core;
+    opens art.ameliah.ehb.vraag2.database.entity to org.hibernate.orm.core, javafx.fxml;
 
     exports art.ameliah.ehb.vraag2;
     opens art.ameliah.ehb.vraag2 to javafx.fxml;
@@ -16,4 +16,6 @@ module vraag2 {
 
     exports art.ameliah.ehb.vraag2.controllers.menu;
     opens art.ameliah.ehb.vraag2.controllers.menu to javafx.fxml;
+
+    exports art.ameliah.ehb.vraag2.database.entity;
 }
