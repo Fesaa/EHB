@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/ameliah/GitHub/EHB/BA2/DotNet-Advanced/Course20240222/Course20240222
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/ameliah/GitHub/EHB/BA2/DotNet-Advanced/Course20240222/Course20240222/Views/Home/Counter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Db3VudGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/ameliah/GitHub/EHB/BA2/DotNet-Advanced/Course20240222/Course20240222/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

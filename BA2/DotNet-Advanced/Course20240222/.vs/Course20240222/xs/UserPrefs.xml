@@ -1,4 +1,40 @@
 ﻿<Properties StartupConfiguration="{CB1DF361-5045-44C5-BA33-12DB97042FC6}|Default">
-  <MonoDevelop.Ide.ItemProperties.Course20240222 FirstBuild="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Course20240222 PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Course20240222/Controllers/PizzaController.cs">
+    <Files>
+      <File FileName="Course20240222/Controllers/RegistreerController.cs" Line="24" Column="1" />
+      <File FileName="Course20240222/Controllers/HomeController.cs" Line="45" Column="1" />
+      <File FileName="Course20240222/Views/Home/Index.cshtml" Line="1" Column="1" />
+      <File FileName="Course20240222/Views/Registreer/Index.cshtml" Line="17" Column="44" />
+      <File FileName="Course20240222/Views/Home/Counter.cshtml" Line="9" Column="1" />
+      <File FileName="Course20240222/Program.cs" Line="28" Column="24" />
+      <File FileName="Course20240222/Controllers/PizzaController.cs" Line="21" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Course20240222">
+            <Node name="Course20240222">
+              <Node name="Controllers">
+                <Node name="PizzaController.cs" selected="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Registreer" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
 </Properties>
