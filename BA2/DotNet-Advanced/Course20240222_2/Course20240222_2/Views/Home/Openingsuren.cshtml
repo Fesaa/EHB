@@ -1,0 +1,27 @@
+﻿@{ViewData["title"] = "Winkel Openingstijden";
+
+    var openingstijd = new TimeSpan(9, 0, 0); // Stel de openingsuren in (bijvoorbeeld 09:00 uur)
+    var sluitingstijd = new TimeSpan(18, 0, 0); // Stel de sluitingstijd in (bijvoorbeeld 18:00 uur)
+
+    var huidigeTijd = DateTime.Now.TimeOfDay;
+    var isWinkelOpen = huidigeTijd >= openingstijd && huidigeTijd <= sluitingstijd;
+
+    var statusTekst = isWinkelOpen ? "Open" : "Gesloten";
+}
+
+
+<h1>Winkel Openingstijden</h1>
+
+<p>Huidige tijd: @DateTime.Now.ToString("HH:mm:ss")</p>
+
+<h2>Status: @statusTekst</h2>
+
+@if (isWinkelOpen)
+{
+    <p>Welkom! De winkel is geopend.</p>
+}
+else
+{
+    <p>Sorry, de winkel is gesloten. Kom alsjeblieft terug tijdens onze openingstijden.</p>
+}
+

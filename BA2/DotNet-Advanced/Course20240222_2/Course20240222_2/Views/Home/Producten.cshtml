@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Product>
+@{
+}
+
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    @foreach (Product item in @Model)
+    {
+            <tr>
+                <th>@item.Name</th>
+                <th>@item.Description</th>
+                <th>@Html.DisplayFor(_ => item.Category)</th>
+                <th>@item.Price €</th>
+            </tr>
+    }
+</table>
+
