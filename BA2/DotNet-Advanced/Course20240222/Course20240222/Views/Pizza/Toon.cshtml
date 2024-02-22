@@ -1,0 +1,12 @@
+﻿@model PizzaModel
+@{
+}
+
+
+<div class="text-center">
+    <p>Jij bent: @Model.Besteller</p>
+    <p>Pizza: @Model.Pizza</p>
+    <p>KAAS?? @Model.ExtraKaas</p>
+    <p>Betalen met @Html.DisplayFor(m => m.BetaalWijze)</p>
+</div>
+

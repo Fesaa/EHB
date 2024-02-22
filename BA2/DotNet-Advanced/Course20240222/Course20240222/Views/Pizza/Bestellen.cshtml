@@ -1,0 +1,21 @@
+﻿@model PizzaModel
+@{
+    ViewData["Title"] = "Bestel Pizza";
+}
+
+<div>
+    <form asp-action="Bestel" method="post" style="display: flex; flex-direction: column;">
+        <label>Besteller</label>
+        <input asp-for="Besteller" />
+        <label>Pizza</label>
+        <input asp-for="Pizza" />
+        <label>Extra kaas?</label>
+        <input asp-for="ExtraKaas" />
+        <label>Betaal wijze</label>
+
+        <select asp-for="BetaalWijze" asp-items="Html.GetEnumSelectList<BetaalWijze>()"></select>
+
+        <input type="submit" value="PIZZA??!!" />
+    </form>
+</div>
+
