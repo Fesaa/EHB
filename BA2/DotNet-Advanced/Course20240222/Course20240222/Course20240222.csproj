@@ -8,8 +8,12 @@
 
   <ItemGroup>
     <None Remove="Views\Registreer\" />
+    <None Remove="Views\Pizza\" />
+    <None Remove="Views\Session\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Registreer\" />
+    <Folder Include="Views\Pizza\" />
+    <Folder Include="Views\Session\" />
   </ItemGroup>
 </Project>

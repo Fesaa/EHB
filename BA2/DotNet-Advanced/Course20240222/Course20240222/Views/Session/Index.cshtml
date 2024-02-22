@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Session Form";
+}
+
+<div>
+    <form asp-action="Persist" style="display: flex; flex-direction: column" method="post">
+        <label for="name">Uw Naam</label>
+        <input id="name" name="name" type="text" />
+        <input type="submit" value="submit" />
+    </form>
+</div>
+
