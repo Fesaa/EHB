@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Registreer";
+}
+
+
+<div>
+    <form asp-action="Register" style="display: flex; flex-direction: column" method="post">
+        <label for="email">Email</label>
+        <input id="email" name="email"  type="Email"/>
+        <label for="client">Mail Client</label>
+        <select id="client" name="client">
+            <option value="gmail">Gmail</option>
+            <option value="outlook">Outlook</option>
+            <option value="icloud">ICloud</option>
+	    </select>
+        <label for="password" >PassWord</label>
+        <input id="password" name="password" type="password" />
+        <input type="submit" value="submit" />
+    </form>
+</div>
