@@ -50,7 +50,7 @@ Vanboven te vinden in `leaderboard.js` & `games.js`. Worden doorheen de bestante
 `index.js #8`, `games.js #21` 
 
 ### Validating forms
-TODO
+`player.js #19` - super simple, only one field
 
 ### Using a constant
 Doorheen de code, aan de bovenkant. Klinkt nogal triviaal?
@@ -74,16 +74,16 @@ TODO
 Gebruikt doorheen het project om als event callback door te geven aan de game divs
 
 ### Promise
-TODO / gebruikt bij fetch
+Gebruikt bij fetch, en in de main method
 
-### Consumer methods
-TODO
+### Consumer methode
+Deze worden gebruik in then, en catch I suppose?
 
 ### Async & Await
 Callback in beide fetch (`games.js #32` & `leaderboard.js #57`) om json uit de request te halen
 
 ### Self executing function
-TODO
+`player.js #5`, de functie `createForm` roept zichzelf aan om de error page op te stellen
 
 ### Fetch om data op te halen & JSON manipuleren en weergeven
 Zie beschrijving project & functions van Async & Await.

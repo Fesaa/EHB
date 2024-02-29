@@ -22,28 +22,30 @@ function gameHolder(gameName, eventFunction) {
     return d
 }
 
-function loadGames(eventFunction) {
+async function loadGames(eventFunction) {
     const url = BASE_URL + "leaderboard_api/games/false"
     if (games.length > 0) {
         setGames(eventFunction)
         return
     }
 
-    fetch(url)
-        .catch(err => {
-            console.log("An error occured fetching games...", err)
-            STATUS_MSG.innerText = "We encountered an error loading the required data."
-        })
-        .then(async res => {
-            if (res.status != 200) {
-                STATUS_MSG.innerText = "Backend API returned non 200 code. Can't load the required data.'"
-                return
-            }
+    try {
+        const res = await fetch(url)
+        if (res.status != 200) {
+            STATUS_MSG.innerText = "Backend API returned non 200 code. Can't load the required data.'"
+            return
+        }
 
-            games = (await res.json())
-            games.sort()
-            setGames(eventFunction)
-        })
+        games = await res.json()
+        games.sort()
+        setGames(eventFunction)
+    } catch (err) {
+        console.log("An error occured fetching games...", err)
+        STATUS_MSG.innerText = "We encountered an error loading the required data."
+        return Promise.reject("Error loading games")
+    }
+
+    return Promise.resolve()
 }
 
 export default loadGames

@@ -85,3 +85,21 @@ header>h1:hover {
         transform: rotate(360deg);
     }
 }
+
+.player-text {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+}
+
+.player-submit {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+
+    background: lightgray;
+}
+
+.player-submit:hover {
+    cursor: pointer;
+}
