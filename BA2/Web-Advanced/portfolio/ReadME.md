@@ -26,6 +26,15 @@ Volgende zaken moeten aanwezig zijn in het project:
 - **Using LocalStorage**
 - **Theoretical knowledge** (demonstrated through self-tests on Canvas, available online in early March)
 
-References:
+# References:
 - [Mozilla Docs](https://developer.mozilla.org/en-US/)
+
+---------------
+
+# Docs
+
+Start de go server met. Deze zal static alles in `./public` server. Navigeer naar http://127.0.0.1:8000/main.html, om de website te bekijken.
+```go
+go run .
+```
 
