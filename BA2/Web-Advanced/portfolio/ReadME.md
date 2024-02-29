@@ -89,7 +89,7 @@ Callback in beide fetch (`games.js #32` & `leaderboard.js #57`) om json uit de r
 Zie beschrijving project & functions van Async & Await.
 
 ### Basis CSS Animatie
-De leaderboard fetch heeft een forced loading animatie. `leaderboards.js #55 & #69`
+De leaderboard fetch heeft een forced loading animatie. `leaderboards.js #55 & #69`. Animatie in `style.css #69`
 
 ### Gebruiken van een flexbox of CSS grid
 Nou, zowat alles is een flexbox :D
