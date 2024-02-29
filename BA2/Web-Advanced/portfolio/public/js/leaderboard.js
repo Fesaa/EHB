@@ -12,6 +12,12 @@ function leaderboardEntry(entry, scoreType) {
         <td class="leaderboard-entry-name">${entry.player}</td>
         <td class="leaderboard-entry-score">${entry.score} ${scoreType}</td>
     `
+
+    const playerName = localStorage.getItem("cubepanion:player-name")
+    if (playerName == entry.player) {
+        tr.style.background = "limegreen"
+    }
+
     return tr
 }
 

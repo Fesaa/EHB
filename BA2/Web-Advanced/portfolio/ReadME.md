@@ -95,7 +95,7 @@ De leaderboard fetch heeft een forced loading animatie. `leaderboards.js #55 & #
 Nou, zowat alles is een flexbox :D
 
 ### Gebruik van LocalStorage
-TODO
+Gebruikt om je naam te bewaren, om je een achtergrond kleurtje te geven in leaderboards. `index.js #24` & `leaderboars.js #16`
 
 ### Theoretische kennis
 Pesterij, kan het nog niet doen
