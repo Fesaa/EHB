@@ -37,7 +37,7 @@ Start de go server met.
 ```go
 go run .
 ```
-Deze zal static alles in `./public` server. Navigeer naar http://127.0.0.1:8000/main.html, om de website te bekijken.
+Deze zal static alles in `./public` server. Navigeer naar http://127.0.0.1:8000, om de website te bekijken.
 
 ----------------
 
