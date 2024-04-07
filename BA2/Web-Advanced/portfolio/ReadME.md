@@ -1,6 +1,6 @@
 # Portfolio Web Advanced 
 
-Dit project is een mock integratie van de [Cubepanion API](https://github.com/Fesaa/CubepanionAPI), publiek te vinden op https://ameliah.art/cubepanion_api.
+Dit project is een mock integratie van de [Cubepanion API](https://github.com/Fesaa/CubepanionAPI), publiek te vinden op https://ameliah.art/cubepanion.
 Vanwege de eenvoud wordt ze niet echt gebruikt.
 
 Volgende zaken moeten aanwezig zijn in het project:
@@ -28,6 +28,7 @@ Volgende zaken moeten aanwezig zijn in het project:
 
 # References:
 - [Mozilla Docs](https://developer.mozilla.org/en-US/)
+- [API Docs](https://fesaa.github.io/CubepanionAPI/)
 
 ---------------
 
@@ -59,10 +60,26 @@ Doorheen de code, aan de bovenkant. Klinkt nogal triviaal?
 `leaderboard.js #10` - invoegen van de rows
 
 ### Destructuring
-TODO
+`leaderboard.js #10` - info uit (json) obj halen
 
 ### Spread & Rest operator
-TODO
+Niet echt plek om dit ergens nuttig te gebruiken. Dit zo dan maar :/
+```js
+
+function loadLotsOfRowsFromApi() {
+    // Implementation left to the reader
+}
+
+function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+
+
+const rows = loadLotsOfRowsFromApi();
+const [header, ...content] = rows;
+
+const total = sum(...content.map(obj => obj.value));
+```
 
 ### Iteration over een array
 `leaderboards.js #40` & `games.js #10`

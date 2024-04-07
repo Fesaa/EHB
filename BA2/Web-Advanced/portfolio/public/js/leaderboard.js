@@ -7,10 +7,11 @@ let lastGame = ""
 
 function leaderboardEntry(entry, scoreType) {
     const tr = document.createElement("tr")
+    const {position, player, score} = entry;
     tr.innerHTML = `
-        <td class="leaderboard-entry-position">${entry.position}</td>
-        <td class="leaderboard-entry-name">${entry.player}</td>
-        <td class="leaderboard-entry-score">${entry.score} ${scoreType}</td>
+        <td class="leaderboard-entry-position">${position}</td>
+        <td class="leaderboard-entry-name">${player}</td>
+        <td class="leaderboard-entry-score">${score} ${scoreType}</td>
     `
 
     const playerName = localStorage.getItem("cubepanion:player-name")
