@@ -1,4 +1,4 @@
-const BASE_URL = "https://ameliah.art/cubepanion_api/"
+const BASE_URL = "https://ameliah.art/cubepanion/"
 const STATUS_MSG = document.getElementById("status_msg")
 const HOLDER = document.getElementById("holder")
 
@@ -50,7 +50,7 @@ function setRows(gameName, scoreType) {
 }
 
 function loadLeaderboard(gameName, scoreType) {
-    const url = BASE_URL + "leaderboard_api/leaderboard/" + gameName + "/bounded?lower=0&upper=50"
+    const url = BASE_URL + "leaderboard/game/" + gameName + "/bounded?lower=0&upper=50"
     HOLDER.innerHTML = ""
     if (gameName == lastGame && rows.length > 0) {
         setRows(gameName, scoreType)

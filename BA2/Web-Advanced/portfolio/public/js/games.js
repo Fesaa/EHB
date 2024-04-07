@@ -1,4 +1,4 @@
-const BASE_URL = "https://ameliah.art/cubepanion_api/"
+const BASE_URL = "https://ameliah.art/cubepanion/"
 const STATUS_MSG = document.getElementById("status_msg")
 const HOLDER = document.getElementById("holder")
 
@@ -23,7 +23,7 @@ function gameHolder(gameName, eventFunction) {
 }
 
 async function loadGames(eventFunction) {
-    const url = BASE_URL + "leaderboard_api/games/false"
+    const url = BASE_URL + "games/false"
     if (games.length > 0) {
         setGames(eventFunction)
         return

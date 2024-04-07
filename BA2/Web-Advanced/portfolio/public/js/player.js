@@ -1,4 +1,4 @@
-const BASE_URL = "https://ameliah.art/cubepanion_api/"
+const BASE_URL = "https://ameliah.art/cubepanion/"
 const STATUS_MSG = document.getElementById("status_msg")
 const HOLDER = document.getElementById("holder")
 
@@ -35,7 +35,7 @@ function createForm() {
 }
 
 async function loadPlayerLeaderboards(name) {
-    const url = BASE_URL + "leaderboard_api/player/" + name
+    const url = BASE_URL + "leaderboard/player/" + name
 
     try {
         const res = await fetch(url)
