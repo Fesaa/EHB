@@ -1,3 +1,6 @@
 [submodule "Werkcollege1"]
     path = "BA2/DotNet-Essentials/Werkcollege1"
     url = "git@ssh.dev.azure.com:v3/ampalm/Werkcollege1/Werkcollege1"
+[submodule "crypograpy-Fesaa"]
+    path = "BA2/Security-Essentials/crypograpy-Fesaa"
+    url = "git@github.com:EHB-TI/cryptography-Fesaa.git"
