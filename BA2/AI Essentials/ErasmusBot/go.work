@@ -1,0 +1,9 @@
+go 1.22.3
+
+use (
+	./api
+	./config
+	./db
+	./models
+	./server
+)
