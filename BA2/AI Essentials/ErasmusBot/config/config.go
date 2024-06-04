@@ -22,10 +22,18 @@ func LoadConfig(path string) error {
 }
 
 type configImpl struct {
-	BaseUrl        string `yaml:"base_url"`
-	Debug          bool   `yaml:"debug"`
-	DbURl          string `yaml:"db_url"`
-	MigrationsPath string `yaml:"migrations_path"`
+	BaseUrl        string          `yaml:"base_url"`
+	Debug          bool            `yaml:"debug"`
+	DbURl          string          `yaml:"db_url"`
+	MigrationsPath string          `yaml:"migrations_path"`
+	Azure          azureConfigImpl `yaml:"azure"`
+}
+
+type azureConfigImpl struct {
+	ApiKey          string `yaml:"api_key"`
+	EndPoint        string `yaml:"endpoint"`
+	DeploymentModel string `yaml:"deployment_model"`
+	ApiVersion      string `yaml:"api_version"`
 }
 
 func (c *configImpl) GetBaseUrl() string {
@@ -42,4 +50,24 @@ func (c *configImpl) GetDbURL() string {
 
 func (c *configImpl) GetMigrationsPath() string {
 	return c.MigrationsPath
+}
+
+func (c *configImpl) GetAzure() AzureConfig {
+	return &c.Azure
+}
+
+func (a *azureConfigImpl) GetApiKey() string {
+	return a.ApiKey
+}
+
+func (a *azureConfigImpl) GetEndPoint() string {
+	return a.EndPoint
+}
+
+func (a *azureConfigImpl) GetDeploymentModel() string {
+	return a.DeploymentModel
+}
+
+func (a *azureConfigImpl) GetApiVersion() string {
+	return a.ApiVersion
 }
