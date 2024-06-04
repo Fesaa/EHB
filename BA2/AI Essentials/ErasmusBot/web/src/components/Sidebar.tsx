@@ -6,7 +6,7 @@ import axios from "axios";
 
 export type SidebarProps = {
     data: ChatInfo[]
-    setCurrentChat: (id: string) => void
+    setCurrentChat: (id: string, ci?: ChatInfo) => void
 }
 
 export type SidebarState = {
@@ -21,6 +21,22 @@ export class Sidebar extends Component<SidebarProps, SidebarState> {
             currentChat: "",
             show: true
         }
+    }
+
+    newChat() {
+        // @ts-ignore
+        axios.post(`${BASE_URL}/api/chats/new`)
+            .then(res => {
+                if (!res || !res.data) return;
+                const ci: ChatInfo = res.data;
+                this.setState({
+                    ...this.state,
+                    currentChat: ci.id
+                })
+                this.props.setCurrentChat(ci.id, ci);
+            }).catch(err => {
+                console.error(err);
+            })
     }
 
     render() {
@@ -48,9 +64,9 @@ export class Sidebar extends Component<SidebarProps, SidebarState> {
 
 
             <div className="rounded-xl bg-gray-200 p-2 hover:cursor-pointer text-center">
-                <span>New chat</span>
+                <span onClick={() => this.newChat()}>New chat</span>
             </div>
-            {this.props.data.length > 0 && <span>Past chats</span>}
+            {this.props.data.length > 0 && <span className="font-bold">Past chats</span>}
             {this.props.data.length > 0 && this.props.data.map((chat) => {
                 const bg = this.state.currentChat === chat.id ? "bg-gray-200" : "";
                 return <div

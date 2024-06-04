@@ -1,6 +1,8 @@
 package db
 
-import "github.com/Fesaa/EHB/AI-Essentials/erasmusbot/models"
+import (
+	"github.com/Fesaa/EHB/AI-Essentials/erasmusbot/models"
+)
 
 func (db *databaseImpl) GetChatsForUser(id int) ([]models.ChatInfo, error) {
 	res, err := db.db.Query("SELECT id, name, user_id FROM chats WHERE user_id = ?", id)
@@ -48,4 +50,23 @@ func (db *databaseImpl) GetChatInfo(chatId string) (*models.ChatInfo, error) {
 		return nil, err
 	}
 	return &chatInfo, nil
+}
+
+func (db *databaseImpl) AddMessage(chatId string, msg models.ChatMessage) error {
+	_, err := db.db.Exec("INSERT INTO messages (chat_id, user, message) VALUES (? , ?, ?)", chatId, msg.User, msg.Text)
+	return err
+}
+
+func (db *databaseImpl) NewChat(userId int) (*models.ChatInfo, error) {
+	ci := &models.ChatInfo{
+		Id:     generateSecureToken(10),
+		UserId: userId,
+		Name:   "My New Chat",
+	}
+
+	_, err := db.db.Exec("INSERT INTO chats (user_id, name, id) VALUES (?, ?, ?)", ci.UserId, ci.Name, ci.Id)
+	if err != nil {
+		return nil, err
+	}
+	return ci, nil
 }

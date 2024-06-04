@@ -1,4 +1,4 @@
-module github.com/Fesaa/EHB/AI-Essentials/erasmusbot/api
+module github.com/Fesaa/EHB/AI-Essentials/erasmusbot/bot
 
 go 1.22.3
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/Fesaa/EHB/AI-Essentials/erasmusbot/bot"
 	"github.com/Fesaa/EHB/AI-Essentials/erasmusbot/config"
 	"github.com/Fesaa/EHB/AI-Essentials/erasmusbot/db"
 	"github.com/Fesaa/EHB/AI-Essentials/erasmusbot/server/api"
@@ -18,6 +19,10 @@ func main() {
 	}
 	if err := db.InitDatabase(); err != nil {
 		slog.Error("Unable to connect to database, exiting", "error", err)
+		return
+	}
+	if err := bot.Init(); err != nil {
+		slog.Error("Unable to initialize bot, exiting", "error", err)
 		return
 	}
 

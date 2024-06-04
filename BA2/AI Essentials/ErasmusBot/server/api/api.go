@@ -10,10 +10,12 @@ func RegisterBackEnd(router fiber.Router) {
 	api := router.Group("/api")
 
 	api.Post("/login", login)
-	api.Post("logout", logout)
+	api.Post("/logout", logout)
 
 	chats := api.Group("/chats", middleware.AuthMiddleware(false))
 
 	chats.Get("/", getChats)
 	chats.Get("/full/:id", getChatInfo)
+	chats.Post("/:id/msg", addChat)
+	chats.Post("/new", newChat)
 }

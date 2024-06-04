@@ -8,4 +8,6 @@ type Database interface {
 	GetChatsForUser(id int) ([]models.ChatInfo, error)
 	GetMessagesForChat(chatId string) ([]models.ChatMessage, error)
 	GetChatInfo(chatId string) (*models.ChatInfo, error)
+	AddMessage(chatId string, msg models.ChatMessage) error
+	NewChat(userId int) (*models.ChatInfo, error)
 }

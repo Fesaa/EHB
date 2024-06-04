@@ -1,6 +1,6 @@
 // @ts-ignore
 import React, {Component} from "react";
-import {FullChatInfo} from "../payload/info";
+import {ChatMessage, FullChatInfo} from "../payload/info";
 import axios from "axios";
 import {PaperAirplaneIcon} from "@heroicons/react/24/outline";
 
@@ -44,7 +44,29 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
     }
 
     sendMessage() {
-        console.log(this.state.query)
+        const data = {
+            query: this.state.query
+        }
+        // @ts-ignore
+        axios.post(`${BASE_URL}/api/chats/${this.props.id}/msg`, data)
+            .then((res) => {
+                if (!res || !res.data) return
+
+                const reply: ChatMessage = res.data;
+                this.setState({
+                    ...this.state,
+                    query: "",
+                    full: {
+                        ...this.state.full,
+                        chatHistory: [...this.state.full.chatHistory, {
+                            user: true,
+                            text: this.state.query
+                        } , reply]
+                    }
+                })
+            }).catch((err) => {
+                console.error(err);
+            })
     }
 
     render() {
@@ -70,6 +92,7 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
                     type="text"
                     className="rounded-xl p-5 bg-amber-50 min-w-96"
                     placeholder="Message ErasmusBot"
+                    value={this.state.query}
                     onChange={(e) => {
                         this.setState({
                             ...this.state,

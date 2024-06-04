@@ -43,7 +43,17 @@ class Application extends Component<ApplicationProps, ApplicationState> {
             })
     }
 
-    private setCurrentChat(id: string) {
+    private setCurrentChat(id: string, ci?: ChatInfo) {
+        if (ci) {
+            this.setState({
+                ...this.state,
+                currentChat: id,
+                chatData: [...this.state.chatData, ci]
+            })
+            return;
+        }
+
+
         this.setState({
             ...this.state,
             currentChat: id
