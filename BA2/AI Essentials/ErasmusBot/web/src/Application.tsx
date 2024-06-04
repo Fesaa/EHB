@@ -26,6 +26,7 @@ class Application extends Component<ApplicationProps, ApplicationState> {
         }
 
         this.setCurrentChat = this.setCurrentChat.bind(this);
+        this.updateChatName = this.updateChatName.bind(this);
     }
 
     componentDidMount() {
@@ -41,6 +42,23 @@ class Application extends Component<ApplicationProps, ApplicationState> {
             .catch((err) => {
                 console.error(err);
             })
+    }
+
+    private updateChatName(id: string, name: string) {
+        const chatData = this.state.chatData.map((ci) => {
+            if (ci.id === id) {
+                return {
+                    ...ci,
+                    name: name
+                }
+            }
+            return ci;
+        })
+
+        this.setState({
+            ...this.state,
+            chatData: chatData
+        })
     }
 
     private setCurrentChat(id: string, ci?: ChatInfo) {
@@ -63,7 +81,7 @@ class Application extends Component<ApplicationProps, ApplicationState> {
     render() {
         return <div className="flex flex-row space-x-4 min-h-screen">
             <Sidebar data={this.state.chatData} setCurrentChat={this.setCurrentChat} />
-            <ChatBox id={this.state.currentChat} />
+            <ChatBox id={this.state.currentChat} updateChatName={this.updateChatName} />
         </div>;
     }
 }

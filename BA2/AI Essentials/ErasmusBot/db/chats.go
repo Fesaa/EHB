@@ -70,3 +70,8 @@ func (db *databaseImpl) NewChat(userId int) (*models.ChatInfo, error) {
 	}
 	return ci, nil
 }
+
+func (db *databaseImpl) Rename(chatId string, name string) error {
+	_, err := db.db.Exec("UPDATE chats SET name = ? WHERE id = ?", name, chatId)
+	return err
+}

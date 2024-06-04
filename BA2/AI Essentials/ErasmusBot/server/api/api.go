@@ -18,4 +18,5 @@ func RegisterBackEnd(router fiber.Router) {
 	chats.Get("/full/:id", getChatInfo)
 	chats.Post("/:id/msg", addChat)
 	chats.Post("/new", newChat)
+	chats.Post("/:id/rename", renameChat)
 }

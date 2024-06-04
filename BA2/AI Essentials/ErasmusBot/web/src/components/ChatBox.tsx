@@ -2,15 +2,18 @@
 import React, {Component} from "react";
 import {ChatMessage, FullChatInfo} from "../payload/info";
 import axios from "axios";
-import {PaperAirplaneIcon} from "@heroicons/react/24/outline";
+import {PaperAirplaneIcon, PencilIcon} from "@heroicons/react/24/outline";
 
 export type ChatBoxProps = {
     id: string
+    updateChatName: (id: string, name: string) => void
 }
 
 export type ChatBoxState = {
     full: FullChatInfo | null
     query: string
+    renaming: boolean
+    newTitle: string
 }
 
 export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
@@ -19,7 +22,9 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
         super(props);
         this.state = {
             full: null,
-            query: ""
+            query: "",
+            renaming: false,
+            newTitle: ""
         }
     }
 
@@ -69,6 +74,29 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
             })
     }
 
+    updateName() {
+        const data = {
+            name: this.state.newTitle
+        }
+        // @ts-ignore
+        axios.post(`${BASE_URL}/api/chats/${this.props.id}/rename`, data)
+            .then((res) => {
+                if (!res || !res.data) return
+                this.setState({
+                    ...this.state,
+                    renaming: false,
+                    full: {
+                        ...this.state.full,
+                        name: this.state.newTitle
+                    },
+                    newTitle: ""
+                })
+                this.props.updateChatName(this.props.id, this.state.newTitle);
+            }).catch((err) => {
+                console.error(err);
+            })
+    }
+
     render() {
         if (this.state.full == null && this.props.id !== "") {
             return <div className="flex flex-grow">
@@ -77,7 +105,32 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
         }
 
         return <div className="flex flex-col flex-grow items-center px-40">
-            <span className="text-2xl mt-10 fixed top-5">{this.state.full && this.state.full.name}</span>
+            {(!this.state.renaming && this.state.full) &&
+                <div
+                    className="text-2xl mt-10 fixed top-5"
+                    onClick={() => {
+                        this.setState({
+                            ...this.state,
+                            renaming: true
+                        })
+                    }}
+                >
+                    {this.state.full.name}
+                </div>}
+            {(this.state.renaming && this.state.full) && <div className="mt-10 fixed top-5 flex flex-row space-x-3">
+                <input
+                    className=""
+                    type="text"
+                    value={this.state.newTitle || this.state.full.name}
+                    onChange={(e) => {
+                        this.setState({
+                            ...this.state,
+                            newTitle: e.target.value
+                        })
+                    }}
+                />
+                <PencilIcon className="w-8 h-8" onClick={() => this.updateName()} />
+            </div>}
             <div className="flex flex-grow flex-col mx-10 my-20 space-y-5 w-full overflow-auto">
                 {this.state.full && this.state.full.chatHistory.map((msg, index) => {
                     return <div key={`message_${index}`} className={`flex flex-row ${msg.user ? "justify-end" : "justify-start"} mx-10 my-2`}>

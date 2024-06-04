@@ -10,4 +10,5 @@ type Database interface {
 	GetChatInfo(chatId string) (*models.ChatInfo, error)
 	AddMessage(chatId string, msg models.ChatMessage) error
 	NewChat(userId int) (*models.ChatInfo, error)
+	Rename(chatId string, name string) error
 }

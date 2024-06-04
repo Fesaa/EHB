@@ -90,3 +90,32 @@ func newChat(c *fiber.Ctx) error {
 	}
 	return c.JSON(ci)
 }
+
+type renameChatStruct struct {
+	Name string `json:"name"`
+}
+
+func renameChat(c *fiber.Ctx) error {
+	chatId := c.Params("id")
+	userID, _ := c.Locals("user_id").(int)
+	chatInfo, err := db.I().GetChatInfo(chatId)
+	if err != nil {
+		return err
+	}
+
+	if chatInfo.UserId != userID {
+		return fiber.ErrForbidden
+	}
+
+	var s renameChatStruct
+	err = c.BodyParser(&s)
+	if err != nil {
+		return err
+	}
+
+	err = db.I().Rename(chatId, s.Name)
+	if err != nil {
+		return err
+	}
+	return c.SendStatus(fiber.StatusOK)
+}
