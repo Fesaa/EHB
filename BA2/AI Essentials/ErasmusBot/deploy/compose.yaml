@@ -3,7 +3,8 @@ services:
     image: erasmusbot
     restart: "on-failure:3"
     volumes:
-      - "./erasmusbot-config.yaml:/app/config.yaml"
+      - "./config.yaml:/app/config.yaml"
       - "./erasmusbot-db.db:/app/erasmus_bot.db"
+      - "../db/migrations:/app/migrations"
     ports:
       - "80:80"
