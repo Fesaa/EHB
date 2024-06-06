@@ -7,5 +7,5 @@ import (
 
 type ErasmusBot interface {
 	SetCtx(ctx context.Context)
-	GenerateResponse(msg string) (models.ChatMessage, error)
+	GenerateResponse(msg string, pastMessages []models.ChatMessage) (models.ChatMessage, error)
 }

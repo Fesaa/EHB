@@ -64,12 +64,20 @@ func addChat(c *fiber.Ctx) error {
 		return err
 	}
 
+	pastMsgs, err := db.I().GetMessagesForChat(chatId)
+	if err != nil {
+		return err
+	}
+
 	err = db.I().AddMessage(chatId, models.ChatMessage{
 		User: true,
 		Text: s.Query,
 	})
+	if err != nil {
+		return err
+	}
 
-	reply, err := bot.I().GenerateResponse(s.Query)
+	reply, err := bot.I().GenerateResponse(s.Query, pastMsgs)
 	if err != nil {
 		return err
 	}
