@@ -43,7 +43,7 @@ func main() {
 	registerFrontend(app)
 	api.RegisterBackEnd(app)
 
-	if e := app.Listen(":3000"); e != nil {
+	if e := app.Listen(config.I().GetHost() + ":" + config.I().GetPort()); e != nil {
 		slog.Error("Unable to start server, exiting", "error", e)
 	}
 }

@@ -26,6 +26,8 @@ type configImpl struct {
 	Debug          bool            `yaml:"debug"`
 	DbURl          string          `yaml:"db_url"`
 	MigrationsPath string          `yaml:"migrations_path"`
+	Host           string          `yaml:"host"`
+	Port           string          `yaml:"port"`
 	Azure          azureConfigImpl `yaml:"azure"`
 }
 
@@ -50,6 +52,16 @@ func (c *configImpl) GetDbURL() string {
 
 func (c *configImpl) GetMigrationsPath() string {
 	return c.MigrationsPath
+}
+
+func (c *configImpl) GetHost() string {
+	assert(c.Host != "")
+	return c.Host
+}
+
+func (c *configImpl) GetPort() string {
+	assert(c.Port != "")
+	return c.Port
 }
 
 func (c *configImpl) GetAzure() AzureConfig {

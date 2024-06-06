@@ -6,6 +6,9 @@ type Config interface {
 	GetDbURL() string
 	GetMigrationsPath() string
 
+	GetHost() string
+	GetPort() string
+
 	GetAzure() AzureConfig
 }
 
