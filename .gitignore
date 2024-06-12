@@ -21,3 +21,5 @@ bootstrap/
 out/
 .env
 .ipynb_checkpoints/
+venv
+.venv
