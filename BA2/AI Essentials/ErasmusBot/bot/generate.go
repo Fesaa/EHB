@@ -2,9 +2,8 @@ package bot
 
 import (
 	"errors"
-	"github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai"
-	"github.com/Azure/azure-sdk-for-go/sdk/azcore/to"
 	"github.com/Fesaa/EHB/AI-Essentials/erasmusbot/models"
+	"github.com/tmc/langchaingo/llms"
 )
 
 var system_messages = []string{
@@ -18,11 +17,7 @@ func (e *erasmusBotImpl) GenerateResponse(msg string, pastMessages []models.Chat
 		Text: msg,
 	}))
 
-	resp, err := e.client.GetChatCompletions(e.ctx, azopenai.ChatCompletionsOptions{
-		Messages:       history,
-		MaxTokens:      to.Ptr(int32(1024)),
-		DeploymentName: &e.deploymentModel,
-	}, nil)
+	resp, err := e.client.GenerateContent(e.ctx, history)
 	if err != nil {
 		return models.ChatMessage{}, err
 	}
@@ -31,39 +26,36 @@ func (e *erasmusBotImpl) GenerateResponse(msg string, pastMessages []models.Chat
 		return models.ChatMessage{}, errors.New("no choices found")
 	}
 
-	var choice *string = nil
-	for _, c := range resp.Choices {
-		if c.Message.Content == nil {
-			continue
-		}
-		choice = c.Message.Content
-		break
-	}
-	if choice == nil {
-		return models.ChatMessage{}, errors.New("no choice found")
-	}
-
 	return models.ChatMessage{
 		User: false,
-		Text: *choice,
+		Text: resp.Choices[0].Content,
 	}, nil
 }
 
-func conv(msgs []models.ChatMessage) []azopenai.ChatRequestMessageClassification {
-	out := make([]azopenai.ChatRequestMessageClassification, len(msgs)+len(system_messages))
+func conv(msgs []models.ChatMessage) []llms.MessageContent {
+	out := make([]llms.MessageContent, len(msgs)+len(system_messages))
 	for index, systemMsg := range system_messages {
-		out[index] = &azopenai.ChatRequestSystemMessage{
-			Content: &systemMsg,
+		out[index] = llms.MessageContent{
+			Role: llms.ChatMessageTypeSystem,
+			Parts: []llms.ContentPart{
+				llms.TextPart(systemMsg),
+			},
 		}
 	}
 	for index, msg := range msgs {
 		if msg.User {
-			out[index+len(system_messages)] = &azopenai.ChatRequestUserMessage{
-				Content: azopenai.NewChatRequestUserMessageContent(msg.Text),
+			out[index+len(system_messages)] = llms.MessageContent{
+				Parts: []llms.ContentPart{
+					llms.TextPart(msg.Text),
+				},
+				Role: llms.ChatMessageTypeHuman,
 			}
 		} else {
-			out[index+len(system_messages)] = &azopenai.ChatRequestAssistantMessage{
-				Content: &msg.Text,
+			out[index+len(system_messages)] = llms.MessageContent{
+				Parts: []llms.ContentPart{
+					llms.TextPart(msg.Text),
+				},
+				Role: llms.ChatMessageTypeAI,
 			}
 		}
 	}

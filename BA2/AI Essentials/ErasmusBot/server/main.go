@@ -9,10 +9,16 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/template/html/v2"
 	"log/slog"
+	"os"
 )
 
 func main() {
-	err := config.LoadConfig("config.yaml")
+	configPath := os.Getenv("CONFIG_PATH")
+	if configPath == "" {
+		configPath = "./config.yaml"
+	}
+	err := config.LoadConfig(configPath)
+	slog.SetLogLoggerLevel(config.I().GetLogLevel())
 	if err != nil {
 		slog.Error("Unable to load config, exiting", "error", err)
 		return

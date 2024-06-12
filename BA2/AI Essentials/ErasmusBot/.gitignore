@@ -2,3 +2,4 @@ venv
 config.yaml
 *.db
 generated
+c.yaml

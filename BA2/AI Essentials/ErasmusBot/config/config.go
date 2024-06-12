@@ -22,6 +22,7 @@ func LoadConfig(path string) error {
 }
 
 type configImpl struct {
+	LogLevel       slog.Level      `yaml:"logLevel"`
 	BaseUrl        string          `yaml:"base_url"`
 	Debug          bool            `yaml:"debug"`
 	DbURl          string          `yaml:"db_url"`
@@ -36,6 +37,11 @@ type azureConfigImpl struct {
 	EndPoint        string `yaml:"endpoint"`
 	DeploymentModel string `yaml:"deployment_model"`
 	ApiVersion      string `yaml:"api_version"`
+	EmbeddingsModel string `yaml:"embeddings_model"`
+}
+
+func (c *configImpl) GetLogLevel() slog.Level {
+	return c.LogLevel
 }
 
 func (c *configImpl) GetBaseUrl() string {
@@ -82,4 +88,8 @@ func (a *azureConfigImpl) GetDeploymentModel() string {
 
 func (a *azureConfigImpl) GetApiVersion() string {
 	return a.ApiVersion
+}
+
+func (a *azureConfigImpl) GetEmbeddingsModels() string {
+	return a.EmbeddingsModel
 }

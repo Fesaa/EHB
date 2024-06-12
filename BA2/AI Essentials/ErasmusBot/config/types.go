@@ -1,6 +1,9 @@
 package config
 
+import "log/slog"
+
 type Config interface {
+	GetLogLevel() slog.Level
 	GetBaseUrl() string
 	GetDebug() bool
 	GetDbURL() string
@@ -17,4 +20,5 @@ type AzureConfig interface {
 	GetEndPoint() string
 	GetDeploymentModel() string
 	GetApiVersion() string
+	GetEmbeddingsModels() string
 }

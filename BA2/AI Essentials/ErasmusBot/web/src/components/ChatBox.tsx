@@ -14,6 +14,7 @@ export type ChatBoxState = {
     query: string
     renaming: boolean
     newTitle: string
+    coolDown: boolean
 }
 
 export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
@@ -24,7 +25,15 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
             full: null,
             query: "",
             renaming: false,
-            newTitle: ""
+            newTitle: "",
+            coolDown: false
+        }
+    }
+
+    componentDidMount() {
+        const element = document.getElementById('last');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
@@ -49,8 +58,16 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
     }
 
     sendMessage() {
+        if (this.state.coolDown) {
+            return
+        }
+
         const data = {
             query: this.state.query
+        }
+        this.state = {
+            ...this.state,
+            coolDown: true
         }
         // @ts-ignore
         axios.post(`${BASE_URL}/api/chats/${this.props.id}/msg`, data)
@@ -69,6 +86,12 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
                         } , reply]
                     }
                 })
+                setTimeout(() => {
+                    this.state = {
+                        ...this.state,
+                        coolDown: false
+                    }
+                }, 1000)
             }).catch((err) => {
                 console.error(err);
             })
@@ -131,10 +154,12 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
                 />
                 <PencilIcon className="w-8 h-8" onClick={() => this.updateName()} />
             </div>}
-            <div className="flex flex-grow flex-col mx-10 my-20 space-y-5 w-full overflow-auto">
+            <div className="flex flex-grow flex-col mx-10 my-20 space-y-5 w-full overflow-auto mb-20">
                 {this.state.full && this.state.full.chatHistory.map((msg, index) => {
                     return <div key={`message_${index}`} className={`flex flex-row ${msg.user ? "justify-end" : "justify-start"} mx-10 my-2`}>
-                        <div className={`${msg.user ? "bg-red-200" : "bg-blue-200"} p-5 rounded-xl max-w-64`}>
+                        <div
+                            id={index == this.state.full.chatHistory.length - 1 ? "last": ""}
+                            className={`${msg.user ? "bg-red-200" : "bg-blue-200"} p-5 rounded-xl max-w-3xl whitespace-pre-line`}>
                             {msg.text}
                         </div>
                     </div>
@@ -153,7 +178,7 @@ export class ChatBox extends Component<ChatBoxProps, ChatBoxState> {
                         })
                     }}
                 />
-                <PaperAirplaneIcon className="w-8 h-8 hover:cursor-pointer" onClick={(e) => this.sendMessage()} />
+                <PaperAirplaneIcon className={`w-8 h-8 ${this.state.coolDown ? "hover:cursor-not-allowed" : "hover:cursor-pointer"}`} onClick={(e) => this.sendMessage()} />
             </div>
         </div>;
     }

@@ -2,10 +2,8 @@ package bot
 
 import (
 	"context"
-	"errors"
-	"github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai"
-	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
 	"github.com/Fesaa/EHB/AI-Essentials/erasmusbot/config"
+	"github.com/tmc/langchaingo/llms/openai"
 )
 
 var i *erasmusBotImpl
@@ -16,28 +14,7 @@ func I() ErasmusBot {
 
 type erasmusBotImpl struct {
 	ctx    context.Context
-	client *azopenai.Client
-
-	apiKey          string
-	endpoint        string
-	deploymentModel string
-	apiVersion      string
-}
-
-func (e *erasmusBotImpl) validate() error {
-	if e.apiKey == "" {
-		return errors.New("apiKey is required")
-	}
-	if e.endpoint == "" {
-		return errors.New("endpoint is required")
-	}
-	if e.deploymentModel == "" {
-		return errors.New("deploymentModel is required")
-	}
-	if e.apiVersion == "" {
-		return errors.New("apiVersion is required")
-	}
-	return nil
+	client *openai.LLM
 }
 
 func (e *erasmusBotImpl) SetCtx(ctx context.Context) {
@@ -45,23 +22,21 @@ func (e *erasmusBotImpl) SetCtx(ctx context.Context) {
 }
 
 func Init() error {
+	opts := []openai.Option{
+		openai.WithAPIType(openai.APITypeAzure),
+		openai.WithToken(config.I().GetAzure().GetApiKey()),
+		openai.WithModel(config.I().GetAzure().GetDeploymentModel()),
+		openai.WithEmbeddingModel(config.I().GetAzure().GetEmbeddingsModels()),
+		openai.WithBaseURL(config.I().GetAzure().GetEndPoint()),
+		openai.WithAPIVersion(config.I().GetAzure().GetApiVersion()),
+	}
+	llm, err := openai.New(opts...)
+	if err != nil {
+		return err
+	}
 	i = &erasmusBotImpl{
-		ctx:             context.Background(),
-		apiKey:          config.I().GetAzure().GetApiKey(),
-		endpoint:        config.I().GetAzure().GetEndPoint(),
-		deploymentModel: config.I().GetAzure().GetDeploymentModel(),
-		apiVersion:      config.I().GetAzure().GetApiVersion(),
+		ctx:    context.Background(),
+		client: llm,
 	}
-	err := i.validate()
-	if err != nil {
-		return err
-	}
-
-	keyCredential := azcore.NewKeyCredential(i.apiKey)
-	client, err := azopenai.NewClientWithKeyCredential(i.endpoint, keyCredential, nil)
-	if err != nil {
-		return err
-	}
-	i.client = client
 	return nil
 }

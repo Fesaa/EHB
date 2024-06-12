@@ -1,4 +1,0 @@
-base_url: ""
-debug: true
-db_url: "./erasmus_bot.db"
-migrations_path: "./db/migrations"
