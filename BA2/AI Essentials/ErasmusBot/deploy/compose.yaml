@@ -1,0 +1,10 @@
+services:
+  erasmusbot:
+    image: ameliaah/erasmusbot:latest
+    restart: "on-failure:3"
+    volumes:
+      - "./config.yaml:/app/config.yaml"
+      - "./erasmusbot-db.db:/app/erasmus_bot.db"
+      - "../db/migrations:/app/migrations"
+    ports:
+      - "80:8080"
