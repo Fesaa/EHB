@@ -23,3 +23,5 @@ out/
 .ipynb_checkpoints/
 venv
 .venv
+.gradle
+build
