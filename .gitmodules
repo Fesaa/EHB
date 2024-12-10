@@ -7,3 +7,6 @@
 [submodule "crypograpy-Fesaa"]
     path = "BA2/Security-Essentials/crypograpy-Fesaa"
     url = "git@github.com:EHB-TI/cryptography-Fesaa.git"
+[submodule "ITProject"]
+    path = "BA3/IT-Project/SportNest"
+    url = "git@github.com:WoutDepeuter/SportNest.git"
