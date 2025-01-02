@@ -10,3 +10,6 @@
 [submodule "BA3/IT-Project/SportNest"]
 	path = BA3/IT-Project/SportNest
 	url = git@github.com:WoutDepeuter/SportNest.git
+[submodule "BA3/ios-development/Stats-Viewer"]
+	path = BA3/ios-development/Stats-Viewer
+	url = git@github.com:Fesaa/Stats-Viewer.git
