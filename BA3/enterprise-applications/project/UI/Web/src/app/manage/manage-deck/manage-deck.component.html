@@ -1,0 +1,70 @@
+@if (isLoading) {
+  <div class='flex space-x-2 justify-center items-center bg-gray-50 dark:bg-gray-900'>
+    <span class='sr-only'>Loading...</span>
+    <div class='h-4 w-4 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+    <div class='h-4 w-4 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+    <div class='h-4 w-4 bg-black rounded-full animate-bounce'></div>
+  </div>
+} @else {
+  <div class="flex mt-5 justify-center h-full bg-gray-50">
+    <form (ngSubmit)="onSubmit()" #tagForm="ngForm" class="space-y-4 w-full max-w-2xl">
+      <div>
+        <ng-container *ngTemplateOutlet="gradientTitle; context: { title: 'Title' }"></ng-container>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          required
+          [(ngModel)]="deck.title"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-gray-100 text-gray-800 focus:border-blue-500 focus:ring focus:ring-blue-500"
+          placeholder="Enter title"
+        />
+      </div>
+
+      <div>
+        <ng-container *ngTemplateOutlet="gradientTitle; context: { title: 'Description' }"></ng-container>
+        <textarea
+          id="description"
+          name="description"
+          required
+          [(ngModel)]="deck.description"
+          rows="4"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-gray-100 text-gray-800 focus:border-blue-500 focus:ring focus:ring-blue-500"
+          placeholder="Enter description"
+        ></textarea>
+      </div>
+
+      <div class="w-full flex flex-col justify-center">
+        <ng-container *ngTemplateOutlet="gradientTitle; context: { title: 'Tags' }"></ng-container>
+        <div class="w-full">
+          <app-drop-and-create
+            [equals]="tagEquals"
+            [options]="possibleTags"
+            [mapper]="mapper"
+            [create]="createTag()"
+            [selected]="deck.tags"
+            (selectedUpdater)="onSelectedTagsUpdate($event)"
+          />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="mt-2 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+}
+
+
+<ng-template #gradientTitle let-title="title">
+  <h1 class="text-xl font-bold text-gray-900 dark:text-gray-100 leading-tight mb-2 pb-4 relative w-3/4">
+    <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400">
+      {{ title }}
+    </span>
+    <span class="absolute bottom-0 left-0 w-2/3 h-1 bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400"></span>
+  </h1>
+</ng-template>
+

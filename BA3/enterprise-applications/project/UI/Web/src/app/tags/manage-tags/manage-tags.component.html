@@ -1,0 +1,20 @@
+
+<div class="w-full flex flex-col space-y-2 px-14 mt-5">
+
+  <h1 class="w-full text-xl font-bold">Tags </h1>
+  <span class="px-4">
+    You may edit the tags name or colour, by clicking on the text.
+  </span>
+
+  @for (tag of tags; track tag.id) {
+    <app-tag-edit [tag]="tag" (update)="handleUpdate($event)" (delete)="handleDelete($event)"></app-tag-edit>
+  }
+
+  <div class="flex justify-end mt-4">
+    <div (click)="addEmptyTag()"
+      class="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg shadow-md hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 hover:cursor-pointer">
+      + Add Tag
+    </div>
+  </div>
+
+</div>
