@@ -13,3 +13,9 @@
 [submodule "BA3/ios-development/Stats-Viewer"]
 	path = BA3/ios-development/Stats-Viewer
 	url = git@github.com:Fesaa/Stats-Viewer.git
+[submodule "BA3/Integration Project/Integration-project-groep1-controlroom"]
+	path = BA3/Integration Project/Integration-project-groep1-controlroom
+	url = git@github.com:WoutDepeuter/Integration-project-groep1-controlroom.git
+[submodule "BA3/Integration Project/integration-project-groep1-mailing"]
+	path = BA3/Integration Project/integration-project-groep1-mailing
+	url = git@github.com:WoutDepeuter/integration-project-groep1-mailing.git
