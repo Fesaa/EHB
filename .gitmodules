@@ -19,3 +19,6 @@
 [submodule "BA3/Integration Project/integration-project-groep1-mailing"]
 	path = BA3/Integration Project/integration-project-groep1-mailing
 	url = git@github.com:WoutDepeuter/integration-project-groep1-mailing.git
+[submodule "BA3/Software Security/aklaa"]
+	path = BA3/Software Security/aklaa
+	url = git@github.com:youmni/aklaa.git
