@@ -10,14 +10,20 @@ android {
         version = release(36)
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "art.ameliah.ehb.keyveil"
+
         minSdk = 36
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders.set("appAuthRedirectScheme", "art.ameliah.ehb.keyveil")
     }
 
     buildTypes {
@@ -57,4 +63,7 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    implementation(libs.androidx.security.crypto)
+    implementation(libs.appauth)
+    implementation(libs.kotlinx.coroutines.android)
 }
