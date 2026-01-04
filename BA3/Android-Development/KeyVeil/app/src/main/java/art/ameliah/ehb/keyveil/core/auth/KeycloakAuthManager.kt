@@ -10,7 +10,7 @@ import org.json.JSONObject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-class KeycloakAuthManager(private val context: Context) {
+class KeycloakAuthManager(internal val context: Context) {
 
     private val secureStorage = SecureStorage(context)
     private var authService: AuthorizationService? = null

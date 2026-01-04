@@ -58,9 +58,7 @@ abstract class PaginatedApiClient(
             throw IOException("Request failed: ${response.code} ${response.message}")
         }
 
-        val body = response.body?.string()
-            ?: throw IOException("Empty response body")
-
+        val body = response.body.string()
         val items = deserializer(body)
 
         return PagedList(

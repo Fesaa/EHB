@@ -13,7 +13,8 @@ data class KeycloakUser(
     val lastName: String? = null,
     val enabled: Boolean = true,
     val emailVerified: Boolean = false,
-    val createdTimestamp: Long? = null
+    val createdTimestamp: Long? = null,
+    val attributes: Map<String, List<String>>? = null,
 )
 
 class KeycloakApiClient(
