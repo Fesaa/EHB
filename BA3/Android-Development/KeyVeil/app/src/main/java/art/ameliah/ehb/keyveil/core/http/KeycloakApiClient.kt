@@ -1,75 +1,80 @@
 package art.ameliah.ehb.keyveil.core.http
 
-import art.ameliah.ehb.keyveil.core.api.PagedList
-import art.ameliah.ehb.keyveil.core.api.PaginatedApiClient
-import kotlinx.serialization.Serializable
+import art.ameliah.ehb.keyveil.core.http.models.KeycloakClient
+import art.ameliah.ehb.keyveil.core.http.models.KeycloakUser
+import kotlinx.serialization.json.Json
+import okhttp3.HttpUrl
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.io.IOException
+import java.net.URL
 
-@Serializable
-data class KeycloakUser(
-    val id: String,
-    val username: String,
-    val email: String? = null,
-    val firstName: String? = null,
-    val lastName: String? = null,
-    val enabled: Boolean = true,
-    val emailVerified: Boolean = false,
-    val createdTimestamp: Long? = null,
-    val attributes: Map<String, List<String>>? = null,
-)
+class KeycloakApiClient {
 
-class KeycloakApiClient(
-    baseUrl: String,
-    getAccessToken: suspend () -> String?
-) : PaginatedApiClient(baseUrl, getAccessToken) {
-
-    /**
-     * Fetch a single page of users
-     */
-    suspend fun getUsersPage(
-        first: Int = 0,
-        max: Int = 11,
-        briefRepresentation: Boolean = true
-    ): PagedList<KeycloakUser> {
-        val params = if (briefRepresentation) {
-            mapOf("briefRepresentation" to "true")
-        } else {
-            emptyMap()
-        }
-
-        return fetchPage(
-            endpoint = "ui-ext/brute-force-user",
-            first = first,
-            max = max,
-            additionalParams = params
-        ) { body ->
-            json.decodeFromString<List<KeycloakUser>>(body)
-        }
+    private val httpClient = OkHttpClient();
+    private val json = Json {
+        ignoreUnknownKeys = true
+        isLenient = true
     }
 
-    /**
-     * Search users by username, email, firstName, or lastName
-     */
-    suspend fun searchUsers(
-        search: String,
-        first: Int = 0,
-        max: Int = 20,
-        briefRepresentation: Boolean = true
-    ): PagedList<KeycloakUser> {
-        val params = mutableMapOf(
-            "q" to search
-        )
+    private val url: URL
+    private val getAccessToken: suspend () -> String?
 
-        if (briefRepresentation) {
-            params["briefRepresentation"] = "true"
-        }
-
-        return fetchPage(
-            endpoint = "ui-ext/brute-force-user",
-            first = first,
-            max = max,
-            additionalParams = params
-        ) { body ->
-            json.decodeFromString<List<KeycloakUser>>(body)
-        }
+    constructor(baseUrl: String, getAccessToken: suspend () -> String?) {
+        this.url = URL(baseUrl);
+        this.getAccessToken = getAccessToken
     }
+
+    suspend fun searchClient(query: String?, offSet: Int = 0): List<KeycloakClient> {
+        var url = prepareHttpUrl()
+            .addPathSegment("clients")
+
+        if (query != null)
+            url = url.addQueryParameter("search", query)
+
+        return get<List<KeycloakClient>>(url.build(), offSet)
+    }
+
+    suspend fun searchUsers(query: String? = null, offSet: Int = 0): List<KeycloakUser> {
+        var url = prepareHttpUrl()
+            .addPathSegment("users")
+
+        if (query != null)
+            url = url.addQueryParameter("search", query)
+
+        return get<List<KeycloakUser>>(url.build(), offSet)
+    }
+
+    private suspend inline fun <reified T> get(url: HttpUrl, offSet: Int): T {
+        val request = prepareRequest()
+            .url(url)
+            .build()
+
+        val response = httpClient.newCall(request).execute()
+
+        if (!response.isSuccessful) {
+            throw IOException("Request failed: ${response.code} ${response.message}")
+        }
+
+        val body = response.body.string()
+
+        return json.decodeFromString<T>(body)
+    }
+
+    private fun prepareHttpUrl(): HttpUrl.Builder {
+        return HttpUrl.Builder()
+            .scheme("https")
+            .host(url.host)
+            .addPathSegments(url.path.removePrefix("/"))
+    }
+
+    private suspend fun prepareRequest(): Request.Builder {
+        val token = getAccessToken()
+            ?: throw IllegalStateException("No access token available")
+
+        return Request.Builder()
+            .addHeader("Authorization", "Bearer $token")
+            .addHeader("Accept", "application/json")
+    }
+
 }

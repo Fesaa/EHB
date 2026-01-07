@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import art.ameliah.ehb.keyveil.core.auth.KeycloakAuthManager
-import art.ameliah.ehb.keyveil.core.http.KeycloakUser
+import art.ameliah.ehb.keyveil.core.http.models.KeycloakUser
 import coil.compose.AsyncImage
 import java.text.SimpleDateFormat
 import java.util.*

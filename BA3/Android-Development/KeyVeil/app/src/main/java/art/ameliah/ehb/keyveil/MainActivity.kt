@@ -12,7 +12,6 @@ import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.People
-import androidx.compose.material.icons.filled.Security
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,7 +24,6 @@ import art.ameliah.ehb.keyveil.ui.navigation.KeyVeilMenuItem
 import art.ameliah.ehb.keyveil.ui.navigation.MenuRegistry
 import art.ameliah.ehb.keyveil.ui.pages.ClientsPage
 import art.ameliah.ehb.keyveil.ui.pages.DashboardPage
-import art.ameliah.ehb.keyveil.ui.pages.RolesPage
 import art.ameliah.ehb.keyveil.ui.pages.UsersPage
 import art.ameliah.ehb.keyveil.ui.theme.KeyVeilTheme
 import kotlinx.coroutines.launch
@@ -69,12 +67,6 @@ class MainActivity : ComponentActivity() {
                 icon = Icons.Filled.Apps,
                 content = { ClientsPage(authManager) }
             ),
-            KeyVeilMenuItem(
-                id = "roles",
-                title = "Roles",
-                icon = Icons.Filled.Security,
-                content = { RolesPage(authManager) }
-            )
         )
     }
 

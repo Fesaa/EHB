@@ -3,10 +3,11 @@ package art.ameliah.ehb.keyveil.core.auth
 import android.content.Context
 import android.content.Intent
 import androidx.core.net.toUri
+import art.ameliah.ehb.keyveil.core.http.KeycloakApiClient
 import net.openid.appauth.*
-import art.ameliah.ehb.keyveil.core.storage.SecureStorage
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
+import kotlin.collections.getValue
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -24,6 +25,19 @@ class KeycloakAuthManager(internal val context: Context) {
 
     init {
         restoreAuthState()
+    }
+
+    fun getClient(): KeycloakApiClient {
+        val authority = secureStorage.getValue(SecureStorage.KEY_AUTHORITY)
+            ?: throw IllegalStateException("Authority must be set")
+
+
+        val baseUrl = authority.replace("/realms/", "/admin/realms/")
+
+        return KeycloakApiClient(
+            baseUrl = baseUrl,
+            getAccessToken = { refreshTokenIfNeeded() }
+        )
     }
 
     fun isConfigured(): Boolean {
