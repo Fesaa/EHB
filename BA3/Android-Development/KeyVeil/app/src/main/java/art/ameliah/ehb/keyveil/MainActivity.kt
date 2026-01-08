@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.Dashboard
@@ -17,14 +18,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import art.ameliah.ehb.keyveil.core.auth.KeycloakAuthManager
 import art.ameliah.ehb.keyveil.ui.LoginScreen
 import art.ameliah.ehb.keyveil.ui.configuration.ConfigurationScreen
-import art.ameliah.ehb.keyveil.ui.navigation.KeyVeilMenuItem
-import art.ameliah.ehb.keyveil.ui.navigation.MenuRegistry
-import art.ameliah.ehb.keyveil.ui.pages.ClientsPage
-import art.ameliah.ehb.keyveil.ui.pages.DashboardPage
-import art.ameliah.ehb.keyveil.ui.pages.UsersPage
+import art.ameliah.ehb.keyveil.ui.navigation.KeyVeilNavGraph
+import art.ameliah.ehb.keyveil.ui.navigation.Screen
 import art.ameliah.ehb.keyveil.ui.theme.KeyVeilTheme
 import kotlinx.coroutines.launch
 
@@ -36,9 +36,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         authManager = KeycloakAuthManager(this)
 
-        // Register menu items
-        setupMenuItems()
-
         enableEdgeToEdge()
         setContent {
             KeyVeilTheme {
@@ -47,33 +44,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun setupMenuItems() {
-        MenuRegistry.registerAll(
-            KeyVeilMenuItem(
-                id = "dashboard",
-                title = "Dashboard",
-                icon = Icons.Filled.Dashboard,
-                content = { DashboardPage(authManager) }
-            ),
-            KeyVeilMenuItem(
-                id = "users",
-                title = "Users",
-                icon = Icons.Filled.People,
-                content = { UsersPage(authManager) }
-            ),
-            KeyVeilMenuItem(
-                id = "clients",
-                title = "Clients",
-                icon = Icons.Filled.Apps,
-                content = { ClientsPage(authManager) }
-            ),
-        )
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         authManager.dispose()
-        MenuRegistry.clear()
     }
 }
 
@@ -115,19 +88,49 @@ fun KeyVeilApp(authManager: KeycloakAuthManager) {
     }
 }
 
+// Navigation drawer items
+data class DrawerItem(
+    val route: String,
+    val title: String,
+    val icon: androidx.compose.ui.graphics.vector.ImageVector
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     authManager: KeycloakAuthManager,
     onLogout: () -> Unit
 ) {
-    val menuItems = remember { MenuRegistry.getAll() }
-    var selectedMenuItem by remember { mutableStateOf(menuItems.firstOrNull()) }
+    val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
+    val currentBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = currentBackStackEntry?.destination?.route
+
+    // Define drawer menu items
+    val drawerItems = remember {
+        listOf(
+            DrawerItem(Screen.Dashboard.route, "Dashboard", Icons.Filled.Dashboard),
+            DrawerItem(Screen.Users.route, "Users", Icons.Filled.People),
+            DrawerItem(Screen.Clients.route, "Clients", Icons.Filled.Apps)
+        )
+    }
+
+    // Get the title for the top bar
+    val topBarTitle = drawerItems.find { currentRoute?.startsWith(it.route) == true }?.title
+        ?: when {
+            currentRoute?.startsWith("edit_user") == true -> "Edit User"
+            else -> "KeyVeil"
+        }
+
+    // Check if we should show back button (for detail pages)
+    val showBackButton = currentRoute?.startsWith("edit_user") == true
+
     ModalNavigationDrawer(
         drawerState = drawerState,
+        // Only enable drawer on main screens, not detail pages
+        gesturesEnabled = !showBackButton,
         drawerContent = {
             ModalDrawerSheet(
                 modifier = Modifier.width(280.dp)
@@ -157,13 +160,22 @@ fun MainScreen(
                     Spacer(modifier = Modifier.height(8.dp))
 
                     // Menu items
-                    menuItems.forEach { item ->
+                    drawerItems.forEach { item ->
                         NavigationDrawerItem(
                             icon = { Icon(item.icon, contentDescription = item.title) },
                             label = { Text(item.title) },
-                            selected = selectedMenuItem?.id == item.id,
+                            selected = currentRoute?.startsWith(item.route) == true,
                             onClick = {
-                                selectedMenuItem = item
+                                navController.navigate(item.route) {
+                                    // Pop up to start destination to avoid building large back stack
+                                    popUpTo(Screen.Dashboard.route) {
+                                        saveState = true
+                                    }
+                                    // Avoid multiple copies of same destination
+                                    launchSingleTop = true
+                                    // Restore state when reselecting a previously selected item
+                                    restoreState = true
+                                }
                                 scope.launch {
                                     drawerState.close()
                                 }
@@ -200,14 +212,24 @@ fun MainScreen(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(selectedMenuItem?.title ?: "KeyVeil") },
+                    title = { Text(topBarTitle) },
                     navigationIcon = {
                         IconButton(onClick = {
-                            scope.launch {
-                                drawerState.open()
+                            if (showBackButton) {
+                                navController.popBackStack()
+                            } else {
+                                scope.launch {
+                                    drawerState.open()
+                                }
                             }
                         }) {
-                            Icon(Icons.Filled.Menu, contentDescription = "Menu")
+                            Icon(
+                                imageVector = if (showBackButton)
+                                    Icons.AutoMirrored.Filled.ArrowBack
+                                else
+                                    Icons.Filled.Menu,
+                                contentDescription = if (showBackButton) "Back" else "Menu"
+                            )
                         }
                     }
                 )
@@ -218,8 +240,10 @@ fun MainScreen(
                     .fillMaxSize()
                     .padding(paddingValues)
             ) {
-                selectedMenuItem?.content?.invoke(authManager)
-                    ?: EmptyState()
+                KeyVeilNavGraph(
+                    navController = navController,
+                    authManager = authManager
+                )
             }
         }
     }

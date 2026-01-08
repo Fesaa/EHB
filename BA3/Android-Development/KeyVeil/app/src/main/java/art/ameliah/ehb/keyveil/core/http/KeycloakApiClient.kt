@@ -1,6 +1,7 @@
 package art.ameliah.ehb.keyveil.core.http
 
 import art.ameliah.ehb.keyveil.core.http.models.KeycloakClient
+import art.ameliah.ehb.keyveil.core.http.models.KeycloakRole
 import art.ameliah.ehb.keyveil.core.http.models.KeycloakUser
 import kotlinx.serialization.json.Json
 import okhttp3.HttpUrl
@@ -8,6 +9,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 import java.net.URL
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
 
 class KeycloakApiClient {
 
@@ -25,6 +28,17 @@ class KeycloakApiClient {
         this.getAccessToken = getAccessToken
     }
 
+    suspend fun searchRoles(query: String?, offSet: Int = 0, brief: Boolean = false): List<KeycloakRole> {
+        var url = prepareHttpUrl()
+            .addPathSegment("roles")
+            .addQueryParameter("briefRepresentation", brief.toString())
+
+        if (query != null)
+            url = url.addQueryParameter("search", query)
+
+        return get<List<KeycloakRole>>(url.build())!!
+    }
+
     suspend fun searchClient(query: String?, offSet: Int = 0): List<KeycloakClient> {
         var url = prepareHttpUrl()
             .addPathSegment("clients")
@@ -32,7 +46,19 @@ class KeycloakApiClient {
         if (query != null)
             url = url.addQueryParameter("search", query)
 
-        return get<List<KeycloakClient>>(url.build(), offSet)
+        return get<List<KeycloakClient>>(url.build())!!
+    }
+
+    suspend fun getRoleMappings(userId: String) {
+
+    }
+
+    suspend fun getUser(userId: String): KeycloakUser? {
+        val url = prepareHttpUrl()
+            .addPathSegment("users")
+            .addPathSegment(userId)
+
+        return get<KeycloakUser>(url.build(), true)
     }
 
     suspend fun searchUsers(query: String? = null, offSet: Int = 0): List<KeycloakUser> {
@@ -42,15 +68,19 @@ class KeycloakApiClient {
         if (query != null)
             url = url.addQueryParameter("search", query)
 
-        return get<List<KeycloakUser>>(url.build(), offSet)
+        return get<List<KeycloakUser>>(url.build())!!
     }
 
-    private suspend inline fun <reified T> get(url: HttpUrl, offSet: Int): T {
+    private suspend inline fun <reified T> get(url: HttpUrl, allow404: Boolean = false): T? {
         val request = prepareRequest()
             .url(url)
             .build()
 
         val response = httpClient.newCall(request).execute()
+
+        if (allow404 && response.code == 404) {
+            return null;
+        }
 
         if (!response.isSuccessful) {
             throw IOException("Request failed: ${response.code} ${response.message}")

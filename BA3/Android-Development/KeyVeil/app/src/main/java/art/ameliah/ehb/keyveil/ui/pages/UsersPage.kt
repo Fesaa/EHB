@@ -15,14 +15,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import art.ameliah.ehb.keyveil.core.auth.KeycloakAuthManager
 import art.ameliah.ehb.keyveil.core.http.models.KeycloakUser
+import art.ameliah.ehb.keyveil.ui.navigation.Screen
 import coil.compose.AsyncImage
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun UsersPage(authManager: KeycloakAuthManager) {
+fun UsersPage(authManager: KeycloakAuthManager, navController: NavHostController) {
     val context = LocalContext.current
     val viewModel = remember { UsersViewModel(context, authManager) }
 
@@ -198,8 +200,8 @@ fun UsersPage(authManager: KeycloakAuthManager) {
                         items(state.users, key = { it.id }) { user ->
                             UserCard(
                                 user = user,
-                                onManageRoles = {
-                                    // TODO: Navigate to role management
+                                editUser = {
+                                    navController.navigate(Screen.EditUser.createRoute(user.id))
                                 }
                             )
                         }
@@ -214,7 +216,7 @@ fun UsersPage(authManager: KeycloakAuthManager) {
 @Composable
 private fun UserCard(
     user: KeycloakUser,
-    onManageRoles: () -> Unit
+    editUser: () -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -381,21 +383,10 @@ private fun UserCard(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        FilledTonalButton(
-                            onClick = onManageRoles,
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Icon(
-                                Icons.Default.Security,
-                                contentDescription = null,
-                                modifier = Modifier.size(18.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("Roles")
-                        }
-
                         OutlinedButton(
-                            onClick = { /* TODO: Edit user */ },
+                            onClick = {
+                                editUser()
+                            },
                             modifier = Modifier.weight(1f)
                         ) {
                             Icon(
