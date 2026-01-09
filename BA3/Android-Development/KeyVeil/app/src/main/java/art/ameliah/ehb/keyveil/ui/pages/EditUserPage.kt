@@ -7,18 +7,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import art.ameliah.ehb.keyveil.core.auth.KeycloakAuthManager
-import art.ameliah.ehb.keyveil.core.http.models.KeycloakUser
 import art.ameliah.ehb.keyveil.core.http.models.KeycloakRole
-import coil.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -82,8 +80,7 @@ fun EditUserPage(
                     }
                 }
                 else -> {
-                    // Tabs
-                    TabRow(selectedTabIndex = selectedTab) {
+                    SecondaryTabRow(selectedTabIndex = selectedTab) {
                         Tab(
                             selected = selectedTab == 0,
                             onClick = { selectedTab = 0 },
@@ -97,21 +94,15 @@ fun EditUserPage(
                             icon = { Icon(Icons.Default.Security, contentDescription = null) }
                         )
                     }
-
-                    // Content
-                    when (selectedTab) {
-                        0 -> BasicInfoTab(viewModel)
-                        1 -> RolesTab(viewModel)
-                    }
-
-                    // Error/Success messages
                     when (state) {
                         is EditUserUiState.Error -> {
                             Snackbar(
                                 modifier = Modifier.padding(16.dp),
+                                containerColor = MaterialTheme.colorScheme.error,
+                                contentColor = MaterialTheme.colorScheme.onError,
                                 action = {
                                     TextButton(onClick = { viewModel.clearError() }) {
-                                        Text("Dismiss")
+                                        Text("Dismiss", color = Color.White)
                                     }
                                 }
                             ) {
@@ -126,6 +117,10 @@ fun EditUserPage(
                         }
                         else -> {}
                     }
+                    when (selectedTab) {
+                        0 -> BasicInfoTab(viewModel)
+                        1 -> RolesTab(viewModel)
+                    }
                 }
             }
         }
@@ -134,12 +129,7 @@ fun EditUserPage(
 
 @Composable
 private fun BasicInfoTab(viewModel: EditUserViewModel) {
-    val username by viewModel.username.collectAsState()
-    val firstName by viewModel.firstName.collectAsState()
-    val lastName by viewModel.lastName.collectAsState()
-    val email by viewModel.email.collectAsState()
-    val enabled by viewModel.enabled.collectAsState()
-    val emailVerified by viewModel.emailVerified.collectAsState()
+    val user by viewModel.user.collectAsState()
 
     LazyColumn(
         modifier = Modifier
@@ -148,7 +138,6 @@ private fun BasicInfoTab(viewModel: EditUserViewModel) {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item {
-            // Profile picture section
             Card(
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -177,7 +166,7 @@ private fun BasicInfoTab(viewModel: EditUserViewModel) {
 
                     Column {
                         Text(
-                            text = username,
+                            text = user?.username ?: "",
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold
                         )
@@ -201,18 +190,19 @@ private fun BasicInfoTab(viewModel: EditUserViewModel) {
 
         item {
             OutlinedTextField(
-                value = username,
+                value = user?.username ?: "",
                 onValueChange = { viewModel.updateUsername(it) },
                 label = { Text("Username") },
                 leadingIcon = { Icon(Icons.Default.AccountCircle, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
-                singleLine = true
+                singleLine = true,
+                enabled = false
             )
         }
 
         item {
             OutlinedTextField(
-                value = email,
+                value = user?.email ?: "",
                 onValueChange = { viewModel.updateEmail(it) },
                 label = { Text("Email") },
                 leadingIcon = { Icon(Icons.Default.Email, contentDescription = null) },
@@ -231,7 +221,7 @@ private fun BasicInfoTab(viewModel: EditUserViewModel) {
 
         item {
             OutlinedTextField(
-                value = firstName,
+                value = user?.firstName ?: "",
                 onValueChange = { viewModel.updateFirstName(it) },
                 label = { Text("First Name") },
                 modifier = Modifier.fillMaxWidth(),
@@ -241,7 +231,7 @@ private fun BasicInfoTab(viewModel: EditUserViewModel) {
 
         item {
             OutlinedTextField(
-                value = lastName,
+                value = user?.lastName ?: "",
                 onValueChange = { viewModel.updateLastName(it) },
                 label = { Text("Last Name") },
                 modifier = Modifier.fillMaxWidth(),
@@ -283,7 +273,7 @@ private fun BasicInfoTab(viewModel: EditUserViewModel) {
                             )
                         }
                         Switch(
-                            checked = enabled,
+                            checked = user?.enabled ?: true,
                             onCheckedChange = { viewModel.updateEnabled(it) }
                         )
                     }
@@ -308,7 +298,7 @@ private fun BasicInfoTab(viewModel: EditUserViewModel) {
                             )
                         }
                         Switch(
-                            checked = emailVerified,
+                            checked = user?.emailVerified ?: false,
                             onCheckedChange = { viewModel.updateEmailVerified(it) }
                         )
                     }
@@ -323,11 +313,11 @@ private fun RolesTab(viewModel: EditUserViewModel) {
     val rolesState by viewModel.rolesUiState.collectAsState()
     val searchQuery by viewModel.roleSearchQuery.collectAsState()
     val selectedRoles by viewModel.selectedRoles.collectAsState()
+    var hideClientsWithoutRoles by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Search bar
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { viewModel.searchRoles(it) },
@@ -347,6 +337,37 @@ private fun RolesTab(viewModel: EditUserViewModel) {
             },
             singleLine = true
         )
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Hide clients without roles",
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Medium
+                    )
+                    Text(
+                        text = "Only show clients that have available roles",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(
+                    checked = hideClientsWithoutRoles,
+                    onCheckedChange = { hideClientsWithoutRoles = it }
+                )
+            }
+        }
 
         when (val state = rolesState) {
             is RolesUiState.Loading -> {
@@ -398,77 +419,112 @@ private fun RolesTab(viewModel: EditUserViewModel) {
             }
 
             is RolesUiState.Success -> {
-                // Selected roles count
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column {
+                    if (state.realmRoles.isNotEmpty()) {
+                        item {
                             Text(
-                                text = "Selected Roles",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            Text(
-                                text = "${selectedRoles.size}",
-                                style = MaterialTheme.typography.headlineSmall,
-                                color = MaterialTheme.colorScheme.primary,
-                                fontWeight = FontWeight.Bold
+                                text = "Realm Roles",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary
                             )
                         }
-                        if (selectedRoles.isNotEmpty()) {
-                            TextButton(onClick = { viewModel.clearSelectedRoles() }) {
-                                Text("Clear All")
-                            }
-                        }
-                    }
-                }
 
-                // Roles list
-                if (state.roles.isEmpty()) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(32.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = null,
-                                modifier = Modifier.size(64.dp),
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            Spacer(modifier = Modifier.height(16.dp))
-                            Text(
-                                text = "No roles found",
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                    }
-                } else {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        items(state.roles, key = { it.id }) { role ->
-                            RoleItem(
+                        items(state.realmRoles, key = { it.id }) { role ->
+                            RealmRoleItem(
                                 role = role,
                                 isSelected = selectedRoles.contains(role.id),
                                 onToggle = { viewModel.toggleRole(role.id) }
                             )
+                        }
+                    } else if (searchQuery.isNotEmpty()) {
+                        item {
+                            Text(
+                                text = "Realm Roles",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                        item {
+                            Card(
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(24.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = "No realm roles found",
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    val clientsToShow = if (hideClientsWithoutRoles) {
+                        state.clientsWithRoles.filter { clientWithRoles ->
+                            // Show if roles are not loaded yet (null) or if there are roles
+                            clientWithRoles.roles == null || clientWithRoles.roles.isNotEmpty()
+                        }
+                    } else {
+                        state.clientsWithRoles
+                    }
+
+                    if (clientsToShow.isNotEmpty()) {
+                        item {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = "Client Roles",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
+
+                        items(clientsToShow, key = { it.client.id }) { clientWithRoles ->
+                            ClientRolesCard(
+                                clientWithRoles = clientWithRoles,
+                                selectedRoles = selectedRoles,
+                                onToggleExpansion = { viewModel.toggleClientExpansion(it.client.id) },
+                                onToggleRole = { viewModel.toggleRole(it) }
+                            )
+                        }
+                    }
+
+                    if (state.realmRoles.isEmpty() && clientsToShow.isEmpty()) {
+                        item {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(32.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Search,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(64.dp),
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                    Spacer(modifier = Modifier.height(16.dp))
+                                    Text(
+                                        text = "No roles found",
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -479,7 +535,7 @@ private fun RolesTab(viewModel: EditUserViewModel) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun RoleItem(
+private fun RealmRoleItem(
     role: KeycloakRole,
     isSelected: Boolean,
     onToggle: () -> Unit
@@ -502,28 +558,11 @@ private fun RoleItem(
             Spacer(modifier = Modifier.width(12.dp))
 
             Column(modifier = Modifier.weight(1f)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = role.name ?: role.id,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Medium
-                    )
-
-                    if (role.clientRole == true) {
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Surface(
-                            shape = MaterialTheme.shapes.small,
-                            color = MaterialTheme.colorScheme.secondaryContainer
-                        ) {
-                            Text(
-                                text = "Client",
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer
-                            )
-                        }
-                    }
-                }
+                Text(
+                    text = role.name ?: "Unnamed Role",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Medium
+                )
 
                 if (!role.description.isNullOrEmpty()) {
                     Spacer(modifier = Modifier.height(4.dp))
@@ -541,6 +580,173 @@ private fun RoleItem(
                     contentDescription = "Selected",
                     tint = MaterialTheme.colorScheme.primary
                 )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ClientRolesCard(
+    clientWithRoles: ClientWithRoles,
+    selectedRoles: Set<String>,
+    onToggleExpansion: (ClientWithRoles) -> Unit,
+    onToggleRole: (String) -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column {
+            Surface(
+                onClick = { onToggleExpansion(clientWithRoles) },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Apps,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column {
+                            Text(
+                                text = if (!clientWithRoles.client.name.isNullOrEmpty()) {
+                                    clientWithRoles.client.name
+                                } else {
+                                    clientWithRoles.client.clientId
+                                },
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
+                            if (clientWithRoles.roles != null) {
+                                Text(
+                                    text = "${clientWithRoles.roles.size} roles",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            } else {
+                                Text(
+                                    text = "Roles have not been loaded yet",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                    }
+
+                    Icon(
+                        imageVector = if (clientWithRoles.isExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                        contentDescription = if (clientWithRoles.isExpanded) "Collapse" else "Expand"
+                    )
+                }
+            }
+
+            if (clientWithRoles.isExpanded) {
+                HorizontalDivider()
+
+                when {
+                    clientWithRoles.roles == null -> {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(24.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                        }
+                    }
+                    clientWithRoles.roles.isEmpty() -> {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(24.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "No roles found",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                    else -> {
+                        Column(
+                            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
+                        ) {
+                            clientWithRoles.roles.forEach { role ->
+                                Surface(
+                                    onClick = { onToggleRole(role.id) },
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(vertical = 8.dp),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Checkbox(
+                                            checked = selectedRoles.contains(role.id),
+                                            onCheckedChange = { onToggleRole(role.id) }
+                                        )
+
+                                        Spacer(modifier = Modifier.width(12.dp))
+
+                                        Column(modifier = Modifier.weight(1f)) {
+                                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                                Text(
+                                                    text = role.name ?: "Unnamed Role",
+                                                    style = MaterialTheme.typography.bodyLarge,
+                                                    fontWeight = FontWeight.Medium
+                                                )
+
+                                                Spacer(modifier = Modifier.width(8.dp))
+                                                Surface(
+                                                    shape = MaterialTheme.shapes.small,
+                                                    color = MaterialTheme.colorScheme.secondaryContainer
+                                                ) {
+                                                    Text(
+                                                        text = "Client",
+                                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                                        style = MaterialTheme.typography.labelSmall,
+                                                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                                                    )
+                                                }
+                                            }
+
+                                            if (!role.description.isNullOrEmpty()) {
+                                                Spacer(modifier = Modifier.height(2.dp))
+                                                Text(
+                                                    text = role.description,
+                                                    style = MaterialTheme.typography.bodySmall,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                                )
+                                            }
+                                        }
+
+                                        if (selectedRoles.contains(role.id)) {
+                                            Icon(
+                                                imageVector = Icons.Default.CheckCircle,
+                                                contentDescription = "Selected",
+                                                tint = MaterialTheme.colorScheme.primary,
+                                                modifier = Modifier.size(20.dp)
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

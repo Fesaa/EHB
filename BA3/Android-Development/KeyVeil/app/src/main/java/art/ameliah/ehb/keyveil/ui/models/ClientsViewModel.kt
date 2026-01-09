@@ -37,7 +37,7 @@ class ClientsViewModel(
 
             try {
                 val result = withContext(Dispatchers.IO) {
-                    authManager.getClient().searchClient(null)
+                    authManager.getClient().searchClients(null)
                 }
                 _uiState.value = ClientsUiState.Success(result)
             } catch (e: Exception) {
@@ -56,9 +56,9 @@ class ClientsViewModel(
 
             try {
                 val result = if (query.isBlank()) {
-                    authManager.getClient().searchClient(null)
+                    authManager.getClient().searchClients(null)
                 } else {
-                    authManager.getClient().searchClient(query)
+                    authManager.getClient().searchClients(query)
                 }
                 _uiState.value = ClientsUiState.Success(result)
             } catch (e: Exception) {

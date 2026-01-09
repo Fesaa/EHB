@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class KeycloakClient(
-    val id: String?,
-    val clientId: String?,
+    val id: String,
+    val clientId: String,
     val name: String?,
     val description: String? = null,
     val type: String? = null,

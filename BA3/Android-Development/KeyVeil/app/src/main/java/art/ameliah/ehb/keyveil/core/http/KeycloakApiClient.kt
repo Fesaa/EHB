@@ -7,10 +7,9 @@ import kotlinx.serialization.json.Json
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 import java.net.URL
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.contract
 
 class KeycloakApiClient {
 
@@ -39,7 +38,17 @@ class KeycloakApiClient {
         return get<List<KeycloakRole>>(url.build())!!
     }
 
-    suspend fun searchClient(query: String?, offSet: Int = 0): List<KeycloakClient> {
+    suspend fun searchClientRoles(clientId: String, offSet: Int = 0, brief: Boolean = false): List<KeycloakRole> {
+        val url = prepareHttpUrl()
+            .addPathSegment("clients")
+            .addPathSegment(clientId)
+            .addPathSegment("roles")
+            .addQueryParameter("briefRepresentation", brief.toString())
+
+        return get<List<KeycloakRole>>(url.build())!!
+    }
+
+    suspend fun searchClients(query: String?, offSet: Int = 0): List<KeycloakClient> {
         var url = prepareHttpUrl()
             .addPathSegment("clients")
 
@@ -49,8 +58,22 @@ class KeycloakApiClient {
         return get<List<KeycloakClient>>(url.build())!!
     }
 
-    suspend fun getRoleMappings(userId: String) {
+    /**
+     * clientId = null => get for realm
+     */
+    suspend fun getUserRoles(userId: String, clientId: String?): List<KeycloakRole> {
+        var url = prepareHttpUrl()
+            .addPathSegment("users")
+            .addPathSegment(userId)
+            .addPathSegment("role-mappings")
 
+        url = if (clientId == null)
+            url.addPathSegment("realm")
+        else
+            url.addPathSegment("clients")
+                .addPathSegment(clientId)
+
+        return get<List<KeycloakRole>>(url.build())!!
     }
 
     suspend fun getUser(userId: String): KeycloakUser? {
@@ -61,6 +84,36 @@ class KeycloakApiClient {
         return get<KeycloakUser>(url.build(), true)
     }
 
+    suspend fun saveUser(user: KeycloakUser) {
+        val url = prepareHttpUrl()
+            .addPathSegment("users")
+            .addPathSegment(user.id)
+
+        put(url.build(), user)
+    }
+
+    suspend fun addUserClientRoles(userId: String, clientId: String, roles: List<KeycloakRole>) {
+        val url = prepareHttpUrl()
+            .addPathSegment("users")
+            .addPathSegment(userId)
+            .addPathSegment("role-mappings")
+            .addPathSegment("clients")
+            .addPathSegment(clientId);
+
+        post(url.build(), roles)
+    }
+
+    suspend fun deleteUserClientRoles(userId: String, clientId: String, roles: List<KeycloakRole>) {
+        val url = prepareHttpUrl()
+            .addPathSegment("users")
+            .addPathSegment(userId)
+            .addPathSegment("role-mappings")
+            .addPathSegment("clients")
+            .addPathSegment(clientId);
+
+        delete(url.build(), roles)
+    }
+
     suspend fun searchUsers(query: String? = null, offSet: Int = 0): List<KeycloakUser> {
         var url = prepareHttpUrl()
             .addPathSegment("users")
@@ -69,6 +122,51 @@ class KeycloakApiClient {
             url = url.addQueryParameter("search", query)
 
         return get<List<KeycloakUser>>(url.build())!!
+    }
+
+    private suspend inline fun <reified T> delete(url: HttpUrl, body: T) {
+        val requestBody = json.encodeToString(body).toRequestBody()
+
+        val request = prepareRequest()
+            .url(url)
+            .delete(requestBody)
+            .build()
+
+        val response = httpClient.newCall(request).execute()
+
+        if (!response.isSuccessful) {
+            throw IOException("Request failed: ${response.code} ${response.message}")
+        }
+    }
+
+    private suspend inline fun <reified T> post(url: HttpUrl, body: T) {
+        val requestBody = json.encodeToString(body).toRequestBody()
+
+        val request = prepareRequest()
+            .url(url)
+            .post(requestBody)
+            .build()
+
+        val response = httpClient.newCall(request).execute()
+
+        if (!response.isSuccessful) {
+            throw IOException("Request failed: ${response.code} ${response.message}")
+        }
+    }
+
+    private suspend inline fun <reified T> put(url: HttpUrl, body: T) {
+        val requestBody = json.encodeToString(body).toRequestBody()
+
+        val request = prepareRequest()
+            .url(url)
+            .put(requestBody)
+            .build()
+
+        val response = httpClient.newCall(request).execute()
+
+        if (!response.isSuccessful) {
+            throw IOException("Request failed: ${response.code} ${response.message} ${response.body.string()}")
+        }
     }
 
     private suspend inline fun <reified T> get(url: HttpUrl, allow404: Boolean = false): T? {
