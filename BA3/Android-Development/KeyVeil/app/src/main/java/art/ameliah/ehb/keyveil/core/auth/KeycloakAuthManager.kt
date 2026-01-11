@@ -48,7 +48,7 @@ class KeycloakAuthManager(internal val context: Context) {
     }
 
     fun isAuthenticated(): Boolean {
-        return authState?.isAuthorized == true
+        return authState?.isAuthorized == true && !isTokenExpired()
     }
 
     fun getAccessToken(): String? {
